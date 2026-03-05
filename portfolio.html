@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio — Enhance Visual Studio</title>
   <meta name="description" content="Portfolio — Enhance Visual Studio" />
+  <link rel="canonical" href="https://www.enhancevisualstudio.com/portfolio.html" />
 
   <style>
     :root{
@@ -13,7 +14,8 @@
       --line:rgba(255,255,255,.12);
       --text:#f6f6f7;
       --muted:rgba(246,246,247,.72);
-      --radius:18px;
+      --radius:22px;
+      --stroke:rgba(255,255,255,.14);
     }
     *{box-sizing:border-box}
     body{
@@ -24,16 +26,19 @@
         radial-gradient(800px 420px at 80% 10%, rgba(255,255,255,.04), transparent 60%),
         var(--bg);
       color:var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:1100px;margin:0 auto;padding:18px 16px 70px}
+
+    .wrap{max-width:1200px;margin:0 auto;padding:18px 16px 70px}
 
     /* Top bar */
     .topbar{
       position:sticky; top:12px; z-index:30;
       display:flex; align-items:center; justify-content:space-between; gap:12px;
       padding:12px 14px;
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,.12);
       border-radius:999px;
       background: rgba(0,0,0,.35);
       backdrop-filter: blur(10px);
@@ -70,43 +75,70 @@
 
     header{padding:26px 2px 10px}
     h1{margin:0;font-size:28px;letter-spacing:2px;text-transform:uppercase}
-    .sub{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.5;max-width:70ch}
+    .sub{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.55;max-width:70ch}
     .tip{margin-top:10px;color:rgba(255,255,255,.55);font-size:12px}
 
-    /* Masonry columns */
+    /* ===== Luxury Masonry Grid ===== */
     .masonry{
-      margin-top:18px;
+      margin-top:22px;
       column-count: 3;
-      column-gap: 14px;
+      column-gap: 18px;              /* premium spacing */
     }
     @media (max-width: 980px){ .masonry{column-count:2} }
     @media (max-width: 560px){ .masonry{column-count:1} }
 
     .tile{
       break-inside: avoid;
-      margin:0 0 14px;
+      margin:0 0 18px;
       border-radius: var(--radius);
       overflow:hidden;
       border:1px solid rgba(255,255,255,.10);
-      background: var(--panel);
+      background: rgba(255,255,255,.035);
       cursor:pointer;
       position:relative;
+      transform: translateY(0);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      box-shadow: 0 18px 60px rgba(0,0,0,.28);
+    }
+    /* cinematic highlight */
+    .tile::before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(520px 240px at 30% 0%, rgba(255,255,255,.12), transparent 60%);
+      opacity:0;
+      transition: opacity .22s ease;
+      pointer-events:none;
+    }
+    /* soft vignette */
+    .tile::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.22), transparent 55%);
+      opacity:.75;
+      pointer-events:none;
     }
     .tile img{
       width:100%;
       height:auto;
       display:block;
-      transform: scale(1.002);
-      transition: transform .25s ease, opacity .25s ease;
-      opacity:.98;
+      transform: scale(1.01);
+      transition: transform .35s ease, filter .35s ease, opacity .35s ease;
+      filter: contrast(1.05) saturate(1.04);
+      opacity:0; /* smooth reveal */
     }
-    .tile:hover img{transform: scale(1.03); opacity:1}
-    .tile::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(to top, rgba(0,0,0,.18), transparent 55%);
-      opacity:.75;
-      pointer-events:none;
+    .tile img.is-loaded{ opacity:1; }
+
+    @media (hover:hover){
+      .tile:hover{
+        transform: translateY(-3px);
+        border-color: rgba(255,255,255,.18);
+        box-shadow: 0 26px 90px rgba(0,0,0,.40);
+      }
+      .tile:hover::before{ opacity:1; }
+      .tile:hover img{
+        transform: scale(1.06);
+        filter: contrast(1.08) saturate(1.06);
+      }
     }
 
     .empty{
@@ -120,30 +152,30 @@
       font-size:13px;
     }
 
-    /* Lightbox */
+    /* ===== Lightbox ===== */
     .lb{
       position:fixed; inset:0; z-index:9999;
-      background: rgba(0,0,0,.88);
+      background: rgba(0,0,0,.90);
       display:none;
       align-items:center; justify-content:center;
       padding:16px;
     }
     .lb.open{display:flex}
     .lb-inner{
-      width:min(1100px, 100%);
-      height:min(82vh, 820px);
+      width:min(1200px, 100%);
+      height:min(84vh, 860px);
       position:relative;
       border-radius: 22px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.14);
       background: rgba(12,12,14,.92);
-      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+      box-shadow: 0 30px 90px rgba(0,0,0,.65);
     }
     .lb-img{
       width:100%; height:100%;
       object-fit:contain;
       display:block;
-      background: radial-gradient(600px 300px at 50% 15%, rgba(255,255,255,.08), transparent 60%);
+      background: radial-gradient(620px 320px at 50% 15%, rgba(255,255,255,.08), transparent 60%);
     }
     .lb-top{
       position:absolute; top:12px; left:12px; right:12px;
@@ -219,7 +251,7 @@
     <header>
       <h1>Portfolio</h1>
       <p class="sub">One curated gallery. Tap any image to view fullscreen. Swipe on mobile.</p>
-      <div class="tip">When you add images later, just change TOTAL.</div>
+      <div class="tip">When you upload images later, just change TOTAL below.</div>
     </header>
 
     <main id="grid" class="masonry"></main>
@@ -265,10 +297,18 @@
 
     if (sources.length === 0) emptyState.style.display = "block";
 
+    // Build tiles (with smooth reveal)
     sources.forEach((src, i) => {
       const tile = document.createElement("div");
       tile.className = "tile";
-      tile.innerHTML = `<img src="${src}" loading="lazy" alt="Portfolio image ${i+1}">`;
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.loading = "lazy";
+      img.alt = `Portfolio image ${i+1}`;
+      img.addEventListener("load", () => img.classList.add("is-loaded"));
+      tile.appendChild(img);
+
       tile.addEventListener("click", () => open(i));
       grid.appendChild(tile);
     });
