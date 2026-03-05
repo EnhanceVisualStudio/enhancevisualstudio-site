@@ -313,6 +313,7 @@
       line-height:1.65;
       font-size:15px;
       max-width:80ch;
+      white-space:pre-wrap;
     }
 
     /* ===== Portfolio cards + hover animation ===== */
@@ -552,18 +553,20 @@
         <button class="btn primary" id="bookBtnTop">Book Session</button>
         <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
       </div>
-
-    <div class="mobile-drawer" id="drawer">
-      <a href="#home">Home</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <div class="row">
-        <a class="btn" href="portfolio.html">Portfolio</a>
-        <button class="btn primary" id="bookBtnMobile">Book</button>
-      </div>
-      
+    </div>
   </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer" id="drawer">
+    <a href="#home">Home</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <div class="row">
+      <a class="btn" href="portfolio.html">Portfolio</a>
+      <button class="btn primary" id="bookBtnMobile">Book</button>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero" id="home">
@@ -586,6 +589,13 @@
         <a class="btn" href="portfolio.html">View Portfolio</a>
       </div>
 
+      <div class="hero-note">
+        If the button doesn’t open, use this direct link:
+        <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
+          calendly.com/bookenhancevisualstudio/1-hour-photography-session
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- PORTFOLIO -->
@@ -605,7 +615,10 @@
             <h3 class="card-title">Portfolio</h3>
             <div class="card-desc">All featured images in one smooth, luxury gallery experience.</div>
             <div class="card-btn">View</div>
-
+          </div>
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- ABOUT -->
@@ -614,17 +627,11 @@
       <div class="kicker reveal">About</div>
       <div class="h2 reveal">Timeless. Bold. Clean.</div>
       <p class="p reveal">
-        
-
 Photography has the power to preserve moments that would otherwise fade with time. At Enhance Visual Studio, the vision is simple: create images that feel just as powerful years from now as they do today.
 
 By combining professional equipment, modern editing techniques, and a strong creative direction, every image is crafted to reflect both style and authenticity.
 
 Because great photography isn’t just about how something looks — it’s about how it feels.
-
-
-
-
 
 Enhance Visual Studio offers portrait sessions, lifestyle photography, event coverage, and creative collaborations throughout Los Angeles, San Diego, San Francisco, and the Bay Area.
 
@@ -632,10 +639,9 @@ If you’re ready to create something unforgettable, the next step is simple.
 
 Book your session and let’s bring your vision to life.
 
-
 Pose. Capture. Enhance
       </p>
-
+    </div>
   </section>
 
   <!-- CONTACT -->
@@ -650,6 +656,7 @@ Pose. Capture. Enhance
             <p class="mini">
               Want to book fast? Use the booking button. Prefer to message first? Reach out via Instagram DM.
             </p>
+          </div>
 
           <div class="contact-links">
             <a href="mailto:hello@enhancevisualstudio.com">
@@ -737,7 +744,7 @@ Pose. Capture. Enhance
       if (el) el.addEventListener("click", openBooking);
     });
 
-    // Cinematic scroll reveal (sections + cards)
+    // Cinematic scroll reveal
     const items = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
