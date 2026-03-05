@@ -3,68 +3,44 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#070707">
-
+  <meta name="theme-color" content="#070707" />
   <title>Enhance Visual Studio</title>
   <meta name="description" content="Enhance Visual Studio — Luxury Portrait & Lifestyle Photography. Pose. Capture. Enhance." />
-  <link rel="canonical" href="https://www.enhancevisualstudio.com/" />
 
   <style>
     :root{
       --bg:#070707;
       --text:#ffffff;
-      --muted:rgba(255,255,255,.70);
-      --muted2:rgba(255,255,255,.50);
+      --muted:rgba(255,255,255,.72);
+      --muted2:rgba(255,255,255,.52);
       --line:rgba(255,255,255,.14);
       --panel:rgba(255,255,255,.03);
       --shadow:0 18px 55px rgba(0,0,0,.55);
       --radius:18px;
-      --radius2:26px;
       --max:1120px;
     }
-    *{box-sizing:border-box}
 
-html{
-  height:100%;
-  scroll-behavior:smooth;
-}
-
-body{
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background:var(--bg);
       color:var(--text);
-      overflow-x:hidden;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-
-    /* ===== Scroll reveal ===== */
-    .reveal{
-      opacity:0;
-      transform: translateY(14px);
-      transition: opacity .75s ease, transform .75s ease;
-      will-change: opacity, transform;
-    }
-    .reveal.in{
-      opacity:1;
-      transform: translateY(0);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      letter-spacing:.2px;
     }
 
-    /* ===== Top Nav ===== */
+    a{ color:inherit; text-decoration:none; }
+    a:hover{ opacity:.85; }
+
+    /* --- NAV --- */
     .nav{
-      position:fixed; top:0; left:0; right:0;
-      z-index:1000;
-      padding:18px 18px;
-      transition: background .25s ease, backdrop-filter .25s ease, border-color .25s ease;
-      border-bottom:1px solid transparent;
-    }
-    .nav.scrolled{
-      background:rgba(0,0,0,.55);
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.10);
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:20;
+      backdrop-filter:saturate(150%) blur(10px);
+      background:linear-gradient(to bottom, rgba(7,7,7,.78), rgba(7,7,7,.35));
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
     .nav-inner{
       max-width:var(--max);
@@ -72,709 +48,479 @@ body{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
+      padding:14px 18px;
+      gap:18px;
     }
     .brand{
-      letter-spacing:.18em;
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+      letter-spacing:.8px;
       text-transform:uppercase;
-      font-weight:900;
       font-size:12px;
-      color:rgba(255,255,255,.95);
-      white-space:nowrap;
-      user-select:none;
     }
-    .nav-links{
+    .brand span:last-child{
+      color:var(--muted2);
+      text-transform:none;
+      letter-spacing:.2px;
+      font-size:11px;
+      margin-top:4px;
+    }
+    .links{
       display:flex;
       gap:18px;
       align-items:center;
-      font-weight:800;
-      letter-spacing:.12em;
-      text-transform:uppercase;
       font-size:12px;
-      color:rgba(255,255,255,.85);
+      text-transform:uppercase;
+      letter-spacing:1px;
+      color:var(--muted);
     }
-    .nav-links a{
-      padding:10px 10px;
+    .btn{
+      padding:10px 12px;
+      border:1px solid rgba(255,255,255,.18);
       border-radius:999px;
-      transition: background .2s ease, color .2s ease;
+      background:rgba(255,255,255,.03);
     }
-    .nav-links a:hover{
-      background:rgba(255,255,255,.08);
-      color:#fff;
-    }
-    .nav-cta{
+
+    /* --- HERO --- */
+    .hero{
+      height:100svh;
+      min-height:640px;
+      position:relative;
+      overflow:hidden;
       display:flex;
+      align-items:flex-end;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(to top, rgba(7,7,7,.86), rgba(7,7,7,.20) 55%, rgba(7,7,7,.10)),
+        url("assets/img/hero.jpg") center/cover no-repeat;
+      transform:scale(1.02);
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background:radial-gradient(1200px 650px at 30% 10%, rgba(255,255,255,.10), transparent 60%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position:relative;
+      max-width:var(--max);
+      margin:0 auto;
+      width:100%;
+      padding:120px 18px 42px;
+    }
+    .kicker{
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:2.2px;
+      font-size:12px;
+      margin-bottom:12px;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size:clamp(34px, 5vw, 64px);
+      letter-spacing:-.5px;
+      line-height:1.04;
+    }
+    .sub{
+      max-width:640px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.6;
+      margin:0 0 18px;
+    }
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .primary{
+      background:#fff;
+      color:#070707;
+      border:none;
+      box-shadow:var(--shadow);
+      padding:12px 16px;
+      border-radius:999px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1.4px;
+      display:inline-flex;
       align-items:center;
       gap:10px;
     }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+    .ghost{
       padding:12px 16px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.22);
-      background:rgba(255,255,255,.06);
-      color:#fff;
-      font-weight:900;
-      letter-spacing:.12em;
-      text-transform:uppercase;
+      background:rgba(255,255,255,.03);
       font-size:12px;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-      cursor:pointer;
-      user-select:none;
-      white-space:nowrap;
-    }
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.10);
-      border-color:rgba(255,255,255,.45);
-    }
-    .btn.primary{
-      background:#fff;
-      color:#000;
-      border-color:#fff;
-    }
-    .btn.primary:hover{
-      background:rgba(255,255,255,.92);
-      border-color:rgba(255,255,255,.92);
-    }
-
-    /* Mobile menu */
-    .hamburger{
-      display:none;
-      width:44px;height:44px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.06);
-      align-items:center;justify-content:center;
-      cursor:pointer;
-    }
-    .hamburger span{width:18px;height:2px;background:#fff;display:block;position:relative}
-    .hamburger span:before,.hamburger span:after{
-      content:""; width:18px;height:2px;background:#fff;display:block;position:absolute;left:0;
-    }
-    .hamburger span:before{top:-6px}
-    .hamburger span:after{top:6px}
-
-    .mobile-drawer{
-      display:none;
-      position:fixed;
-      top:68px;
-      left:14px; right:14px;
-      z-index:1001;
-      background:rgba(10,10,10,.92);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:20px;
-      padding:14px;
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-    }
-    .mobile-drawer a{
-      display:block;
-      padding:14px 12px;
-      border-radius:14px;
-      color:rgba(255,255,255,.92);
-      font-weight:900;
       text-transform:uppercase;
-      letter-spacing:.12em;
-      font-size:12px;
+      letter-spacing:1.4px;
+      color:var(--text);
     }
-    .mobile-drawer a:hover{background:rgba(255,255,255,.08)}
-    .mobile-drawer .row{
-      display:flex; gap:10px; padding-top:10px;
-    }
-    .mobile-drawer .row .btn{flex:1}
 
-    /* ===== HERO: bigger + cinematic zoom ===== */
-    .hero{
-      min-height:100vh;
-      position:relative;
+    /* --- SECTIONS --- */
+    section{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:72px 18px;
+    }
+    .section-head{
       display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:120px 18px 60px;
-      overflow:hidden;
-      background:#000;
-    }
-    .hero-bg{
-      position:absolute;
-      inset:-6%;
-      background:
-        radial-gradient(ellipse at center, rgba(0,0,0,.10) 0%, rgba(0,0,0,.75) 60%, rgba(0,0,0,.92) 100%),
-        url("images/hero.jpg") center/cover no-repeat;
-      transform: scale(1.08);
-      animation: heroZoom 16s ease-in-out infinite alternate;
-      filter: contrast(1.06) saturate(1.04);
-      z-index:0;
-    }
-    @keyframes heroZoom{
-      from{ transform: scale(1.08) translateY(0); }
-      to{ transform: scale(1.16) translateY(-1.5%); }
-    }
-    .hero-overlay{
-      position:absolute; inset:0;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,.62), rgba(0,0,0,.25) 35%, rgba(0,0,0,.92)),
-        radial-gradient(900px 500px at 50% 18%, rgba(255,255,255,.08), transparent 60%),
-        radial-gradient(1200px 800px at 50% 50%, transparent 35%, rgba(0,0,0,.55) 78%);
-      z-index:1;
-      pointer-events:none;
-    }
-    /* film grain (subtle) */
-    .hero-grain{
-      position:absolute; inset:-30%;
-      background-image:
-        repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,.035) 0 1px, transparent 1px 2px),
-        repeating-radial-gradient(circle at 70% 60%, rgba(255,255,255,.025) 0 1px, transparent 1px 3px);
-      opacity:.10;
-      transform: rotate(8deg);
-      animation: grainMove 7s steps(8) infinite;
-      z-index:2;
-      pointer-events:none;
-    }
-    @keyframes grainMove{
-      0%{transform:translate(0,0) rotate(8deg)}
-      20%{transform:translate(-2%, 1%) rotate(8deg)}
-      40%{transform:translate(1%, -2%) rotate(8deg)}
-      60%{transform:translate(-1%, -1%) rotate(8deg)}
-      80%{transform:translate(2%, 1%) rotate(8deg)}
-      100%{transform:translate(0,0) rotate(8deg)}
-    }
-
-    .hero-inner{
-      position:relative;
-      z-index:3;
-      max-width:920px;
-    }
-    .hero-title{
-      margin:0;
-      font-size: clamp(34px, 6vw, 66px);
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-weight:950;
-      color:#fff;
-      text-shadow: 0 10px 45px rgba(0,0,0,.6);
-    }
-    .hero-tagline{
-      margin-top:10px;
-      font-size:12px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      font-weight:900;
-      color:rgba(255,255,255,.95);
-    }
-    .hero-sub{
-      margin-top:10px;
-      font-size:13px;
-      letter-spacing:2px;
-      color:rgba(255,255,255,.88);
-    }
-    .hero-locs{
-      margin-top:12px;
-      font-size:12px;
-      color:rgba(255,255,255,.72);
-      letter-spacing:.08em;
-    }
-    .hero-actions{
-      margin-top:26px;
-      display:flex;
-      gap:12px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    .hero-note{
-      margin-top:14px;
-      font-size:12px;
-      color:rgba(255,255,255,.60);
-      line-height:1.5;
-    }
-    .hero-note a{
-      text-decoration:underline;
-      text-underline-offset:4px;
-      color:rgba(255,255,255,.88);
-    }
-
-    /* ===== Sections ===== */
-    .section{ padding:86px 18px; }
-    .wrap{ max-width:var(--max); margin:0 auto; }
-    .kicker{
-      text-transform:uppercase;
-      letter-spacing:.22em;
-      font-size:12px;
-      font-weight:900;
-      color:rgba(255,255,255,.70);
-      margin:0 0 14px;
-    }
-    .h2{
-      margin:0 0 14px;
-      font-size: clamp(24px, 3.2vw, 36px);
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      font-weight:950;
-    }
-    .p{
-      margin:0;
-      color:rgba(255,255,255,.72);
-      line-height:1.65;
-      font-size:15px;
-      max-width:80ch;
-      white-space:pre-wrap;
-    }
-
-    /* ===== Portfolio cards + hover animation ===== */
-    .grid{
-      margin-top:26px;
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+      justify-content:space-between;
+      align-items:flex-end;
       gap:18px;
+      margin-bottom:18px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:2.2px;
+      color:var(--muted);
+    }
+    .section-head p{
+      margin:0;
+      color:var(--muted2);
+      font-size:13px;
+      line-height:1.5;
+      max-width:520px;
+      text-align:right;
+    }
+
+    /* --- GALLERY GRID --- */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      gap:12px;
     }
     .card{
       position:relative;
-      border-radius: var(--radius);
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.03);
-      box-shadow: 0 18px 45px rgba(0,0,0,.35);
-      transform: translateZ(0);
-    }
-    .card::before{
-      content:"";
-      position:absolute; inset:0;
-      background:linear-gradient(to top, rgba(0,0,0,.78), rgba(0,0,0,.12) 60%, rgba(0,0,0,.55));
-      z-index:1;
-      pointer-events:none;
-      opacity:.95;
-      transition: opacity .4s ease;
-    }
-    .card-img{
-      height:260px;
-      background: url("images/hero.jpg") center/cover no-repeat;
-      transition: transform .65s ease, filter .65s ease;
-      filter: contrast(1.03) saturate(1.03);
-    }
-    .card-body{
-      position:absolute;
-      left:18px; right:18px; bottom:16px;
-      z-index:2;
-    }
-    .card-title{
-      margin:0;
-      font-weight:950;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-size:14px;
-    }
-    .card-desc{
-      margin-top:8px;
-      color:rgba(255,255,255,.72);
-      font-size:13px;
-      line-height:1.45;
-      max-width:52ch;
-    }
-    .card-btn{
-      margin-top:12px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.25);
-      background:rgba(255,255,255,.08);
-      color:#fff;
-      font-weight:950;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-size:11px;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-    .card:hover .card-img{
-      transform: scale(1.08);
-      filter: contrast(1.08) saturate(1.07);
-    }
-    .card:hover::before{ opacity:1; }
-    .card:hover .card-btn{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.12);
-      border-color:rgba(255,255,255,.45);
-    }
-
-    /* ===== Contact panel ===== */
-    .panel{
-      margin-top:22px;
-      border-radius: var(--radius2);
+      border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-      padding:22px;
-      box-shadow: 0 20px 70px rgba(0,0,0,.35);
+      background:rgba(255,255,255,.02);
+      min-height:260px;
+      box-shadow:0 18px 50px rgba(0,0,0,.35);
     }
-    .contact-row{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:18px;
-      align-items:start;
+    .card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform:scale(1.01);
+      transition:transform .45s ease, opacity .45s ease;
+      opacity:.95;
     }
-    .mini{ font-size:13px; color:rgba(255,255,255,.72); line-height:1.6; }
-    .contact-links a{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:14px 14px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.03);
-      margin-top:10px;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-    }
-    .contact-links a:hover{
-      transform: translateY(-1px);
-      background:rgba(255,255,255,.06);
-      border-color:rgba(255,255,255,.28);
-    }
-    .contact-links span{
-      font-weight:950;
-      letter-spacing:.10em;
+    .card:hover img{ transform:scale(1.06); opacity:1; }
+
+    .span-6{ grid-column:span 6; }
+    .span-8{ grid-column:span 8; }
+    .span-4{ grid-column:span 4; }
+    .span-12{ grid-column:span 12; }
+
+    .label{
+      position:absolute;
+      left:14px; bottom:14px;
+      padding:9px 11px;
+      border-radius:999px;
+      background:rgba(7,7,7,.55);
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(10px);
+      font-size:11px;
+      letter-spacing:1.6px;
       text-transform:uppercase;
-      font-size:12px;
-      color:#fff;
-    }
-    .contact-links em{
-      font-style:normal;
-      color:rgba(255,255,255,.65);
-      font-size:12px;
-      letter-spacing:.04em;
+      color:rgba(255,255,255,.85);
     }
 
-    /* ===== Strong footer ===== */
-    .site-footer{
-      text-align:center;
-      padding:70px 18px 86px;
+    /* --- TAGLINE / PHILOSOPHY --- */
+    .panel{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      border-radius:26px;
+      padding:26px;
     }
-    .footer-divider{
-      width:140px;
-      height:1px;
-      margin:0 auto 28px;
-      background:linear-gradient(to right, transparent, rgba(255,255,255,.40), transparent);
-    }
-    .footer-social{
+    .tagline{
       display:flex;
-      justify-content:center;
-      gap:26px;
+      flex-direction:column;
+      gap:12px;
       margin-bottom:18px;
     }
-    .footer-social a{
-      width:40px;
-      height:40px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border:1px solid rgba(255,255,255,.15);
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      transition:all .25s ease;
-    }
-    .footer-social svg{width:18px;height:18px}
-    .footer-social a:hover{
-      transform:translateY(-3px);
-      border-color:rgba(255,255,255,.55);
-      box-shadow:0 12px 28px rgba(255,255,255,.15);
-      background:rgba(255,255,255,.06);
-    }
-    .footer-locs{
-      color:rgba(255,255,255,.55);
-      font-size:12px;
-      letter-spacing:.10em;
+    .tagline strong{
+      font-size:13px;
       text-transform:uppercase;
-      margin-bottom:14px;
+      letter-spacing:2.2px;
+      color:var(--muted);
     }
-    .footer-text{
+    .tagline h3{
+      margin:0;
+      font-size:28px;
+      letter-spacing:-.2px;
+      line-height:1.15;
+    }
+    .triple{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+      margin-top:10px;
+    }
+    .pill{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.02);
+      border-radius:18px;
+      padding:16px;
+    }
+    .pill b{
+      display:block;
       font-size:12px;
-      letter-spacing:.10em;
-      color:rgba(255,255,255,.55);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      margin-bottom:8px;
+      color:rgba(255,255,255,.88);
+    }
+    .pill p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
     }
 
-    /* ===== Floating Instagram + Book ===== */
-    .float-wrap{
-      position:fixed;
-      right:16px;
-      bottom:18px;
-      z-index:2000;
+    /* --- ABOUT + CTA --- */
+    .two-col{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:16px;
+      align-items:start;
+    }
+    .about p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.75;
+    }
+    .cta{
       display:flex;
       flex-direction:column;
       gap:10px;
+      align-items:flex-start;
     }
-    .float-btn{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(10,10,10,.72);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 18px 45px rgba(0,0,0,.45);
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-      color:#fff;
-      font-weight:950;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:11px;
-      white-space:nowrap;
-      cursor:pointer;
+    .cta .small{
+      color:var(--muted2);
+      font-size:12px;
+      line-height:1.5;
     }
-    .float-btn:hover{
-      transform: translateY(-2px);
-      border-color:rgba(255,255,255,.40);
-      background:rgba(15,15,15,.78);
-    }
-    .float-btn svg{width:16px;height:16px;opacity:.95}
 
-    /* Responsive */
-    @media (max-width: 860px){
-      .nav-links{display:none}
-      .hamburger{display:flex}
-      .grid{grid-template-columns:1fr}
-      .card-img{height:230px}
-      .contact-row{grid-template-columns:1fr}
+    footer{
+      border-top:1px solid rgba(255,255,255,.10);
+      padding:26px 18px;
+      color:var(--muted2);
+      font-size:12px;
     }
+    .footer-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 860px){
+      .links{ gap:12px; }
+      .section-head{ flex-direction:column; align-items:flex-start; }
+      .section-head p{ text-align:left; }
+      .span-8, .span-6, .span-4{ grid-column:span 12; }
+      .triple{ grid-template-columns:1fr; }
+      .two-col{ grid-template-columns:1fr; }
+      .hero-inner{ padding-top:110px; }
+    }
+
+    /* smooth scroll */
+    html{ scroll-behavior:smooth; }
+    /* anchor offset for fixed nav */
+    .anchor{ scroll-margin-top:90px; }
   </style>
 </head>
 
 <body>
   <!-- NAV -->
-  <header class="nav" id="topNav">
+  <div class="nav">
     <div class="nav-inner">
-      <div class="brand">Enhance Visual Studio</div>
+      <a class="brand" href="#top" aria-label="Enhance Visual Studio Home">
+        ENHANCE VISUAL STUDIO
+        <span>Pose. Capture. Enhance.</span>
+      </a>
 
-      <nav class="nav-links">
-        <a href="#home">Home</a>
+      <div class="links">
         <a href="#portfolio">Portfolio</a>
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <div class="nav-cta">
-        <a class="btn" href="portfolio.html">View Portfolio</a>
-        <button class="btn primary" id="bookBtnTop">Book Session</button>
-        <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
+        <a class="btn" href="#book">Book</a>
       </div>
-    </div>
-  </header>
-
-  <!-- MOBILE DRAWER -->
-  <div class="mobile-drawer" id="drawer">
-    <a href="#home">Home</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <div class="row">
-      <a class="btn" href="portfolio.html">Portfolio</a>
-      <button class="btn primary" id="bookBtnMobile">Book</button>
     </div>
   </div>
 
   <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <div class="hero-overlay" aria-hidden="true"></div>
-    <div class="hero-grain" aria-hidden="true"></div>
-
-    <div class="hero-inner reveal">
-      <h1 class="hero-title">ENHANCE VISUAL STUDIO</h1>
-      <div class="hero-tagline">POSE. CAPTURE. ENHANCE</div>
-
-      <div class="hero-sub" style="letter-spacing:2px; margin-top:10px;">
-        Luxury Portrait &amp; Lifestyle Photography
-      </div>
-
-      <div class="hero-locs">Los Angeles • San Francisco/ Bay Area • San Diego</div>
+  <header id="top" class="hero">
+    <div class="hero-inner">
+      <div class="kicker">Luxury Portrait • Lifestyle • Events</div>
+      <h1>Pose. Capture. Enhance.</h1>
+      <p class="sub">
+        Clean, cinematic imagery that blends confidence, emotion, and refined editing—built to feel timeless.
+      </p>
 
       <div class="hero-actions">
-        <button class="btn primary" id="bookBtnHero">Book Session</button>
-        <a class="btn" href="portfolio.html">View Portfolio</a>
+        <a class="primary" href="#portfolio">View Portfolio →</a>
+        <a class="ghost" href="#book">Book a Session</a>
       </div>
-
-
     </div>
-  </section>
+  </header>
 
-<section class="section" style="padding:20px 18px 30px;
-  <div class="wrap" style="text-align:center;">
-    <div style="
-      font-size:12px;
-      letter-spacing:.20em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.55);
-      font-weight:900;">
-    </div>
-  </div>
-</section>
   <!-- PORTFOLIO -->
-  <section class="section" id="portfolio">
-    <div class="wrap">
-      <div class="kicker reveal">Portfolio</div>
-      <div class="h2 reveal">Featured Work</div>
-      <p class="p reveal">
-A clean, cinematic look — premium retouching, intentional lighting, and luxury spacing.
-Tap to view the full portfolio gallery.
-      </p>
+  <section id="portfolio" class="anchor">
+    <div class="section-head">
+      <h2>Portfolio</h2>
+      <p>Scroll-first galleries. Big images. Minimal text. Let the work speak.</p>
+    </div>
 
-      <div class="grid">
-        <a class="card reveal" href="portfolio.html" aria-label="Open Portfolio">
-          <div class="card-img"></div>
-          <div class="card-body">
-            <h3 class="card-title">Portfolio</h3>
-            <div class="card-desc">All featured images in one smooth, luxury gallery experience.</div>
-            <div class="card-btn">View</div>
-          </div>
-        </a>
+    <!-- PORTRAITS -->
+    <div style="margin-top:18px; margin-bottom:10px;">
+      <div class="kicker" style="margin:0 0 10px;">Portraits</div>
+    </div>
+    <div class="grid" aria-label="Portraits gallery preview">
+      <a class="card span-8" href="#" aria-label="Portrait image 1">
+        <img src="assets/img/p1.jpg" alt="Portrait photograph" loading="lazy" />
+        <div class="label">Portraits</div>
+      </a>
+      <a class="card span-4" href="#" aria-label="Portrait image 2">
+        <img src="assets/img/p2.jpg" alt="Portrait photograph" loading="lazy" />
+        <div class="label">Portraits</div>
+      </a>
+      <a class="card span-6" href="#" aria-label="Portrait image 3">
+        <img src="assets/img/p3.jpg" alt="Portrait photograph" loading="lazy" />
+        <div class="label">Portraits</div>
+      </a>
+      <a class="card span-6" href="#" aria-label="Portrait image 4">
+        <img src="assets/img/p4.jpg" alt="Portrait photograph" loading="lazy" />
+        <div class="label">Portraits</div>
+      </a>
+    </div>
+
+    <!-- FAMILIES -->
+    <div style="margin-top:44px; margin-bottom:10px;">
+      <div class="kicker" style="margin:0 0 10px;">Kids / Family</div>
+    </div>
+    <div class="grid" aria-label="Family gallery preview">
+      <a class="card span-6" href="#" aria-label="Family image 1">
+        <img src="assets/img/f1.jpg" alt="Family photograph" loading="lazy" />
+        <div class="label">Kids / Family</div>
+      </a>
+      <a class="card span-6" href="#" aria-label="Family image 2">
+        <img src="assets/img/f2.jpg" alt="Family photograph" loading="lazy" />
+        <div class="label">Kids / Family</div>
+      </a>
+    </div>
+
+    <!-- EVENTS -->
+    <div style="margin-top:44px; margin-bottom:10px;">
+      <div class="kicker" style="margin:0 0 10px;">Events</div>
+    </div>
+    <div class="grid" aria-label="Events gallery preview">
+      <a class="card span-4" href="#" aria-label="Event image 1">
+        <img src="assets/img/e1.jpg" alt="Event photograph" loading="lazy" />
+        <div class="label">Events</div>
+      </a>
+      <a class="card span-8" href="#" aria-label="Event image 2">
+        <img src="assets/img/e2.jpg" alt="Event photograph" loading="lazy" />
+        <div class="label">Events</div>
+      </a>
+    </div>
+
+    <!-- LIFESTYLE -->
+    <div style="margin-top:44px; margin-bottom:10px;">
+      <div class="kicker" style="margin:0 0 10px;">Lifestyle / Fashion</div>
+    </div>
+    <div class="grid" aria-label="Lifestyle gallery preview">
+      <a class="card span-8" href="#" aria-label="Lifestyle image 1">
+        <img src="assets/img/l1.jpg" alt="Lifestyle photograph" loading="lazy" />
+        <div class="label">Lifestyle</div>
+      </a>
+      <a class="card span-4" href="#" aria-label="Lifestyle image 2">
+        <img src="assets/img/l2.jpg" alt="Lifestyle photograph" loading="lazy" />
+        <div class="label">Lifestyle</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- TAGLINE / PHILOSOPHY -->
+  <section class="anchor" aria-label="Brand philosophy">
+    <div class="panel">
+      <div class="tagline">
+        <strong>Our Process</strong>
+        <h3>Pose. Capture. Enhance.</h3>
       </div>
-    </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section class="section" id="about">
-    <div class="wrap">
-      <div class="kicker reveal">About</div>
-      <div class="h2 reveal">Timeless. Bold. Clean.</div>
-      <p class="p reveal">
-Photography has the power to preserve moments that would otherwise fade with time. At Enhance Visual Studio, the vision is simple: create images that feel just as powerful years from now as they do today.
-By combining professional equipment, modern editing techniques, and a strong creative direction, every image is crafted to reflect both style and authenticity. Because great photography isn’t just about how something looks — it’s about how it feels.
-
-Enhance Visual Studio offers portrait sessions, lifestyle photography, event coverage, and creative collaborations throughout Los Angeles, San Diego, San Francisco, and the Bay Area. 
-If you’re ready to create something unforgettable, the next step is simple.
-Book your session and let’s bring your vision to life.
-
-"Pose. Capture. Enhance"
-
-
-Pose;
-Where confidence meets expression. Every pose is crafted to reveal personality, beauty, and presence.
-
-Capture;
-A moment, perfectly framed. Using light, composition, and timing to turn fleeting moments into lasting visuals.
-
-Enhance;
-The art of refinement. Through expert editing and creative vision, each image is transformed into its most powerful form.
-
-      </p>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <div class="wrap">
-      <div class="kicker reveal">Contact</div>
-      <div class="h2 reveal">Let’s Create</div>
-
-      <div class="panel reveal">
-        <div class="contact-row">
-          <div>
-            <p class="mini">
-              Want to book fast? Use the booking button. Prefer to message first? Reach out via Instagram DM.
-            </p>
-          </div>
-
-          <div class="contact-links">
-            <a href="mailto:hello@enhancevisualstudio.com">
-              <span>Email</span>
-              <em>hello@enhancevisualstudio.com</em>
-            </a>
-            <a href="https://instagram.com/enhancevisualstudio" target="_blank" rel="noopener">
-              <span>Instagram</span>
-              <em>@enhancevisualstudio</em>
-            </a>
-            <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
-              <span>Book</span>
-              <em>Calendly</em>
-            </a>
-          </div>
+      <div class="triple">
+        <div class="pill">
+          <b>Pose</b>
+          <p>Confidence starts here—guided direction with room for real personality and natural expression.</p>
+        </div>
+        <div class="pill">
+          <b>Capture</b>
+          <p>Light, composition, and timing—crafted to freeze the moment with a cinematic feel.</p>
+        </div>
+        <div class="pill">
+          <b>Enhance</b>
+          <p>Professional retouching and color refinement—polished, elevated, and true to you.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="site-footer reveal">
-    <div class="footer-divider"></div>
-
-    <div class="footer-social">
-      <a href="https://instagram.com/enhancevisualstudio" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C19.9 2 22 4.1 22 7.8v8.4c0 3.7-2.1 5.8-5.8 5.8H7.8C4.1 22 2 19.9 2 16.2V7.8C2 4.1 4.1 2 7.8 2m0 2C5.3 4 4 5.3 4 7.8v8.4C4 18.7 5.3 20 7.8 20h8.4c2.5 0 3.8-1.3 3.8-3.8V7.8C20 5.3 18.7 4 16.2 4H7.8m8.6 1.5a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
-      </a>
-      <a href="https://facebook.com/enhancevisualstudio" target="_blank" rel="noopener" aria-label="Facebook">
-        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M13 22v-9h3l1-4h-4V7c0-1 .3-2 2-2h2V1h-3c-4 0-5 2-5 5v3H6v4h3v9h4z"/></svg>
-      </a>
-      <a href="https://youtube.com/@enhancevisualstudio" target="_blank" rel="noopener" aria-label="YouTube">
-        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M23 12s0-3.5-.5-5.2c-.3-1-1-1.7-2-2C18.8 4.2 12 4.2 12 4.2s-6.8 0-8.5.6c-1 .3-1.7 1-2 2C1 8.5 1 12 1 12s0 3.5.5 5.2c.3 1 1 1.7 2 2 1.7.6 8.5.6 8.5.6s6.8 0 8.5-.6c1-.3 1.7-1 2-2 .5-1.7.5-5.2.5-5.2zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
-      </a>
+  <!-- ABOUT + BOOK -->
+  <section id="about" class="anchor">
+    <div class="section-head">
+      <h2>About</h2>
+      <p>Short. Clean. Premium. Enough to build trust without oversharing.</p>
     </div>
 
-    <div class="footer-locs">Los Angeles • San Francisco/ Bay Area • San Diego</div>
-    <div class="footer-text">© <span id="year"></span> Enhance Visual Studio LLC. All Rights Reserved.</div>
+    <div class="two-col">
+      <div class="panel about">
+        <p>
+          Enhance Visual Studio is a California-based photography brand specializing in luxury portraits, lifestyle,
+          and events. Our work blends intentional posing, clean lighting, and refined editing to create imagery that
+          feels timeless—built for individuals, couples, families, and brands.
+        </p>
+      </div>
+
+      <div id="book" class="panel cta anchor">
+        <div class="kicker" style="margin:0;">Book a Session</div>
+        <div class="small">Email:</div>
+        <a class="primary" href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com →</a>
+        <div class="small">Instagram / Contact form can go here next.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> Enhance Visual Studio. All rights reserved.</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#top">Top</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#about">About</a>
+        <a href="mailto:hello@enhancevisualstudio.com">Email</a>
+      </div>
+    </div>
   </footer>
 
-  <!-- Floating buttons -->
-  <div class="float-wrap">
-    <a class="float-btn" href="https://instagram.com/enhancevisualstudio" target="_blank" rel="noopener" aria-label="Instagram">
-      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C19.9 2 22 4.1 22 7.8v8.4c0 3.7-2.1 5.8-5.8 5.8H7.8C4.1 22 2 19.9 2 16.2V7.8C2 4.1 4.1 2 7.8 2m0 2C5.3 4 4 5.3 4 7.8v8.4C4 18.7 5.3 20 7.8 20h8.4c2.5 0 3.8-1.3 3.8-3.8V7.8C20 5.3 18.7 4 16.2 4H7.8z"/></svg>
-      Instagram
-    </a>
-
-    <button class="float-btn" id="bookBtnFloat" aria-label="Book Session">
-      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm12 8H5v10h14V10z"/></svg>
-      Book Session
-    </button>
-  </div>
-
   <script>
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Nav blur on scroll
-    const topNav = document.getElementById("topNav");
-    const onScroll = () => {
-      if (window.scrollY > 20) topNav.classList.add("scrolled");
-      else topNav.classList.remove("scrolled");
-    };
-    window.addEventListener("scroll", onScroll);
-    onScroll();
-
-    // Mobile drawer
-    const drawer = document.getElementById("drawer");
-    const hamburger = document.getElementById("hamburger");
-    hamburger.addEventListener("click", () => {
-      drawer.style.display = (drawer.style.display === "block") ? "none" : "block";
-    });
-    drawer.querySelectorAll("a").forEach(a=>{
-      a.addEventListener("click", ()=> drawer.style.display="none");
-    });
-
-    // Booking with fallback (never “does nothing”)
-    const BOOK_URL = "https://calendly.com/bookenhancevisualstudio/1-hour-photography-session";
-    function openBooking(){
-      const w = window.open(BOOK_URL, "_blank", "noopener");
-      if (!w) window.location.href = BOOK_URL;
-    }
-    ["bookBtnTop","bookBtnHero","bookBtnMobile","bookBtnFloat"].forEach(id=>{
-      const el = document.getElementById(id);
-      if (el) el.addEventListener("click", openBooking);
-    });
-
-    // Cinematic scroll reveal
-    const items = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
-
-    items.forEach(el => io.observe(el));
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
