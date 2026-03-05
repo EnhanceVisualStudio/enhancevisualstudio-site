@@ -1,818 +1,994 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Enhance Visual Studio</title>
-  <meta name="description" content="Enhance Visual Studio — Pose. Capture. Enhance. Luxury Portrait & Lifestyle Photography in Los Angeles, San Francisco/Bay Area & San Diego." />
-  <link rel="canonical" href="https://www.enhancevisualstudio.com/" />
 
   <style>
     :root{
-      --bg:#000;
-      --text:#fff;
-      --muted:rgba(255,255,255,.75);
-      --muted2:rgba(255,255,255,.6);
-      --line:rgba(255,255,255,.18);
-      --panel:rgba(0,0,0,.55);
-      --blur: blur(10px);
-      --radius: 12px;
-      --max: 1200px;
+      --bg:#0b0b0c;
+      --panel:#121214;
+      --text:#f5f5f5;
+      --muted:rgba(255,255,255,.72);
+      --muted2:rgba(255,255,255,.55);
+      --line:rgba(255,255,255,.14);
+      --line2:rgba(255,255,255,.08);
+      --accent:#ffffff;
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
+      --radius:16px;
+      --radius2:12px;
+      --max:1100px;
+      --navH:64px;
     }
 
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
-      background:var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: radial-gradient(1200px 500px at 50% 0%, rgba(255,255,255,.05), transparent 55%) , var(--bg);
       color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
       overflow-x:hidden;
     }
-    a{ color:inherit; text-decoration:none; }
-    img{ max-width:100%; display:block; }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
 
     /* NAV */
-    nav{
+    .nav{
       position:fixed;
       top:0; left:0; right:0;
+      height:var(--navH);
       display:flex;
-      justify-content:center;
-      gap:34px;
-      padding:18px 16px;
-      background:rgba(0,0,0,.55);
-      backdrop-filter: var(--blur);
-      -webkit-backdrop-filter: var(--blur);
+      align-items:center;
       z-index:50;
-      border-bottom:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(to bottom, rgba(0,0,0,.72), rgba(0,0,0,.25), transparent);
+      backdrop-filter: blur(10px);
     }
-    nav a{
+    .nav .inner{
+      width:min(var(--max), calc(100% - 36px));
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
       font-size:13px;
-      letter-spacing:2px;
-      color:rgba(255,255,255,.9);
-      padding:6px 2px;
-      position:relative;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      white-space:nowrap;
     }
-    nav a:after{
-      content:"";
-      position:absolute;
-      left:0; right:0; bottom:-2px;
-      height:1px;
-      background:transparent;
-      transition: background .2s ease;
+    .brand .dot{
+      width:8px;height:8px;border-radius:999px;
+      background:rgba(255,255,255,.75);
+      box-shadow:0 0 0 6px rgba(255,255,255,.06);
     }
-    nav a:hover:after{ background:rgba(255,255,255,.55); }
 
-    .wrap{
-      max-width:var(--max);
-      margin:auto;
-      padding:0 20px;
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
     }
+    .navlinks a{
+      color:rgba(255,255,255,.86);
+      padding:10px 6px;
+      border-radius:10px;
+      transition:.2s ease;
+    }
+    .navlinks a:hover{background:rgba(255,255,255,.08)}
+    .navcta{
+      display:flex; align-items:center; gap:10px;
+    }
+    .btn{
+      border:1px solid rgba(255,255,255,.45);
+      background:rgba(0,0,0,.28);
+      color:#fff;
+      padding:10px 14px;
+      border-radius:999px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:12px;
+      cursor:pointer;
+      transition:.18s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.08)}
+    .btn:active{transform:translateY(0)}
+    .btn.solid{
+      background:#fff; color:#000;
+      border-color:#fff;
+    }
+    .btn.solid:hover{background:#f2f2f2}
+
+    /* Mobile menu */
+    .hamburger{display:none}
+    .hamburger button{
+      width:42px;height:42px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.25);
+      color:#fff;
+      cursor:pointer;
+    }
+    .mobileMenu{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.82);
+      backdrop-filter: blur(12px);
+      display:none;
+      z-index:60;
+    }
+    .mobileMenu.open{display:block}
+    .mobileMenu .card{
+      width:min(520px, calc(100% - 26px));
+      margin:86px auto 0;
+      background:rgba(15,15,18,.92);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .mobileMenu header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 16px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .mobileMenu header strong{
+      font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+      color:rgba(255,255,255,.88);
+    }
+    .mobileMenu header button{
+      border:1px solid rgba(255,255,255,.14);
+      background:transparent;
+      color:#fff;
+      width:40px;height:40px;border-radius:12px;
+      cursor:pointer;
+    }
+    .mobileMenu nav{display:flex; flex-direction:column}
+    .mobileMenu nav a{
+      padding:16px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      font-size:13px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.88);
+    }
+    .mobileMenu .actions{padding:16px; display:flex; gap:10px; flex-wrap:wrap}
 
     /* HERO */
     .hero{
       min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
+      display:grid;
+      place-items:center;
+      padding-top:var(--navH);
       position:relative;
-      background:#000 url("images/hero.jpg") center/cover no-repeat;
+      overflow:hidden;
     }
     .hero::before{
       content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.65));
+      position:absolute; inset:0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.72)),
+        url("images/hero.jpg") center/cover no-repeat;
+      transform:scale(1.03);
+      filter:saturate(1.02) contrast(1.02);
     }
-    .hero-card{
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(700px 300px at 50% 30%, rgba(255,255,255,.08), transparent 60%),
+        linear-gradient(to bottom, transparent, rgba(0,0,0,.78) 88%, rgba(0,0,0,.95));
+      pointer-events:none;
+    }
+    .hero .content{
       position:relative;
-      z-index:1;
-      padding:38px 26px;
-      background:rgba(0,0,0,.25);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:var(--radius);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      max-width:900px;
-      margin:0 14px;
+      width:min(var(--max), calc(100% - 36px));
+      margin:0 auto;
+      text-align:center;
+      padding:72px 0 64px;
     }
-    .brand{
-      font-size: clamp(28px, 4vw, 54px);
-      letter-spacing:4px;
+
+    .hero h1{
       margin:0;
+      font-size: clamp(28px, 5.4vw, 54px);
+      letter-spacing:.14em;
       text-transform:uppercase;
-      color:#fff; /* ensure white */
-      text-shadow:0 2px 18px rgba(0,0,0,.55);
+      font-weight:900;
+      color:#fff; /* make sure brand is white */
+      text-shadow: 0 8px 30px rgba(0,0,0,.55);
     }
     .tagline{
-      margin-top:12px;
-      letter-spacing:3px;
-      font-size:13px;
+      margin-top:14px;
+      font-size: clamp(12px, 1.6vw, 14px);
+      letter-spacing:.22em;
       text-transform:uppercase;
-      color:#fff; /* ensure white */
-      text-shadow:0 2px 16px rgba(0,0,0,.45);
+      color:#fff; /* make sure tagline is white */
+      opacity:.95;
+      text-shadow: 0 8px 30px rgba(0,0,0,.55);
     }
     .lux{
       letter-spacing:2px;
       margin-top:10px;
-      font-size:14px;
-      color:rgba(255,255,255,.92);
-      text-shadow:0 2px 16px rgba(0,0,0,.45);
-    }
-    .area{
-      margin-top:10px;
       font-size:13px;
-      color:rgba(255,255,255,.8);
-      text-shadow:0 2px 16px rgba(0,0,0,.45);
+      color:rgba(255,255,255,.90);
+      text-shadow: 0 8px 30px rgba(0,0,0,.55);
     }
-    .cta{
-      margin-top:22px;
+    .serviceArea{
+      margin-top:12px;
+      font-size:12px;
+      letter-spacing:.10em;
+      color:rgba(255,255,255,.82);
+      text-shadow: 0 8px 30px rgba(0,0,0,.55);
+    }
+    .hero .ctaRow{
+      margin-top:26px;
       display:flex;
       gap:12px;
       justify-content:center;
       flex-wrap:wrap;
     }
-    .btn{
-      appearance:none;
-      border:2px solid rgba(255,255,255,.9);
-      background:transparent;
-      color:#fff;
-      padding:14px 26px;
-      letter-spacing:2px;
-      font-size:12px;
-      text-transform:uppercase;
-      border-radius:999px;
-      cursor:pointer;
-      transition: all .2s ease;
-      user-select:none;
-    }
-    .btn:hover{
-      background:#fff;
-      color:#000;
-      transform: translateY(-1px);
-    }
-    .btn.secondary{
-      border-color:rgba(255,255,255,.35);
-      color:rgba(255,255,255,.9);
-    }
-    .btn.secondary:hover{
-      background:rgba(255,255,255,.12);
-      color:#fff;
-      border-color:rgba(255,255,255,.65);
-    }
-    .cta-note{
-      margin-top:12px;
+    .fallback{
+      margin-top:10px;
       font-size:12px;
       color:rgba(255,255,255,.65);
     }
-    .cta-note a{ text-decoration:underline; }
+    .fallback a{ text-decoration:underline; }
 
     /* SECTIONS */
-    section{
-      padding:84px 0;
-      border-top:1px solid rgba(255,255,255,.06);
+    .section{
+      width:min(var(--max), calc(100% - 36px));
+      margin:0 auto;
+      padding:72px 0;
     }
-    h2{
-      text-align:center;
-      letter-spacing:3px;
+    .section h2{
+      margin:0 0 14px;
+      font-size:14px;
+      letter-spacing:.22em;
       text-transform:uppercase;
-      margin:0 0 12px 0;
+      color:rgba(255,255,255,.88);
     }
-    .sub{
-      text-align:center;
+    .section p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    /* PORTFOLIO GRID */
+    .portIntro{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    .hint{
+      font-size:12px;
       color:var(--muted2);
-      margin:0 0 46px 0;
-      line-height:1.5;
+      letter-spacing:.04em;
     }
-
-    /* PORTFOLIO */
-    .portfolio-block{
-      margin-bottom:60px;
+    .portBlocks{
+      display:grid;
+      gap:22px;
     }
-    .portfolio-block:last-child{ margin-bottom:0; }
-
-    .portfolio-title{
+    .portBlock{
+      border:1px solid var(--line2);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 14px 45px rgba(0,0,0,.35);
+    }
+    .portHead{
+      padding:16px 16px 10px;
       display:flex;
       align-items:baseline;
       justify-content:space-between;
-      gap:14px;
-      margin-bottom:14px;
-      flex-wrap:wrap;
+      gap:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.18);
     }
-    .portfolio-title h3{
-      margin:0;
-      letter-spacing:2px;
+    .portHead strong{
+      letter-spacing:.18em;
       text-transform:uppercase;
-      font-size:14px;
-      color:rgba(255,255,255,.92);
+      font-size:12px;
+      color:rgba(255,255,255,.90);
     }
-    .portfolio-title .hint{
+    .portHead span{
       font-size:12px;
       color:rgba(255,255,255,.55);
     }
 
     .grid{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap:14px;
+      grid-template-columns: repeat(12, 1fr);
+      gap:10px;
+      padding:16px;
     }
     .tile{
       position:relative;
-      border-radius:var(--radius);
+      border-radius:14px;
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.08);
-      background:#0a0a0a;
+      border:1px solid rgba(255,255,255,.10);
+      background:#0c0c0e;
       cursor:pointer;
-      min-height:260px;
+      min-height:170px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.28);
     }
     .tile img{
       width:100%;
-      height:340px;
+      height:100%;
       object-fit:cover;
-      transform:scale(1.02);
-      transition: transform .35s ease, opacity .35s ease;
-      opacity:.95;
+      display:block;
+      transform:scale(1.01);
+      transition: transform .35s ease, filter .35s ease;
+      filter:saturate(1.02) contrast(1.02);
     }
-    .tile:hover img{ transform:scale(1.06); opacity:1; }
+    .tile:hover img{transform:scale(1.06)}
     .tile::after{
       content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.25));
+      position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.45), transparent 60%);
+      opacity:.9;
       pointer-events:none;
     }
 
-    /* ABOUT */
-    .about{
-      max-width:860px;
-      margin:auto;
-      line-height:1.7;
-      color:rgba(255,255,255,.86);
-      font-size:15px;
-    }
-    .about p{ margin:0 0 16px 0; }
-    .about .sig{
-      margin-top:18px;
-      color:rgba(255,255,255,.75);
-      letter-spacing:.3px;
-    }
+    /* Mosaic sizes */
+    .c6{grid-column:span 6}
+    .c4{grid-column:span 4}
+    .c3{grid-column:span 3}
 
-    /* INSTAGRAM */
-    .ig-wrap{
-      max-width:1000px;
-      margin:auto;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius);
-      background: rgba(255,255,255,.03);
+    /* ABOUT */
+    .aboutCard{
+      margin-top:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-radius: var(--radius);
       padding:18px;
+      box-shadow: 0 14px 45px rgba(0,0,0,.30);
     }
-    .ig-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:14px;
-    }
-    .ig-top .handle{
-      letter-spacing:2px;
-      text-transform:uppercase;
-      font-size:12px;
+    .aboutCard .sig{
+      margin-top:14px;
       color:rgba(255,255,255,.85);
+      font-weight:700;
+      letter-spacing:.08em;
     }
-    .ig-top a{
-      font-size:12px;
-      letter-spacing:1.5px;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.8);
-      text-decoration:underline;
-    }
-    .ig-fallback{
+    .aboutCard .bullets{
+      margin-top:14px;
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap:12px;
-    }
-    .ig-fallback .ph{
-      height:220px;
-      border-radius:12px;
-      border:1px dashed rgba(255,255,255,.18);
-      background:rgba(0,0,0,.35);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:14px;
-      color:rgba(255,255,255,.65);
+      gap:10px;
+      color:rgba(255,255,255,.72);
       font-size:13px;
-      line-height:1.4;
+      line-height:1.6;
     }
 
     /* CONTACT */
-    .contact{
-      max-width:560px;
-      margin:auto;
+    .contactWrap{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
     }
-    .contact label{
-      display:block;
-      font-size:11px;
-      letter-spacing:2px;
+    .panel{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: 0 14px 45px rgba(0,0,0,.30);
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-bottom:12px;
+    }
+    label{
+      font-size:12px;
+      letter-spacing:.14em;
       text-transform:uppercase;
       color:rgba(255,255,255,.75);
-      margin-top:14px;
     }
-    .contact input, .contact textarea{
+    input, textarea{
       width:100%;
       padding:12px 12px;
-      margin-top:8px;
-      background:#0d0d0d;
-      border:1px solid rgba(255,255,255,.14);
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.18);
       color:#fff;
-      border-radius:10px;
       outline:none;
     }
-    .contact textarea{ min-height:130px; resize:vertical; }
-    .contact .send{
-      margin-top:16px;
-      width:100%;
-      border-radius:12px;
-    }
-    .tiny{
-      margin-top:10px;
+    textarea{min-height:120px; resize:vertical}
+    input:focus, textarea:focus{border-color:rgba(255,255,255,.45)}
+    .small{
       font-size:12px;
-      color:rgba(255,255,255,.6);
-      text-align:center;
+      color:rgba(255,255,255,.62);
+      line-height:1.6;
     }
+    .stack{display:flex; flex-direction:column; gap:10px}
+    .hr{height:1px;background:rgba(255,255,255,.10);margin:14px 0}
 
-    /* FOOTER */
     footer{
-      padding:36px 16px;
+      padding:26px 0 40px;
       text-align:center;
       color:rgba(255,255,255,.55);
-      border-top:1px solid rgba(255,255,255,.06);
-      font-size:13px;
+      font-size:12px;
+      letter-spacing:.06em;
     }
 
-    /* LIGHTBOX (CINEMATIC VIEWER) */
+    /* LIGHTBOX (fullscreen viewer) */
     .lightbox{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.92);
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.88);
+      backdrop-filter: blur(10px);
       display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:1000;
-      padding:18px;
+      z-index:80;
     }
-    .lightbox.open{ display:flex; }
-    .lb-inner{
+    .lightbox.open{display:block}
+    .lbInner{
+      position:absolute; inset:0;
+      display:grid;
+      place-items:center;
+      padding:22px;
+    }
+    .lbFrame{
       width:min(1100px, 100%);
-      height:min(80vh, 720px);
-      position:relative;
-      border-radius:18px;
+      max-height: calc(100vh - 90px);
+      border-radius: 18px;
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.16);
+      background:#000;
+      box-shadow: 0 20px 70px rgba(0,0,0,.7);
+      position:relative;
+    }
+    .lbImg{
+      width:100%;
+      height:min(72vh, 720px);
+      object-fit:contain;
+      display:block;
       background:#000;
     }
-    .lb-img{
+    .lbBar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-top:1px solid rgba(255,255,255,.12);
+      background:rgba(15,15,18,.92);
+    }
+    .lbBar .left{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      color:rgba(255,255,255,.75);
+      font-size:12px;
+      letter-spacing:.08em;
+    }
+    .iconBtn{
+      width:42px;height:42px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.15);
+      color:#fff;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    .iconBtn:hover{background:rgba(255,255,255,.08)}
+    .iconRow{display:flex; gap:8px; align-items:center}
+
+    /* BOOKING MODAL (Calendly) */
+    .modal{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.82);
+      backdrop-filter: blur(12px);
+      display:none;
+      z-index:90;
+    }
+    .modal.open{display:block}
+    .modal .shell{
+      width:min(980px, calc(100% - 26px));
+      margin:90px auto 0;
+      background:rgba(12,12,14,.96);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modal header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .modal header strong{
+      font-size:12px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.88);
+    }
+    .modal header button{
+      border:1px solid rgba(255,255,255,.14);
+      background:transparent;
+      color:#fff;
+      width:40px;height:40px;border-radius:12px;
+      cursor:pointer;
+    }
+    .modal .body{
+      padding:0;
+      height:min(78vh, 720px);
+    }
+    .modal iframe{
       width:100%;
       height:100%;
-      object-fit:contain;
+      border:0;
+      display:block;
       background:#000;
     }
-    .lb-top{
-      position:absolute;
-      top:0; left:0; right:0;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:10px 10px;
-      background:linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,0));
-      z-index:2;
-    }
-    .lb-caption{
+    .modal .footer{
+      padding:12px 14px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color:rgba(255,255,255,.65);
       font-size:12px;
-      letter-spacing:1.5px;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.8);
-      padding-left:6px;
+      line-height:1.5;
     }
-    .lb-btn{
-      border:1px solid rgba(255,255,255,.22);
-      background:rgba(0,0,0,.35);
-      color:#fff;
-      padding:8px 10px;
-      border-radius:999px;
-      cursor:pointer;
-      font-size:12px;
-      letter-spacing:1px;
-    }
-    .lb-btn:hover{ border-color:rgba(255,255,255,.45); }
-    .lb-nav{
-      position:absolute;
-      inset:0;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:0 10px;
-      pointer-events:none;
-      z-index:2;
-    }
-    .lb-arrow{
-      pointer-events:auto;
-      width:44px;
-      height:44px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.22);
-      background:rgba(0,0,0,.35);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      user-select:none;
-    }
-    .lb-arrow:hover{ border-color:rgba(255,255,255,.45); }
-    .lb-arrow span{ font-size:18px; line-height:1; }
+    .modal .footer a{ text-decoration:underline; }
 
-    .lb-bottom{
-      position:absolute;
-      left:0; right:0; bottom:0;
-      padding:10px 14px;
-      background:linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,0));
-      z-index:2;
-      display:flex;
-      justify-content:center;
-      gap:8px;
+    /* Responsive */
+    @media (max-width: 860px){
+      .navlinks{display:none}
+      .hamburger{display:block}
+      .contactWrap{grid-template-columns: 1fr}
+      .grid{gap:8px}
+      .tile{min-height:140px}
+      .c6{grid-column:span 12}
+      .c4{grid-column:span 6}
+      .c3{grid-column:span 6}
     }
-    .lb-dot{
-      width:7px; height:7px;
-      border-radius:99px;
-      background:rgba(255,255,255,.25);
-    }
-    .lb-dot.active{ background:rgba(255,255,255,.9); }
-
-    /* MOBILE */
     @media (max-width: 520px){
-      nav{ gap:18px; }
-      nav a{ font-size:12px; letter-spacing:1.5px; }
-      .hero-card{ padding:30px 18px; }
-      .btn{ width:100%; max-width:320px; }
-      .tile img{ height:300px; }
+      .c4,.c3{grid-column:span 12}
+      .tile{min-height:170px}
     }
   </style>
 </head>
 
 <body>
+  <!-- NAV -->
+  <div class="nav" role="navigation" aria-label="Main navigation">
+    <div class="inner">
+      <a class="brand" href="#home" aria-label="Go to home">
+        <span class="dot" aria-hidden="true"></span>
+        Enhance Visual Studio
+      </a>
 
-  <!-- CONFIG (edit these only if needed) -->
-  <script>
-    // Booking
-    const CALENDLY_LINK = "https://calendly.com/bookenhancevisualstudio/1-hour-photography-session";
-
-    // Instagram settings
-    const INSTAGRAM_PROFILE_URL = "https://www.instagram.com/"; // you can change to your exact profile later
-
-    /*
-      ✅ Instagram Auto Gallery (Easiest way on a static site):
-      Paste a widget embed HTML into INSTAGRAM_EMBED below.
-
-      Example widgets (you choose one later):
-      - SnapWidget
-      - LightWidget
-      - Elfsight (often free trial / limited free)
-      - SociableKIT (often limited free)
-
-      If you leave it empty, the site will show a clean fallback section.
-    */
-    const INSTAGRAM_EMBED = ""; // <-- paste widget embed code between the quotes (keep as a single line)
-  </script>
-
-  <nav>
-    <a href="#top">HOME</a>
-    <a href="#portfolio">PORTFOLIO</a>
-    <a href="#instagram">INSTAGRAM</a>
-    <a href="#about">ABOUT</a>
-    <a href="#contact">CONTACT</a>
-  </nav>
-
-  <div id="top" class="hero">
-    <div class="hero-card">
-      <h1 class="brand">ENHANCE VISUAL STUDIO</h1>
-
-      <div class="tagline">POSE. CAPTURE. ENHANCE</div>
-
-      <div class="lux" style="letter-spacing:2px; margin-top:10px;">
-        Luxury Portrait & Lifestyle Photography
+      <div class="navlinks" aria-label="Primary links">
+        <a href="#home">Home</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </div>
 
-      <div class="area">Los Angeles • San Francisco / Bay Area • San Diego 📍</div>
-
-      <div class="cta">
-        <button class="btn" onclick="bookSession()">BOOK SESSION</button>
-        <button class="btn secondary" onclick="scrollToId('portfolio')">VIEW PORTFOLIO</button>
-      </div>
-
-      <div class="cta-note">
-        If the button doesn’t open, use this direct link:
-        <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">Open Booking</a>
+      <div class="navcta">
+        <button class="btn solid" id="openBookingTop" type="button">Book Session</button>
+        <div class="hamburger">
+          <button id="openMenu" type="button" aria-label="Open menu">☰</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <section id="portfolio">
-    <div class="wrap">
-      <h2>PORTFOLIO</h2>
-      <p class="sub">Click any image for a cinematic fullscreen view</p>
-
-      <!-- SECTION 1 -->
-      <div class="portfolio-block">
-        <div class="portfolio-title">
-          <h3>Portraits</h3>
-          <div class="hint">Tap image → fullscreen</div>
-        </div>
-        <div class="grid">
-          <div class="tile" data-caption="Portraits" data-src="images/pic01.jpg"><img loading="lazy" src="images/pic01.jpg" alt="Portraits 1"></div>
-          <div class="tile" data-caption="Portraits" data-src="images/pic02.jpg"><img loading="lazy" src="images/pic02.jpg" alt="Portraits 2"></div>
-          <div class="tile" data-caption="Portraits" data-src="images/pic03.jpg"><img loading="lazy" src="images/pic03.jpg" alt="Portraits 3"></div>
-        </div>
+  <!-- MOBILE MENU -->
+  <div class="mobileMenu" id="mobileMenu" aria-hidden="true">
+    <div class="card" role="dialog" aria-modal="true" aria-label="Menu">
+      <header>
+        <strong>Menu</strong>
+        <button id="closeMenu" type="button" aria-label="Close menu">✕</button>
+      </header>
+      <nav>
+        <a href="#home" class="mLink">Home</a>
+        <a href="#portfolio" class="mLink">Portfolio</a>
+        <a href="#about" class="mLink">About</a>
+        <a href="#contact" class="mLink">Contact</a>
+      </nav>
+      <div class="actions">
+        <button class="btn solid" id="openBookingMenu" type="button">Book Session</button>
+        <a class="btn" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">Open in Browser</a>
       </div>
-
-      <!-- SECTION 2 -->
-      <div class="portfolio-block">
-        <div class="portfolio-title">
-          <h3>Kids / Family</h3>
-          <div class="hint">Swipe on mobile</div>
-        </div>
-        <div class="grid">
-          <div class="tile" data-caption="Kids / Family" data-src="images/pic04.jpg"><img loading="lazy" src="images/pic04.jpg" alt="Kids / Family 1"></div>
-          <div class="tile" data-caption="Kids / Family" data-src="images/pic05.jpg"><img loading="lazy" src="images/pic05.jpg" alt="Kids / Family 2"></div>
-        </div>
-      </div>
-
-      <!-- SECTION 3 -->
-      <div class="portfolio-block">
-        <div class="portfolio-title">
-          <h3>Events</h3>
-          <div class="hint">Arrow keys on desktop</div>
-        </div>
-        <div class="grid">
-          <div class="tile" data-caption="Events" data-src="images/pic06.jpg"><img loading="lazy" src="images/pic06.jpg" alt="Events 1"></div>
-          <div class="tile" data-caption="Events" data-src="images/pic07.jpg"><img loading="lazy" src="images/pic07.jpg" alt="Events 2"></div>
-        </div>
-      </div>
-
-      <!-- SECTION 4 -->
-      <div class="portfolio-block">
-        <div class="portfolio-title">
-          <h3>Lifestyle / Fashion</h3>
-          <div class="hint">ESC to close</div>
-        </div>
-        <div class="grid">
-          <div class="tile" data-caption="Lifestyle / Fashion" data-src="images/pic08.jpg"><img loading="lazy" src="images/pic08.jpg" alt="Lifestyle / Fashion 1"></div>
-          <div class="tile" data-caption="Lifestyle / Fashion" data-src="images/pic09.jpg"><img loading="lazy" src="images/pic09.jpg" alt="Lifestyle / Fashion 2"></div>
-        </div>
-      </div>
-
     </div>
-  </section>
+  </div>
 
-  <section id="instagram">
-    <div class="wrap">
-      <h2>INSTAGRAM</h2>
-      <p class="sub">Auto-updates when you post (via widget embed) — with a clean fallback</p>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="content">
+      <h1>ENHANCE VISUAL STUDIO</h1>
 
-      <div class="ig-wrap">
-        <div class="ig-top">
-          <div class="handle">Latest posts</div>
-          <a id="igProfileLink" href="https://www.instagram.com/" target="_blank" rel="noopener">Open Instagram</a>
-        </div>
+      <div class="tagline">POSE. CAPTURE. ENHANCE</div>
 
-        <!-- Widget gets injected here if you paste embed code -->
-        <div id="igEmbedArea"></div>
-
-        <!-- Fallback if no widget -->
-        <div id="igFallback" class="ig-fallback" style="display:none;">
-          <div class="ph">
-            Paste an Instagram widget embed code into <b>INSTAGRAM_EMBED</b> in this file
-            <br><br>
-            Until then, this section will still look clean and work.
-          </div>
-          <div class="ph">
-            Want it to look like an IG grid right now?
-            <br><br>
-            Upload 6–12 images to a folder like <b>images/ig/</b> and I’ll wire them up too.
-          </div>
-          <div class="ph">
-            Click “Open Instagram” above for your live feed.
-          </div>
-        </div>
+      <!-- You asked to include this exact div -->
+      <div class="lux" style="letter-spacing:2px; margin-top:10px;">
+        Luxury Portrait &amp; Lifestyle Photography
       </div>
 
-    </div>
-  </section>
+      <div class="serviceArea">
+        Los Angeles • San Francisco / Bay Area • San Diego 📍
+      </div>
 
-  <section id="about">
-    <div class="wrap">
-      <h2>ABOUT</h2>
+      <div class="ctaRow">
+        <button class="btn solid" id="openBookingHero" type="button">Book Session</button>
+        <a class="btn" href="#portfolio">View Portfolio</a>
+      </div>
 
-      <div class="about">
-        <p>
-          Enhance Visual Studio is a modern photography brand focused on bold, cinematic imagery that tells real stories.
-        </p>
-        <p>
-          Founded by photographer and visual creator <b>Raheim Dunkley</b>, the studio captures authentic moments while delivering a polished, premium look.
-          From portraits and lifestyle sessions to events and creative concepts, every shoot is designed to make clients feel confident, expressive, and unforgettable.
-        </p>
-        <p>
-          Serving <b>Los Angeles</b>, <b>San Diego</b>, <b>San Francisco</b> and the <b>Bay Area</b>. Travel available for special projects.
-        </p>
-
-        <div class="sig">
-          Pose. We direct you. <br>
-          Capture. We shoot with intention. <br>
-          Enhance. We deliver polished, premium edits.
-        </div>
+      <div class="fallback">
+        If the booking popup doesn’t open, click
+        <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">this direct link</a>.
       </div>
     </div>
   </section>
 
-  <section id="contact">
-    <div class="wrap">
-      <h2>CONTACT</h2>
-      <p class="sub">Want to book fast? Use the booking button at the top — or send a quick note here.</p>
+  <!-- PORTFOLIO -->
+  <section class="section" id="portfolio">
+    <div class="portIntro">
+      <div>
+        <h2>Portfolio</h2>
+        <p>Four curated sections. Tap any image for a cinematic fullscreen viewer.</p>
+      </div>
+      <div class="hint">Tip: Replace images in <b>/images</b> and keep the same filenames to update instantly.</div>
+    </div>
 
-      <div class="contact">
-        <!-- NOTE: This form is front-end only (no backend). We can wire it to Formspree later if you want. -->
-        <form onsubmit="return fakeSubmit(event)">
-          <label for="name">Name</label>
-          <input id="name" name="name" placeholder="Your name" required>
+    <div class="portBlocks">
+      <!-- 1) Portraits -->
+      <div class="portBlock" id="portraits">
+        <div class="portHead">
+          <strong>Portraits</strong>
+          <span>Editorial • Headshots • Lifestyle</span>
+        </div>
+        <div class="grid">
+          <div class="tile c6" data-full="images/pic01.jpg"><img src="images/pic01.jpg" alt="Portrait 1"></div>
+          <div class="tile c3" data-full="images/pic02.jpg"><img src="images/pic02.jpg" alt="Portrait 2"></div>
+          <div class="tile c3" data-full="images/pic03.jpg"><img src="images/pic03.jpg" alt="Portrait 3"></div>
+          <div class="tile c4" data-full="images/pic04.jpg"><img src="images/pic04.jpg" alt="Portrait 4"></div>
+          <div class="tile c4" data-full="images/pic05.jpg"><img src="images/pic05.jpg" alt="Portrait 5"></div>
+          <div class="tile c4" data-full="images/pic06.jpg"><img src="images/pic06.jpg" alt="Portrait 6"></div>
+        </div>
+      </div>
 
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="you@email.com" required>
+      <!-- 2) Families / Kids -->
+      <div class="portBlock" id="families">
+        <div class="portHead">
+          <strong>Families / Kids</strong>
+          <span>Warm • Timeless • Story-driven</span>
+        </div>
+        <div class="grid">
+          <div class="tile c4" data-full="images/pic07.jpg"><img src="images/pic07.jpg" alt="Family 1"></div>
+          <div class="tile c4" data-full="images/pic08.jpg"><img src="images/pic08.jpg" alt="Family 2"></div>
+          <div class="tile c4" data-full="images/pic09.jpg"><img src="images/pic09.jpg" alt="Family 3"></div>
+          <div class="tile c6" data-full="images/pic02.jpg"><img src="images/pic02.jpg" alt="Family 4"></div>
+          <div class="tile c3" data-full="images/pic03.jpg"><img src="images/pic03.jpg" alt="Family 5"></div>
+          <div class="tile c3" data-full="images/pic04.jpg"><img src="images/pic04.jpg" alt="Family 6"></div>
+        </div>
+      </div>
 
-          <label for="msg">Message</label>
-          <textarea id="msg" name="message" placeholder="What are you looking to book?" required></textarea>
+      <!-- 3) Events -->
+      <div class="portBlock" id="events">
+        <div class="portHead">
+          <strong>Events</strong>
+          <span>Parties • Celebrations • Nightlife</span>
+        </div>
+        <div class="grid">
+          <div class="tile c6" data-full="images/pic05.jpg"><img src="images/pic05.jpg" alt="Event 1"></div>
+          <div class="tile c6" data-full="images/pic06.jpg"><img src="images/pic06.jpg" alt="Event 2"></div>
+          <div class="tile c3" data-full="images/pic07.jpg"><img src="images/pic07.jpg" alt="Event 3"></div>
+          <div class="tile c3" data-full="images/pic08.jpg"><img src="images/pic08.jpg" alt="Event 4"></div>
+          <div class="tile c3" data-full="images/pic09.jpg"><img src="images/pic09.jpg" alt="Event 5"></div>
+          <div class="tile c3" data-full="images/pic01.jpg"><img src="images/pic01.jpg" alt="Event 6"></div>
+        </div>
+      </div>
 
-          <button class="btn send" type="submit">SEND MESSAGE</button>
-          <div class="tiny" id="formNote"></div>
+      <!-- 4) Fashion / Creative -->
+      <div class="portBlock" id="fashion">
+        <div class="portHead">
+          <strong>Fashion / Creative</strong>
+          <span>Concepts • Brands • Studio Looks</span>
+        </div>
+        <div class="grid">
+          <div class="tile c3" data-full="images/pic03.jpg"><img src="images/pic03.jpg" alt="Fashion 1"></div>
+          <div class="tile c3" data-full="images/pic04.jpg"><img src="images/pic04.jpg" alt="Fashion 2"></div>
+          <div class="tile c6" data-full="images/pic01.jpg"><img src="images/pic01.jpg" alt="Fashion 3"></div>
+          <div class="tile c4" data-full="images/pic02.jpg"><img src="images/pic02.jpg" alt="Fashion 4"></div>
+          <div class="tile c4" data-full="images/pic05.jpg"><img src="images/pic05.jpg" alt="Fashion 5"></div>
+          <div class="tile c4" data-full="images/pic06.jpg"><img src="images/pic06.jpg" alt="Fashion 6"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <h2>About</h2>
+
+    <div class="aboutCard">
+      <p>
+        Enhance Visual Studio is a modern photography brand dedicated to creating bold, timeless imagery that feels real and elevated.
+        Every session is approached with creative direction, professional lighting, and careful attention to detail—so your images look
+        cinematic, clean, and premium.
+      </p>
+
+      <div class="bullets">
+        <div>— Creative direction included (posing + guidance throughout)</div>
+        <div>— Polished, consistent editing with a luxury finish</div>
+        <div>— Available: Los Angeles • San Francisco / Bay Area • San Diego</div>
+      </div>
+
+      <div class="sig">Pose. Capture. Enhance.</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <h2>Contact</h2>
+    <p>Want to book fast? Use the booking button. Prefer a message first? Send a quick note below.</p>
+
+    <div class="contactWrap">
+      <div class="panel">
+        <form id="contactForm">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" autocomplete="name" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="What are you looking to book? Tell me the vibe + city + date range." required></textarea>
+          </div>
+
+          <div class="stack">
+            <button class="btn solid" type="submit">Send Message</button>
+            <button class="btn" id="openBookingContact" type="button">Book Session Instead</button>
+          </div>
+
+          <div class="hr"></div>
+          <div class="small">
+            This form opens your email app (no backend needed). If you want me to add a real inbox capture later,
+            we can connect a free form tool.
+          </div>
         </form>
+      </div>
+
+      <div class="panel">
+        <div class="stack">
+          <div class="small">
+            <b>Booking link</b><br/>
+            <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener" style="text-decoration:underline;">
+              calendly.com/bookenhancevisualstudio/1-hour-photography-session
+            </a>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="small">
+            <b>Service area</b><br/>
+            Los Angeles • San Francisco / Bay Area • San Diego
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="small">
+            <b>Quick notes</b><br/>
+            Please include: desired city, shoot type, and 2–3 preferred dates.
+          </div>
+
+          <button class="btn solid" id="openBookingSide" type="button">Book Session</button>
+        </div>
       </div>
     </div>
   </section>
 
   <footer>
-    © <span id="yr"></span> Enhance Visual Studio
+    © <span id="year"></span> Enhance Visual Studio • Pose. Capture. Enhance.
   </footer>
 
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <div class="lb-inner" id="lbInner">
-      <div class="lb-top">
-        <div class="lb-caption" id="lbCaption">Gallery</div>
-        <button class="lb-btn" onclick="closeLightbox()" aria-label="Close">Close ✕</button>
+    <div class="lbInner">
+      <div class="lbFrame" role="dialog" aria-modal="true" aria-label="Fullscreen image viewer">
+        <img class="lbImg" id="lbImg" alt="Fullscreen portfolio image" />
+        <div class="lbBar">
+          <div class="left" id="lbLabel">Portfolio</div>
+          <div class="iconRow">
+            <button class="iconBtn" id="lbPrev" type="button" aria-label="Previous">‹</button>
+            <button class="iconBtn" id="lbNext" type="button" aria-label="Next">›</button>
+            <button class="iconBtn" id="lbClose" type="button" aria-label="Close">✕</button>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
 
-      <img class="lb-img" id="lbImg" alt="Fullscreen preview"/>
-
-      <div class="lb-nav">
-        <div class="lb-arrow" onclick="prevImage()" aria-label="Previous"><span>‹</span></div>
-        <div class="lb-arrow" onclick="nextImage()" aria-label="Next"><span>›</span></div>
+  <!-- BOOKING MODAL -->
+  <div class="modal" id="bookingModal" aria-hidden="true">
+    <div class="shell" role="dialog" aria-modal="true" aria-label="Booking">
+      <header>
+        <strong>Book a Session</strong>
+        <button id="closeBooking" type="button" aria-label="Close booking">✕</button>
+      </header>
+      <div class="body">
+        <iframe
+          id="bookingFrame"
+          title="Calendly booking"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allow="clipboard-write; fullscreen"
+        ></iframe>
       </div>
-
-      <div class="lb-bottom" id="lbDots"></div>
+      <div class="footer">
+        If the popup doesn’t load, open the booking page directly:
+        <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
+          https://calendly.com/bookenhancevisualstudio/1-hour-photography-session
+        </a>
+      </div>
     </div>
   </div>
 
   <script>
-    // ---------- Utilities ----------
-    document.getElementById("yr").textContent = new Date().getFullYear();
+    // ====== CONFIG ======
+    const CALENDLY_URL = "https://calendly.com/bookenhancevisualstudio/1-hour-photography-session";
 
-    function scrollToId(id){
-      const el = document.getElementById(id);
-      if(!el) return;
-      el.scrollIntoView({behavior:"smooth", block:"start"});
+    // ====== Helpers ======
+    const $ = (s, el=document) => el.querySelector(s);
+    const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+
+    // ====== Year ======
+    $("#year").textContent = new Date().getFullYear();
+
+    // ====== Mobile Menu ======
+    const mobileMenu = $("#mobileMenu");
+    const openMenu = () => { mobileMenu.classList.add("open"); mobileMenu.setAttribute("aria-hidden","false"); };
+    const closeMenu = () => { mobileMenu.classList.remove("open"); mobileMenu.setAttribute("aria-hidden","true"); };
+
+    $("#openMenu").addEventListener("click", openMenu);
+    $("#closeMenu").addEventListener("click", closeMenu);
+    mobileMenu.addEventListener("click", (e) => { if (e.target === mobileMenu) closeMenu(); });
+    $$(".mLink").forEach(a => a.addEventListener("click", () => closeMenu()));
+
+    // ====== Booking Modal with fallback (never "crashes") ======
+    const bookingModal = $("#bookingModal");
+    const bookingFrame = $("#bookingFrame");
+    let bookingSafetyTimer = null;
+
+    function openBooking(){
+      // Show modal
+      bookingModal.classList.add("open");
+      bookingModal.setAttribute("aria-hidden","false");
+
+      // Load Calendly in iframe
+      bookingFrame.src = CALENDLY_URL;
+
+      // If iframe doesn't load (blocked, etc), auto-open in new tab after a few seconds
+      clearTimeout(bookingSafetyTimer);
+      bookingSafetyTimer = setTimeout(() => {
+        try {
+          // If still open and iframe hasn't navigated (best-effort check)
+          if (bookingModal.classList.contains("open")) {
+            window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
+          }
+        } catch (err) {
+          window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
+        }
+      }, 3500);
     }
 
-    // ---------- Booking (with fallback) ----------
-    function bookSession(){
-      try{
-        const w = window.open(CALENDLY_LINK, "_blank", "noopener");
-        if(!w) window.location.href = CALENDLY_LINK; // popup blocked fallback
-      }catch(e){
-        window.location.href = CALENDLY_LINK;
-      }
+    function closeBooking(){
+      bookingModal.classList.remove("open");
+      bookingModal.setAttribute("aria-hidden","true");
+      clearTimeout(bookingSafetyTimer);
+      bookingSafetyTimer = null;
+
+      // Stop iframe to save resources
+      bookingFrame.src = "about:blank";
     }
 
-    // ---------- Contact Form (front-end demo) ----------
-    function fakeSubmit(e){
+    $("#openBookingTop").addEventListener("click", openBooking);
+    $("#openBookingHero").addEventListener("click", openBooking);
+    $("#openBookingContact").addEventListener("click", openBooking);
+    $("#openBookingSide").addEventListener("click", openBooking);
+    $("#openBookingMenu").addEventListener("click", openBooking);
+
+    $("#closeBooking").addEventListener("click", closeBooking);
+    bookingModal.addEventListener("click", (e) => { if (e.target === bookingModal) closeBooking(); });
+    window.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeBooking(); closeLightbox(); } });
+
+    // Extra: if user clicks the iframe and it fails due to restrictions, direct link still exists below.
+
+    // ====== Contact form (mailto) ======
+    $("#contactForm").addEventListener("submit", (e) => {
       e.preventDefault();
-      const note = document.getElementById("formNote");
-      note.textContent = "Message drafted ✅ (This form is not wired to send yet). If you want, I’ll connect it to a free form backend.";
-      return false;
-    }
+      const name = encodeURIComponent($("#name").value.trim());
+      const email = encodeURIComponent($("#email").value.trim());
+      const msg = encodeURIComponent($("#message").value.trim());
 
-    // ---------- Cinematic Lightbox ----------
-    const tiles = Array.from(document.querySelectorAll(".tile"));
-    const lightbox = document.getElementById("lightbox");
-    const lbImg = document.getElementById("lbImg");
-    const lbCaption = document.getElementById("lbCaption");
-    const lbDots = document.getElementById("lbDots");
+      const subject = encodeURIComponent("Booking Inquiry — Enhance Visual Studio");
+      const body =
+        `Name: ${decodeURIComponent(name)}%0D%0A` +
+        `Email: ${decodeURIComponent(email)}%0D%0A%0D%0A` +
+        `${decodeURIComponent(msg)}%0D%0A%0D%0A` +
+        `Preferred city (LA / Bay Area / San Diego): %0D%0A` +
+        `Preferred dates: %0D%0A`;
 
-    let currentIndex = 0;
-    let touchStartX = null;
+      // Change the "to" email if you want. Leaving blank forces user to pick or edit.
+      // Example: const TO_EMAIL = "hello@enhancevisualstudio.com";
+      const TO_EMAIL = "";
+      window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
+    });
+
+    // ====== Lightbox (Fullscreen gallery viewer) ======
+    const lightbox = $("#lightbox");
+    const lbImg = $("#lbImg");
+    const lbLabel = $("#lbLabel");
+    const tiles = $$(".tile[data-full]");
+
+    // Build list for prev/next
+    const sources = tiles.map(t => ({
+      src: t.getAttribute("data-full"),
+      label: (t.closest(".portBlock")?.querySelector(".portHead strong")?.textContent || "Portfolio")
+    }));
+
+    let currentIndex = -1;
 
     function openLightbox(index){
       currentIndex = index;
-      renderLightbox();
+      const item = sources[currentIndex];
+      lbImg.src = item.src;
+      lbLabel.textContent = item.label;
       lightbox.classList.add("open");
       lightbox.setAttribute("aria-hidden","false");
-      document.body.style.overflow = "hidden";
     }
 
     function closeLightbox(){
       lightbox.classList.remove("open");
       lightbox.setAttribute("aria-hidden","true");
-      document.body.style.overflow = "";
-      touchStartX = null;
+      lbImg.src = "";
+      currentIndex = -1;
     }
 
-    function renderLightbox(){
-      const item = tiles[currentIndex];
-      const src = item.getAttribute("data-src");
-      const cap = item.getAttribute("data-caption") || "Gallery";
-
-      lbImg.src = src;
-      lbCaption.textContent = cap;
-
-      // dots
-      lbDots.innerHTML = "";
-      for(let i=0;i<tiles.length;i++){
-        const d = document.createElement("div");
-        d.className = "lb-dot" + (i===currentIndex ? " active" : "");
-        d.addEventListener("click", () => { currentIndex=i; renderLightbox(); });
-        lbDots.appendChild(d);
-      }
+    function prev(){
+      if (currentIndex < 0) return;
+      currentIndex = (currentIndex - 1 + sources.length) % sources.length;
+      lbImg.src = sources[currentIndex].src;
+      lbLabel.textContent = sources[currentIndex].label;
     }
 
-    function nextImage(){
-      currentIndex = (currentIndex + 1) % tiles.length;
-      renderLightbox();
-    }
-    function prevImage(){
-      currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
-      renderLightbox();
+    function next(){
+      if (currentIndex < 0) return;
+      currentIndex = (currentIndex + 1) % sources.length;
+      lbImg.src = sources[currentIndex].src;
+      lbLabel.textContent = sources[currentIndex].label;
     }
 
-    tiles.forEach((t, idx) => t.addEventListener("click", () => openLightbox(idx)));
+    tiles.forEach((t, i) => t.addEventListener("click", () => openLightbox(i)));
+    $("#lbClose").addEventListener("click", closeLightbox);
+    $("#lbPrev").addEventListener("click", prev);
+    $("#lbNext").addEventListener("click", next);
+    lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
 
-    // click outside inner closes
-    lightbox.addEventListener("click", (e) => {
-      if(e.target === lightbox) closeLightbox();
+    // Keyboard navigation
+    window.addEventListener("keydown", (e) => {
+      if (!lightbox.classList.contains("open")) return;
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
     });
-
-    // keyboard
-    document.addEventListener("keydown", (e) => {
-      if(!lightbox.classList.contains("open")) return;
-      if(e.key === "Escape") closeLightbox();
-      if(e.key === "ArrowRight") nextImage();
-      if(e.key === "ArrowLeft") prevImage();
-    });
-
-    // swipe
-    const lbInner = document.getElementById("lbInner");
-    lbInner.addEventListener("touchstart", (e) => {
-      touchStartX = e.touches[0].clientX;
-    }, {passive:true});
-    lbInner.addEventListener("touchend", (e) => {
-      if(touchStartX === null) return;
-      const endX = e.changedTouches[0].clientX;
-      const diff = endX - touchStartX;
-      touchStartX = null;
-      if(Math.abs(diff) > 45){
-        if(diff < 0) nextImage();
-        else prevImage();
-      }
-    }, {passive:true});
-
-    // ---------- Instagram Auto Gallery Injection ----------
-    const igProfileLink = document.getElementById("igProfileLink");
-    igProfileLink.href = INSTAGRAM_PROFILE_URL;
-
-    const igEmbedArea = document.getElementById("igEmbedArea");
-    const igFallback = document.getElementById("igFallback");
-
-    if(INSTAGRAM_EMBED && INSTAGRAM_EMBED.trim().length > 0){
-      // Inject widget
-      igEmbedArea.innerHTML = INSTAGRAM_EMBED;
-
-      // Some widgets need their scripts to run after injection.
-      // If your widget requires an external <script>, include it inside the embed code you paste.
-      igFallback.style.display = "none";
-    }else{
-      igFallback.style.display = "grid";
-    }
   </script>
-
 </body>
 </html>
