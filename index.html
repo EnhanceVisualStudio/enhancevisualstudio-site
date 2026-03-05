@@ -224,6 +224,33 @@
     .span-8{ grid-column:span 8; }
     .span-4{ grid-column:span 4; }
     .label{
+      /* --- MASONRY (Homepage Portfolio) --- */
+.masonry{
+  columns: 3 280px;
+  column-gap: 12px;
+}
+.tile{
+  break-inside: avoid;
+  margin: 0 0 12px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.02);
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+  position: relative;
+}
+.tile img{
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: .95;
+  transform: scale(1.01);
+  transition: transform .45s ease, opacity .45s ease;
+}
+.tile:hover img{ transform: scale(1.05); opacity: 1; }
+
+@media (max-width: 900px){ .masonry{ columns: 2 220px; } }
+@media (max-width: 520px){ .masonry{ columns: 1; } }
       position:absolute;
       left:14px; bottom:14px;
       padding:9px 11px;
@@ -380,74 +407,58 @@
       <h2>Portfolio</h2>
       <p>Click any image to open a dedicated gallery page.</p>
     </div>
+<div class="masonry" aria-label="Portfolio masonry">
+  <a class="tile" href="galleries/portraits.html">
+    <img src="images/IMG_0250.jpeg" alt="Portraits" loading="lazy" />
+    <div class="label">Portraits</div>
+  </a>
 
-    <!-- PORTRAITS -->
-    <div style="margin-top:18px; margin-bottom:10px;">
-      <div class="kicker" style="margin:0 0 10px;">Portraits</div>
-    </div>
-    <div class="grid" aria-label="Portraits preview">
-      <a class="card span-8" href="galleries/portraits.html">
-        <img src="images/IMG_0250.jpeg" alt="Portrait photograph" loading="lazy" />
-        <div class="label">Portraits</div>
-      </a>
-      <a class="card span-4" href="galleries/portraits.html">
-        <img src="images/IMG_0251.jpeg" alt="Portrait photograph" loading="lazy" />
-        <div class="label">Portraits</div>
-      </a>
-      <a class="card span-6" href="galleries/portraits.html">
-        <img src="images/IMG_0253.jpeg" alt="Portrait photograph" loading="lazy" />
-        <div class="label">Portraits</div>
-      </a>
-      <a class="card span-6" href="galleries/portraits.html">
-        <img src="images/IMG_0254.jpeg" alt="Portrait photograph" loading="lazy" />
-        <div class="label">Portraits</div>
-      </a>
-    </div>
+  <a class="tile" href="galleries/portraits.html">
+    <img src="images/IMG_0251.jpeg" alt="Portraits" loading="lazy" />
+    <div class="label">Portraits</div>
+  </a>
 
-    <!-- KIDS / FAMILY -->
-    <div style="margin-top:44px; margin-bottom:10px;">
-      <div class="kicker" style="margin:0 0 10px;">Kids / Family</div>
-    </div>
-    <div class="grid" aria-label="Family preview">
-      <a class="card span-6" href="galleries/family.html">
-        <img src="images/IMG_0256.jpeg" alt="Family photograph" loading="lazy" />
-        <div class="label">Kids / Family</div>
-      </a>
-      <a class="card span-6" href="galleries/family.html">
-        <img src="images/IMG_0258.jpeg" alt="Family photograph" loading="lazy" />
-        <div class="label">Kids / Family</div>
-      </a>
-    </div>
+  <a class="tile" href="galleries/portraits.html">
+    <img src="images/IMG_0253.jpeg" alt="Portraits" loading="lazy" />
+    <div class="label">Portraits</div>
+  </a>
 
-    <!-- EVENTS -->
-    <div style="margin-top:44px; margin-bottom:10px;">
-      <div class="kicker" style="margin:0 0 10px;">Events</div>
-    </div>
-    <div class="grid" aria-label="Events preview">
-      <a class="card span-4" href="galleries/events.html">
-        <img src="images/IMG_0259.jpeg" alt="Event photograph" loading="lazy" />
-        <div class="label">Events</div>
-      </a>
-      <a class="card span-8" href="galleries/events.html">
-        <img src="images/IMG_0260.jpeg" alt="Event photograph" loading="lazy" />
-        <div class="label">Events</div>
-      </a>
-    </div>
+  <a class="tile" href="galleries/portraits.html">
+    <img src="images/IMG_0254.jpeg" alt="Portraits" loading="lazy" />
+    <div class="label">Portraits</div>
+  </a>
 
-    <!-- LIFESTYLE -->
-    <div style="margin-top:44px; margin-bottom:10px;">
-      <div class="kicker" style="margin:0 0 10px;">Lifestyle / Fashion</div>
-    </div>
-    <div class="grid" aria-label="Lifestyle preview">
-      <a class="card span-8" href="galleries/lifestyle.html">
-        <img src="images/IMG_0261.jpeg" alt="Lifestyle photograph" loading="lazy" />
-        <div class="label">Lifestyle</div>
-      </a>
-      <a class="card span-4" href="galleries/lifestyle.html">
-        <img src="images/IMG_0262.jpeg" alt="Lifestyle photograph" loading="lazy" />
-        <div class="label">Lifestyle</div>
-      </a>
-    </div>
+  <a class="tile" href="galleries/family.html">
+    <img src="images/IMG_0256.jpeg" alt="Kids / Family" loading="lazy" />
+    <div class="label">Kids / Family</div>
+  </a>
+
+  <a class="tile" href="galleries/family.html">
+    <img src="images/IMG_0258.jpeg" alt="Kids / Family" loading="lazy" />
+    <div class="label">Kids / Family</div>
+  </a>
+
+  <a class="tile" href="galleries/events.html">
+    <img src="images/IMG_0259.jpeg" alt="Events" loading="lazy" />
+    <div class="label">Events</div>
+  </a>
+
+  <a class="tile" href="galleries/events.html">
+    <img src="images/IMG_0260.jpeg" alt="Events" loading="lazy" />
+    <div class="label">Events</div>
+  </a>
+
+  <a class="tile" href="galleries/lifestyle.html">
+    <img src="images/IMG_0261.jpeg" alt="Lifestyle / Fashion" loading="lazy" />
+    <div class="label">Lifestyle / Fashion</div>
+  </a>
+
+  <a class="tile" href="galleries/lifestyle.html">
+    <img src="images/IMG_0262.jpeg" alt="Lifestyle / Fashion" loading="lazy" />
+    <div class="label">Lifestyle / Fashion</div>
+  </a>
+</div>
+    
   </section>
 
   <!-- TAGLINE / PHILOSOPHY -->
