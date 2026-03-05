@@ -1,555 +1,327 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portraits | Enhance Visual Studio</title>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portraits • Enhance Visual Studio</title>
   <style>
     :root{
-      --bg:#0b0b0b;
-      --fg:#f5f5f5;
-      --muted:rgba(255,255,255,.70);
-      --muted2:rgba(255,255,255,.45);
-      --card: rgba(255,255,255,.06);
-      --border: rgba(255,255,255,.12);
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --bg:#050505;
+      --fg:#fff;
+      --muted:rgba(255,255,255,.75);
+      --line:rgba(255,255,255,.14);
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
-      background: radial-gradient(900px 500px at 50% -10%, rgba(255,255,255,.07), transparent 65%), var(--bg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
       color:var(--fg);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      letter-spacing:.2px;
     }
+    a{color:inherit;text-decoration:none}
 
-    /* Top bar */
-    .topbar{
-      position: sticky;
-      top:0;
-      z-index:10;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      background: rgba(0,0,0,.55);
-      border-bottom: 1px solid var(--border);
-    }
-    .topbar-inner{
-      max-width: 1150px;
-      margin:0 auto;
-      padding: 14px 18px;
+    .top{
+      position:sticky; top:0;
+      z-index:20;
+      background:rgba(0,0,0,.72);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid var(--line);
+      padding:14px 16px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap: 14px;
+      gap:12px;
     }
-    .brand{
-      display:flex;
-      flex-direction:column;
-      gap: 2px;
-      line-height:1.1;
+    .top .left{
+      display:flex; align-items:center; gap:12px;
+      min-width:0;
     }
-    .brand strong{
-      font-size: 13px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--fg);
-    }
-    .brand span{
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted2);
-    }
-    .nav{
-      display:flex;
-      gap: 10px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .nav a{
-      text-decoration:none;
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 9px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: .2s ease;
-      white-space:nowrap;
-    }
-    .nav a:hover{
-      color: var(--fg);
-      border-color: rgba(255,255,255,.18);
+    .back{
+      border:1px solid rgba(255,255,255,.28);
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:11px;
       background: rgba(255,255,255,.06);
     }
-    .nav a.active{
-      color: var(--fg);
-      border-color: rgba(255,255,255,.22);
-      background: rgba(255,255,255,.08);
-    }
-
-    /* Page header */
-    .wrap{
-      max-width: 1150px;
-      margin: 0 auto;
-      padding: 26px 18px 60px;
-    }
-    .page-title{
-      margin: 18px 0 10px;
-      font-size: 24px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .page-sub{
-      margin: 0 0 20px;
-      color: var(--muted);
-      max-width: 70ch;
-      font-size: 14px;
-      line-height: 1.6;
+    .back:hover{background: rgba(255,255,255,.10)}
+    .title{
+      font-weight:900;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-size:12px;
+      opacity:.92;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
     .tip{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.05);
-      border-radius: 14px;
-      margin: 14px 0 22px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-    .dot{
-      width:10px;height:10px;border-radius:999px;
-      margin-top: 5px;
-      background: rgba(255,255,255,.65);
-      box-shadow: 0 0 0 6px rgba(255,255,255,.08);
-      flex: 0 0 auto;
-    }
-
-    /* Cinematic masonry */
-    .masonry{
-      column-count: 3;
-      column-gap: 16px;
-    }
-    @media (max-width: 980px){ .masonry{ column-count: 2; } }
-    @media (max-width: 560px){ .masonry{ column-count: 1; } }
-
-    .tile{
-      break-inside: avoid;
-      margin: 0 0 16px;
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      box-shadow: 0 8px 40px rgba(0,0,0,.35);
-      cursor: pointer;
-      transform: translateZ(0);
-      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-    }
-    .tile:hover{
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,.20);
-      box-shadow: 0 18px 60px rgba(0,0,0,.55);
-    }
-
-    .tile img{
-      width: 100%;
-      height: auto;
-      display:block;
-      filter: saturate(1.02) contrast(1.02);
-      transform: scale(1.01);
-      transition: transform .35s ease;
-    }
-    .tile:hover img{ transform: scale(1.035); }
-
-    .tile::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,.55));
-      opacity: 0;
-      transition: opacity .2s ease;
-      pointer-events:none;
-    }
-    .tile:hover::after{ opacity: 1; }
-
-    .caption{
-      position:absolute;
-      left: 14px;
-      right: 14px;
-      bottom: 12px;
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap: 10px;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: .2s ease;
-      pointer-events:none;
-    }
-    .tile:hover .caption{
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .caption .label{
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.92);
-    }
-    .caption .hint{
-      font-size: 11px;
-      color: rgba(255,255,255,.75);
+      font-size:12px;
+      color:var(--muted);
       white-space:nowrap;
     }
 
-    /* Fullscreen lightbox */
-    .lightbox{
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.92);
-      display: none;
-      z-index: 999;
+    .wrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:18px 14px 70px;
     }
-    .lightbox.open{ display:block; }
 
-    .lb-top{
-      position:absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      padding: 14px 14px 10px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap: 10px;
-      pointer-events:none;
+    /* Masonry-ish using columns (simple, reliable) */
+    .masonry{
+      column-count: 3;
+      column-gap: 14px;
     }
-    .lb-top .meta{
-      pointer-events:none;
-      color: rgba(255,255,255,.75);
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .lb-btns{
-      display:flex;
-      gap:10px;
-      pointer-events:auto;
-    }
-    .iconbtn{
-      appearance:none;
-      border: 1px solid rgba(255,255,255,.20);
-      background: rgba(255,255,255,.08);
-      color: white;
-      border-radius: 12px;
-      padding: 10px 12px;
+    .tile{
+      display:block;
+      break-inside: avoid;
+      margin:0 0 14px;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background:#0b0b0b;
       cursor:pointer;
-      transition: .2s ease;
-      font-size: 12px;
-      letter-spacing: 1px;
+      position:relative;
     }
-    .iconbtn:hover{
-      background: rgba(255,255,255,.14);
-      border-color: rgba(255,255,255,.28);
+    .tile img{
+      width:100%;
+      height:auto;
+      display:block;
+      transform:scale(1);
+      transition: transform .25s ease;
+    }
+    .tile:hover img{transform:scale(1.02)}
+
+    @media (max-width: 980px){
+      .masonry{column-count:2}
+    }
+    @media (max-width: 620px){
+      .masonry{column-count:1}
+      .tip{display:none}
     }
 
-    .lb-stage{
-      position:absolute;
-      inset: 0;
+    /* Lightbox */
+    .lb{
+      position:fixed; inset:0;
+      display:none;
+      z-index:100;
+      background:rgba(0,0,0,.92);
+    }
+    .lb.open{display:block}
+    .lb-inner{
+      position:absolute; inset:0;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding: 68px 18px 46px;
+      padding:18px;
     }
     .lb-img{
-      max-width: min(1100px, 95vw);
-      max-height: calc(100vh - 120px);
-      width:auto;
-      height:auto;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.16);
-      box-shadow: var(--shadow);
-      background: rgba(255,255,255,.02);
+      max-width:min(1100px, 94vw);
+      max-height: min(86vh, 900px);
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow: 0 20px 80px rgba(0,0,0,.65);
+      background:#111;
+      object-fit:contain;
     }
-
-    .lb-nav{
-      position:absolute;
-      inset: 0;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 0 10px;
+    .lb-top{
+      position:absolute; top:14px; left:14px; right:14px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      z-index:110;
       pointer-events:none;
     }
-    .navbtn{
+    .lb-meta{
+      pointer-events:none;
+      font-weight:900;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:rgba(255,255,255,.88);
+    }
+    .lb-actions{
       pointer-events:auto;
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.20);
+      display:flex; gap:10px; align-items:center;
+    }
+    .lb-btn{
+      border:1px solid rgba(255,255,255,.22);
       background: rgba(255,255,255,.08);
-      color: white;
+      color:#fff;
+      border-radius:14px;
+      padding:10px 14px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:11px;
       cursor:pointer;
-      display:grid;
-      place-items:center;
-      font-size: 18px;
-      transition: .2s ease;
     }
-    .navbtn:hover{
-      background: rgba(255,255,255,.14);
-      border-color: rgba(255,255,255,.28);
-      transform: scale(1.03);
+    .lb-btn:hover{background: rgba(255,255,255,.12)}
+    .navBtn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:54px; height:54px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color:#fff;
+      display:grid; place-items:center;
+      font-size:26px;
+      cursor:pointer;
+      user-select:none;
     }
+    .navBtn:hover{background: rgba(255,255,255,.10)}
+    .prev{left:14px}
+    .next{right:14px}
 
     .lb-foot{
-      position:absolute;
-      left:0; right:0; bottom: 0;
-      padding: 10px 16px 16px;
-      display:flex;
-      justify-content:center;
-      color: rgba(255,255,255,.70);
-      font-size: 12px;
-      letter-spacing: 1px;
+      position:absolute; bottom:14px; left:14px; right:14px;
       text-align:center;
-      pointer-events:none;
-    }
-
-    /* Small helper link */
-    .backlink{
-      margin-top: 26px;
-      display:inline-flex;
-      gap: 10px;
-      align-items:center;
-      text-decoration:none;
-      color: rgba(255,255,255,.75);
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      padding: 10px 12px;
-      border-radius: 999px;
-      transition: .2s ease;
-    }
-    .backlink:hover{
-      color: white;
-      border-color: rgba(255,255,255,.24);
-      background: rgba(255,255,255,.10);
+      color:rgba(255,255,255,.65);
+      font-size:12px;
+      letter-spacing:.08em;
     }
   </style>
 </head>
-
 <body>
-  <!-- Topbar -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <strong>Enhance Visual Studio</strong>
-        <span>Pose. Capture. Enhance</span>
-      </div>
 
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a class="active" href="portraits.html">Portraits</a>
-        <a href="lifestyle.html">Lifestyle / Fashion</a>
-        <a href="events.html">Events</a>
-        <a href="family.html">Kids / Family</a>
-      </nav>
+  <div class="top">
+    <div class="left">
+      <a class="back" href="index.html#portfolio">Back</a>
+      <div class="title">Portraits</div>
     </div>
-  </header>
+    <div class="tip">Tip: Tap any image to view fullscreen</div>
+  </div>
 
-  <main class="wrap">
-    <h1 class="page-title">Portraits</h1>
-    <p class="page-sub">
-      A curated selection of luxury portrait work — clean lighting, bold presence, and timeless edits.
-    </p>
+  <div class="wrap">
+    <div class="masonry" id="masonry"></div>
+  </div>
 
-    <div class="tip">
-      <div class="dot"></div>
-      <div>
-        Tip: Click any image to view fullscreen. Use <b>←</b> / <b>→</b> keys to navigate, <b>Esc</b> to close.
-      </div>
-    </div>
-
-    <!-- Cinematic Masonry Grid -->
-    
-      <!-- Cinematic Masonry Grid (AUTO-LOAD) -->
-<section class="masonry" id="masonry"></section>
-        <figcaption class="caption">
-          <span class="label">Portrait</span>
-          <span class="hint">Click to view</span>
-        </figcaption>
-      </figure>
-    </section>
-
-    <a class="backlink" href="index.html#portfolio">← Back to Portfolio</a>
-  </main>
-
-  <!-- Fullscreen Lightbox -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
+  <!-- Lightbox -->
+  <div class="lb" id="lb" aria-hidden="true">
     <div class="lb-top">
-      <div class="meta" id="lbMeta">Portrait • 1 / 1</div>
-      <div class="lb-btns">
-        <button class="iconbtn" id="downloadBtn" type="button">Download</button>
-        <button class="iconbtn" id="closeBtn" type="button">Close ✕</button>
+      <div class="lb-meta" id="lbMeta">Portrait • 1 / 1</div>
+      <div class="lb-actions">
+        <a class="lb-btn" id="downloadBtn" href="#" download>Download</a>
+        <button class="lb-btn" id="closeBtn">Close ×</button>
       </div>
     </div>
 
-    <div class="lb-stage">
-      <img class="lb-img" id="lbImg" alt="Fullscreen portrait">
-      <div class="lb-nav">
-        <button class="navbtn" id="prevBtn" type="button" aria-label="Previous">‹</button>
-        <button class="navbtn" id="nextBtn" type="button" aria-label="Next">›</button>
-      </div>
+    <button class="navBtn prev" id="prevBtn" aria-label="Previous">‹</button>
+    <button class="navBtn next" id="nextBtn" aria-label="Next">›</button>
+
+    <div class="lb-inner" id="lbInner">
+      <img class="lb-img" id="lbImg" alt="Fullscreen portrait" />
     </div>
 
-    <div class="lb-foot">
-      Keyboard: ← → to navigate • Esc to close
-    </div>
+    <div class="lb-foot">Swipe ← → on mobile • Keyboard: ← → • Esc to close</div>
   </div>
 
   <script>
-    // Collect gallery images
-    const tiles = Array.from(document.querySelectorAll('.tile'));
-    const sources = tiles.map(t => t.getAttribute('data-full'));
+    // ✅ EASIEST: just list filenames that exist in /images/portraits/
+    // If your files are named 01.jpg, 02.jpg... keep it like this.
+    const images = [
+      "images/portraits/01.jpg",
+      "images/portraits/02.jpg",
+      "images/portraits/03.jpg",
+      "images/portraits/04.jpg"
+    ];
 
-    const lightbox = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    const lbMeta = document.getElementById('lbMeta');
-    const closeBtn = document.getElementById('closeBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
+    // Build grid
+    const masonry = document.getElementById("masonry");
+    images.forEach((src, i) => {
+      const a = document.createElement("a");
+      a.className = "tile";
+      a.href = src;
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        open(i);
+      });
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.loading = "lazy";
+      img.alt = "Portrait " + (i+1);
+      a.appendChild(img);
+      masonry.appendChild(a);
+    });
+
+    // Lightbox logic
+    const lb = document.getElementById("lb");
+    const lbImg = document.getElementById("lbImg");
+    const lbMeta = document.getElementById("lbMeta");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const closeBtn = document.getElementById("closeBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const lbInner = document.getElementById("lbInner");
 
     let index = 0;
 
-    function setMeta() {
-      lbMeta.textContent = `Portrait • ${index + 1} / ${sources.length}`;
+    function setMeta(){
+      lbMeta.textContent = `Portrait • ${index + 1} / ${images.length}`;
     }
 
-    function openLightbox(i) {
+    function open(i){
       index = i;
-      const src = sources[index];
-
+      const src = images[index];
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden", "false");
       lbImg.src = src;
+      downloadBtn.href = src;
       setMeta();
-
-      lightbox.classList.add('open');
-      lightbox.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     }
 
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      lightbox.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      lbImg.src = '';
+    function close(){
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden", "true");
+      lbImg.src = "";
+      document.body.style.overflow = "";
     }
 
-    function prev() {
-      index = (index - 1 + sources.length) % sources.length;
-      lbImg.src = sources[index];
-      setMeta();
+    function prev(){
+      index = (index - 1 + images.length) % images.length;
+      open(index);
     }
 
-    function next() {
-      index = (index + 1) % sources.length;
-      lbImg.src = sources[index];
-      setMeta();
+    function next(){
+      index = (index + 1) % images.length;
+      open(index);
     }
 
-    // Tile click -> open
-    tiles.forEach((tile, i) => {
-      tile.addEventListener('click', () => openLightbox(i));
-    });
-
-    // Buttons
-    closeBtn.addEventListener('click', closeLightbox);
-    prevBtn.addEventListener('click', prev);
-    nextBtn.addEventListener('click', next);
+    closeBtn.addEventListener("click", close);
+    prevBtn.addEventListener("click", prev);
+    nextBtn.addEventListener("click", next);
 
     // Click outside image closes
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb || e.target === lbInner) close();
     });
 
-    // Keyboard support
-    window.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('open')) return;
-
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') prev();
-      if (e.key === 'ArrowRight') next();
+    // Keyboard controls
+    window.addEventListener("keydown", (e) => {
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
     });
 
-    // Simple mobile swipe (left/right)
-    let touchStartX = 0;
-    let touchEndX = 0;
+    // Mobile swipe
+    let startX = 0;
+    lb.addEventListener("touchstart", (e) => {
+      if (!lb.classList.contains("open")) return;
+      startX = e.touches[0].clientX;
+    }, {passive:true});
 
-    function handleSwipe() {
-      const dx = touchEndX - touchStartX;
-      if (Math.abs(dx) < 40) return;
-      if (dx > 0) prev();
-      else next();
-    }
-
-    lightbox.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    lightbox.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-
-    // Download button (opens image in new tab so user can save)
-    downloadBtn.addEventListener('click', () => {
-      const src = sources[index];
-      window.open(src, '_blank', 'noopener,noreferrer');
-    });
+    lb.addEventListener("touchend", (e) => {
+      if (!lb.classList.contains("open")) return;
+      const endX = e.changedTouches[0].clientX;
+      const dx = endX - startX;
+      if (Math.abs(dx) > 40) dx > 0 ? prev() : next();
+    }, {passive:true});
   </script>
-  </script>
-
-<script>
-async function loadMasonry(folder, jsonFile, masonryId) {
-  try {
-    const res = await fetch(`${folder}/${jsonFile}?v=${Date.now()}`);
-    const files = await res.json();
-
-    const masonry = document.getElementById(masonryId);
-    masonry.innerHTML = "";
-
-    files.forEach((file, i) => {
-      const fullPath = `${folder}/${file}`;
-
-      const fig = document.createElement("figure");
-      fig.className = "tile";
-      fig.setAttribute("data-full", fullPath);
-
-      const img = document.createElement("img");
-      img.src = fullPath;
-      img.loading = "lazy";
-
-      fig.appendChild(img);
-      masonry.appendChild(fig);
-
-      fig.addEventListener("click", () => openLightbox(i));
-    });
-
-  } catch (err) {
-    console.warn(err);
-  }
-}
-
-loadMasonry("images/portraits", "portraits.json", "masonry");
-</script>
 </body>
 </html>
