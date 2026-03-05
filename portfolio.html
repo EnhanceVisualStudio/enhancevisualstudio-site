@@ -30,7 +30,6 @@
       text-rendering: optimizeLegibility;
     }
     a{color:inherit;text-decoration:none}
-
     .wrap{max-width:1200px;margin:0 auto;padding:18px 16px 70px}
 
     /* Top bar */
@@ -82,7 +81,7 @@
     .masonry{
       margin-top:22px;
       column-count: 3;
-      column-gap: 18px;              /* premium spacing */
+      column-gap: 18px;
     }
     @media (max-width: 980px){ .masonry{column-count:2} }
     @media (max-width: 560px){ .masonry{column-count:1} }
@@ -100,7 +99,6 @@
       transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
       box-shadow: 0 18px 60px rgba(0,0,0,.28);
     }
-    /* cinematic highlight */
     .tile::before{
       content:"";
       position:absolute; inset:0;
@@ -109,7 +107,6 @@
       transition: opacity .22s ease;
       pointer-events:none;
     }
-    /* soft vignette */
     .tile::after{
       content:"";
       position:absolute; inset:0;
@@ -124,7 +121,7 @@
       transform: scale(1.01);
       transition: transform .35s ease, filter .35s ease, opacity .35s ease;
       filter: contrast(1.05) saturate(1.04);
-      opacity:0; /* smooth reveal */
+      opacity:0;
     }
     .tile img.is-loaded{ opacity:1; }
 
@@ -151,6 +148,28 @@
       line-height:1.6;
       font-size:13px;
     }
+
+    /* Loading / sentinel */
+    .loadbar{
+      margin:24px auto 0;
+      width:100%;
+      max-width:560px;
+      text-align:center;
+      color:rgba(255,255,255,.62);
+      font-size:12px;
+      letter-spacing:.08em;
+    }
+    .spinner{
+      width:18px;height:18px;
+      border-radius:999px;
+      border:2px solid rgba(255,255,255,.18);
+      border-top-color: rgba(255,255,255,.70);
+      display:inline-block;
+      vertical-align:middle;
+      margin-right:10px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
 
     /* ===== Lightbox ===== */
     .lb{
@@ -251,15 +270,22 @@
     <header>
       <h1>Portfolio</h1>
       <p class="sub">One curated gallery. Tap any image to view fullscreen. Swipe on mobile.</p>
-      <div class="tip">When you upload images later, just change TOTAL below.</div>
+      <div class="tip">Infinite scroll is on. Add new images later and just increase MAX.</div>
     </header>
 
     <main id="grid" class="masonry"></main>
 
     <div id="emptyState" class="empty" style="display:none;">
       No images uploaded yet.<br/>
-      Upload to <b>images/portfolio/</b> named <b>01.jpg → 32.jpg</b>, then set <b>TOTAL = 32</b> below.
+      Upload to <b>images/portfolio/</b> named <b>01.jpg → 32.jpg</b>, then set <b>START_MAX = 32</b> below.
     </div>
+
+    <div class="loadbar" id="loadbar" style="display:none;">
+      <span class="spinner"></span> Loading more work…
+    </div>
+
+    <!-- sentinel for infinite scroll -->
+    <div id="sentinel" style="height:1px;"></div>
   </div>
 
   <!-- Lightbox -->
@@ -282,38 +308,108 @@
   </div>
 
   <script>
-    // ===== ONLY CHANGE THESE LATER =====
-    const TOTAL = 0;                 // set to 32 when images are uploaded
+    // ========= CONFIG (simple + future-proof) =========
+    // Put images here: images/portfolio/01.jpg ... 999.jpg
     const FOLDER = "images/portfolio";
     const EXT = "jpg";
 
+    // How many images exist right now? (set later to 32)
+    let START_MAX = 0;
+
+    // How many to load per “page” as you scroll
+    const BATCH = 12;
+
+    // Hard limit safety (so it never loops forever)
+    const ABSOLUTE_MAX = 999;
+
+    // ========= State =========
     const grid = document.getElementById("grid");
     const emptyState = document.getElementById("emptyState");
+    const loadbar = document.getElementById("loadbar");
+    const sentinel = document.getElementById("sentinel");
 
-    const sources = Array.from({length: TOTAL}, (_, i) => {
-      const n = String(i + 1).padStart(2, "0");
-      return `${FOLDER}/${n}.${EXT}`;
-    });
+    // We'll build a dynamic list and extend it when START_MAX increases
+    let sources = [];
+    let rendered = 0; // how many tiles we have put on the page
+    let isLoading = false;
 
-    if (sources.length === 0) emptyState.style.display = "block";
+    function srcFor(n){
+      const file = String(n).padStart(2, "0");
+      return `${FOLDER}/${file}.${EXT}`;
+    }
 
-    // Build tiles (with smooth reveal)
-    sources.forEach((src, i) => {
-      const tile = document.createElement("div");
-      tile.className = "tile";
+    // (Re)build sources array up to START_MAX
+    function rebuildSources(){
+      sources = Array.from({length: START_MAX}, (_, i) => srcFor(i + 1));
+    }
 
-      const img = document.createElement("img");
-      img.src = src;
-      img.loading = "lazy";
-      img.alt = `Portfolio image ${i+1}`;
-      img.addEventListener("load", () => img.classList.add("is-loaded"));
-      tile.appendChild(img);
+    // Render next batch
+    function renderMore(){
+      if (isLoading) return;
+      if (rendered >= sources.length) return;
 
-      tile.addEventListener("click", () => open(i));
-      grid.appendChild(tile);
-    });
+      isLoading = true;
+      loadbar.style.display = "block";
 
-    // Lightbox
+      const end = Math.min(rendered + BATCH, sources.length);
+
+      for (let i = rendered; i < end; i++){
+        const src = sources[i];
+
+        const tile = document.createElement("div");
+        tile.className = "tile";
+
+        // Luxury rhythm spacing (editorial feel)
+        if (i % 3 === 0) tile.style.marginTop = "18px";
+
+        const img = document.createElement("img");
+        img.src = src;
+        img.loading = "lazy";
+        img.alt = `Portfolio image ${i + 1}`;
+        img.addEventListener("load", () => img.classList.add("is-loaded"));
+
+        // If a file doesn't exist yet, hide the broken tile
+        img.addEventListener("error", () => {
+          tile.remove();
+        });
+
+        tile.appendChild(img);
+        tile.addEventListener("click", () => open(i));
+        grid.appendChild(tile);
+      }
+
+      rendered = end;
+
+      // small delay makes the loader feel smoother
+      setTimeout(() => {
+        loadbar.style.display = "none";
+        isLoading = false;
+      }, 250);
+    }
+
+    // Infinite scroll observer
+    const io = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (!entry.isIntersecting) return;
+
+      // 1) If we still have unrendered items, render them
+      if (rendered < sources.length){
+        renderMore();
+        return;
+      }
+
+      // 2) If we're already at the current max, try “auto-extend”
+      //    This lets you add images later and just increase START_MAX,
+      //    OR you can leave START_MAX high and missing files will be skipped.
+      if (START_MAX < ABSOLUTE_MAX){
+        // Auto-extend by batch (safe). Missing images get skipped by onerror.
+        START_MAX = Math.min(START_MAX + BATCH, ABSOLUTE_MAX);
+        rebuildSources();
+        renderMore();
+      }
+    }, { root: null, threshold: 0.1 });
+
+    // ========= Lightbox =========
     const lb = document.getElementById("lb");
     const lbImg = document.getElementById("lbImg");
     const lbMeta = document.getElementById("lbMeta");
@@ -325,8 +421,10 @@
     let index = 0;
 
     function meta(){
+      // Use sources length (not rendered), so count stays correct as it grows
       lbMeta.textContent = `Portfolio • ${index + 1} / ${sources.length}`;
     }
+
     function show(i){
       if (!sources.length) return;
       index = ((i % sources.length) + sources.length) % sources.length;
@@ -336,12 +434,15 @@
       dlBtn.setAttribute("download", src.split("/").pop());
       meta();
     }
+
     function open(i){
+      if (!sources.length) return;
       lb.classList.add("open");
       lb.setAttribute("aria-hidden","false");
       document.body.style.overflow = "hidden";
       show(i);
     }
+
     function close(){
       lb.classList.remove("open");
       lb.setAttribute("aria-hidden","true");
@@ -370,6 +471,25 @@
       startX = null;
       if (Math.abs(dx) > 45) dx > 0 ? show(index - 1) : show(index + 1);
     }, {passive:true});
+
+    // ========= Boot =========
+    rebuildSources();
+
+    if (START_MAX === 0){
+      emptyState.style.display = "block";
+    } else {
+      emptyState.style.display = "none";
+      renderMore();
+      io.observe(sentinel);
+    }
+
+    // If START_MAX is 0 right now, still observe sentinel so auto-extend works later
+    // (it will quietly skip missing files)
+    io.observe(sentinel);
+
+    // ====== What YOU do later ======
+    // 1) Upload images to images/portfolio/ named 01.jpg .. 32.jpg
+    // 2) Set START_MAX = 32
   </script>
 </body>
 </html>
