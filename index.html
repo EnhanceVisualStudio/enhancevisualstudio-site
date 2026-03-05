@@ -4,212 +4,332 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Enhance Visual Studio</title>
+  <meta name="description" content="Luxury Portrait & Lifestyle Photography — Los Angeles • San Francisco / Bay Area • San Diego" />
+
+  <!-- Canonical (keeps SEO clean with www) -->
+  <link rel="canonical" href="https://www.enhancevisualstudio.com/" />
+
   <style>
     :root{
-      --bg:#050505;
-      --fg:#ffffff;
-      --muted:rgba(255,255,255,.75);
+      --bg:#060606;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.76);
+      --muted2:rgba(255,255,255,.55);
       --line:rgba(255,255,255,.14);
       --card:rgba(255,255,255,.06);
+      --shadow:rgba(0,0,0,.6);
+      --max:1100px;
+      --radius:18px;
     }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--fg);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     a{color:inherit;text-decoration:none}
+
+    /* Sticky glass nav */
     .nav{
       position:fixed; top:0; left:0; right:0;
       z-index:50;
-      padding:14px 18px;
-      display:flex; gap:18px; justify-content:center; align-items:center;
-      background:linear-gradient(to bottom, rgba(0,0,0,.75), rgba(0,0,0,0));
-      backdrop-filter: blur(6px);
+      padding:14px 16px;
+      background: linear-gradient(to bottom, rgba(0,0,0,.78), rgba(0,0,0,0));
+      pointer-events:none;
     }
-    .nav a{
-      font-weight:700;
-      letter-spacing:.12em;
+    .nav-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      pointer-events:auto;
+    }
+    .nav-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+    .nav-brand{
+      font-weight:900;
+      letter-spacing:2px;
       text-transform:uppercase;
       font-size:12px;
-      opacity:.92;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
-    .nav a:hover{opacity:1}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav-links a{
+      font-size:12px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.82);
+      padding:9px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+      background: transparent;
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+    .nav-links a:hover{
+      color:#fff;
+      border-color:rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+    }
+    .nav-cta{
+      border:1px solid rgba(255,255,255,.22) !important;
+      background:rgba(255,255,255,.08) !important;
+      font-weight:800;
+    }
 
     /* Hero */
     .hero{
       min-height:100vh;
-      display:grid;
-      place-items:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:110px 16px 60px;
       position:relative;
-      padding:90px 18px 40px;
       overflow:hidden;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.62), rgba(0,0,0,.78)),
+        url("images/hero.jpg") center/cover no-repeat;
     }
-    .hero::before{
+    .hero::after{
       content:"";
       position:absolute; inset:0;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,.55)),
-        url("images/hero.jpg") center/cover no-repeat;
-      transform:scale(1.02);
+      background: radial-gradient(900px 500px at 50% 22%, rgba(255,255,255,.08), transparent 60%);
+      pointer-events:none;
+      mix-blend-mode:screen;
+      opacity:.55;
     }
     .hero-inner{
       position:relative;
-      text-align:center;
       max-width:900px;
+      text-align:center;
+      padding: 10px 0;
     }
-    .brand{
-      font-size: clamp(34px, 5vw, 64px);
+    .hero-title{
+      margin:0;
       font-weight:900;
       letter-spacing:.14em;
       text-transform:uppercase;
-      margin:0;
+      font-size:clamp(30px, 5vw, 62px);
       color:#fff;
-      text-shadow: 0 10px 40px rgba(0,0,0,.6);
+      text-shadow: 0 14px 50px var(--shadow);
     }
-    .tagline{
+    .hero-tagline{
       margin-top:10px;
       font-weight:800;
-      letter-spacing:.18em;
+      letter-spacing:.20em;
       text-transform:uppercase;
       font-size:12px;
       color:#fff;
       opacity:.95;
     }
-    .lux{
+    .hero-lux{
+      margin-top:10px;
+      font-size:13px;
       letter-spacing:2px;
-      margin-top:10px;
-      color:rgba(255,255,255,.9);
-      font-weight:600;
-      font-size:14px;
+      color:rgba(255,255,255,.92);
     }
-    .loc{
+    .hero-loc{
       margin-top:10px;
-      color:rgba(255,255,255,.82);
       font-size:12px;
-      letter-spacing:.12em;
+      letter-spacing:.14em;
       text-transform:uppercase;
+      color:rgba(255,255,255,.80);
     }
-    .cta{
+    .hero-actions{
       margin-top:22px;
-      display:inline-block;
-      padding:14px 18px;
-      border:1px solid rgba(255,255,255,.6);
-      border-radius:12px;
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(0,0,0,.22);
+      color:#fff;
       font-weight:800;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-size:12px;
+      cursor:pointer;
+      backdrop-filter: blur(8px);
+      transition:.2s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.08)}
+    .btn.primary{
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.34);
+    }
+    .fallback{
+      margin-top:12px;
+      font-size:12px;
+      color:rgba(255,255,255,.72);
+      line-height:1.5;
+    }
+    .fallback a{ text-decoration:underline; }
+
+    /* Sections */
+    .section{
+      padding:70px 16px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{
+      width:100%;
+      max-width:var(--max);
+    }
+    .kicker{
+      margin:0 0 14px;
       letter-spacing:.16em;
       text-transform:uppercase;
       font-size:12px;
-      background: rgba(0,0,0,.25);
-      backdrop-filter: blur(8px);
-    }
-    .cta:hover{background: rgba(255,255,255,.08)}
-    .fallback{
-      margin-top:10px;
-      font-size:12px;
-      color:rgba(255,255,255,.75);
-    }
-    .fallback a{ text-decoration:underline; }
-    .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding: 70px 18px;
-    }
-    h2{
-      margin:0 0 14px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-size:14px;
-      opacity:.95;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:14px;
+      color:rgba(255,255,255,.86);
     }
     .card{
-      grid-column: span 6;
       border:1px solid var(--line);
-      background:var(--card);
-      border-radius:18px;
-      overflow:hidden;
-      min-height:210px;
-      position:relative;
-      display:flex;
-      align-items:flex-end;
+      background: var(--card);
+      border-radius: var(--radius);
       padding:18px;
     }
-    .card::before{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.12));
+    .about{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+      align-items:start;
     }
-    .card > .content{ position:relative; z-index:2; }
-    .title{
-      font-weight:900;
-      letter-spacing:.14em;
+    @media (max-width: 900px){
+      .about{grid-template-columns:1fr}
+    }
+    .about h2{
+      margin:0 0 10px;
+      font-size:20px;
+      letter-spacing:.06em;
       text-transform:uppercase;
+    }
+    .about p{
       margin:0;
+      color:rgba(255,255,255,.80);
+      line-height:1.75;
       font-size:14px;
     }
-    .sub{
-      margin-top:6px;
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.35;
-      max-width:44ch;
-    }
-    .btn{
-      margin-top:12px;
-      display:inline-block;
+    .pill{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
       padding:10px 12px;
-      border:1px solid rgba(255,255,255,.45);
-      border-radius:12px;
-      font-weight:800;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-size:11px;
-      background: rgba(0,0,0,.25);
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color:rgba(255,255,255,.80);
+      font-size:12px;
+      letter-spacing:.06em;
+      margin:8px 8px 0 0;
     }
-    .btn:hover{background: rgba(255,255,255,.08)}
+    .dot{
+      width:8px;height:8px;border-radius:999px;
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 0 0 6px rgba(255,255,255,.08);
+    }
+
+    /* Simple “Portfolio” callout (single gallery) */
+    .portfolio-callout{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .portfolio-callout h2{
+      margin:0;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      font-size:18px;
+    }
+    .portfolio-callout p{
+      margin:8px 0 0;
+      color:rgba(255,255,255,.75);
+      line-height:1.6;
+      max-width:70ch;
+      font-size:14px;
+    }
+
+    /* Footer */
     .footer{
-      border-top:1px solid var(--line);
-      padding:30px 18px 60px;
+      border-top:1px solid rgba(255,255,255,.10);
+      padding:30px 16px 60px;
       text-align:center;
-      color:rgba(255,255,255,.65);
+      color:rgba(255,255,255,.60);
       font-size:12px;
       letter-spacing:.08em;
     }
-
-    @media (max-width: 760px){
-      .card{grid-column: span 12;}
-      .nav{justify-content:space-around}
-    }
   </style>
 </head>
+
 <body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <div class="nav-brand">Enhance Visual Studio</div>
+      </div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
+          Book
+        </a>
+      </div>
+    </div>
+  </div>
 
-  <nav class="nav">
-    <a href="#home">Home</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
+  <!-- HERO -->
   <section id="home" class="hero">
     <div class="hero-inner">
-      <h1 class="brand">ENHANCE VISUAL STUDIO</h1>
-      <div class="tagline">POSE. CAPTURE. ENHANCE</div>
-      <div class="lux">Luxury Portrait &amp; Lifestyle Photography</div>
-      <div class="loc">Los Angeles • San Francisco / Bay Area • San Diego</div>
+      <h1 class="hero-title">ENHANCE VISUAL STUDIO</h1>
+      <div class="hero-tagline">POSE. CAPTURE. ENHANCE</div>
 
-      <a class="cta" id="bookBtn" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
-        Book Session
-      </a>
+      <div style="letter-spacing:2px; margin-top:10px;">
+        Luxury Portrait &amp; Lifestyle Photography
+      </div>
+
+      <div class="hero-loc">Los Angeles • San Francisco / Bay Area • San Diego 📍</div>
+
+      <div class="hero-actions">
+        <a class="btn primary" id="bookBtn"
+           href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session"
+           target="_blank" rel="noopener">
+          Book Session
+        </a>
+
+        <a class="btn" href="portfolio.html">View Portfolio</a>
+      </div>
 
       <div class="fallback">
-        If the button doesn’t open, use this link:
+        If the booking button doesn’t open, use this link:
         <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
           calendly.com/bookenhancevisualstudio/1-hour-photography-session
         </a>
@@ -217,57 +337,86 @@
     </div>
   </section>
 
-  <section id="portfolio" class="wrap">
-    <h2>Portfolio</h2>
-    <div class="grid">
-      <a class="card" href="portraits.html" style="background-image:url('images/portraits/01.jpg'); background-size:cover; background-position:center;">
-        <div class="content">
-          <p class="title">Portraits</p>
-          <div class="sub">Cinematic portraits with clean composition and premium retouching.</div>
-          <span class="btn">View</span>
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="section">
+    <div class="wrap">
+      <div class="kicker">Portfolio</div>
+      <div class="card portfolio-callout">
+        <div>
+          <h2>One Curated Gallery</h2>
+          <p>
+            A clean, cinematic collection of my work. Tap any image to view fullscreen, swipe on mobile,
+            and explore the full portfolio in one place.
+          </p>
         </div>
-      </a>
-
-      <a class="card" href="lifestyle.html" style="background-image:url('images/portraits/02.jpg'); background-size:cover; background-position:center;">
-        <div class="content">
-          <p class="title">Lifestyle / Fashion</p>
-          <div class="sub">Editorial-style lifestyle storytelling and modern fashion looks.</div>
-          <span class="btn">View</span>
+        <div>
+          <a class="btn primary" href="portfolio.html">Open Portfolio</a>
         </div>
-      </a>
-
-      <a class="card" href="family.html" style="background-image:url('images/portraits/03.jpg'); background-size:cover; background-position:center;">
-        <div class="content">
-          <p class="title">Kids / Family</p>
-          <div class="sub">Warm, authentic moments—posed with intention, captured naturally.</div>
-          <span class="btn">View</span>
-        </div>
-      </a>
-
-      <a class="card" href="events.html" style="background-image:url('images/portraits/04.jpg'); background-size:cover; background-position:center;">
-        <div class="content">
-          <p class="title">Events</p>
-          <div class="sub">Nightlife, celebrations, and special events with sharp delivery.</div>
-          <span class="btn">View</span>
-        </div>
-      </a>
+      </div>
     </div>
   </section>
 
-  <section id="about" class="wrap">
-    <h2>About</h2>
-    <div style="color:rgba(255,255,255,.85); line-height:1.75; max-width:80ch;">
-      Enhance Visual Studio is dedicated to creating bold, timeless imagery with a clean, cinematic look.
-      Every session is guided with direction, attention to detail, and professional lighting—so you feel confident
-      and the final images look elevated, intentional, and premium.
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="wrap">
+      <div class="kicker">About</div>
+      <div class="card about">
+        <div>
+          <h2>Direction-first. Cinematic results.</h2>
+          <p>
+            Enhance Visual Studio creates bold, clean, high-contrast imagery with a premium finish.
+            Every session includes guidance on posing, lighting, and location—so you look confident,
+            and the final photos feel elevated and intentional.
+          </p>
+          <div style="margin-top:14px;">
+            <span class="pill"><span class="dot"></span> Luxury portraits</span>
+            <span class="pill"><span class="dot"></span> Lifestyle / fashion</span>
+            <span class="pill"><span class="dot"></span> Events &amp; nightlife</span>
+            <span class="pill"><span class="dot"></span> Clean retouching</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="background:rgba(255,255,255,.03);">
+            <div class="kicker" style="margin-bottom:10px;">Service Area</div>
+            <div style="color:rgba(255,255,255,.82); line-height:1.8; font-size:14px;">
+              Los Angeles<br/>
+              San Francisco / Bay Area<br/>
+              San Diego
+            </div>
+
+            <div class="kicker" style="margin:18px 0 10px;">Book</div>
+            <a class="btn primary"
+               href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session"
+               target="_blank" rel="noopener">
+              Book a Full Session
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="contact" class="wrap">
-    <h2>Contact</h2>
-    <div style="color:rgba(255,255,255,.8); margin-bottom:12px;">
-      Want to book fast? Use the booking button above. Prefer to message first? Email:
-      <b>bookings@enhancevisualstudio.com</b>
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="wrap">
+      <div class="kicker">Contact</div>
+      <div class="card">
+        <div style="color:rgba(255,255,255,.82); line-height:1.75; font-size:14px;">
+          Ready to shoot? Book directly through Calendly or reach out by email.
+        </div>
+        <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn primary"
+             href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session"
+             target="_blank" rel="noopener">
+            Book Now
+          </a>
+          <a class="btn" href="mailto:bookenhancevisualstudio@gmail.com">Email</a>
+        </div>
+        <div style="margin-top:10px; color:rgba(255,255,255,.55); font-size:12px;">
+          (You can change the email link anytime to your preferred business address.)
+        </div>
+      </div>
     </div>
   </section>
 
@@ -277,6 +426,14 @@
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Extra safety: if anything blocks popups, keep link usable
+    const bookBtn = document.getElementById("bookBtn");
+    if (bookBtn){
+      bookBtn.addEventListener("click", () => {
+        // no-op: anchor link already works; this keeps it simple + reliable
+      });
+    }
   </script>
 </body>
 </html>
