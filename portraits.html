@@ -1,388 +1,545 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portraits | Enhance Visual Studio</title>
-  <meta name="description" content="Portraits gallery — Enhance Visual Studio. Pose. Capture. Enhance." />
 
   <style>
     :root{
-      --bg:#0b0b0c;
-      --text:#f5f5f5;
-      --muted:rgba(255,255,255,.72);
-      --muted2:rgba(255,255,255,.55);
-      --line2:rgba(255,255,255,.08);
-      --shadow: 0 18px 55px rgba(0,0,0,.55);
-      --radius:16px;
-      --max:1100px;
-      --navH:64px;
+      --bg:#0b0b0b;
+      --fg:#f5f5f5;
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.45);
+      --card: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.12);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
     }
+
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background: radial-gradient(1200px 500px at 50% 0%, rgba(255,255,255,.05), transparent 55%) , var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-      overflow-x:hidden;
+      background: radial-gradient(900px 500px at 50% -10%, rgba(255,255,255,.07), transparent 65%), var(--bg);
+      color:var(--fg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      letter-spacing:.2px;
     }
-    a{color:inherit;text-decoration:none}
-    button{font:inherit}
 
-    /* NAV */
-    .nav{
-      position:fixed; top:0; left:0; right:0;
-      height:var(--navH);
-      display:flex; align-items:center;
-      z-index:50;
-      background: linear-gradient(to bottom, rgba(0,0,0,.72), rgba(0,0,0,.25), transparent);
+    /* Top bar */
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index:10;
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: rgba(0,0,0,.55);
+      border-bottom: 1px solid var(--border);
     }
-    .nav .inner{
-      width:min(var(--max), calc(100% - 36px));
+    .topbar-inner{
+      max-width: 1150px;
       margin:0 auto;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
     }
-    .brandTop{
-      font-weight:800;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:13px;
-      display:flex; align-items:center; gap:10px;
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap: 2px;
+      line-height:1.1;
+    }
+    .brand strong{
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--fg);
+    }
+    .brand span{
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+    .nav{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav a{
+      text-decoration:none;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 9px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: .2s ease;
       white-space:nowrap;
     }
-    .brandTop .dot{
-      width:8px;height:8px;border-radius:999px;
-      background:rgba(255,255,255,.75);
-      box-shadow:0 0 0 6px rgba(255,255,255,.06);
+    .nav a:hover{
+      color: var(--fg);
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
     }
-    .navlinks{
-      display:flex; align-items:center; gap:18px;
-      font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    .nav a.active{
+      color: var(--fg);
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.08);
     }
-    .navlinks a{
-      color:rgba(255,255,255,.86);
-      padding:10px 6px;
-      border-radius:10px;
-      transition:.2s ease;
-    }
-    .navlinks a:hover{background:rgba(255,255,255,.08)}
-    .btn{
-      border:1px solid rgba(255,255,255,.45);
-      background:rgba(0,0,0,.28);
-      color:#fff;
-      padding:10px 14px;
-      border-radius:999px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:12px;
-      cursor:pointer;
-      transition:.18s ease;
-      white-space:nowrap;
-    }
-    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.08)}
-    .btn.solid{
-      background:#fff; color:#000;
-      border-color:#fff;
-    }
-    .btn.solid:hover{background:#f2f2f2}
 
-    /* PAGE HERO */
-    .pageHero{
-      padding-top:var(--navH);
-      min-height:52vh;
-      display:grid;
-      place-items:center;
-      position:relative;
-      overflow:hidden;
+    /* Page header */
+    .wrap{
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 26px 18px 60px;
     }
-    .pageHero::before{
+    .page-title{
+      margin: 18px 0 10px;
+      font-size: 24px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .page-sub{
+      margin: 0 0 20px;
+      color: var(--muted);
+      max-width: 70ch;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .tip{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: 14px;
+      margin: 14px 0 22px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      margin-top: 5px;
+      background: rgba(255,255,255,.65);
+      box-shadow: 0 0 0 6px rgba(255,255,255,.08);
+      flex: 0 0 auto;
+    }
+
+    /* Cinematic masonry */
+    .masonry{
+      column-count: 3;
+      column-gap: 16px;
+    }
+    @media (max-width: 980px){ .masonry{ column-count: 2; } }
+    @media (max-width: 560px){ .masonry{ column-count: 1; } }
+
+    .tile{
+      break-inside: avoid;
+      margin: 0 0 16px;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 8px 40px rgba(0,0,0,.35);
+      cursor: pointer;
+      transform: translateZ(0);
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .tile:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.20);
+      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+    }
+
+    .tile img{
+      width: 100%;
+      height: auto;
+      display:block;
+      filter: saturate(1.02) contrast(1.02);
+      transform: scale(1.01);
+      transition: transform .35s ease;
+    }
+    .tile:hover img{ transform: scale(1.035); }
+
+    .tile::after{
       content:"";
       position:absolute; inset:0;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.80)),
-        url("images/pic01.jpg") center/cover no-repeat;
-      transform:scale(1.03);
-    }
-    .pageHero::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(700px 260px at 50% 30%, rgba(255,255,255,.08), transparent 62%);
+      background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,.55));
+      opacity: 0;
+      transition: opacity .2s ease;
       pointer-events:none;
     }
-    .pageHero .content{
-      position:relative;
-      width:min(var(--max), calc(100% - 36px));
-      margin:0 auto;
-      text-align:center;
-      padding:56px 0 38px;
+    .tile:hover::after{ opacity: 1; }
+
+    .caption{
+      position:absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: .2s ease;
+      pointer-events:none;
     }
-    h1{
-      margin:0;
-      font-size: clamp(26px, 4.6vw, 44px);
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      font-weight:900;
-      text-shadow: 0 10px 30px rgba(0,0,0,.55);
+    .tile:hover .caption{
+      opacity: 1;
+      transform: translateY(0);
     }
-    .sub{
-      margin-top:12px;
-      color:rgba(255,255,255,.78);
-      letter-spacing:.06em;
-      line-height:1.6;
-      font-size:13px;
+    .caption .label{
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.92);
     }
-    .ctaRow{
-      margin-top:18px;
+    .caption .hint{
+      font-size: 11px;
+      color: rgba(255,255,255,.75);
+      white-space:nowrap;
+    }
+
+    /* Fullscreen lightbox */
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.92);
+      display: none;
+      z-index: 999;
+    }
+    .lightbox.open{ display:block; }
+
+    .lb-top{
+      position:absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 14px 14px 10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 10px;
+      pointer-events:none;
+    }
+    .lb-top .meta{
+      pointer-events:none;
+      color: rgba(255,255,255,.75);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .lb-btns{
+      display:flex;
+      gap:10px;
+      pointer-events:auto;
+    }
+    .iconbtn{
+      appearance:none;
+      border: 1px solid rgba(255,255,255,.20);
+      background: rgba(255,255,255,.08);
+      color: white;
+      border-radius: 12px;
+      padding: 10px 12px;
+      cursor:pointer;
+      transition: .2s ease;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    .iconbtn:hover{
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.28);
+    }
+
+    .lb-stage{
+      position:absolute;
+      inset: 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 68px 18px 46px;
+    }
+    .lb-img{
+      max-width: min(1100px, 95vw);
+      max-height: calc(100vh - 120px);
+      width:auto;
+      height:auto;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,.02);
+    }
+
+    .lb-nav{
+      position:absolute;
+      inset: 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 0 10px;
+      pointer-events:none;
+    }
+    .navbtn{
+      pointer-events:auto;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.20);
+      background: rgba(255,255,255,.08);
+      color: white;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      font-size: 18px;
+      transition: .2s ease;
+    }
+    .navbtn:hover{
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.28);
+      transform: scale(1.03);
+    }
+
+    .lb-foot{
+      position:absolute;
+      left:0; right:0; bottom: 0;
+      padding: 10px 16px 16px;
       display:flex;
       justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    /* GALLERY */
-    .wrap{
-      width:min(var(--max), calc(100% - 36px));
-      margin:0 auto;
-      padding:34px 0 70px;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:14px;
-      margin-top:12px;
-    }
-    .grid img{
-      width:100%;
-      height:340px;
-      object-fit:cover;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      cursor:pointer;
-      box-shadow: 0 10px 26px rgba(0,0,0,.28);
-      transition: transform .25s ease;
-    }
-    .grid img:hover{ transform: scale(1.02); }
-
-    /* LIGHTBOX */
-    .lb{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);display:none;place-items:center;padding:18px;z-index:80}
-    .lb.open{display:grid}
-    .frame{width:min(1100px,100%);max-height:80vh;background:#000;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 20px 70px rgba(0,0,0,.7)}
-    .frame img{width:100%;height:72vh;object-fit:contain;background:#000}
-    .bar{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(15,15,18,.92);border-top:1px solid rgba(255,255,255,.12)}
-    .icon{width:42px;height:42px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:transparent;color:#fff;cursor:pointer}
-    .row{display:flex;gap:8px;align-items:center}
-    .cap{color:rgba(255,255,255,.7);font-size:12px;letter-spacing:.08em}
-
-    /* BOOKING MODAL */
-    .modal{
-      position:fixed; inset:0;
-      background:rgba(0,0,0,.82);
-      backdrop-filter: blur(12px);
-      display:none;
-      z-index:90;
-    }
-    .modal.open{display:block}
-    .modal .shell{
-      width:min(980px, calc(100% - 26px));
-      margin:90px auto 0;
-      background:rgba(12,12,14,.96);
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:18px;
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .modal header{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px;
-      padding:12px 14px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-    }
-    .modal header strong{
-      font-size:12px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.88);
-    }
-    .modal header button{
-      border:1px solid rgba(255,255,255,.14);
-      background:transparent;
-      color:#fff;
-      width:40px;height:40px;border-radius:12px;
-      cursor:pointer;
-    }
-    .modal .body{padding:0;height:min(78vh, 720px)}
-    .modal iframe{width:100%;height:100%;border:0;display:block;background:#000}
-    .modal .footer{
-      padding:12px 14px;
-      border-top:1px solid rgba(255,255,255,.10);
-      color:rgba(255,255,255,.65);
-      font-size:12px; line-height:1.5;
-    }
-    .modal .footer a{text-decoration:underline}
-
-    footer{
-      padding:26px 0 40px;
+      color: rgba(255,255,255,.70);
+      font-size: 12px;
+      letter-spacing: 1px;
       text-align:center;
-      color:rgba(255,255,255,.55);
-      font-size:12px;
-      letter-spacing:.06em;
+      pointer-events:none;
     }
 
-    @media (max-width: 860px){
-      .navlinks{display:none}
+    /* Small helper link */
+    .backlink{
+      margin-top: 26px;
+      display:inline-flex;
+      gap: 10px;
+      align-items:center;
+      text-decoration:none;
+      color: rgba(255,255,255,.75);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      padding: 10px 12px;
+      border-radius: 999px;
+      transition: .2s ease;
+    }
+    .backlink:hover{
+      color: white;
+      border-color: rgba(255,255,255,.24);
+      background: rgba(255,255,255,.10);
     }
   </style>
 </head>
 
 <body>
-  <!-- NAV -->
-  <div class="nav" role="navigation" aria-label="Main navigation">
-    <div class="inner">
-      <a class="brandTop" href="index.html#home" aria-label="Go to home">
-        <span class="dot" aria-hidden="true"></span>
-        Enhance Visual Studio
-      </a>
-
-      <div class="navlinks" aria-label="Primary links">
-        <a href="index.html#portfolio">Portfolio</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#contact">Contact</a>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <strong>Enhance Visual Studio</strong>
+        <span>Pose. Capture. Enhance</span>
       </div>
 
-      <button class="btn solid" id="openBookingTop" type="button">Book Session</button>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a class="active" href="portraits.html">Portraits</a>
+        <a href="lifestyle.html">Lifestyle / Fashion</a>
+        <a href="events.html">Events</a>
+        <a href="family.html">Kids / Family</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <!-- PAGE HERO -->
-  <section class="pageHero">
-    <div class="content">
-      <h1>PORTRAITS</h1>
-      <div class="sub">Editorial • Headshots • Lifestyle — Tap any image to view fullscreen.</div>
-      <div class="ctaRow">
-        <a class="btn" href="index.html#portfolio">← Back to Portfolio</a>
-        <button class="btn solid" id="openBookingHero" type="button">Book Session</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
   <main class="wrap">
-    <div class="grid" id="grid">
-  <img src="images/portraits/01.jpg" alt="Portrait 1" loading="lazy">
-  <img src="images/portraits/02.jpg" alt="Portrait 2" loading="lazy">
-  <img src="images/portraits/03.jpg" alt="Portrait 3" loading="lazy">
-  <img src="images/portraits/04.jpg" alt="Portrait 4" loading="lazy">
-</div>
+    <h1 class="page-title">Portraits</h1>
+    <p class="page-sub">
+      A curated selection of luxury portrait work — clean lighting, bold presence, and timeless edits.
+    </p>
+
+    <div class="tip">
+      <div class="dot"></div>
+      <div>
+        Tip: Click any image to view fullscreen. Use <b>←</b> / <b>→</b> keys to navigate, <b>Esc</b> to close.
+      </div>
+    </div>
+
+    <!-- Cinematic Masonry Grid -->
+    <section class="masonry" id="masonry">
+      <!-- Replace/add images here as you upload more files -->
+      <figure class="tile" data-full="images/portraits/01.jpg">
+        <img src="images/portraits/01.jpg" alt="Portrait 01" loading="lazy">
+        <figcaption class="caption">
+          <span class="label">Portrait</span>
+          <span class="hint">Click to view</span>
+        </figcaption>
+      </figure>
+
+      <figure class="tile" data-full="images/portraits/02.jpg">
+        <img src="images/portraits/02.jpg" alt="Portrait 02" loading="lazy">
+        <figcaption class="caption">
+          <span class="label">Portrait</span>
+          <span class="hint">Click to view</span>
+        </figcaption>
+      </figure>
+
+      <figure class="tile" data-full="images/portraits/03.jpg">
+        <img src="images/portraits/03.jpg" alt="Portrait 03" loading="lazy">
+        <figcaption class="caption">
+          <span class="label">Portrait</span>
+          <span class="hint">Click to view</span>
+        </figcaption>
+      </figure>
+
+      <figure class="tile" data-full="images/portraits/04.jpg">
+        <img src="images/portraits/04.jpg" alt="Portrait 04" loading="lazy">
+        <figcaption class="caption">
+          <span class="label">Portrait</span>
+          <span class="hint">Click to view</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <a class="backlink" href="index.html#portfolio">← Back to Portfolio</a>
   </main>
 
-  <footer>
-    © <span id="year"></span> Enhance Visual Studio • Pose. Capture. Enhance.
-  </footer>
-
-  <!-- LIGHTBOX -->
-  <div class="lb" id="lb" aria-hidden="true">
-    <div class="frame" role="dialog" aria-modal="true" aria-label="Fullscreen viewer">
-      <img id="lbImg" alt="Fullscreen portrait" />
-      <div class="bar">
-        <div class="cap" id="cap">Portraits</div>
-        <div class="row">
-          <button class="icon" id="prev" type="button" aria-label="Previous">‹</button>
-          <button class="icon" id="next" type="button" aria-label="Next">›</button>
-          <button class="icon" id="close" type="button" aria-label="Close">✕</button>
-        </div>
+  <!-- Fullscreen Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lb-top">
+      <div class="meta" id="lbMeta">Portrait • 1 / 1</div>
+      <div class="lb-btns">
+        <button class="iconbtn" id="downloadBtn" type="button">Download</button>
+        <button class="iconbtn" id="closeBtn" type="button">Close ✕</button>
       </div>
     </div>
-  </div>
 
-  <!-- BOOKING MODAL -->
-  <div class="modal" id="bookingModal" aria-hidden="true">
-    <div class="shell" role="dialog" aria-modal="true" aria-label="Booking">
-      <header>
-        <strong>Book a Session</strong>
-        <button id="closeBooking" type="button" aria-label="Close booking">✕</button>
-      </header>
-      <div class="body">
-        <iframe id="bookingFrame" title="Calendly booking" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allow="clipboard-write; fullscreen"></iframe>
+    <div class="lb-stage">
+      <img class="lb-img" id="lbImg" alt="Fullscreen portrait">
+      <div class="lb-nav">
+        <button class="navbtn" id="prevBtn" type="button" aria-label="Previous">‹</button>
+        <button class="navbtn" id="nextBtn" type="button" aria-label="Next">›</button>
       </div>
-      <div class="footer">
-        If the popup doesn’t load, open the booking page directly:
-        <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
-          https://calendly.com/bookenhancevisualstudio/1-hour-photography-session
-        </a>
-      </div>
+    </div>
+
+    <div class="lb-foot">
+      Keyboard: ← → to navigate • Esc to close
     </div>
   </div>
 
   <script>
-    const CALENDLY_URL = "https://calendly.com/bookenhancevisualstudio/1-hour-photography-session";
-    const $ = (s, el=document) => el.querySelector(s);
+    // Collect gallery images
+    const tiles = Array.from(document.querySelectorAll('.tile'));
+    const sources = tiles.map(t => t.getAttribute('data-full'));
 
-    // year
-    $("#year").textContent = new Date().getFullYear();
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbMeta = document.getElementById('lbMeta');
+    const closeBtn = document.getElementById('closeBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
 
-    // lightbox
-    const imgs = Array.from(document.querySelectorAll("#grid img"));
-    const lb = $("#lb");
-    const lbImg = $("#lbImg");
-    let i = 0;
+    let index = 0;
 
-    function openAt(idx){ i=idx; lbImg.src = imgs[i].src; lb.classList.add("open"); lb.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden"; }
-    function closeLb(){ lb.classList.remove("open"); lb.setAttribute("aria-hidden","true"); document.body.style.overflow=""; }
-    function next(){ i=(i+1)%imgs.length; lbImg.src = imgs[i].src; }
-    function prev(){ i=(i-1+imgs.length)%imgs.length; lbImg.src = imgs[i].src; }
+    function setMeta() {
+      lbMeta.textContent = `Portrait • ${index + 1} / ${sources.length}`;
+    }
 
-    imgs.forEach((im, idx)=> im.addEventListener("click", ()=> openAt(idx)));
-    $("#close").addEventListener("click", closeLb);
-    $("#next").addEventListener("click", next);
-    $("#prev").addEventListener("click", prev);
-    lb.addEventListener("click", (e)=>{ if(e.target===lb) closeLb(); });
-    window.addEventListener("keydown",(e)=>{
-      if(lb.classList.contains("open")){
-        if(e.key==="Escape") closeLb();
-        if(e.key==="ArrowRight") next();
-        if(e.key==="ArrowLeft") prev();
-      }
+    function openLightbox(i) {
+      index = i;
+      const src = sources[index];
+
+      lbImg.src = src;
+      setMeta();
+
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+    }
+
+    function prev() {
+      index = (index - 1 + sources.length) % sources.length;
+      lbImg.src = sources[index];
+      setMeta();
+    }
+
+    function next() {
+      index = (index + 1) % sources.length;
+      lbImg.src = sources[index];
+      setMeta();
+    }
+
+    // Tile click -> open
+    tiles.forEach((tile, i) => {
+      tile.addEventListener('click', () => openLightbox(i));
     });
 
-    // booking modal
-    const bookingModal = $("#bookingModal");
-    const bookingFrame = $("#bookingFrame");
-    let bookingSafetyTimer = null;
+    // Buttons
+    closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
 
-    function openBooking(){
-      bookingModal.classList.add("open");
-      bookingModal.setAttribute("aria-hidden","false");
-      bookingFrame.src = CALENDLY_URL;
+    // Click outside image closes
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
 
-      clearTimeout(bookingSafetyTimer);
-      bookingSafetyTimer = setTimeout(() => {
-        try{
-          if(bookingModal.classList.contains("open")){
-            window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
-          }
-        }catch(err){
-          window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
-        }
-      }, 3500);
+    // Keyboard support
+    window.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    });
+
+    // Simple mobile swipe (left/right)
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function handleSwipe() {
+      const dx = touchEndX - touchStartX;
+      if (Math.abs(dx) < 40) return;
+      if (dx > 0) prev();
+      else next();
     }
-    function closeBooking(){
-      bookingModal.classList.remove("open");
-      bookingModal.setAttribute("aria-hidden","true");
-      clearTimeout(bookingSafetyTimer);
-      bookingSafetyTimer = null;
-      bookingFrame.src = "about:blank";
-    }
 
-    $("#openBookingTop").addEventListener("click", openBooking);
-    $("#openBookingHero").addEventListener("click", openBooking);
-    $("#closeBooking").addEventListener("click", closeBooking);
-    bookingModal.addEventListener("click", (e)=>{ if(e.target===bookingModal) closeBooking(); });
-    window.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeBooking(); });
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    // Download button (opens image in new tab so user can save)
+    downloadBtn.addEventListener('click', () => {
+      const src = sources[index];
+      window.open(src, '_blank', 'noopener,noreferrer');
+    });
   </script>
 </body>
 </html>
