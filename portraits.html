@@ -2,325 +2,308 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portraits • Enhance Visual Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio — Enhance Visual Studio</title>
   <style>
     :root{
-      --bg:#050505;
-      --fg:#fff;
-      --muted:rgba(255,255,255,.75);
-      --line:rgba(255,255,255,.14);
+      --bg:#0b0b0d;
+      --panel:#111114;
+      --text:#f6f6f7;
+      --muted:rgba(246,246,247,.72);
+      --line:rgba(255,255,255,.12);
+      --shadow: 0 12px 40px rgba(0,0,0,.45);
+      --radius:18px;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--fg);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: radial-gradient(1000px 600px at 20% 0%, rgba(255,255,255,.06), transparent 60%),
+                  radial-gradient(800px 500px at 80% 20%, rgba(255,255,255,.04), transparent 60%),
+                  var(--bg);
+      color:var(--text);
     }
     a{color:inherit;text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      padding:12px 14px;border:1px solid var(--line);border-radius:999px;
+      background:rgba(17,17,20,.55);backdrop-filter: blur(10px);
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:13px}
+    .nav{display:flex;gap:14px;font-size:13px;color:var(--muted)}
+    .nav a{padding:8px 10px;border-radius:999px}
+    .nav a:hover{background:rgba(255,255,255,.06);color:var(--text)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.04);
+      font-weight:600;font-size:13px;letter-spacing:.02em;
+      box-shadow: 0 10px 20px rgba(0,0,0,.2);
+    }
+    .btn:hover{background:rgba(255,255,255,.08)}
+    header{padding:26px 2px 18px}
+    h1{margin:0;font-size:34px;letter-spacing:.06em;text-transform:uppercase}
+    .sub{margin-top:10px;color:var(--muted);max-width:70ch;line-height:1.5}
+    .tip{margin-top:10px;color:rgba(255,255,255,.5);font-size:12px}
 
-    .top{
-      position:sticky; top:0;
-      z-index:20;
-      background:rgba(0,0,0,.72);
-      backdrop-filter: blur(8px);
-      border-bottom:1px solid var(--line);
-      padding:14px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
+    /* Grid */
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
     }
-    .top .left{
-      display:flex; align-items:center; gap:12px;
-      min-width:0;
-    }
-    .back{
-      border:1px solid rgba(255,255,255,.28);
-      padding:10px 12px;
-      border-radius:12px;
-      font-weight:800;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:11px;
-      background: rgba(255,255,255,.06);
-    }
-    .back:hover{background: rgba(255,255,255,.10)}
-    .title{
-      font-weight:900;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-size:12px;
-      opacity:.92;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .tip{
-      font-size:12px;
-      color:var(--muted);
-      white-space:nowrap;
-    }
+    @media (max-width: 920px){ .grid{grid-template-columns: repeat(2, 1fr);} }
+    @media (max-width: 560px){ .grid{grid-template-columns: 1fr;} }
 
-    .wrap{
-      max-width:1200px;
-      margin:0 auto;
-      padding:18px 14px 70px;
-    }
-
-    /* Masonry-ish using columns (simple, reliable) */
-    .masonry{
-      column-count: 3;
-      column-gap: 14px;
-    }
     .tile{
-      display:block;
-      break-inside: avoid;
-      margin:0 0 14px;
-      border-radius:16px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
-      background:#0b0b0b;
-      cursor:pointer;
       position:relative;
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      cursor:pointer;
+      min-height: 210px;
+      isolation:isolate;
     }
     .tile img{
       width:100%;
-      height:auto;
+      height:100%;
+      object-fit:cover;
       display:block;
-      transform:scale(1);
-      transition: transform .25s ease;
+      transform: scale(1.02);
+      transition: transform .25s ease, filter .25s ease;
+      filter: contrast(1.03) saturate(1.03);
     }
-    .tile:hover img{transform:scale(1.02)}
-
-    @media (max-width: 980px){
-      .masonry{column-count:2}
-    }
-    @media (max-width: 620px){
-      .masonry{column-count:1}
-      .tip{display:none}
+    .tile:hover img{transform: scale(1.06)}
+    .tile::after{
+      content:"";
+      position:absolute;inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.55), transparent 55%);
+      opacity:.65;
+      pointer-events:none;
     }
 
     /* Lightbox */
     .lb{
-      position:fixed; inset:0;
+      position:fixed; inset:0; z-index:9999;
+      background: rgba(0,0,0,.86);
       display:none;
-      z-index:100;
-      background:rgba(0,0,0,.92);
-    }
-    .lb.open{display:block}
-    .lb-inner{
-      position:absolute; inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      align-items:center; justify-content:center;
       padding:18px;
     }
+    .lb.open{display:flex}
+    .lb-inner{
+      width:min(1100px, 100%);
+      height:min(82vh, 820px);
+      position:relative;
+      border-radius: 22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(12,12,14,.9);
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+    }
     .lb-img{
-      max-width:min(1100px, 94vw);
-      max-height: min(86vh, 900px);
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.16);
-      box-shadow: 0 20px 80px rgba(0,0,0,.65);
-      background:#111;
+      width:100%; height:100%;
       object-fit:contain;
+      display:block;
+      background: radial-gradient(600px 300px at 50% 15%, rgba(255,255,255,.08), transparent 60%);
     }
     .lb-top{
-      position:absolute; top:14px; left:14px; right:14px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      z-index:110;
+      position:absolute; top:12px; left:12px; right:12px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
       pointer-events:none;
     }
     .lb-meta{
-      pointer-events:none;
-      font-weight:900;
-      letter-spacing:.14em;
-      text-transform:uppercase;
+      pointer-events:auto;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.35);
+      color:rgba(255,255,255,.85);
       font-size:12px;
-      color:rgba(255,255,255,.88);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      backdrop-filter: blur(10px);
     }
     .lb-actions{
       pointer-events:auto;
       display:flex; gap:10px; align-items:center;
     }
-    .lb-btn{
-      border:1px solid rgba(255,255,255,.22);
-      background: rgba(255,255,255,.08);
-      color:#fff;
-      border-radius:14px;
-      padding:10px 14px;
-      font-weight:800;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:11px;
+    .lb-actions button{
       cursor:pointer;
-    }
-    .lb-btn:hover{background: rgba(255,255,255,.12)}
-    .navBtn{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:54px; height:54px;
+      padding:10px 14px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
+      background:rgba(0,0,0,.35);
+      color:rgba(255,255,255,.92);
+      font-weight:700;
+      letter-spacing:.02em;
+      backdrop-filter: blur(10px);
+    }
+    .lb-actions button:hover{background:rgba(255,255,255,.10)}
+    .lb-nav{
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 10px;
+      pointer-events:none;
+    }
+    .lb-nav button{
+      pointer-events:auto;
+      width:46px;height:46px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.35);
       color:#fff;
-      display:grid; place-items:center;
-      font-size:26px;
+      font-size:22px;
       cursor:pointer;
-      user-select:none;
+      backdrop-filter: blur(10px);
     }
-    .navBtn:hover{background: rgba(255,255,255,.10)}
-    .prev{left:14px}
-    .next{right:14px}
-
-    .lb-foot{
-      position:absolute; bottom:14px; left:14px; right:14px;
-      text-align:center;
-      color:rgba(255,255,255,.65);
-      font-size:12px;
-      letter-spacing:.08em;
-    }
+    .lb-nav button:hover{background:rgba(255,255,255,.10)}
+    footer{margin-top:26px;color:rgba(255,255,255,.45);font-size:12px;text-align:center}
   </style>
 </head>
 <body>
-
-  <div class="top">
-    <div class="left">
-      <a class="back" href="index.html#portfolio">Back</a>
-      <div class="title">Portraits</div>
-    </div>
-    <div class="tip">Tip: Tap any image to view fullscreen</div>
-  </div>
-
   <div class="wrap">
-    <div class="masonry" id="masonry"></div>
+    <div class="topbar">
+      <div class="brand">Enhance Visual Studio</div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a class="btn" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">Book Now</a>
+    </div>
+
+    <header>
+      <h1>Portfolio</h1>
+      <div class="sub">One curated collection. Click any image to view fullscreen.</div>
+      <div class="tip">Tip: Use ◀ ▶ or swipe (mobile). Press Esc to close (desktop).</div>
+    </header>
+
+    <main class="grid" id="grid"></main>
+
+    <footer>© <span id="year"></span> Enhance Visual Studio</footer>
   </div>
 
   <!-- Lightbox -->
   <div class="lb" id="lb" aria-hidden="true">
-    <div class="lb-top">
-      <div class="lb-meta" id="lbMeta">Portrait • 1 / 1</div>
-      <div class="lb-actions">
-        <a class="lb-btn" id="downloadBtn" href="#" download>Download</a>
-        <button class="lb-btn" id="closeBtn">Close ×</button>
+    <div class="lb-inner">
+      <img class="lb-img" id="lbImg" alt="Fullscreen portfolio image" />
+      <div class="lb-top">
+        <div class="lb-meta" id="lbMeta">Portfolio</div>
+        <div class="lb-actions">
+          <button id="downloadBtn" type="button">Download</button>
+          <button id="closeBtn" type="button">Close ×</button>
+        </div>
+      </div>
+      <div class="lb-nav">
+        <button id="prevBtn" type="button" aria-label="Previous">‹</button>
+        <button id="nextBtn" type="button" aria-label="Next">›</button>
       </div>
     </div>
-
-    <button class="navBtn prev" id="prevBtn" aria-label="Previous">‹</button>
-    <button class="navBtn next" id="nextBtn" aria-label="Next">›</button>
-
-    <div class="lb-inner" id="lbInner">
-      <img class="lb-img" id="lbImg" alt="Fullscreen portrait" />
-    </div>
-
-    <div class="lb-foot">Swipe ← → on mobile • Keyboard: ← → • Esc to close</div>
   </div>
 
   <script>
-    // ✅ EASIEST: just list filenames that exist in /images/portraits/
-    // If your files are named 01.jpg, 02.jpg... keep it like this.
-    const images = [
-      "images/portraits/01.jpg",
-      "images/portraits/02.jpg",
-      "images/portraits/03.jpg",
-      "images/portraits/04.jpg"
-    ];
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Build grid
-    const masonry = document.getElementById("masonry");
+    // ✅ EDIT THIS ONE NUMBER ONLY
+    // Set it to how many images you uploaded in /images/portfolio/
+    const IMAGE_COUNT = 12;
+
+    // Builds: images/portfolio/01.jpg ... 12.jpg (with leading zeros)
+    const images = Array.from({length: IMAGE_COUNT}, (_, i) => {
+      const n = String(i + 1).padStart(2, "0");
+      return `images/portfolio/${n}.jpg`;
+    });
+
+    const grid = document.getElementById("grid");
+
+    // Render grid tiles
     images.forEach((src, i) => {
-      const a = document.createElement("a");
-      a.className = "tile";
-      a.href = src;
-      a.addEventListener("click", (e) => {
-        e.preventDefault();
-        open(i);
-      });
-
-      const img = document.createElement("img");
-      img.src = src;
-      img.loading = "lazy";
-      img.alt = "Portrait " + (i+1);
-      a.appendChild(img);
-      masonry.appendChild(a);
+      const tile = document.createElement("div");
+      tile.className = "tile";
+      tile.innerHTML = `<img src="${src}" loading="lazy" alt="Portfolio image ${i+1}">`;
+      tile.addEventListener("click", () => openLB(i));
+      grid.appendChild(tile);
     });
 
     // Lightbox logic
     const lb = document.getElementById("lb");
     const lbImg = document.getElementById("lbImg");
     const lbMeta = document.getElementById("lbMeta");
-    const downloadBtn = document.getElementById("downloadBtn");
     const closeBtn = document.getElementById("closeBtn");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
-    const lbInner = document.getElementById("lbInner");
+    const downloadBtn = document.getElementById("downloadBtn");
 
-    let index = 0;
+    let idx = 0;
 
-    function setMeta(){
-      lbMeta.textContent = `Portrait • ${index + 1} / ${images.length}`;
+    function setLB(){
+      const src = images[idx];
+      lbImg.src = src;
+      lbMeta.textContent = `Portfolio • ${idx + 1} / ${images.length}`;
+      downloadBtn.onclick = () => {
+        const a = document.createElement("a");
+        a.href = src;
+        a.download = src.split("/").pop();
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      };
     }
 
-    function open(i){
-      index = i;
-      const src = images[index];
+    function openLB(i){
+      idx = i;
+      setLB();
       lb.classList.add("open");
       lb.setAttribute("aria-hidden", "false");
-      lbImg.src = src;
-      downloadBtn.href = src;
-      setMeta();
       document.body.style.overflow = "hidden";
     }
 
-    function close(){
+    function closeLB(){
       lb.classList.remove("open");
       lb.setAttribute("aria-hidden", "true");
-      lbImg.src = "";
       document.body.style.overflow = "";
+      lbImg.src = ""; // helps memory on mobile
     }
 
     function prev(){
-      index = (index - 1 + images.length) % images.length;
-      open(index);
+      idx = (idx - 1 + images.length) % images.length;
+      setLB();
     }
-
     function next(){
-      index = (index + 1) % images.length;
-      open(index);
+      idx = (idx + 1) % images.length;
+      setLB();
     }
 
-    closeBtn.addEventListener("click", close);
+    closeBtn.addEventListener("click", closeLB);
     prevBtn.addEventListener("click", prev);
     nextBtn.addEventListener("click", next);
 
-    // Click outside image closes
+    // click outside image area closes
     lb.addEventListener("click", (e) => {
-      if (e.target === lb || e.target === lbInner) close();
+      if (e.target === lb) closeLB();
     });
 
     // Keyboard controls
     window.addEventListener("keydown", (e) => {
       if (!lb.classList.contains("open")) return;
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") closeLB();
       if (e.key === "ArrowLeft") prev();
       if (e.key === "ArrowRight") next();
     });
 
-    // Mobile swipe
-    let startX = 0;
-    lb.addEventListener("touchstart", (e) => {
-      if (!lb.classList.contains("open")) return;
-      startX = e.touches[0].clientX;
-    }, {passive:true});
-
+    // Simple swipe (mobile)
+    let startX = null;
+    lb.addEventListener("touchstart", (e) => startX = e.touches[0].clientX, {passive:true});
     lb.addEventListener("touchend", (e) => {
-      if (!lb.classList.contains("open")) return;
-      const endX = e.changedTouches[0].clientX;
-      const dx = endX - startX;
+      if (startX === null) return;
+      const dx = e.changedTouches[0].clientX - startX;
       if (Math.abs(dx) > 40) dx > 0 ? prev() : next();
+      startX = null;
     }, {passive:true});
   </script>
 </body>
