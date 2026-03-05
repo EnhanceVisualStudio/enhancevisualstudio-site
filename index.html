@@ -17,11 +17,13 @@
       --panel:rgba(255,255,255,.03);
       --shadow:0 18px 55px rgba(0,0,0,.55);
       --radius:18px;
+      --radius2:26px;
       --max:1120px;
     }
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
       background:var(--bg);
@@ -31,7 +33,7 @@
     }
 
     a{ color:inherit; text-decoration:none; }
-    a:hover{ opacity:.85; }
+    a:hover{ opacity:.88; }
 
     /* --- NAV --- */
     .nav{
@@ -39,7 +41,7 @@
       top:0; left:0; right:0;
       z-index:20;
       backdrop-filter:saturate(150%) blur(10px);
-      background:linear-gradient(to bottom, rgba(7,7,7,.78), rgba(7,7,7,.35));
+      background:linear-gradient(to bottom, rgba(7,7,7,.82), rgba(7,7,7,.28));
       border-bottom:1px solid rgba(255,255,255,.08);
     }
     .nav-inner{
@@ -55,11 +57,11 @@
       display:flex;
       flex-direction:column;
       line-height:1.1;
-      letter-spacing:.8px;
+      letter-spacing:1px;
       text-transform:uppercase;
       font-size:12px;
     }
-    .brand span:last-child{
+    .brand span{
       color:var(--muted2);
       text-transform:none;
       letter-spacing:.2px;
@@ -95,8 +97,8 @@
       content:"";
       position:absolute; inset:0;
       background:
-        linear-gradient(to top, rgba(7,7,7,.86), rgba(7,7,7,.20) 55%, rgba(7,7,7,.10)),
-        url("assets/img/hero.jpg") center/cover no-repeat;
+        linear-gradient(to top, rgba(7,7,7,.88), rgba(7,7,7,.25) 55%, rgba(7,7,7,.10)),
+        url("images/IMG_0249.jpeg") center/cover no-repeat;
       transform:scale(1.02);
     }
     .hero::after{
@@ -110,7 +112,7 @@
       max-width:var(--max);
       margin:0 auto;
       width:100%;
-      padding:120px 18px 42px;
+      padding:120px 18px 46px;
     }
     .kicker{
       color:var(--muted);
@@ -122,14 +124,14 @@
     h1{
       margin:0 0 10px;
       font-size:clamp(34px, 5vw, 64px);
-      letter-spacing:-.5px;
+      letter-spacing:-.6px;
       line-height:1.04;
     }
     .sub{
-      max-width:640px;
+      max-width:680px;
       color:var(--muted);
       font-size:15px;
-      line-height:1.6;
+      line-height:1.65;
       margin:0 0 18px;
     }
     .hero-actions{
@@ -192,7 +194,7 @@
       text-align:right;
     }
 
-    /* --- GALLERY GRID --- */
+    /* --- GRID (Homepage category previews) --- */
     .grid{
       display:grid;
       grid-template-columns:repeat(12, 1fr);
@@ -221,8 +223,6 @@
     .span-6{ grid-column:span 6; }
     .span-8{ grid-column:span 8; }
     .span-4{ grid-column:span 4; }
-    .span-12{ grid-column:span 12; }
-
     .label{
       position:absolute;
       left:14px; bottom:14px;
@@ -237,11 +237,11 @@
       color:rgba(255,255,255,.85);
     }
 
-    /* --- TAGLINE / PHILOSOPHY --- */
+    /* --- PANEL --- */
     .panel{
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.03);
-      border-radius:26px;
+      border-radius:var(--radius2);
       padding:26px;
     }
     .tagline{
@@ -329,7 +329,6 @@
       flex-wrap:wrap;
     }
 
-    /* --- RESPONSIVE --- */
     @media (max-width: 860px){
       .links{ gap:12px; }
       .section-head{ flex-direction:column; align-items:flex-start; }
@@ -339,11 +338,6 @@
       .two-col{ grid-template-columns:1fr; }
       .hero-inner{ padding-top:110px; }
     }
-
-    /* smooth scroll */
-    html{ scroll-behavior:smooth; }
-    /* anchor offset for fixed nav */
-    .anchor{ scroll-margin-top:90px; }
   </style>
 </head>
 
@@ -380,47 +374,47 @@
     </div>
   </header>
 
-  <!-- PORTFOLIO -->
-  <section id="portfolio" class="anchor">
+  <!-- PORTFOLIO (each image links to a separate gallery page) -->
+  <section id="portfolio">
     <div class="section-head">
       <h2>Portfolio</h2>
-      <p>Scroll-first galleries. Big images. Minimal text. Let the work speak.</p>
+      <p>Click any image to open a dedicated gallery page.</p>
     </div>
 
     <!-- PORTRAITS -->
     <div style="margin-top:18px; margin-bottom:10px;">
       <div class="kicker" style="margin:0 0 10px;">Portraits</div>
     </div>
-    <div class="grid" aria-label="Portraits gallery preview">
-      <a class="card span-8" href="#" aria-label="Portrait image 1">
-        <img src="assets/img/p1.jpg" alt="Portrait photograph" loading="lazy" />
+    <div class="grid" aria-label="Portraits preview">
+      <a class="card span-8" href="galleries/portraits.html">
+        <img src="images/IMG_0250.jpeg" alt="Portrait photograph" loading="lazy" />
         <div class="label">Portraits</div>
       </a>
-      <a class="card span-4" href="#" aria-label="Portrait image 2">
-        <img src="assets/img/p2.jpg" alt="Portrait photograph" loading="lazy" />
+      <a class="card span-4" href="galleries/portraits.html">
+        <img src="images/IMG_0251.jpeg" alt="Portrait photograph" loading="lazy" />
         <div class="label">Portraits</div>
       </a>
-      <a class="card span-6" href="#" aria-label="Portrait image 3">
-        <img src="assets/img/p3.jpg" alt="Portrait photograph" loading="lazy" />
+      <a class="card span-6" href="galleries/portraits.html">
+        <img src="images/IMG_0253.jpeg" alt="Portrait photograph" loading="lazy" />
         <div class="label">Portraits</div>
       </a>
-      <a class="card span-6" href="#" aria-label="Portrait image 4">
-        <img src="assets/img/p4.jpg" alt="Portrait photograph" loading="lazy" />
+      <a class="card span-6" href="galleries/portraits.html">
+        <img src="images/IMG_0254.jpeg" alt="Portrait photograph" loading="lazy" />
         <div class="label">Portraits</div>
       </a>
     </div>
 
-    <!-- FAMILIES -->
+    <!-- KIDS / FAMILY -->
     <div style="margin-top:44px; margin-bottom:10px;">
       <div class="kicker" style="margin:0 0 10px;">Kids / Family</div>
     </div>
-    <div class="grid" aria-label="Family gallery preview">
-      <a class="card span-6" href="#" aria-label="Family image 1">
-        <img src="assets/img/f1.jpg" alt="Family photograph" loading="lazy" />
+    <div class="grid" aria-label="Family preview">
+      <a class="card span-6" href="galleries/family.html">
+        <img src="images/IMG_0256.jpeg" alt="Family photograph" loading="lazy" />
         <div class="label">Kids / Family</div>
       </a>
-      <a class="card span-6" href="#" aria-label="Family image 2">
-        <img src="assets/img/f2.jpg" alt="Family photograph" loading="lazy" />
+      <a class="card span-6" href="galleries/family.html">
+        <img src="images/IMG_0258.jpeg" alt="Family photograph" loading="lazy" />
         <div class="label">Kids / Family</div>
       </a>
     </div>
@@ -429,13 +423,13 @@
     <div style="margin-top:44px; margin-bottom:10px;">
       <div class="kicker" style="margin:0 0 10px;">Events</div>
     </div>
-    <div class="grid" aria-label="Events gallery preview">
-      <a class="card span-4" href="#" aria-label="Event image 1">
-        <img src="assets/img/e1.jpg" alt="Event photograph" loading="lazy" />
+    <div class="grid" aria-label="Events preview">
+      <a class="card span-4" href="galleries/events.html">
+        <img src="images/IMG_0259.jpeg" alt="Event photograph" loading="lazy" />
         <div class="label">Events</div>
       </a>
-      <a class="card span-8" href="#" aria-label="Event image 2">
-        <img src="assets/img/e2.jpg" alt="Event photograph" loading="lazy" />
+      <a class="card span-8" href="galleries/events.html">
+        <img src="images/IMG_0260.jpeg" alt="Event photograph" loading="lazy" />
         <div class="label">Events</div>
       </a>
     </div>
@@ -444,20 +438,20 @@
     <div style="margin-top:44px; margin-bottom:10px;">
       <div class="kicker" style="margin:0 0 10px;">Lifestyle / Fashion</div>
     </div>
-    <div class="grid" aria-label="Lifestyle gallery preview">
-      <a class="card span-8" href="#" aria-label="Lifestyle image 1">
-        <img src="assets/img/l1.jpg" alt="Lifestyle photograph" loading="lazy" />
+    <div class="grid" aria-label="Lifestyle preview">
+      <a class="card span-8" href="galleries/lifestyle.html">
+        <img src="images/IMG_0261.jpeg" alt="Lifestyle photograph" loading="lazy" />
         <div class="label">Lifestyle</div>
       </a>
-      <a class="card span-4" href="#" aria-label="Lifestyle image 2">
-        <img src="assets/img/l2.jpg" alt="Lifestyle photograph" loading="lazy" />
+      <a class="card span-4" href="galleries/lifestyle.html">
+        <img src="images/IMG_0262.jpeg" alt="Lifestyle photograph" loading="lazy" />
         <div class="label">Lifestyle</div>
       </a>
     </div>
   </section>
 
   <!-- TAGLINE / PHILOSOPHY -->
-  <section class="anchor" aria-label="Brand philosophy">
+  <section aria-label="Brand philosophy">
     <div class="panel">
       <div class="tagline">
         <strong>Our Process</strong>
@@ -482,7 +476,7 @@
   </section>
 
   <!-- ABOUT + BOOK -->
-  <section id="about" class="anchor">
+  <section id="about">
     <div class="section-head">
       <h2>About</h2>
       <p>Short. Clean. Premium. Enough to build trust without oversharing.</p>
@@ -497,11 +491,11 @@
         </p>
       </div>
 
-      <div id="book" class="panel cta anchor">
+      <div id="book" class="panel cta">
         <div class="kicker" style="margin:0;">Book a Session</div>
         <div class="small">Email:</div>
         <a class="primary" href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com →</a>
-        <div class="small">Instagram / Contact form can go here next.</div>
+        <div class="small">Instagram link can go here next.</div>
       </div>
     </div>
   </section>
@@ -519,7 +513,6 @@
   </footer>
 
   <script>
-    // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
