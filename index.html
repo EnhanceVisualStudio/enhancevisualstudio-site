@@ -1,45 +1,57 @@
-l<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Enhance Visual Studio</title>
   <meta name="description" content="Enhance Visual Studio — Luxury Portrait & Lifestyle Photography. Pose. Capture. Enhance." />
+  <link rel="canonical" href="https://www.enhancevisualstudio.com/" />
 
   <style>
     :root{
       --bg:#070707;
-      --panel:#0e0e0e;
       --text:#ffffff;
-      --muted:rgba(255,255,255,.65);
-      --muted2:rgba(255,255,255,.45);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.50);
       --line:rgba(255,255,255,.14);
-      --shadow:0 18px 50px rgba(0,0,0,.55);
+      --panel:rgba(255,255,255,.03);
+      --shadow:0 18px 55px rgba(0,0,0,.55);
       --radius:18px;
       --radius2:26px;
       --max:1120px;
-      --accent:#ffffff;
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background:var(--bg);
       color:var(--text);
       overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
-    /* Top Nav */
+    /* ===== Scroll reveal ===== */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity .75s ease, transform .75s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.in{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* ===== Top Nav ===== */
     .nav{
-      position:fixed;
-      top:0; left:0; right:0;
+      position:fixed; top:0; left:0; right:0;
       z-index:1000;
       padding:18px 18px;
-      transition:background .25s ease, backdrop-filter .25s ease, border-color .25s ease;
+      transition: background .25s ease, backdrop-filter .25s ease, border-color .25s ease;
       border-bottom:1px solid transparent;
     }
     .nav.scrolled{
@@ -56,22 +68,19 @@ l<!doctype html>
       gap:14px;
     }
     .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
       letter-spacing:.18em;
       text-transform:uppercase;
-      font-weight:700;
+      font-weight:900;
       font-size:12px;
-      color:rgba(255,255,255,.92);
-      user-select:none;
+      color:rgba(255,255,255,.95);
       white-space:nowrap;
+      user-select:none;
     }
     .nav-links{
       display:flex;
       gap:18px;
       align-items:center;
-      font-weight:600;
+      font-weight:800;
       letter-spacing:.12em;
       text-transform:uppercase;
       font-size:12px;
@@ -80,7 +89,7 @@ l<!doctype html>
     .nav-links a{
       padding:10px 10px;
       border-radius:999px;
-      transition:background .2s ease, color .2s ease;
+      transition: background .2s ease, color .2s ease;
     }
     .nav-links a:hover{
       background:rgba(255,255,255,.08);
@@ -100,7 +109,7 @@ l<!doctype html>
       border:1px solid rgba(255,255,255,.22);
       background:rgba(255,255,255,.06);
       color:#fff;
-      font-weight:700;
+      font-weight:900;
       letter-spacing:.12em;
       text-transform:uppercase;
       font-size:12px;
@@ -134,12 +143,9 @@ l<!doctype html>
       align-items:center;justify-content:center;
       cursor:pointer;
     }
-    .hamburger span{
-      width:18px;height:2px;background:#fff;display:block;position:relative;
-    }
+    .hamburger span{width:18px;height:2px;background:#fff;display:block;position:relative}
     .hamburger span:before,.hamburger span:after{
-      content:"";
-      width:18px;height:2px;background:#fff;display:block;position:absolute;left:0;
+      content:""; width:18px;height:2px;background:#fff;display:block;position:absolute;left:0;
     }
     .hamburger span:before{top:-6px}
     .hamburger span:after{top:6px}
@@ -162,20 +168,18 @@ l<!doctype html>
       padding:14px 12px;
       border-radius:14px;
       color:rgba(255,255,255,.92);
-      font-weight:700;
+      font-weight:900;
       text-transform:uppercase;
       letter-spacing:.12em;
       font-size:12px;
     }
     .mobile-drawer a:hover{background:rgba(255,255,255,.08)}
     .mobile-drawer .row{
-      display:flex;
-      gap:10px;
-      padding-top:10px;
+      display:flex; gap:10px; padding-top:10px;
     }
     .mobile-drawer .row .btn{flex:1}
 
-    /* Hero */
+    /* ===== HERO: bigger + cinematic zoom ===== */
     .hero{
       min-height:100vh;
       position:relative;
@@ -185,33 +189,64 @@ l<!doctype html>
       text-align:center;
       padding:120px 18px 60px;
       overflow:hidden;
+      background:#000;
     }
-    .hero::before{
-      content:"";
+    .hero-bg{
+      position:absolute;
+      inset:-6%;
+      background:
+        radial-gradient(ellipse at center, rgba(0,0,0,.10) 0%, rgba(0,0,0,.75) 60%, rgba(0,0,0,.92) 100%),
+        url("images/hero.jpg") center/cover no-repeat;
+      transform: scale(1.08);
+      animation: heroZoom 16s ease-in-out infinite alternate;
+      filter: contrast(1.06) saturate(1.04);
+      z-index:0;
+    }
+    @keyframes heroZoom{
+      from{ transform: scale(1.08) translateY(0); }
+      to{ transform: scale(1.16) translateY(-1.5%); }
+    }
+    .hero-overlay{
       position:absolute; inset:0;
       background:
-        radial-gradient(ellipse at center, rgba(0,0,0,.15) 0%, rgba(0,0,0,.80) 60%, rgba(0,0,0,.92) 100%),
-        url("images/hero.jpg") center/cover no-repeat;
-      transform:scale(1.02);
-      z-index:0;
+        linear-gradient(to bottom, rgba(0,0,0,.62), rgba(0,0,0,.25) 35%, rgba(0,0,0,.92)),
+        radial-gradient(900px 500px at 50% 18%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(1200px 800px at 50% 50%, transparent 35%, rgba(0,0,0,.55) 78%);
+      z-index:1;
+      pointer-events:none;
     }
-    .hero::after{
-      content:"";
-      position:absolute; inset:0;
-      background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.25) 35%, rgba(0,0,0,.90));
-      z-index:0;
+    /* film grain (subtle) */
+    .hero-grain{
+      position:absolute; inset:-30%;
+      background-image:
+        repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,.035) 0 1px, transparent 1px 2px),
+        repeating-radial-gradient(circle at 70% 60%, rgba(255,255,255,.025) 0 1px, transparent 1px 3px);
+      opacity:.10;
+      transform: rotate(8deg);
+      animation: grainMove 7s steps(8) infinite;
+      z-index:2;
+      pointer-events:none;
     }
+    @keyframes grainMove{
+      0%{transform:translate(0,0) rotate(8deg)}
+      20%{transform:translate(-2%, 1%) rotate(8deg)}
+      40%{transform:translate(1%, -2%) rotate(8deg)}
+      60%{transform:translate(-1%, -1%) rotate(8deg)}
+      80%{transform:translate(2%, 1%) rotate(8deg)}
+      100%{transform:translate(0,0) rotate(8deg)}
+    }
+
     .hero-inner{
       position:relative;
-      z-index:1;
+      z-index:3;
       max-width:920px;
     }
     .hero-title{
       margin:0;
-      font-size: clamp(34px, 6vw, 64px);
+      font-size: clamp(34px, 6vw, 66px);
       letter-spacing:.12em;
       text-transform:uppercase;
-      font-weight:900;
+      font-weight:950;
       color:#fff;
       text-shadow: 0 10px 45px rgba(0,0,0,.6);
     }
@@ -220,19 +255,19 @@ l<!doctype html>
       font-size:12px;
       letter-spacing:.22em;
       text-transform:uppercase;
-      font-weight:800;
-      color:rgba(255,255,255,.92);
+      font-weight:900;
+      color:rgba(255,255,255,.95);
     }
     .hero-sub{
       margin-top:10px;
       font-size:13px;
       letter-spacing:2px;
-      color:rgba(255,255,255,.85);
+      color:rgba(255,255,255,.88);
     }
     .hero-locs{
       margin-top:12px;
       font-size:12px;
-      color:rgba(255,255,255,.70);
+      color:rgba(255,255,255,.72);
       letter-spacing:.08em;
     }
     .hero-actions{
@@ -246,35 +281,31 @@ l<!doctype html>
       margin-top:14px;
       font-size:12px;
       color:rgba(255,255,255,.60);
+      line-height:1.5;
     }
     .hero-note a{
       text-decoration:underline;
       text-underline-offset:4px;
-      color:rgba(255,255,255,.85);
+      color:rgba(255,255,255,.88);
     }
 
-    /* Sections */
-    .section{
-      padding:84px 18px;
-    }
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-    }
+    /* ===== Sections ===== */
+    .section{ padding:86px 18px; }
+    .wrap{ max-width:var(--max); margin:0 auto; }
     .kicker{
       text-transform:uppercase;
       letter-spacing:.22em;
       font-size:12px;
-      font-weight:800;
+      font-weight:900;
       color:rgba(255,255,255,.70);
       margin:0 0 14px;
     }
     .h2{
       margin:0 0 14px;
-      font-size: clamp(24px, 3.2vw, 34px);
+      font-size: clamp(24px, 3.2vw, 36px);
       letter-spacing:.06em;
       text-transform:uppercase;
-      font-weight:900;
+      font-weight:950;
     }
     .p{
       margin:0;
@@ -284,7 +315,7 @@ l<!doctype html>
       max-width:80ch;
     }
 
-    /* Portfolio cards (simple + luxury) */
+    /* ===== Portfolio cards + hover animation ===== */
     .grid{
       margin-top:26px;
       display:grid;
@@ -303,18 +334,17 @@ l<!doctype html>
     .card::before{
       content:"";
       position:absolute; inset:0;
-      background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.10) 60%, rgba(0,0,0,.55));
+      background:linear-gradient(to top, rgba(0,0,0,.78), rgba(0,0,0,.12) 60%, rgba(0,0,0,.55));
       z-index:1;
       pointer-events:none;
-    }
-    .card:hover .card-img{
-      transform: scale(1.06);
-      filter: contrast(1.05) saturate(1.05);
+      opacity:.95;
+      transition: opacity .4s ease;
     }
     .card-img{
-      height:240px;
+      height:260px;
       background: url("images/hero.jpg") center/cover no-repeat;
-      transition: transform .55s ease, filter .55s ease;
+      transition: transform .65s ease, filter .65s ease;
+      filter: contrast(1.03) saturate(1.03);
     }
     .card-body{
       position:absolute;
@@ -323,7 +353,7 @@ l<!doctype html>
     }
     .card-title{
       margin:0;
-      font-weight:900;
+      font-weight:950;
       letter-spacing:.14em;
       text-transform:uppercase;
       font-size:14px;
@@ -333,7 +363,7 @@ l<!doctype html>
       color:rgba(255,255,255,.72);
       font-size:13px;
       line-height:1.45;
-      max-width:50ch;
+      max-width:52ch;
     }
     .card-btn{
       margin-top:12px;
@@ -345,19 +375,24 @@ l<!doctype html>
       border:1px solid rgba(255,255,255,.25);
       background:rgba(255,255,255,.08);
       color:#fff;
-      font-weight:800;
+      font-weight:950;
       letter-spacing:.14em;
       text-transform:uppercase;
       font-size:11px;
       transition: transform .2s ease, background .2s ease, border-color .2s ease;
     }
+    .card:hover .card-img{
+      transform: scale(1.08);
+      filter: contrast(1.08) saturate(1.07);
+    }
+    .card:hover::before{ opacity:1; }
     .card:hover .card-btn{
       transform:translateY(-1px);
       background:rgba(255,255,255,.12);
       border-color:rgba(255,255,255,.45);
     }
 
-    /* Contact panel */
+    /* ===== Contact panel ===== */
     .panel{
       margin-top:22px;
       border-radius: var(--radius2);
@@ -372,11 +407,7 @@ l<!doctype html>
       gap:18px;
       align-items:start;
     }
-    .mini{
-      font-size:13px;
-      color:rgba(255,255,255,.72);
-      line-height:1.6;
-    }
+    .mini{ font-size:13px; color:rgba(255,255,255,.72); line-height:1.6; }
     .contact-links a{
       display:flex;
       align-items:center;
@@ -394,7 +425,7 @@ l<!doctype html>
       border-color:rgba(255,255,255,.28);
     }
     .contact-links span{
-      font-weight:800;
+      font-weight:950;
       letter-spacing:.10em;
       text-transform:uppercase;
       font-size:12px;
@@ -407,47 +438,56 @@ l<!doctype html>
       letter-spacing:.04em;
     }
 
-    /* Footer */
+    /* ===== Strong footer ===== */
     .site-footer{
       text-align:center;
-      padding:70px 18px 80px;
+      padding:70px 18px 86px;
     }
     .footer-divider{
-      width:120px;
+      width:140px;
       height:1px;
-      margin:0 auto 30px;
-      background:linear-gradient(to right, transparent, rgba(255,255,255,.4), transparent);
+      margin:0 auto 28px;
+      background:linear-gradient(to right, transparent, rgba(255,255,255,.40), transparent);
     }
     .footer-social{
       display:flex;
       justify-content:center;
-      gap:28px;
-      margin-bottom:22px;
+      gap:26px;
+      margin-bottom:18px;
     }
     .footer-social a{
-      width:38px;
-      height:38px;
+      width:40px;
+      height:40px;
       border-radius:50%;
       display:flex;
       align-items:center;
       justify-content:center;
       border:1px solid rgba(255,255,255,.15);
-      color:white;
+      background:rgba(255,255,255,.04);
+      color:#fff;
       transition:all .25s ease;
     }
     .footer-social svg{width:18px;height:18px}
     .footer-social a:hover{
       transform:translateY(-3px);
-      border-color:white;
-      box-shadow:0 10px 25px rgba(255,255,255,.15);
+      border-color:rgba(255,255,255,.55);
+      box-shadow:0 12px 28px rgba(255,255,255,.15);
+      background:rgba(255,255,255,.06);
+    }
+    .footer-locs{
+      color:rgba(255,255,255,.55);
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      margin-bottom:14px;
     }
     .footer-text{
       font-size:12px;
-      letter-spacing:.1em;
+      letter-spacing:.10em;
       color:rgba(255,255,255,.55);
     }
 
-    /* Floating buttons */
+    /* ===== Floating Instagram + Book ===== */
     .float-wrap{
       position:fixed;
       right:16px;
@@ -469,7 +509,7 @@ l<!doctype html>
       box-shadow: 0 18px 45px rgba(0,0,0,.45);
       transition: transform .2s ease, border-color .2s ease, background .2s ease;
       color:#fff;
-      font-weight:900;
+      font-weight:950;
       letter-spacing:.12em;
       text-transform:uppercase;
       font-size:11px;
@@ -488,14 +528,13 @@ l<!doctype html>
       .nav-links{display:none}
       .hamburger{display:flex}
       .grid{grid-template-columns:1fr}
-      .card-img{height:220px}
+      .card-img{height:230px}
       .contact-row{grid-template-columns:1fr}
     }
   </style>
 </head>
 
 <body>
-
   <!-- NAV -->
   <header class="nav" id="topNav">
     <div class="nav-inner">
@@ -529,51 +568,59 @@ l<!doctype html>
 
   <!-- HERO -->
   <section class="hero" id="home">
-    <div class="hero-inner">
-      <h1 class="hero-title">ENHANCE VISUAL STUDIO</h1>
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-grain" aria-hidden="true"></div>
 
+    <div class="hero-inner reveal">
+      <h1 class="hero-title">ENHANCE VISUAL STUDIO</h1>
       <div class="hero-tagline">POSE. CAPTURE. ENHANCE</div>
 
       <div class="hero-sub" style="letter-spacing:2px; margin-top:10px;">
         Luxury Portrait &amp; Lifestyle Photography
       </div>
 
-      <div class="hero-locs">Los Angeles • San Francisco / Bay Area • San Diego</div>
+      <div class="hero-locs">Los Angeles • San Francisco / Bay Area • San Diego 📍</div>
 
       <div class="hero-actions">
         <button class="btn primary" id="bookBtnHero">Book Session</button>
         <a class="btn" href="portfolio.html">View Portfolio</a>
       </div>
+
+      <div class="hero-note">
+        If the button doesn’t open, use this direct link:
+        <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
+          calendly.com/bookenhancevisualstudio/1-hour-photography-session
+        </a>
+      </div>
+    </div>
   </section>
 
-  <!-- PORTFOLIO SECTION -->
+  <!-- PORTFOLIO -->
   <section class="section" id="portfolio">
     <div class="wrap">
-      <div class="kicker">Portfolio</div>
-      <div class="h2">Featured Work</div>
-      <p class="p">
-        A clean, cinematic look — premium retouching, intentional lighting, and luxury spacing. Tap to view the full portfolio gallery.
+      <div class="kicker reveal">Portfolio</div>
+      <div class="h2 reveal">Featured Work</div>
+      <p class="p reveal">
+        A clean, cinematic look — premium retouching, intentional lighting, and luxury spacing.
+        Tap to view the full portfolio gallery.
       </p>
 
       <div class="grid">
-        <a class="card" href="portfolio.html" aria-label="Open Portfolio">
+        <a class="card reveal" href="portfolio.html" aria-label="Open Portfolio">
           <div class="card-img"></div>
           <div class="card-body">
             <h3 class="card-title">Full Portfolio</h3>
-            <div class="card-desc">
-              All featured images in one smooth, luxury gallery experience.
-            </div>
+            <div class="card-desc">All featured images in one smooth, luxury gallery experience.</div>
             <div class="card-btn">View</div>
           </div>
         </a>
 
-        <a class="card" href="portfolio.html" aria-label="Open Portfolio">
+        <a class="card reveal" href="portfolio.html" aria-label="Open Portfolio">
           <div class="card-img" style="background-image:url('images/hero.jpg')"></div>
           <div class="card-body">
             <h3 class="card-title">Cinematic Gallery</h3>
-            <div class="card-desc">
-              Clean spacing + hover energy + high-end feel — like $5k studio sites.
-            </div>
+            <div class="card-desc">Hover energy + clean spacing + fullscreen viewer like high-end studios.</div>
             <div class="card-btn">View</div>
           </div>
         </a>
@@ -584,28 +631,21 @@ l<!doctype html>
   <!-- ABOUT -->
   <section class="section" id="about">
     <div class="wrap">
-      <div class="kicker">About</div>
-      <div class="h2">Timeless. Bold. Clean.</div>
-      <p class="p">
-       Enhance Visual Studio is a modern photography brand dedicated to creating bold, timeless imagery that tells real stories. Founded by photographer and visual creator Raheim Dunkley, the studio focuses on capturing authentic moments while delivering a polished, cinematic look that stands out.
+      <div class="kicker reveal">About</div>
+      <div class="h2 reveal">Timeless. Bold. Clean.</div>
+      <p class="p reveal">
+        Capturing Moments. Creating Timeless Imagery.
 
-At Enhance Visual Studio, every photoshoot is treated as a creative collaboration. The goal is not just to take photos, but to craft images that highlight confidence, personality, and emotion. Whether it’s a portrait session, lifestyle shoot, special event, or creative concept, each session is approached with careful attention to lighting, composition, and atmosphere.
+Enhance Visual Studio is a modern photography brand dedicated to creating bold, timeless imagery that tells real stories. Founded by photographer and visual creator Raheim Dunkley, the studio focuses on capturing authentic moments while delivering a polished, cinematic style that stands out.
 
-Inspired by both modern editorial photography and natural storytelling, Raheim blends technical skill with artistic vision to produce images that feel powerful yet natural. Clients are guided throughout the experience to ensure they feel comfortable, confident, and fully present in front of the camera.
+At Enhance Visual Studio, photography is more than simply taking pictures—it is about creating an experience. Every photoshoot is approached with a creative vision, professional lighting techniques, and careful attention to detail to ensure each image feels powerful, natural, and visually striking.
 
-Based in California and available for travel, Enhance Visual Studio works with individuals, families, creatives, and brands who want more than ordinary photos—they want imagery that feels elevated, expressive, and memorable.
+Whether it’s a portrait session, lifestyle shoot, special event, or creative concept, the goal is always the same: to create images that feel confident, expressive, and unforgettable.
 
-Every session is an opportunity to create something meaningful.
-
-The Vision
-
-Photography has the power to preserve moments that would otherwise fade with time. At Enhance Visual Studio, the vision is simple: create images that feel just as powerful years from now as they do today.
-
-By combining professional equipment, modern editing techniques, and a strong creative direction, every image is crafted to reflect both style and authenticity.
-
-Because great photography isn’t just about how something looks — it’s about how it feels. 
+Based in California and available for travel, Enhance Visual Studio works with individuals, families, creatives, and brands who want imagery that feels elevated and meaningful.
 
 Pose. Capture. Enhance.
+
       </p>
     </div>
   </section>
@@ -613,15 +653,14 @@ Pose. Capture. Enhance.
   <!-- CONTACT -->
   <section class="section" id="contact">
     <div class="wrap">
-      <div class="kicker">Contact</div>
-      <div class="h2">Let’s Create</div>
+      <div class="kicker reveal">Contact</div>
+      <div class="h2 reveal">Let’s Create</div>
 
-      <div class="panel">
+      <div class="panel reveal">
         <div class="contact-row">
           <div>
             <p class="mini">
-              Want to book fast? Use the booking button. Prefer to message first? Reach out below.
-              (Quickest response: Instagram DM.)
+              Want to book fast? Use the booking button. 
             </p>
           </div>
 
@@ -645,26 +684,23 @@ Pose. Capture. Enhance.
   </section>
 
   <!-- FOOTER -->
-  <footer class="site-footer">
+  <footer class="site-footer reveal">
     <div class="footer-divider"></div>
 
     <div class="footer-social">
       <a href="https://instagram.com/enhancevisualstudio" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C19.9 2 22 4.1 22 7.8v8.4c0 3.7-2.1 5.8-5.8 5.8H7.8C4.1 22 2 19.9 2 16.2V7.8C2 4.1 4.1 2 7.8 2m0 2C5.3 4 4 5.3 4 7.8v8.4C4 18.7 5.3 20 7.8 20h8.4c2.5 0 3.8-1.3 3.8-3.8V7.8C20 5.3 18.7 4 16.2 4H7.8m8.6 1.5a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
       </a>
-
       <a href="https://facebook.com/enhancevisualstudio" target="_blank" rel="noopener" aria-label="Facebook">
         <svg viewBox="0 0 24 24"><path fill="currentColor" d="M13 22v-9h3l1-4h-4V7c0-1 .3-2 2-2h2V1h-3c-4 0-5 2-5 5v3H6v4h3v9h4z"/></svg>
       </a>
-
-      <a href="https://youtube.com/@rahdunvisuals" target="_blank" rel="noopener" aria-label="YouTube">
+      <a href="https://youtube.com/@enhancevisualstudio" target="_blank" rel="noopener" aria-label="YouTube">
         <svg viewBox="0 0 24 24"><path fill="currentColor" d="M23 12s0-3.5-.5-5.2c-.3-1-1-1.7-2-2C18.8 4.2 12 4.2 12 4.2s-6.8 0-8.5.6c-1 .3-1.7 1-2 2C1 8.5 1 12 1 12s0 3.5.5 5.2c.3 1 1 1.7 2 2 1.7.6 8.5.6 8.5.6s6.8 0 8.5-.6c1-.3 1.7-1 2-2 .5-1.7.5-5.2.5-5.2zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
       </a>
     </div>
 
-    <div class="footer-text">
-      © <span id="year"></span> Enhance Visual Studio LLC. All Rights Reserved.
-    </div>
+    <div class="footer-locs">Los Angeles • San Francisco / Bay Area • San Diego</div>
+    <div class="footer-text">© <span id="year"></span> Enhance Visual Studio LLC. All Rights Reserved.</div>
   </footer>
 
   <!-- Floating buttons -->
@@ -705,18 +741,27 @@ Pose. Capture. Enhance.
 
     // Booking with fallback (never “does nothing”)
     const BOOK_URL = "https://calendly.com/bookenhancevisualstudio/1-hour-photography-session";
-
     function openBooking(){
-      // Try opening in a new tab/window
       const w = window.open(BOOK_URL, "_blank", "noopener");
-      // Fallback: if blocked, navigate same tab
       if (!w) window.location.href = BOOK_URL;
     }
-
     ["bookBtnTop","bookBtnHero","bookBtnMobile","bookBtnFloat"].forEach(id=>{
       const el = document.getElementById(id);
       if (el) el.addEventListener("click", openBooking);
     });
+
+    // Cinematic scroll reveal (sections + cards)
+    const items = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
+
+    items.forEach(el => io.observe(el));
   </script>
 </body>
 </html>
