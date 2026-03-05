@@ -10,12 +10,10 @@
   <style>
     :root{
       --bg:#070707;
-      --panel:rgba(255,255,255,.06);
-      --line:rgba(255,255,255,.12);
       --text:#f6f6f7;
       --muted:rgba(246,246,247,.72);
+      --line:rgba(255,255,255,.12);
       --radius:22px;
-      --stroke:rgba(255,255,255,.14);
     }
     *{box-sizing:border-box}
     body{
@@ -30,9 +28,10 @@
       text-rendering: optimizeLegibility;
     }
     a{color:inherit;text-decoration:none}
+
     .wrap{max-width:1200px;margin:0 auto;padding:18px 16px 70px}
 
-    /* Top bar */
+    /* Top bar (keep it simple + premium) */
     .topbar{
       position:sticky; top:12px; z-index:30;
       display:flex; align-items:center; justify-content:space-between; gap:12px;
@@ -77,7 +76,7 @@
     .sub{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.55;max-width:70ch}
     .tip{margin-top:10px;color:rgba(255,255,255,.55);font-size:12px}
 
-    /* ===== Luxury Masonry Grid ===== */
+    /* ===== Luxury Masonry Grid + cinematic hover ===== */
     .masonry{
       margin-top:22px;
       column-count: 3;
@@ -98,7 +97,16 @@
       transform: translateY(0);
       transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
       box-shadow: 0 18px 60px rgba(0,0,0,.28);
+      opacity:0;
+      transform: translateY(12px);
+      transition: opacity .7s ease, transform .7s ease, box-shadow .22s ease, border-color .22s ease;
     }
+    .tile.in{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* cinematic highlight */
     .tile::before{
       content:"";
       position:absolute; inset:0;
@@ -107,6 +115,7 @@
       transition: opacity .22s ease;
       pointer-events:none;
     }
+    /* soft vignette */
     .tile::after{
       content:"";
       position:absolute; inset:0;
@@ -114,16 +123,21 @@
       opacity:.75;
       pointer-events:none;
     }
+
+    /* Luxury lazy loading (blur -> sharp + fade) */
     .tile img{
       width:100%;
       height:auto;
       display:block;
       transform: scale(1.01);
-      transition: transform .35s ease, filter .35s ease, opacity .35s ease;
-      filter: contrast(1.05) saturate(1.04);
+      transition: transform .35s ease, filter .55s ease, opacity .55s ease;
+      filter: blur(10px) contrast(1.05) saturate(1.04);
       opacity:0;
     }
-    .tile img.is-loaded{ opacity:1; }
+    .tile img.is-loaded{
+      filter: blur(0) contrast(1.05) saturate(1.04);
+      opacity:1;
+    }
 
     @media (hover:hover){
       .tile:hover{
@@ -134,7 +148,7 @@
       .tile:hover::before{ opacity:1; }
       .tile:hover img{
         transform: scale(1.06);
-        filter: contrast(1.08) saturate(1.06);
+        filter: blur(0) contrast(1.08) saturate(1.06);
       }
     }
 
@@ -149,7 +163,6 @@
       font-size:13px;
     }
 
-    /* Loading / sentinel */
     .loadbar{
       margin:24px auto 0;
       width:100%;
@@ -158,6 +171,7 @@
       color:rgba(255,255,255,.62);
       font-size:12px;
       letter-spacing:.08em;
+      display:none;
     }
     .spinner{
       width:18px;height:18px;
@@ -171,18 +185,24 @@
     }
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* ===== Lightbox ===== */
+    /* ===== Cinematic Lightbox ===== */
     .lb{
       position:fixed; inset:0; z-index:9999;
-      background: rgba(0,0,0,.90);
+      background: rgba(0,0,0,.92);
       display:none;
       align-items:center; justify-content:center;
       padding:16px;
+      opacity:0;
+      transition: opacity .25s ease;
     }
-    .lb.open{display:flex}
+    .lb.open{
+      display:flex;
+      opacity:1;
+    }
+
     .lb-inner{
       width:min(1200px, 100%);
-      height:min(84vh, 860px);
+      height:min(86vh, 900px);
       position:relative;
       border-radius: 22px;
       overflow:hidden;
@@ -190,12 +210,27 @@
       background: rgba(12,12,14,.92);
       box-shadow: 0 30px 90px rgba(0,0,0,.65);
     }
+
+    /* subtle “breathing” zoom while open */
+    .lb-inner.breathe .lb-img{
+      animation: breatheZoom 9s ease-in-out infinite alternate;
+      transform-origin:center;
+    }
+    @keyframes breatheZoom{
+      from{transform: scale(1.00)}
+      to{transform: scale(1.03)}
+    }
+
     .lb-img{
       width:100%; height:100%;
       object-fit:contain;
       display:block;
       background: radial-gradient(620px 320px at 50% 15%, rgba(255,255,255,.08), transparent 60%);
+      opacity:0;
+      transition: opacity .25s ease;
     }
+    .lb-img.ready{ opacity:1; }
+
     .lb-top{
       position:absolute; top:12px; left:12px; right:12px;
       display:flex; align-items:center; justify-content:space-between; gap:10px;
@@ -269,8 +304,8 @@
 
     <header>
       <h1>Portfolio</h1>
-      <p class="sub">One curated gallery. Tap any image to view fullscreen. Swipe on mobile.</p>
-      <div class="tip">Infinite scroll is on. Add new images later and just increase MAX.</div>
+      <p class="sub">Tap any image to view fullscreen. Swipe on mobile. Scroll to load more.</p>
+      <div class="tip">When you add more photos later, just increase START_MAX.</div>
     </header>
 
     <main id="grid" class="masonry"></main>
@@ -280,17 +315,16 @@
       Upload to <b>images/portfolio/</b> named <b>01.jpg → 32.jpg</b>, then set <b>START_MAX = 32</b> below.
     </div>
 
-    <div class="loadbar" id="loadbar" style="display:none;">
+    <div class="loadbar" id="loadbar">
       <span class="spinner"></span> Loading more work…
     </div>
 
-    <!-- sentinel for infinite scroll -->
     <div id="sentinel" style="height:1px;"></div>
   </div>
 
   <!-- Lightbox -->
   <div class="lb" id="lb" aria-hidden="true">
-    <div class="lb-inner">
+    <div class="lb-inner" id="lbInner">
       <img class="lb-img" id="lbImg" alt="Fullscreen image" />
       <div class="lb-top">
         <div class="lb-meta" id="lbMeta">Portfolio</div>
@@ -308,29 +342,28 @@
   </div>
 
   <script>
-    // ========= CONFIG (simple + future-proof) =========
-    // Put images here: images/portfolio/01.jpg ... 999.jpg
+    // ========= CONFIG =========
     const FOLDER = "images/portfolio";
     const EXT = "jpg";
 
-    // How many images exist right now? (set later to 32)
+    // Set this to your current upload count (ex: 24 or 32)
     let START_MAX = 0;
 
-    // How many to load per “page” as you scroll
+    // How many images to load each scroll batch
     const BATCH = 12;
 
-    // Hard limit safety (so it never loops forever)
+    // Safety limit (prevents infinite looping forever)
     const ABSOLUTE_MAX = 999;
 
-    // ========= State =========
+    // ========= ELEMENTS =========
     const grid = document.getElementById("grid");
     const emptyState = document.getElementById("emptyState");
     const loadbar = document.getElementById("loadbar");
     const sentinel = document.getElementById("sentinel");
 
-    // We'll build a dynamic list and extend it when START_MAX increases
+    // ========= STATE =========
     let sources = [];
-    let rendered = 0; // how many tiles we have put on the page
+    let rendered = 0;
     let isLoading = false;
 
     function srcFor(n){
@@ -338,12 +371,20 @@
       return `${FOLDER}/${file}.${EXT}`;
     }
 
-    // (Re)build sources array up to START_MAX
     function rebuildSources(){
       sources = Array.from({length: START_MAX}, (_, i) => srcFor(i + 1));
     }
 
-    // Render next batch
+    // Scroll reveal for tiles (cinematic)
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -10% 0px" });
+
     function renderMore(){
       if (isLoading) return;
       if (rendered >= sources.length) return;
@@ -359,16 +400,17 @@
         const tile = document.createElement("div");
         tile.className = "tile";
 
-        // Luxury rhythm spacing (editorial feel)
+        // Luxury “editorial rhythm”
         if (i % 3 === 0) tile.style.marginTop = "18px";
 
         const img = document.createElement("img");
         img.src = src;
         img.loading = "lazy";
         img.alt = `Portfolio image ${i + 1}`;
+
         img.addEventListener("load", () => img.classList.add("is-loaded"));
 
-        // If a file doesn't exist yet, hide the broken tile
+        // If file doesn't exist, remove tile (keeps page clean)
         img.addEventListener("error", () => {
           tile.remove();
         });
@@ -376,41 +418,40 @@
         tile.appendChild(img);
         tile.addEventListener("click", () => open(i));
         grid.appendChild(tile);
+
+        revealObserver.observe(tile);
       }
 
       rendered = end;
 
-      // small delay makes the loader feel smoother
       setTimeout(() => {
         loadbar.style.display = "none";
         isLoading = false;
-      }, 250);
+      }, 220);
     }
 
-    // Infinite scroll observer
+    // Infinite scroll sentinel
     const io = new IntersectionObserver((entries) => {
       const entry = entries[0];
       if (!entry.isIntersecting) return;
 
-      // 1) If we still have unrendered items, render them
+      // 1) render what we already know
       if (rendered < sources.length){
         renderMore();
         return;
       }
 
-      // 2) If we're already at the current max, try “auto-extend”
-      //    This lets you add images later and just increase START_MAX,
-      //    OR you can leave START_MAX high and missing files will be skipped.
+      // 2) auto-extend (lets you add photos later + just bump START_MAX, OR leave it high and missing ones auto-skip)
       if (START_MAX < ABSOLUTE_MAX){
-        // Auto-extend by batch (safe). Missing images get skipped by onerror.
         START_MAX = Math.min(START_MAX + BATCH, ABSOLUTE_MAX);
         rebuildSources();
         renderMore();
       }
-    }, { root: null, threshold: 0.1 });
+    }, { threshold: 0.1 });
 
-    // ========= Lightbox =========
+    // ========= LIGHTBOX =========
     const lb = document.getElementById("lb");
+    const lbInner = document.getElementById("lbInner");
     const lbImg = document.getElementById("lbImg");
     const lbMeta = document.getElementById("lbMeta");
     const dlBtn = document.getElementById("dlBtn");
@@ -421,19 +462,29 @@
     let index = 0;
 
     function meta(){
-      // Use sources length (not rendered), so count stays correct as it grows
       lbMeta.textContent = `Portfolio • ${index + 1} / ${sources.length}`;
     }
 
     function show(i){
       if (!sources.length) return;
+
       index = ((i % sources.length) + sources.length) % sources.length;
       const src = sources[index];
+
+      lbImg.classList.remove("ready");
       lbImg.src = src;
       dlBtn.href = src;
       dlBtn.setAttribute("download", src.split("/").pop());
+
       meta();
+
+      // breathe effect on
+      lbInner.classList.add("breathe");
     }
+
+    lbImg.addEventListener("load", () => {
+      lbImg.classList.add("ready");
+    });
 
     function open(i){
       if (!sources.length) return;
@@ -448,6 +499,8 @@
       lb.setAttribute("aria-hidden","true");
       document.body.style.overflow = "";
       lbImg.src = "";
+      lbImg.classList.remove("ready");
+      lbInner.classList.remove("breathe");
     }
 
     closeBtn.addEventListener("click", close);
@@ -462,7 +515,7 @@
       if (e.key === "ArrowRight") show(index + 1);
     });
 
-    // Swipe
+    // Swipe on mobile
     let startX = null;
     lbImg.addEventListener("touchstart", (e) => startX = e.touches[0].clientX, {passive:true});
     lbImg.addEventListener("touchend", (e) => {
@@ -472,7 +525,7 @@
       if (Math.abs(dx) > 45) dx > 0 ? show(index - 1) : show(index + 1);
     }, {passive:true});
 
-    // ========= Boot =========
+    // ========= BOOT =========
     rebuildSources();
 
     if (START_MAX === 0){
@@ -480,16 +533,9 @@
     } else {
       emptyState.style.display = "none";
       renderMore();
-      io.observe(sentinel);
     }
 
-    // If START_MAX is 0 right now, still observe sentinel so auto-extend works later
-    // (it will quietly skip missing files)
     io.observe(sentinel);
-
-    // ====== What YOU do later ======
-    // 1) Upload images to images/portfolio/ named 01.jpg .. 32.jpg
-    // 2) Set START_MAX = 32
   </script>
 </body>
 </html>
