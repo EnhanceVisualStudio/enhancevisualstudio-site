@@ -516,5 +516,40 @@
       window.open(src, '_blank', 'noopener,noreferrer');
     });
   </script>
+  </script>
+
+<script>
+async function loadMasonry(folder, jsonFile, masonryId) {
+  try {
+    const res = await fetch(`${folder}/${jsonFile}?v=${Date.now()}`);
+    const files = await res.json();
+
+    const masonry = document.getElementById(masonryId);
+    masonry.innerHTML = "";
+
+    files.forEach((file, i) => {
+      const fullPath = `${folder}/${file}`;
+
+      const fig = document.createElement("figure");
+      fig.className = "tile";
+      fig.setAttribute("data-full", fullPath);
+
+      const img = document.createElement("img");
+      img.src = fullPath;
+      img.loading = "lazy";
+
+      fig.appendChild(img);
+      masonry.appendChild(fig);
+
+      fig.addEventListener("click", () => openLightbox(i));
+    });
+
+  } catch (err) {
+    console.warn(err);
+  }
+}
+
+loadMasonry("images/portraits", "portraits.json", "masonry");
+</script>
 </body>
 </html>
