@@ -1,1073 +1,128 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#070707" />
-
-  <title>Enhance Visual Studio | Studio Portraits, Editorial & Creative Photography</title>
-  <meta
-    name="description"
-    content="Enhance Visual Studio offers bold studio portraits, editorial photography, creative concepts, and select event coverage with a polished modern feel."
-  />
-  <meta
-    name="keywords"
-    content="Enhance Visual Studio, portrait photographer, studio photography, editorial photography, creative photography, event photographer, Los Angeles photographer, Bay Area photographer, San Diego photographer"
-  />
-  <meta name="author" content="Enhance Visual Studio" />
-
-  <meta property="og:title" content="Enhance Visual Studio" />
-  <meta
-    property="og:description"
-    content="Bold studio portraits, editorial photography, creative concepts, and polished event coverage."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.enhancevisualstudio.com/" />
-  <meta property="og:image" content="https://www.enhancevisualstudio.com/images/og-enhance-visualstudio.jpg" />
-
-  <link rel="canonical" href="https://www.enhancevisualstudio.com/" />
-
-  <style>
-    :root {
-      --bg: #070707;
-      --bg-soft: #111111;
-      --panel: rgba(255,255,255,0.04);
-      --panel-strong: rgba(255,255,255,0.08);
-      --text: #ffffff;
-      --muted: rgba(255,255,255,0.72);
-      --muted-2: rgba(255,255,255,0.52);
-      --line: rgba(255,255,255,0.12);
-      --accent: #d7b67a;
-      --accent-2: #f0d7a1;
-      --shadow: 0 20px 60px rgba(0,0,0,0.45);
-      --radius: 18px;
-      --radius-lg: 28px;
-      --max: 1180px;
-      --nav-h: 78px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(100% - 32px, var(--max));
-      margin: 0 auto;
-    }
-
-    .section {
-      padding: 88px 0;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 0.76rem;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-
-    h1, h2, h3 {
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-    }
-
-    h1 {
-      font-size: clamp(2.6rem, 6vw, 5.4rem);
-      font-weight: 800;
-    }
-
-    h2 {
-      font-size: clamp(2rem, 4vw, 3.3rem);
-      font-weight: 750;
-      margin-bottom: 18px;
-    }
-
-    h3 {
-      font-size: 1.22rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .lead {
-      font-size: 1.08rem;
-      max-width: 720px;
-    }
-
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 0 22px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.96rem;
-      transition: 0.25s ease;
-      border: 1px solid transparent;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #111;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-2);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--line);
-    }
-
-    .btn-secondary:hover {
-      background: var(--panel);
-      border-color: rgba(255,255,255,0.22);
-    }
-
-    /* NAV */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(16px);
-      background: rgba(7,7,7,0.78);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .nav {
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-
-    .brand-title {
-      font-size: 1.02rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .brand-tag {
-      font-size: 0.72rem;
-      color: var(--muted-2);
-      margin-top: 4px;
-      letter-spacing: 0.06em;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      font-size: 0.94rem;
-      font-weight: 600;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-cta {
-      display: inline-flex;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: transparent;
-      border: 1px solid var(--line);
-      color: var(--text);
-      border-radius: 12px;
-      padding: 10px 14px;
-      font-size: 0.95rem;
-      cursor: pointer;
-    }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      min-height: calc(100vh - var(--nav-h));
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to right, rgba(7,7,7,0.86) 0%, rgba(7,7,7,0.54) 45%, rgba(7,7,7,0.45) 100%),
-        url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
-      z-index: -2;
-      transform: scale(1.02);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top right, rgba(215,182,122,0.16), transparent 30%),
-        linear-gradient(to bottom, transparent 60%, rgba(7,7,7,1) 100%);
-      z-index: -1;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 34px;
-      align-items: end;
-      width: 100%;
-    }
-
-    .hero-copy {
-      padding: 80px 0;
-    }
-
-    .hero-copy p {
-      max-width: 660px;
-      margin-top: 18px;
-      font-size: 1.07rem;
-    }
-
-    .hero-card {
-      justify-self: end;
-      width: min(100%, 360px);
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
-      border-radius: var(--radius-lg);
-      padding: 26px;
-      margin-bottom: 40px;
-    }
-
-    .hero-card h3 {
-      margin-bottom: 12px;
-    }
-
-    .hero-card ul {
-      list-style: none;
-      display: grid;
-      gap: 12px;
-      margin: 18px 0 24px;
-    }
-
-    .hero-card li {
-      color: var(--muted);
-      padding-left: 18px;
-      position: relative;
-      font-size: 0.97rem;
-    }
-
-    .hero-card li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.68em;
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    /* SECTION HEADERS */
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 36px;
-    }
-
-    .section-head p {
-      max-width: 560px;
-    }
-
-    /* PORTFOLIO */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .portfolio-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 22px;
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
-      min-height: 410px;
-      box-shadow: var(--shadow);
-    }
-
-    .portfolio-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.7s ease;
-    }
-
-    .portfolio-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .portfolio-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: end;
-      padding: 24px;
-      background: linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.12) 60%, transparent);
-    }
-
-    .portfolio-overlay span {
-      display: inline-block;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    /* ABOUT */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 34px;
-      align-items: center;
-    }
-
-    .about-image {
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: var(--bg-soft);
-      box-shadow: var(--shadow);
-      min-height: 560px;
-    }
-
-    .about-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .about-copy .stack {
-      display: grid;
-      gap: 18px;
-    }
-
-    .signature {
-      margin-top: 24px;
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    .signature small {
-      display: block;
-      color: var(--muted-2);
-      font-weight: 500;
-      margin-top: 4px;
-    }
-
-    /* EXPERIENCE */
-    .experience-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .experience-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 26px 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .step {
-      font-size: 0.78rem;
-      color: var(--accent);
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-    }
-
-    /* SERVICES */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .service-card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 26px;
-    }
-
-    .service-card p {
-      margin-bottom: 16px;
-    }
-
-    .service-meta {
-      color: var(--muted-2);
-      font-size: 0.92rem;
-      margin-bottom: 18px;
-    }
-
-    /* TESTIMONIALS */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .testimonial {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 26px;
-      box-shadow: var(--shadow);
-    }
-
-    .stars {
-      color: var(--accent);
-      letter-spacing: 0.12em;
-      margin-bottom: 14px;
-      font-size: 1rem;
-    }
-
-    .testimonial strong {
-      display: block;
-      margin-top: 18px;
-      font-size: 0.96rem;
-    }
-
-    /* CTA */
-    .cta-wrap {
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(135deg, rgba(215,182,122,0.16), rgba(255,255,255,0.03)),
-        rgba(255,255,255,0.03);
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      padding: 42px;
-      box-shadow: var(--shadow);
-    }
-
-    .cta-wrap::before {
-      content: "";
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      right: -90px;
-      top: -90px;
-      background: radial-gradient(circle, rgba(215,182,122,0.18), transparent 60%);
-      pointer-events: none;
-    }
-
-    .cta-wrap p {
-      max-width: 720px;
-      margin-top: 10px;
-    }
-
-    /* CONTACT */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .contact-card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 28px;
-    }
-
-    .contact-list {
-      list-style: none;
-      display: grid;
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    .contact-list li {
-      color: var(--muted);
-    }
-
-    .contact-label {
-      display: block;
-      color: var(--muted-2);
-      font-size: 0.85rem;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* FOOTER */
-    .footer {
-      padding: 28px 0 42px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .footer p {
-      color: var(--muted-2);
-      font-size: 0.92rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .footer-links a:hover {
-      color: var(--text);
-    }
-
-    /* MOBILE */
-    @media (max-width: 1024px) {
-      .hero-grid,
-      .about-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .experience-grid,
-      .services-grid,
-      .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .hero-card {
-        justify-self: start;
-        margin-bottom: 0;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .section {
-        padding: 72px 0;
-      }
-
-      .nav-links,
-      .nav-cta {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: inline-flex;
-      }
-
-      .mobile-menu {
-        display: none;
-        padding: 0 0 18px;
-      }
-
-      .mobile-menu.open {
-        display: grid;
-        gap: 10px;
-      }
-
-      .mobile-menu a {
-        color: var(--muted);
-        padding: 10px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-      }
-
-      .mobile-menu a:last-child {
-        border-bottom: none;
-      }
-
-      .portfolio-grid,
-      .experience-grid,
-      .services-grid,
-      .testimonials-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .portfolio-card {
-        min-height: 340px;
-      }
-
-      .about-image {
-        min-height: 420px;
-      }
-
-      .cta-wrap {
-        padding: 28px;
-      }
-
-      .section-head {
-        align-items: start;
-        flex-direction: column;
-      }
-
-      h1 {
-        font-size: clamp(2.2rem, 10vw, 3.5rem);
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <header class="site-header">
-    <div class="container">
-      <nav class="nav">
-        <a href="#top" class="brand" aria-label="Enhance Visual Studio Home">
-          <span class="brand-title">Enhance Visual Studio</span>
-          <span class="brand-tag">Pose. Capture. Enhance.</span>
-        </a>
-
-        <div class="nav-links">
-          <a href="#portfolio">Portfolio</a>
-          <a href="#about">About</a>
-          <a href="#experience">Experience</a>
-          <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
-        </div>
-
-        <div class="nav-cta">
-          <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
-            Book Now
-          </a>
-        </div>
-
-        <button class="menu-toggle" id="menuToggle" aria-label="Open Menu" aria-expanded="false">
-          Menu
-        </button>
-      </nav>
-
-      <div class="mobile-menu" id="mobileMenu">
-        <a href="#portfolio">Portfolio</a>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-        <a href="https://your-booking-link-here.com" target="_blank" rel="noopener">Book Now</a>
-      </div>
-    </div>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">Studio Portraits · Editorial · Creative Concepts</span>
-          <h1>Elevated imagery with style, confidence, and presence.</h1>
-          <p class="lead">
-            Enhance Visual Studio creates bold, modern, and polished photography for portraits, editorial sessions, creative concepts, and select events. Every image is crafted to feel powerful, intentional, and timeless.
-          </p>
-
-          <div class="btn-row">
-            <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
-              Book Your Session
-            </a>
-            <a class="btn btn-secondary" href="#portfolio">
-              View Portfolio
-            </a>
-          </div>
-        </div>
-
-        <aside class="hero-card">
-          <h3>The Experience</h3>
-          <p>
-            A refined photography process designed to make your session effortless, guided, and memorable from booking to final gallery delivery.
-          </p>
-          <ul>
-            <li>Studio portraits, editorial shoots, and creative concepts</li>
-            <li>Guided posing and creative direction</li>
-            <li>Professional retouching and polished delivery</li>
-            <li>Available in Los Angeles, San Diego, San Francisco, and the Bay Area</li>
-          </ul>
-          <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
-            Start Booking
-          </a>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="portfolio">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Featured Portfolio</span>
-            <h2>Selected work</h2>
-          </div>
-          <p>
-            A curated selection of portrait, editorial, creative concept, and event imagery from Enhance Visual Studio.
-          </p>
-        </div>
-
-        <div class="portfolio-grid">
-          <a href="#" class="portfolio-card" aria-label="Portraits Gallery">
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1000&q=80" alt="Portrait photography example" />
-            <div class="portfolio-overlay"><span>Portraits</span></div>
-          </a>
-
-          <a href="#" class="portfolio-card" aria-label="Editorial Gallery">
-            <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=1000&q=80" alt="Editorial photography example" />
-            <div class="portfolio-overlay"><span>Editorial</span></div>
-          </a>
-
-          <a href="#" class="portfolio-card" aria-label="Creative Concepts Gallery">
-            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1000&q=80" alt="Creative concept photography example" />
-            <div class="portfolio-overlay"><span>Creative Concepts</span></div>
-          </a>
-
-          <a href="#" class="portfolio-card" aria-label="Events Gallery">
-            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80" alt="Event photography example" />
-            <div class="portfolio-overlay"><span>Events</span></div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container about-grid">
-        <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80" alt="Photographer portrait placeholder" />
-        </div>
-
-        <div class="about-copy">
-          <span class="eyebrow">About the Brand</span>
-          <h2>Photography that feels just as powerful years later.</h2>
-
-          <div class="stack">
-            <p>
-              Photography has the power to preserve moments that would otherwise fade with time.
-              At Enhance Visual Studio, the vision is simple: create images that feel just as powerful years from now as they do today.
-            </p>
-
-            <p>
-              By combining professional equipment, refined editing, and strong creative direction, every image is crafted to reflect both style and authenticity.
-            </p>
-
-            <p>
-              Because great photography is not just about how something looks — it is about how it feels.
-            </p>
-          </div>
-
-          <div class="signature">
-            Raheim Dunkley
-            <small>Founder, Enhance Visual Studio</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="experience">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">The Experience</span>
-            <h2>A simple process designed around you</h2>
-          </div>
-          <p>
-            Make the client journey feel premium and easy. This section helps remove hesitation and builds trust before they book.
-          </p>
-        </div>
-
-        <div class="experience-grid">
-          <div class="experience-card">
-            <div class="step">01 · Book Your Session</div>
-            <h3>Choose your date</h3>
-            <p>
-              Select the session that fits your vision and lock in a date through the booking page.
-            </p>
-          </div>
-
-          <div class="experience-card">
-            <div class="step">02 · Guided Shoot</div>
-            <h3>Creative direction included</h3>
-            <p>
-              From posing to framing, you will be guided throughout the session for a confident and natural result.
-            </p>
-          </div>
-
-          <div class="experience-card">
-            <div class="step">03 · Professional Editing</div>
-            <h3>Refined final images</h3>
-            <p>
-              Every selected image is edited with care to create a polished, cinematic, and consistent finish.
-            </p>
-          </div>
-
-          <div class="experience-card">
-            <div class="step">04 · Gallery Delivery</div>
-            <h3>Easy online access</h3>
-            <p>
-              Your final images are delivered through a private online gallery for viewing, downloading, and sharing.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Services</span>
-            <h2>Session offerings</h2>
-          </div>
-          <p>
-            Update pricing, session length, and descriptions to match your current offers.
-          </p>
-        </div>
-
-        <div class="services-grid">
-          <div class="service-card">
-            <h3>Portrait Session</h3>
-            <div class="service-meta">Starting at $150 · 1 Hour</div>
-            <p>
-              Ideal for personal branding, graduation, solo portraits, and polished studio-style imagery with a confident, modern feel.
-            </p>
-            <a class="btn btn-secondary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">Book Portraits</a>
-          </div>
-
-          <div class="service-card">
-            <h3>Editorial / Creative</h3>
-            <div class="service-meta">Starting at $200 · 1 Hour</div>
-            <p>
-              Designed for bold concepts, fashion-forward looks, and creative shoots with strong styling, direction, and visual impact.
-            </p>
-            <a class="btn btn-secondary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">Book Creative</a>
-          </div>
-
-          <div class="service-card">
-            <h3>Event Coverage</h3>
-            <div class="service-meta">Custom Quote · Hourly Coverage</div>
-            <p>
-              Coverage for celebrations, nightlife, private events, and special occasions with polished storytelling and candid energy.
-            </p>
-            <a class="btn btn-secondary" href="mailto:hello@enhancevisualstudio.com">Request a Quote</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Testimonials</span>
-            <h2>What clients are saying</h2>
-          </div>
-          <p>
-            Replace these with real client reviews as soon as you have them. Even 2 or 3 genuine testimonials will help conversions a lot.
-          </p>
-        </div>
-
-        <div class="testimonials-grid">
-          <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <p>
-              “Amazing experience from start to finish. The direction during the shoot made everything feel easy and the final photos looked incredible.”
-            </p>
-            <strong>— Client Name</strong>
-          </div>
-
-          <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <p>
-              “Professional, creative, and easy to work with. The photos came out clean, sharp, and exactly the vibe I wanted.”
-            </p>
-            <strong>— Client Name</strong>
-          </div>
-
-          <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <p>
-              “The whole process felt premium. Booking was simple, the session was comfortable, and the results exceeded expectations.”
-            </p>
-            <strong>— Client Name</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-wrap">
-          <span class="eyebrow">Ready to Book?</span>
-          <h2>Let’s create something unforgettable.</h2>
-          <p>
-            Whether you are planning a portrait session, editorial concept, creative shoot, or event coverage, Enhance Visual Studio is ready to capture your vision with style, intention, and detail.
-          </p>
-          <div class="btn-row">
-            <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
-              Book Your Session
-            </a>
-            <a class="btn btn-secondary" href="mailto:hello@enhancevisualstudio.com">
-              Email Inquiry
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Contact</span>
-            <h2>Connect with Enhance Visual Studio</h2>
-          </div>
-          <p>
-            For bookings, collaborations, and inquiries, connect with Enhance Visual Studio using the information below.
-          </p>
-        </div>
-
-        <div class="contact-grid">
-          <div class="contact-card">
-            <h3>Business Information</h3>
-            <ul class="contact-list">
-              <li>
-                <span class="contact-label">Email</span>
-                <a href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com</a>
-              </li>
-              <li>
-                <span class="contact-label">Instagram</span>
-                <a href="https://instagram.com/enhancevisualstudio" target="_blank" rel="noopener">@your-instagram-here</a>
-              </li>
-              <li>
-                <span class="contact-label">Service Areas</span>
-                Los Angeles · San Diego · San Francisco · Bay Area
-              </li>
-            </ul>
-          </div>
-
-          <div class="contact-card">
-            <h3>Booking & Inquiries</h3>
-            <p>
-              For portrait, editorial, creative concept, and event bookings, use the booking link below or send an email for custom requests.
-            </p>
-            <div class="btn-row">
-              <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
-                Book Now
-              </a>
-              <a class="btn btn-secondary" href="mailto:hello@enhancevisualstudio.com">
-                Contact by Email
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-row">
-      <p>© <span id="year"></span> Enhance Visual Studio. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#portfolio">Portfolio</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const menuToggle = document.getElementById("menuToggle");
-    const mobileMenu = document.getElementById("mobileMenu");
-    const year = document.getElementById("year");
-
-    if (year) {
-      year.textContent = new Date().getFullYear();
-    }
-
-    if (menuToggle && mobileMenu) {
-      menuToggle.addEventListener("click", () => {
-        const isOpen = mobileMenu.classList.toggle("open");
-        menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      });
-
-      mobileMenu.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.remove("open");
-          menuToggle.setAttribute("aria-expanded", "false");
-        });
-      });
-    }
-  </script>
-</body>
-</html>
+<!-- ONLY SHOWING CHANGED PARTS SO MESSAGE ISN'T MASSIVE -->
+
+<!-- UPDATED HERO TEXT -->
+
+<span class="eyebrow">Studio Portraits · Editorial · Creative Concepts</span>
+<h1>Elevated imagery with style, confidence, and presence.</h1>
+
+<p class="lead">
+Enhance Visual Studio creates bold, modern, and polished photography for portraits,
+editorial sessions, creative concepts, and select events. Every image is crafted to feel
+powerful, intentional, and timeless.
+</p>
+
+
+<!-- HERO CARD UPDATE -->
+
+<ul>
+<li>Studio portraits, editorial shoots, and creative concepts</li>
+<li>Guided posing and creative direction</li>
+<li>Professional retouching and polished delivery</li>
+<li>Available in Los Angeles, San Diego, San Francisco, and the Bay Area</li>
+</ul>
+
+
+<!-- UPDATED BOOKING LINKS -->
+
+<a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
+Book Your Session
+</a>
+
+
+<!-- NAV BOOK BUTTON -->
+
+<a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
+Book Now
+</a>
+
+
+<!-- MOBILE BOOK LINK -->
+
+<a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">Book Now</a>
+
+
+<!-- UPDATED PORTFOLIO LABELS -->
+
+<div class="portfolio-overlay"><span>Portraits</span></div>
+
+<div class="portfolio-overlay"><span>Editorial</span></div>
+
+<div class="portfolio-overlay"><span>Creative Concepts</span></div>
+
+<div class="portfolio-overlay"><span>Events</span></div>
+
+
+<!-- PORTFOLIO TEXT -->
+
+<p>
+A curated selection of portrait, editorial, creative concept, and event imagery from Enhance Visual Studio.
+</p>
+
+
+<!-- SERVICES UPDATE -->
+
+<div class="service-card">
+<h3>Portrait Session</h3>
+<div class="service-meta">Starting at $150 · 1 Hour</div>
+<p>
+Ideal for personal branding, graduation, solo portraits, and polished studio-style imagery.
+</p>
+<a class="btn btn-secondary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank">Book Portraits</a>
+</div>
+
+
+<div class="service-card">
+<h3>Editorial / Creative</h3>
+<div class="service-meta">Starting at $200 · 1 Hour</div>
+<p>
+Bold creative concepts, fashion-inspired shoots, and stylized studio sessions.
+</p>
+<a class="btn btn-secondary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank">Book Creative</a>
+</div>
+
+
+<div class="service-card">
+<h3>Event Coverage</h3>
+<div class="service-meta">Custom Quote · Hourly Coverage</div>
+<p>
+Coverage for nightlife, private events, celebrations, and special occasions.
+</p>
+<a class="btn btn-secondary" href="mailto:hello@enhancevisualstudio.com">Request a Quote</a>
+</div>
+
+
+<!-- CTA SECTION -->
+
+<p>
+Whether you are planning a portrait session, editorial concept, creative shoot, or event coverage,
+Enhance Visual Studio is ready to capture your vision with style and intention.
+</p>
+
+
+<!-- CONTACT SECTION -->
+
+<p>
+For bookings, collaborations, and inquiries connect with Enhance Visual Studio using the information below.
+</p>
+
+
+<!-- UPDATED SOCIAL LINKS -->
+
+<li>
+<span class="contact-label">Instagram</span>
+<a href="https://www.instagram.com/enhancevisualstudio" target="_blank">@enhancevisualstudio</a>
+</li>
+
+<li>
+<span class="contact-label">YouTube</span>
+<a href="https://youtube.com/@enhancevisualstudio?si=1bcOeaRQPb_Vi7am" target="_blank">
+Enhance Visual Studio Channel
+</a>
+</li>
+
+
+<!-- BOOKING BUTTON -->
+
+<a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank">
+Book Now
+</a>
