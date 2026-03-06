@@ -1,3 +1,7 @@
+Absolutely — here’s a full rewritten index.html that keeps your current layout style, adds the slow cinematic hero zoom, updates the OG image to your file, and includes a real SEO upgrade with better meta tags plus LocalBusiness schema for Google.
+
+Replace your entire index.html with this:
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,27 +9,64 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#070707" />
 
-  <title>Enhance Visual Studio | Luxury Portrait & Lifestyle Photography</title>
+  <title>Enhance Visual Studio | Los Angeles Portrait & Lifestyle Photographer</title>
   <meta
     name="description"
-    content="Enhance Visual Studio offers luxury portrait, lifestyle, family, and event photography with a cinematic and modern feel."
+    content="Enhance Visual Studio is a luxury portrait, lifestyle, family, and event photographer serving Los Angeles, San Diego, San Francisco, and the Bay Area with cinematic, modern imagery."
   />
   <meta
     name="keywords"
-    content="Enhance Visual Studio, photographer, portrait photographer, lifestyle photography, family photography, event photography, Los Angeles photographer, Bay Area photographer, San Diego photographer"
+    content="Enhance Visual Studio, Los Angeles photographer, San Diego photographer, Bay Area photographer, San Francisco photographer, portrait photographer, lifestyle photographer, family photographer, event photographer, cinematic photography"
   />
   <meta name="author" content="Enhance Visual Studio" />
+  <meta name="robots" content="index, follow" />
 
-  <meta property="og:title" content="Enhance Visual Studio" />
+  <link rel="canonical" href="https://www.enhancevisualstudio.com/" />
+
+  <meta property="og:title" content="Enhance Visual Studio | Luxury Portrait & Lifestyle Photography" />
   <meta
     property="og:description"
     content="Luxury portrait, lifestyle, family, and event photography with a cinematic and modern feel."
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.enhancevisualstudio.com/" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=80" />
+  <meta property="og:image" content="https://www.enhancevisualstudio.com/images/og-enhance-visualstudio.jpg" />
 
-  <link rel="canonical" href="https://www.enhancevisualstudio.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Enhance Visual Studio | Luxury Portrait & Lifestyle Photography" />
+  <meta
+    name="twitter:description"
+    content="Luxury portrait, lifestyle, family, and event photography with a cinematic and modern feel."
+  />
+  <meta name="twitter:image" content="https://www.enhancevisualstudio.com/images/og-enhance-visualstudio.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Enhance Visual Studio",
+    "image": "https://www.enhancevisualstudio.com/images/og-enhance-visualstudio.jpg",
+    "url": "https://www.enhancevisualstudio.com/",
+    "email": "hello@enhancevisualstudio.com",
+    "description": "Luxury portrait, lifestyle, family, and event photography with a cinematic and modern feel.",
+    "areaServed": [
+      "Los Angeles, California",
+      "San Diego, California",
+      "San Francisco, California",
+      "Bay Area, California"
+    ],
+    "sameAs": [
+      "https://instagram.com/enhancevisualstudio"
+    ],
+    "priceRange": "$$",
+    "serviceType": [
+      "Portrait Photography",
+      "Lifestyle Photography",
+      "Family Photography",
+      "Event Photography"
+    ]
+  }
+  </script>
 
   <style>
     :root {
@@ -53,6 +94,7 @@
     }
 
     html {
+      height: 100%;
       scroll-behavior: smooth;
     }
 
@@ -253,9 +295,11 @@
       inset: 0;
       background:
         linear-gradient(to right, rgba(7,7,7,0.86) 0%, rgba(7,7,7,0.54) 45%, rgba(7,7,7,0.45) 100%),
-        url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+        url("images/hero.jpg") center/cover no-repeat;
       z-index: -2;
       transform: scale(1.02);
+      animation: heroZoom 18s ease-in-out infinite alternate;
+      will-change: transform;
     }
 
     .hero::after {
@@ -266,6 +310,15 @@
         radial-gradient(circle at top right, rgba(215,182,122,0.16), transparent 30%),
         linear-gradient(to bottom, transparent 60%, rgba(7,7,7,1) 100%);
       z-index: -1;
+    }
+
+    @keyframes heroZoom {
+      from {
+        transform: scale(1.02);
+      }
+      to {
+        transform: scale(1.08);
+      }
     }
 
     .hero-grid {
@@ -705,7 +758,7 @@
         </div>
 
         <div class="nav-cta">
-          <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
+          <a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
             Book Now
           </a>
         </div>
@@ -721,7 +774,7 @@
         <a href="#experience">Experience</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
-        <a href="https://your-booking-link-here.com" target="_blank" rel="noopener">Book Now</a>
+        <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">Book Now</a>
       </div>
     </div>
   </header>
@@ -738,7 +791,7 @@
           </p>
 
           <div class="btn-row">
-            <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
+            <a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
               Book Your Session
             </a>
             <a class="btn btn-secondary" href="#portfolio">
@@ -758,7 +811,7 @@
             <li>Professional editing and polished final delivery</li>
             <li>Available in Los Angeles, San Diego, SF, and Bay Area</li>
           </ul>
-          <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
+          <a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
             Start Booking
           </a>
         </aside>
@@ -779,22 +832,22 @@
 
         <div class="portfolio-grid">
           <a href="#" class="portfolio-card" aria-label="Portraits Gallery">
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1000&q=80" alt="Portrait photography example" />
+            <img src="images/hero.jpg" alt="Portrait photography example" />
             <div class="portfolio-overlay"><span>Portraits</span></div>
           </a>
 
           <a href="#" class="portfolio-card" aria-label="Lifestyle Gallery">
-            <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=1000&q=80" alt="Lifestyle photography example" />
+            <img src="images/hero.jpg" alt="Lifestyle photography example" />
             <div class="portfolio-overlay"><span>Lifestyle</span></div>
           </a>
 
           <a href="#" class="portfolio-card" aria-label="Family Gallery">
-            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1000&q=80" alt="Family photography example" />
+            <img src="images/hero.jpg" alt="Family photography example" />
             <div class="portfolio-overlay"><span>Family</span></div>
           </a>
 
           <a href="#" class="portfolio-card" aria-label="Events Gallery">
-            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80" alt="Event photography example" />
+            <img src="images/hero.jpg" alt="Event photography example" />
             <div class="portfolio-overlay"><span>Events</span></div>
           </a>
         </div>
@@ -804,7 +857,7 @@
     <section class="section" id="about">
       <div class="container about-grid">
         <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80" alt="Photographer portrait placeholder" />
+          <img src="images/hero.jpg" alt="Photographer portrait placeholder" />
         </div>
 
         <div class="about-copy">
@@ -902,7 +955,7 @@
             <p>
               Ideal for personal branding, creative portraits, graduation, or solo sessions with a polished and cinematic feel.
             </p>
-            <a class="btn btn-secondary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">Book Portraits</a>
+            <a class="btn btn-secondary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">Book Portraits</a>
           </div>
 
           <div class="service-card">
@@ -911,7 +964,7 @@
             <p>
               A relaxed session designed to capture authentic connection, movement, and meaningful moments with style.
             </p>
-            <a class="btn btn-secondary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">Book Family</a>
+            <a class="btn btn-secondary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">Book Family</a>
           </div>
 
           <div class="service-card">
@@ -976,7 +1029,7 @@
             Enhance Visual Studio is ready to capture your moment with intention, style, and detail.
           </p>
           <div class="btn-row">
-            <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
+            <a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
               Book Your Session
             </a>
             <a class="btn btn-secondary" href="mailto:hello@enhancevisualstudio.com">
@@ -1009,7 +1062,7 @@
               </li>
               <li>
                 <span class="contact-label">Instagram</span>
-                <a href="https://instagram.com/your-instagram-here" target="_blank" rel="noopener">@your-instagram-here</a>
+                <a href="https://instagram.com/enhancevisualstudio" target="_blank" rel="noopener">@enhancevisualstudio</a>
               </li>
               <li>
                 <span class="contact-label">Service Areas</span>
@@ -1024,7 +1077,7 @@
               For portraits, lifestyle, family, and event bookings, use the booking link below or send an email for custom requests.
             </p>
             <div class="btn-row">
-              <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
+              <a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
                 Book Now
               </a>
               <a class="btn btn-secondary" href="mailto:hello@enhancevisualstudio.com">
@@ -1039,7 +1092,7 @@
 
   <footer class="footer">
     <div class="container footer-row">
-      <p>© <span id="year"></span> Enhance Visual Studio. All rights reserved.</p>
+      <p>© <span id="year"></span> Enhance Visual Studio LLC. All rights reserved.</p>
       <div class="footer-links">
         <a href="#portfolio">Portfolio</a>
         <a href="#about">About</a>
@@ -1073,4 +1126,4 @@
     }
   </script>
 </body>
-</html>
+</html> So what’s placeholder that I need to change and also what can’t stay the same and needs to be changed due to not making sense to visitors of site. I want all your honest thoughts of whatever doesn’t make sense or needs changing. Note I know all the images in this are the same because I haven’t added more images yet.
