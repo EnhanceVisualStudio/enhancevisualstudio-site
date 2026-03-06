@@ -5,25 +5,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#070707" />
 
-  <title>Enhance Visual Studio | Luxury Portrait & Studio Photography</title>
+  <title>Enhance Visual Studio | Luxury Portrait & Lifestyle Photography</title>
   <meta
     name="description"
-    content="Enhance Visual Studio offers bold portrait, studio, lifestyle, and event photography with a modern and polished feel."
+    content="Enhance Visual Studio offers luxury portrait, lifestyle, family, and event photography with a cinematic and modern feel."
   />
   <meta
     name="keywords"
-    content="Enhance Visual Studio, portrait photographer, studio photography, lifestyle photography, event photography, Los Angeles photographer, Bay Area photographer, San Diego photographer"
+    content="Enhance Visual Studio, photographer, portrait photographer, lifestyle photography, family photography, event photography, Los Angeles photographer, Bay Area photographer, San Diego photographer"
   />
   <meta name="author" content="Enhance Visual Studio" />
 
   <meta property="og:title" content="Enhance Visual Studio" />
   <meta
     property="og:description"
-    content="Bold portrait, studio, lifestyle, and event photography with a modern and polished feel."
+    content="Luxury portrait, lifestyle, family, and event photography with a cinematic and modern feel."
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.enhancevisualstudio.com/" />
-  <meta property="og:image" content="images/hero.jpg" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=80" />
 
   <link rel="canonical" href="https://www.enhancevisualstudio.com/" />
 
@@ -168,6 +168,7 @@
       border-color: rgba(255,255,255,0.22);
     }
 
+    /* NAV */
     .site-header {
       position: sticky;
       top: 0;
@@ -236,6 +237,7 @@
       cursor: pointer;
     }
 
+    /* HERO */
     .hero {
       position: relative;
       min-height: calc(100vh - var(--nav-h));
@@ -243,7 +245,6 @@
       align-items: center;
       overflow: hidden;
       isolation: isolate;
-      background: linear-gradient(180deg, #0b0b0b 0%, #111 100%);
     }
 
     .hero::before {
@@ -251,16 +252,27 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at top right, rgba(215,182,122,0.14), transparent 30%),
+        linear-gradient(to right, rgba(7,7,7,0.86) 0%, rgba(7,7,7,0.54) 45%, rgba(7,7,7,0.45) 100%),
+        url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      z-index: -2;
+      transform: scale(1.02);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(215,182,122,0.16), transparent 30%),
         linear-gradient(to bottom, transparent 60%, rgba(7,7,7,1) 100%);
       z-index: -1;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 34px;
-      align-items: center;
+      align-items: end;
       width: 100%;
     }
 
@@ -274,29 +286,16 @@
       font-size: 1.07rem;
     }
 
-    .hero-image-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: end;
-    }
-
-    .hero-image {
-      width: 100%;
-      max-width: 520px;
-      object-fit: contain;
-      filter: drop-shadow(0 18px 45px rgba(0,0,0,0.35));
-    }
-
     .hero-card {
-      width: 100%;
+      justify-self: end;
+      width: min(100%, 360px);
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
       box-shadow: var(--shadow);
       backdrop-filter: blur(16px);
       border-radius: var(--radius-lg);
       padding: 26px;
-      margin-top: 24px;
-      max-width: 520px;
+      margin-bottom: 40px;
     }
 
     .hero-card h3 {
@@ -328,6 +327,7 @@
       background: var(--accent);
     }
 
+    /* SECTION HEADERS */
     .section-head {
       display: flex;
       justify-content: space-between;
@@ -340,6 +340,7 @@
       max-width: 560px;
     }
 
+    /* PORTFOLIO */
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -350,7 +351,7 @@
       position: relative;
       overflow: hidden;
       border-radius: 22px;
-      background: #181818;
+      background: var(--bg-soft);
       border: 1px solid var(--line);
       min-height: 410px;
       box-shadow: var(--shadow);
@@ -383,6 +384,7 @@
       letter-spacing: 0.02em;
     }
 
+    /* ABOUT */
     .about-grid {
       display: grid;
       grid-template-columns: 0.95fr 1.05fr;
@@ -394,7 +396,7 @@
       border-radius: 28px;
       overflow: hidden;
       border: 1px solid var(--line);
-      background: #181818;
+      background: var(--bg-soft);
       box-shadow: var(--shadow);
       min-height: 560px;
     }
@@ -423,6 +425,7 @@
       margin-top: 4px;
     }
 
+    /* EXPERIENCE */
     .experience-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -446,6 +449,7 @@
       text-transform: uppercase;
     }
 
+    /* SERVICES */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -469,6 +473,7 @@
       margin-bottom: 18px;
     }
 
+    /* TESTIMONIALS */
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -496,6 +501,7 @@
       font-size: 0.96rem;
     }
 
+    /* CTA */
     .cta-wrap {
       position: relative;
       overflow: hidden;
@@ -524,6 +530,7 @@
       margin-top: 10px;
     }
 
+    /* CONTACT */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -557,6 +564,7 @@
       letter-spacing: 0.08em;
     }
 
+    /* FOOTER */
     .footer {
       padding: 28px 0 42px;
       border-top: 1px solid rgba(255,255,255,0.06);
@@ -590,6 +598,7 @@
       color: var(--text);
     }
 
+    /* MOBILE */
     @media (max-width: 1024px) {
       .hero-grid,
       .about-grid,
@@ -607,8 +616,9 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .hero-image-wrap {
-        order: -1;
+      .hero-card {
+        justify-self: start;
+        margin-bottom: 0;
       }
     }
 
@@ -720,10 +730,11 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Studio Portrait • Fashion • Events</span>
-          <h1>Bold portraits. Clean studio visuals. Timeless presence.</h1>
+          <span class="eyebrow">Luxury Portrait & Lifestyle Photography</span>
+          <h1>Elevated imagery for moments that deserve to last.</h1>
           <p class="lead">
-            Enhance Visual Studio creates polished portrait, studio, lifestyle, and event photography with strong creative direction and a refined modern finish.
+            Enhance Visual Studio creates cinematic, modern, and timeless photography for portraits,
+            families, lifestyle sessions, and events. Every image is crafted to feel as powerful years from now as it does today.
           </p>
 
           <div class="btn-row">
@@ -734,27 +745,23 @@
               View Portfolio
             </a>
           </div>
-
-          <aside class="hero-card">
-            <h3>The Experience</h3>
-            <p>
-              A refined photography process designed to make your session effortless, guided, and memorable from booking to final gallery delivery.
-            </p>
-            <ul>
-              <li>Portrait, studio, lifestyle, and event sessions</li>
-              <li>Creative direction and posing guidance</li>
-              <li>Professional editing and polished final delivery</li>
-              <li>Available in Los Angeles, San Diego, SF, and Bay Area</li>
-            </ul>
-            <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
-              Start Booking
-            </a>
-          </aside>
         </div>
 
-        <div class="hero-image-wrap">
-          <img class="hero-image" src="images/hero.jpg" alt="Studio portrait by Enhance Visual Studio" />
-        </div>
+        <aside class="hero-card">
+          <h3>The Experience</h3>
+          <p>
+            A refined photography process designed to make your session effortless, guided, and memorable from booking to final gallery delivery.
+          </p>
+          <ul>
+            <li>Portrait, family, lifestyle, and event sessions</li>
+            <li>Creative direction and posing guidance</li>
+            <li>Professional editing and polished final delivery</li>
+            <li>Available in Los Angeles, San Diego, SF, and Bay Area</li>
+          </ul>
+          <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
+            Start Booking
+          </a>
+        </aside>
       </div>
     </section>
 
@@ -766,28 +773,28 @@
             <h2>Selected work</h2>
           </div>
           <p>
-            A collection of bold portrait and studio imagery designed to feel polished, modern, and memorable.
+            Showcase only your strongest images here. Replace these placeholders with your best work from each category.
           </p>
         </div>
 
         <div class="portfolio-grid">
           <a href="#" class="portfolio-card" aria-label="Portraits Gallery">
-            <img src="images/portrait-1.jpg" alt="Studio portrait in black dress" />
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1000&q=80" alt="Portrait photography example" />
             <div class="portfolio-overlay"><span>Portraits</span></div>
           </a>
 
-          <a href="#" class="portfolio-card" aria-label="Beauty Gallery">
-            <img src="images/portrait-2.jpg" alt="Beauty close-up portrait" />
-            <div class="portfolio-overlay"><span>Beauty</span></div>
+          <a href="#" class="portfolio-card" aria-label="Lifestyle Gallery">
+            <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=1000&q=80" alt="Lifestyle photography example" />
+            <div class="portfolio-overlay"><span>Lifestyle</span></div>
           </a>
 
-          <a href="#" class="portfolio-card" aria-label="Editorial Gallery">
-            <img src="images/editorial-1.jpg" alt="Editorial studio portrait" />
-            <div class="portfolio-overlay"><span>Editorial</span></div>
+          <a href="#" class="portfolio-card" aria-label="Family Gallery">
+            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1000&q=80" alt="Family photography example" />
+            <div class="portfolio-overlay"><span>Family</span></div>
           </a>
 
           <a href="#" class="portfolio-card" aria-label="Events Gallery">
-            <img src="images/events-1.jpg" alt="Event photography by Enhance Visual Studio" />
+            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80" alt="Event photography example" />
             <div class="portfolio-overlay"><span>Events</span></div>
           </a>
         </div>
@@ -797,7 +804,7 @@
     <section class="section" id="about">
       <div class="container about-grid">
         <div class="about-image">
-          <img src="images/about.jpg" alt="Enhance Visual Studio featured portrait" />
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80" alt="Photographer portrait placeholder" />
         </div>
 
         <div class="about-copy">
@@ -836,7 +843,7 @@
             <h2>A simple process designed around you</h2>
           </div>
           <p>
-            A premium process that keeps booking simple, the shoot comfortable, and the final gallery polished.
+            Make the client journey feel premium and easy. This section helps remove hesitation and builds trust before they book.
           </p>
         </div>
 
@@ -884,7 +891,7 @@
             <h2>Session offerings</h2>
           </div>
           <p>
-            Update pricing, session length, and descriptions to match your current offers.
+            These are starter examples. Update pricing, session length, and descriptions to match your real packages.
           </p>
         </div>
 
@@ -893,25 +900,25 @@
             <h3>Portrait Session</h3>
             <div class="service-meta">Starting at $150 · 1 Hour</div>
             <p>
-              Ideal for creative portraits, graduation, branding, or solo sessions with a polished and modern feel.
+              Ideal for personal branding, creative portraits, graduation, or solo sessions with a polished and cinematic feel.
             </p>
             <a class="btn btn-secondary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">Book Portraits</a>
           </div>
 
           <div class="service-card">
-            <h3>Studio / Fashion</h3>
-            <div class="service-meta">Starting at $200 · 1 Hour</div>
+            <h3>Family / Lifestyle</h3>
+            <div class="service-meta">Starting at $200 · 45–60 Min</div>
             <p>
-              Clean studio imagery with confident posing, bold styling, and refined edits for a high-end final look.
+              A relaxed session designed to capture authentic connection, movement, and meaningful moments with style.
             </p>
-            <a class="btn btn-secondary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">Book Studio</a>
+            <a class="btn btn-secondary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">Book Family</a>
           </div>
 
           <div class="service-card">
             <h3>Event Coverage</h3>
             <div class="service-meta">Custom Quote · Hourly Coverage</div>
             <p>
-              Coverage for nightlife, celebrations, private events, and special occasions with dynamic storytelling.
+              Coverage for celebrations, nightlife, private events, and special occasions with professional and dynamic storytelling.
             </p>
             <a class="btn btn-secondary" href="mailto:hello@enhancevisualstudio.com">Request a Quote</a>
           </div>
@@ -927,7 +934,7 @@
             <h2>What clients are saying</h2>
           </div>
           <p>
-            Replace these placeholders with real client reviews as soon as you have them.
+            Replace these with real client reviews as soon as you have them. Even 2 or 3 genuine testimonials will help conversions a lot.
           </p>
         </div>
 
@@ -965,7 +972,7 @@
           <span class="eyebrow">Ready to Book?</span>
           <h2>Let’s create something unforgettable.</h2>
           <p>
-            Whether you are planning a portrait session, studio shoot, lifestyle set, or event coverage,
+            Whether you are planning a portrait session, family shoot, lifestyle set, or event coverage,
             Enhance Visual Studio is ready to capture your moment with intention, style, and detail.
           </p>
           <div class="btn-row">
@@ -988,7 +995,7 @@
             <h2>Connect with Enhance Visual Studio</h2>
           </div>
           <p>
-            Add your real Instagram and booking links here.
+            Keep this section simple and clean. Add your real Instagram link, booking link, and anything else you want clients to use.
           </p>
         </div>
 
@@ -1014,7 +1021,7 @@
           <div class="contact-card">
             <h3>Booking & Inquiries</h3>
             <p>
-              For portraits, studio, lifestyle, and event bookings, use the booking link below or send an email for custom requests.
+              For portraits, lifestyle, family, and event bookings, use the booking link below or send an email for custom requests.
             </p>
             <div class="btn-row">
               <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
