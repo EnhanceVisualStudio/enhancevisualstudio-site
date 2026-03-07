@@ -168,6 +168,23 @@
       border-color: rgba(255,255,255,0.22);
     }
 
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .social-link:hover {
+      color: var(--text);
+    }
+
     /* NAV */
     .site-header {
       position: sticky;
@@ -252,7 +269,7 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to right, rgba(7,7,7,0.86) 0%, rgba(7,7,7,0.54) 45%, rgba(7,7,7,0.45) 100%),
+        linear-gradient(to right, rgba(7,7,7,0.88) 0%, rgba(7,7,7,0.58) 42%, rgba(7,7,7,0.48) 100%),
         url("images/hero.jpg") center/cover no-repeat;
       z-index: -2;
       transform: scale(1.02);
@@ -705,7 +722,7 @@
         </div>
 
         <div class="nav-cta">
-          <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
+          <a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
             Book Now
           </a>
         </div>
@@ -721,7 +738,7 @@
         <a href="#experience">Experience</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
-        <a href="https://your-booking-link-here.com" target="_blank" rel="noopener">Book Now</a>
+        <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">Book Now</a>
       </div>
     </div>
   </header>
@@ -738,12 +755,18 @@
           </p>
 
           <div class="btn-row">
-            <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
+            <a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
               Book Your Session
             </a>
             <a class="btn btn-secondary" href="#portfolio">
               View Portfolio
             </a>
+          </div>
+
+          <div class="social-row">
+            <a class="social-link" href="https://instagram.com/enhancevisualstudio" target="_blank" rel="noopener">Instagram</a>
+            <a class="social-link" href="https://www.facebook.com/enhancevisualstudio" target="_blank" rel="noopener">Facebook</a>
+            <a class="social-link" href="https://youtube.com/@enhancevisualstudio" target="_blank" rel="noopener">YouTube</a>
           </div>
         </div>
 
@@ -758,7 +781,7 @@
             <li>Professional editing and polished final delivery</li>
             <li>Available in Los Angeles, San Diego, SF, and Bay Area</li>
           </ul>
-          <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
+          <a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
             Start Booking
           </a>
         </aside>
@@ -773,28 +796,28 @@
             <h2>Selected work</h2>
           </div>
           <p>
-            Showcase only your strongest images here. Replace these placeholders with your best work from each category.
+            A look into portrait, lifestyle, event, and creative work from Enhance Visual Studio.
           </p>
         </div>
 
         <div class="portfolio-grid">
           <a href="#" class="portfolio-card" aria-label="Portraits Gallery">
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1000&q=80" alt="Portrait photography example" />
+            <img src="images/portfolio-1.jpg" alt="Portrait photography by Enhance Visual Studio" />
             <div class="portfolio-overlay"><span>Portraits</span></div>
           </a>
 
           <a href="#" class="portfolio-card" aria-label="Lifestyle Gallery">
-            <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=1000&q=80" alt="Lifestyle photography example" />
+            <img src="images/portfolio-2.jpg" alt="Lifestyle photography by Enhance Visual Studio" />
             <div class="portfolio-overlay"><span>Lifestyle</span></div>
           </a>
 
           <a href="#" class="portfolio-card" aria-label="Family Gallery">
-            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1000&q=80" alt="Family photography example" />
+            <img src="images/portfolio-3.jpg" alt="Family photography by Enhance Visual Studio" />
             <div class="portfolio-overlay"><span>Family</span></div>
           </a>
 
           <a href="#" class="portfolio-card" aria-label="Events Gallery">
-            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80" alt="Event photography example" />
+            <img src="images/portfolio-4.jpg" alt="Event photography by Enhance Visual Studio" />
             <div class="portfolio-overlay"><span>Events</span></div>
           </a>
         </div>
@@ -804,7 +827,7 @@
     <section class="section" id="about">
       <div class="container about-grid">
         <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80" alt="Photographer portrait placeholder" />
+          <img src="images/about.jpg" alt="Enhance Visual Studio portrait" />
         </div>
 
         <div class="about-copy">
@@ -891,7 +914,7 @@
             <h2>Session offerings</h2>
           </div>
           <p>
-            These are starter examples. Update pricing, session length, and descriptions to match your real packages.
+            Portrait, lifestyle, family, and event photography crafted with a cinematic and modern feel.
           </p>
         </div>
 
@@ -900,9 +923,9 @@
             <h3>Portrait Session</h3>
             <div class="service-meta">Starting at $150 · 1 Hour</div>
             <p>
-              Ideal for personal branding, creative portraits, graduation, or solo sessions with a polished and cinematic feel.
+              Ideal for branding, creative portraits, graduation, or solo sessions with a polished and cinematic feel.
             </p>
-            <a class="btn btn-secondary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">Book Portraits</a>
+            <a class="btn btn-secondary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">Book Portraits</a>
           </div>
 
           <div class="service-card">
@@ -911,7 +934,7 @@
             <p>
               A relaxed session designed to capture authentic connection, movement, and meaningful moments with style.
             </p>
-            <a class="btn btn-secondary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">Book Family</a>
+            <a class="btn btn-secondary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">Book Family</a>
           </div>
 
           <div class="service-card">
@@ -934,7 +957,7 @@
             <h2>What clients are saying</h2>
           </div>
           <p>
-            Replace these with real client reviews as soon as you have them. Even 2 or 3 genuine testimonials will help conversions a lot.
+            Replace these with real client reviews anytime you’re ready.
           </p>
         </div>
 
@@ -976,7 +999,7 @@
             Enhance Visual Studio is ready to capture your moment with intention, style, and detail.
           </p>
           <div class="btn-row">
-            <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
+            <a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
               Book Your Session
             </a>
             <a class="btn btn-secondary" href="mailto:hello@enhancevisualstudio.com">
@@ -995,7 +1018,7 @@
             <h2>Connect with Enhance Visual Studio</h2>
           </div>
           <p>
-            Keep this section simple and clean. Add your real Instagram link, booking link, and anything else you want clients to use.
+            Book directly, email, or connect through social media.
           </p>
         </div>
 
@@ -1009,7 +1032,15 @@
               </li>
               <li>
                 <span class="contact-label">Instagram</span>
-                <a href="https://instagram.com/your-instagram-here" target="_blank" rel="noopener">@your-instagram-here</a>
+                <a href="https://instagram.com/enhancevisualstudio" target="_blank" rel="noopener">@enhancevisualstudio</a>
+              </li>
+              <li>
+                <span class="contact-label">Facebook</span>
+                <a href="https://www.facebook.com/enhancevisualstudio" target="_blank" rel="noopener">Enhance Visual Studio</a>
+              </li>
+              <li>
+                <span class="contact-label">YouTube</span>
+                <a href="https://youtube.com/@enhancevisualstudio" target="_blank" rel="noopener">@enhancevisualstudio</a>
               </li>
               <li>
                 <span class="contact-label">Service Areas</span>
@@ -1024,7 +1055,7 @@
               For portraits, lifestyle, family, and event bookings, use the booking link below or send an email for custom requests.
             </p>
             <div class="btn-row">
-              <a class="btn btn-primary" href="https://your-booking-link-here.com" target="_blank" rel="noopener">
+              <a class="btn btn-primary" href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener">
                 Book Now
               </a>
               <a class="btn btn-secondary" href="mailto:hello@enhancevisualstudio.com">
@@ -1039,12 +1070,15 @@
 
   <footer class="footer">
     <div class="container footer-row">
-      <p>© <span id="year"></span> Enhance Visual Studio. All rights reserved.</p>
+      <p>© <span id="year"></span> Enhance Visual Studio LLC. All rights reserved.</p>
       <div class="footer-links">
         <a href="#portfolio">Portfolio</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
+        <a href="https://instagram.com/enhancevisualstudio" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/enhancevisualstudio" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://youtube.com/@enhancevisualstudio" target="_blank" rel="noopener">YouTube</a>
       </div>
     </div>
   </footer>
