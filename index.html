@@ -38,6 +38,10 @@
       height: auto;
     }
 
+    button {
+      font: inherit;
+    }
+
     .container {
       width: min(1180px, 92%);
       margin: 0 auto;
@@ -88,27 +92,123 @@
       background: #0b0b0b;
     }
 
-    .hero-media {
+    .hero-slide {
       position: absolute;
       inset: 0;
+      opacity: 0;
+      transition: opacity 1.4s ease;
       z-index: 1;
-      transform: scale(1.08);
-      animation: heroScale 12s ease-out forwards;
-      will-change: transform;
+      pointer-events: none;
     }
 
-    .hero-media::before {
+    .hero-slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .hero-slide::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: url("assets/hero.jpg") center center / cover no-repeat;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transform: scale(1.08);
     }
 
-    .hero-media::after {
+    .hero-slide.active::before {
+      animation: heroScale 7s ease-out forwards;
+    }
+
+    .hero-slide::after {
       content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.72));
+    }
+
+    .hero-slide.slide-1::before {
+      background-image: url("assets/hero1.jpg");
+    }
+
+    .hero-slide.slide-2::before {
+      background-image: url("assets/hero2.jpg");
+    }
+
+    .hero-slide.slide-3::before {
+      background-image: url("assets/hero3.jpg");
+    }
+
+    .hero-slide.slide-4::before {
+      background-image: url("assets/hero4.jpg");
+    }
+
+    .hero-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 6;
+      width: 52px;
+      height: 52px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.28);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .hero-arrow:hover {
+      background: rgba(0, 0, 0, 0.48);
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+
+    .hero-arrow:active {
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    .hero-arrow.left {
+      left: 24px;
+    }
+
+    .hero-arrow.right {
+      right: 24px;
+    }
+
+    .hero-arrow span {
+      font-size: 28px;
+      line-height: 1;
+      margin-top: -2px;
+    }
+
+    .hero-dots {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      display: flex;
+      gap: 10px;
+    }
+
+    .hero-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: background 0.25s ease, transform 0.25s ease;
+      cursor: pointer;
+    }
+
+    .hero-dot.active {
+      background: #ffffff;
+      transform: scale(1.1);
     }
 
     section {
@@ -284,6 +384,19 @@
       .nav {
         display: none;
       }
+
+      .hero-arrow {
+        width: 44px;
+        height: 44px;
+      }
+
+      .hero-arrow.left {
+        left: 14px;
+      }
+
+      .hero-arrow.right {
+        right: 14px;
+      }
     }
   </style>
 </head>
@@ -300,8 +413,26 @@
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-media"></div>
+  <section class="hero" id="hero">
+    <div class="hero-slide slide-1 active"></div>
+    <div class="hero-slide slide-2"></div>
+    <div class="hero-slide slide-3"></div>
+    <div class="hero-slide slide-4"></div>
+
+    <button class="hero-arrow left" id="prevSlide" aria-label="Previous slide">
+      <span>‹</span>
+    </button>
+
+    <button class="hero-arrow right" id="nextSlide" aria-label="Next slide">
+      <span>›</span>
+    </button>
+
+    <div class="hero-dots">
+      <button class="hero-dot active" aria-label="Hero slide 1"></button>
+      <button class="hero-dot" aria-label="Hero slide 2"></button>
+      <button class="hero-dot" aria-label="Hero slide 3"></button>
+      <button class="hero-dot" aria-label="Hero slide 4"></button>
+    </div>
   </section>
 
   <section id="portfolio" class="portfolio">
@@ -345,8 +476,8 @@
     <div class="about-box">
       <h2 class="section-title">The Vision</h2>
       <p>
+        Photography has the power to preserve moments that would otherwise fade with time.
         At Enhance Visual Studio, the vision is simple: create images that feel just as powerful years from now as they do today.
-        Photography has the power to preserve moments that would otherwise fade with time.     
       </p>
       <p>
         By combining professional equipment, modern editing techniques, and strong creative direction, every image is crafted to reflect both style and authenticity.
@@ -385,8 +516,81 @@
   </section>
 
   <footer>
-    © 2026 Enhance Visual Studio LLC | All Rights Reserved
+    © 2026 Enhance Visual Studio
   </footer>
 
+  <script>
+    const hero = document.getElementById("hero");
+    const slides = document.querySelectorAll(".hero-slide");
+    const dots = document.querySelectorAll(".hero-dot");
+    const prevBtn = document.getElementById("prevSlide");
+    const nextBtn = document.getElementById("nextSlide");
+
+    let currentSlide = 0;
+    let slideInterval = null;
+    const slideDelay = 5000;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+        dots[i].classList.remove("active");
+      });
+
+      slides[index].classList.add("active");
+      dots[index].classList.add("active");
+      currentSlide = index;
+    }
+
+    function nextSlide() {
+      const next = (currentSlide + 1) % slides.length;
+      showSlide(next);
+    }
+
+    function prevSlide() {
+      const prev = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prev);
+    }
+
+    function startSlideshow() {
+      stopSlideshow();
+      slideInterval = setInterval(nextSlide, slideDelay);
+    }
+
+    function stopSlideshow() {
+      if (slideInterval) {
+        clearInterval(slideInterval);
+        slideInterval = null;
+      }
+    }
+
+    function resetSlideshow() {
+      startSlideshow();
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        showSlide(index);
+        resetSlideshow();
+      });
+    });
+
+    nextBtn.addEventListener("click", () => {
+      nextSlide();
+      resetSlideshow();
+    });
+
+    prevBtn.addEventListener("click", () => {
+      prevSlide();
+      resetSlideshow();
+    });
+
+    hero.addEventListener("mouseenter", stopSlideshow);
+    hero.addEventListener("mouseleave", startSlideshow);
+
+    hero.addEventListener("touchstart", stopSlideshow, { passive: true });
+    hero.addEventListener("touchend", startSlideshow);
+
+    startSlideshow();
+  </script>
 </body>
 </html>
