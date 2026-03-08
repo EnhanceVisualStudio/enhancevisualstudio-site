@@ -1,17 +1,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<meta name="theme-color" content="#0b0b0b"/>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0b0b">
 
 <title>Enhance Visual Studio | Portrait, Lifestyle & Event Photographer</title>
 
-<meta name="description" content="Enhance Visual Studio offers portrait, lifestyle and event photography across California including Los Angeles, San Diego and the Bay Area."/>
+<meta name="description" content="Enhance Visual Studio offers portrait, lifestyle and event photography across California including Los Angeles, San Diego and the Bay Area.">
 
-<link rel="canonical" href="https://www.enhancevisualstudio.com/"/>
+<link rel="canonical" href="https://www.enhancevisualstudio.com/">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
@@ -29,7 +30,11 @@
 --shadow:0 10px 30px rgba(0,0,0,0.28);
 }
 
-*{box-sizing:border-box;margin:0;padding:0;}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
 body{
 font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
@@ -37,6 +42,13 @@ background:var(--bg);
 color:var(--text);
 line-height:1.6;
 overflow-x:hidden;
+opacity:0;
+animation:pageFade .9s ease forwards;
+}
+
+@keyframes pageFade{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 .container{
@@ -44,7 +56,9 @@ width:min(92%,var(--max));
 margin:0 auto;
 }
 
-.section{padding:90px 0;}
+.section{
+padding:90px 0;
+}
 
 .section-title{
 font-size:clamp(2rem,4vw,3rem);
@@ -56,10 +70,21 @@ color:var(--muted);
 max-width:760px;
 }
 
+.reveal{
+opacity:0;
+transform:translateY(36px);
+transition:opacity 1s ease,transform 1s ease;
+}
+
+.reveal.visible{
+opacity:1;
+transform:translateY(0);
+}
+
 .nav{
 position:sticky;
 top:0;
-background:rgba(11,11,11,0.85);
+background:rgba(11,11,11,.85);
 backdrop-filter:blur(10px);
 border-bottom:1px solid var(--line);
 z-index:50;
@@ -89,7 +114,9 @@ color:var(--muted);
 font-size:.95rem;
 }
 
-.nav-links a:hover{color:var(--text);}
+.nav-links a:hover{
+color:var(--text);
+}
 
 .btn{
 background:var(--accent);
@@ -99,12 +126,14 @@ border-radius:999px;
 font-weight:700;
 }
 
-.btn:hover{background:var(--accent-hover);}
+.btn:hover{
+background:var(--accent-hover);
+}
 
 .hero{
 min-height:100vh;
 background:
-linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.55)),
+linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.55)),
 url("images/hero.jpg") center/cover no-repeat;
 background-attachment:fixed;
 }
@@ -143,14 +172,16 @@ gap:26px;
 margin-top:30px;
 }
 
-.portfolio-large{grid-column:span 2;}
+.portfolio-large{
+grid-column:span 2;
+}
 
 .portfolio-item{
 position:relative;
 overflow:hidden;
 border-radius:20px;
 border:1px solid var(--line);
-cursor:zoom-in;
+cursor:pointer;
 }
 
 .portfolio-item img{
@@ -160,13 +191,15 @@ object-fit:cover;
 transition:transform .6s ease;
 }
 
-.portfolio-item:hover img{transform:scale(1.06);}
+.portfolio-item:hover img{
+transform:scale(1.06);
+}
 
 .portfolio-label{
 position:absolute;
 bottom:18px;
 left:18px;
-background:rgba(0,0,0,0.55);
+background:rgba(0,0,0,.55);
 padding:8px 14px;
 border-radius:999px;
 font-size:.8rem;
@@ -196,7 +229,9 @@ justify-content:space-between;
 flex-wrap:wrap;
 }
 
-footer{padding:30px 0;}
+footer{
+padding:30px 0;
+}
 
 .footer-inner{
 display:flex;
@@ -211,12 +246,14 @@ display:flex;
 gap:18px;
 }
 
-.footer-links a{font-size:20px;}
+.footer-links a{
+font-size:20px;
+}
 
 .lightbox{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.94);
+background:rgba(0,0,0,.94);
 display:flex;
 align-items:center;
 justify-content:center;
@@ -250,13 +287,21 @@ font-size:22px;
 
 @media(max-width:900px){
 
-.hero{background-attachment:scroll;}
+.hero{
+background-attachment:scroll;
+}
 
-.about-grid{grid-template-columns:1fr;}
+.about-grid{
+grid-template-columns:1fr;
+}
 
-.portfolio-grid{grid-template-columns:1fr;}
+.portfolio-grid{
+grid-template-columns:1fr;
+}
 
-.portfolio-large{grid-column:span 1;}
+.portfolio-large{
+grid-column:span 1;
+}
 
 }
 
@@ -266,6 +311,7 @@ font-size:22px;
 <body>
 
 <header class="nav">
+
 <div class="container nav-inner">
 
 <div class="brand">Enhance Visual Studio</div>
@@ -280,13 +326,15 @@ font-size:22px;
 </nav>
 
 </div>
+
 </header>
 
 <main>
 
 <section class="hero"></section>
 
-<section id="about" class="section">
+<section id="about" class="section reveal">
+
 <div class="container about-grid">
 
 <div class="about-card">
@@ -307,13 +355,16 @@ By combining professional equipment, modern editing techniques and strong creati
 </div>
 
 <div class="about-image">
+
 <img src="images/about.jpg" loading="lazy" alt="Enhance Visual Studio photography">
+
 </div>
 
 </div>
+
 </section>
 
-<section id="portfolio" class="section">
+<section id="portfolio" class="section reveal">
 
 <div class="container">
 
@@ -361,7 +412,7 @@ A curated selection of portrait, lifestyle and event photography from Enhance Vi
 
 </section>
 
-<section class="section">
+<section class="section reveal">
 
 <div class="container">
 
@@ -375,7 +426,7 @@ Enhance Visual Studio provides portrait, lifestyle and event photography across 
 
 </section>
 
-<section class="section cta">
+<section class="section cta reveal">
 
 <div class="container">
 
@@ -410,9 +461,7 @@ Schedule Now
 <div class="footer-links">
 
 <a href="https://www.instagram.com/enhancevisualstudio"><i class="fa-brands fa-instagram"></i></a>
-
 <a href="https://www.facebook.com/enhancevisualstudio"><i class="fa-brands fa-facebook-f"></i></a>
-
 <a href="https://youtube.com/@enhancevisualstudio"><i class="fa-brands fa-youtube"></i></a>
 
 </div>
@@ -446,6 +495,19 @@ lightbox.classList.remove('active');
 lightbox.onclick=e=>{
 if(e.target===lightbox)lightbox.classList.remove('active');
 };
+
+const revealElements=document.querySelectorAll('.reveal');
+
+const revealObserver=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('visible');
+revealObserver.unobserve(entry.target);
+}
+});
+},{threshold:.12});
+
+revealElements.forEach(el=>revealObserver.observe(el));
 
 </script>
 
