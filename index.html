@@ -40,6 +40,8 @@
 
     button {
       font: inherit;
+      background: none;
+      border: none;
     }
 
     .container {
@@ -110,7 +112,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background-position: center center;
+      background-position: center top;
       background-size: cover;
       background-repeat: no-repeat;
       transform: scale(1.08);
@@ -233,48 +235,38 @@
       padding-right: 20px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+    .masonry {
+      column-count: 3;
+      column-gap: 16px;
       margin-top: 28px;
     }
 
-    .card {
-      position: relative;
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
       overflow: hidden;
       border-radius: 12px;
       background: #151515;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    .card a {
-      display: block;
-      position: relative;
+    .masonry-item.in-view {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    .card img {
+    .masonry-item img {
       width: 100%;
-      height: 420px;
-      object-fit: cover;
-      transition: transform 0.45s ease;
+      height: auto;
+      display: block;
+      transition: transform 0.45s ease, opacity 0.3s ease;
     }
 
-    .card:hover img {
-      transform: scale(1.06);
-    }
-
-    .card-label {
-      position: absolute;
-      left: 16px;
-      bottom: 16px;
-      background: rgba(0, 0, 0, 0.55);
-      color: #ffffff;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .masonry-item:hover img {
+      transform: scale(1.03);
+      opacity: 0.96;
     }
 
     .about {
@@ -373,14 +365,6 @@
     }
 
     @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card img {
-        height: 340px;
-      }
-
       .nav {
         display: none;
       }
@@ -396,6 +380,32 @@
 
       .hero-arrow.right {
         right: 14px;
+      }
+
+      .masonry {
+        column-count: 2;
+      }
+
+      .hero-slide.slide-1::before {
+        background-image: url("assets/hero1-mobile.jpg");
+      }
+
+      .hero-slide.slide-2::before {
+        background-image: url("assets/hero2-mobile.jpg");
+      }
+
+      .hero-slide.slide-3::before {
+        background-image: url("assets/hero3-mobile.jpg");
+      }
+
+      .hero-slide.slide-4::before {
+        background-image: url("assets/hero4-mobile.jpg");
+      }
+    }
+
+    @media (max-width: 600px) {
+      .masonry {
+        column-count: 1;
       }
     }
   </style>
@@ -436,39 +446,32 @@
   </section>
 
   <section id="portfolio" class="portfolio">
-    <h2 class="section-title">Featured Work</h2>
+    <h2 class="section-title">Portfolio</h2>
     <p class="section-text">
-      A curated look at portraits, lifestyle sessions, events, and family photography by Enhance Visual Studio.
+      A curated selection of portraits, lifestyle sessions, events, and family photography by Enhance Visual Studio.
     </p>
 
-    <div class="grid">
-      <div class="card">
-        <a href="galleries/portraits.html">
-          <img src="assets/portrait.jpg" alt="Portrait photography" />
-          <div class="card-label">Portraits</div>
-        </a>
-      </div>
-
-      <div class="card">
-        <a href="galleries/lifestyle.html">
-          <img src="assets/lifestyle.jpg" alt="Lifestyle photography" />
-          <div class="card-label">Lifestyle</div>
-        </a>
-      </div>
-
-      <div class="card">
-        <a href="galleries/events.html">
-          <img src="assets/events.jpg" alt="Event photography" />
-          <div class="card-label">Events</div>
-        </a>
-      </div>
-
-      <div class="card">
-        <a href="galleries/family.html">
-          <img src="assets/family.jpg" alt="Family photography" />
-          <div class="card-label">Family</div>
-        </a>
-      </div>
+    <div class="container masonry">
+      <div class="masonry-item"><img src="assets/p1.jpg" alt="Enhance Visual Studio portfolio image 1" /></div>
+      <div class="masonry-item"><img src="assets/p2.jpg" alt="Enhance Visual Studio portfolio image 2" /></div>
+      <div class="masonry-item"><img src="assets/p3.jpg" alt="Enhance Visual Studio portfolio image 3" /></div>
+      <div class="masonry-item"><img src="assets/p4.jpg" alt="Enhance Visual Studio portfolio image 4" /></div>
+      <div class="masonry-item"><img src="assets/p5.jpg" alt="Enhance Visual Studio portfolio image 5" /></div>
+      <div class="masonry-item"><img src="assets/p6.jpg" alt="Enhance Visual Studio portfolio image 6" /></div>
+      <div class="masonry-item"><img src="assets/p7.jpg" alt="Enhance Visual Studio portfolio image 7" /></div>
+      <div class="masonry-item"><img src="assets/p8.jpg" alt="Enhance Visual Studio portfolio image 8" /></div>
+      <div class="masonry-item"><img src="assets/p9.jpg" alt="Enhance Visual Studio portfolio image 9" /></div>
+      <div class="masonry-item"><img src="assets/p10.jpg" alt="Enhance Visual Studio portfolio image 10" /></div>
+      <div class="masonry-item"><img src="assets/p11.jpg" alt="Enhance Visual Studio portfolio image 11" /></div>
+      <div class="masonry-item"><img src="assets/p12.jpg" alt="Enhance Visual Studio portfolio image 12" /></div>
+      <div class="masonry-item"><img src="assets/p13.jpg" alt="Enhance Visual Studio portfolio image 13" /></div>
+      <div class="masonry-item"><img src="assets/p14.jpg" alt="Enhance Visual Studio portfolio image 14" /></div>
+      <div class="masonry-item"><img src="assets/p15.jpg" alt="Enhance Visual Studio portfolio image 15" /></div>
+      <div class="masonry-item"><img src="assets/p16.jpg" alt="Enhance Visual Studio portfolio image 16" /></div>
+      <div class="masonry-item"><img src="assets/p17.jpg" alt="Enhance Visual Studio portfolio image 17" /></div>
+      <div class="masonry-item"><img src="assets/p18.jpg" alt="Enhance Visual Studio portfolio image 18" /></div>
+      <div class="masonry-item"><img src="assets/p19.jpg" alt="Enhance Visual Studio portfolio image 19" /></div>
+      <div class="masonry-item"><img src="assets/p20.jpg" alt="Enhance Visual Studio portfolio image 20" /></div>
     </div>
   </section>
 
@@ -476,8 +479,8 @@
     <div class="about-box">
       <h2 class="section-title">The Vision</h2>
       <p>
+        Photography has the power to preserve moments that would otherwise fade with time.
         At Enhance Visual Studio, the vision is simple: create images that feel just as powerful years from now as they do today.
-        Photography has the power to preserve moments that would otherwise fade with time.      
       </p>
       <p>
         By combining professional equipment, modern editing techniques, and strong creative direction, every image is crafted to reflect both style and authenticity.
@@ -504,13 +507,14 @@
   <section id="contact" class="contact">
     <h2 class="section-title">Connect</h2>
     <p class="section-text">
-      Follow the brand, view more work, or reach out to book your next shoot.
+      Follow the brand or reach out to book your next shoot.
     </p>
 
     <div class="contact-links">
       <a href="https://www.instagram.com/enhancevisualstudio" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="https://www.facebook.com/enhancevisualstudio" target="_blank" rel="noopener noreferrer">Facebook</a>
       <a href="https://youtube.com/@enhancevisualstudio" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="https://enhancevisualstudio.as.me" target="_blank" rel="noopener noreferrer">Book</a>
     </div>
   </section>
 
@@ -524,10 +528,15 @@
     const dots = document.querySelectorAll(".hero-dot");
     const prevBtn = document.getElementById("prevSlide");
     const nextBtn = document.getElementById("nextSlide");
+    const masonryItems = document.querySelectorAll(".masonry-item");
 
     let currentSlide = 0;
     let slideInterval = null;
     const slideDelay = 5000;
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const swipeThreshold = 50;
 
     function showSlide(index) {
       slides.forEach((slide, i) => {
@@ -586,8 +595,40 @@
     hero.addEventListener("mouseenter", stopSlideshow);
     hero.addEventListener("mouseleave", startSlideshow);
 
-    hero.addEventListener("touchstart", stopSlideshow, { passive: true });
-    hero.addEventListener("touchend", startSlideshow);
+    hero.addEventListener("touchstart", (e) => {
+      stopSlideshow();
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    hero.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const swipeDistance = touchEndX - touchStartX;
+
+      if (Math.abs(swipeDistance) > swipeThreshold) {
+        if (swipeDistance < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+
+      startSlideshow();
+    }, { passive: true });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
+
+    masonryItems.forEach((item) => {
+      observer.observe(item);
+    });
 
     startSlideshow();
   </script>
