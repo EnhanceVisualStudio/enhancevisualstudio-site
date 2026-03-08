@@ -204,12 +204,17 @@
 
     /* HERO */
     .hero {
-      min-height: 100vh;
-      background:
-        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)),
-        url("images/hero.jpg") center/cover no-repeat;
-    }
-
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)),
+    url("images/hero.jpg") center/cover no-repeat;
+  background-attachment: fixed;
+}
+@media (max-width: 900px) {
+  .hero {
+    background-attachment: scroll;
+  }
+}
     /* ABOUT */
     .about-grid {
       display: grid;
