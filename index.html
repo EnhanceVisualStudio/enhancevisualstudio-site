@@ -6,7 +6,7 @@
   <title>Enhance Visual Studio</title>
   <meta
     name="description"
-    content="Enhance Visual Studio offers cinematic portraits, lifestyle photography, family sessions, and event coverage."
+    content="Enhance Visual Studio offers cinematic portraits, lifestyle photography, family sessions, and event coverage in San Francisco and the Bay Area."
   />
   <style>
     * {
@@ -24,6 +24,7 @@
       background: #0b0b0b;
       color: #ffffff;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -81,11 +82,33 @@
     }
 
     .hero {
+      position: relative;
       min-height: 100vh;
-      background:
-        linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75)),
-        url("assets/hero.jpg") center/cover no-repeat;
-      animation: heroZoom 12s ease-out forwards;
+      overflow: hidden;
+      background: #0b0b0b;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      transform: scale(1.08);
+      animation: heroScale 12s ease-out forwards;
+      will-change: transform;
+    }
+
+    .hero-media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("assets/hero.jpg") center center / cover no-repeat;
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.72));
     }
 
     section {
@@ -240,12 +263,12 @@
       color: #888888;
     }
 
-    @keyframes heroZoom {
+    @keyframes heroScale {
       from {
-        background-size: 115%;
+        transform: scale(1.08);
       }
       to {
-        background-size: 100%;
+        transform: scale(1);
       }
     }
 
@@ -277,7 +300,9 @@
     </div>
   </header>
 
-  <section class="hero"></section>
+  <section class="hero">
+    <div class="hero-media"></div>
+  </section>
 
   <section id="portfolio" class="portfolio">
     <h2 class="section-title">Featured Work</h2>
@@ -330,7 +355,7 @@
         Because great photography isn’t just about how something looks — it’s about how it feels.
       </p>
       <p>
-        Based in California and available for travel.
+        Service Area: San Francisco • Bay Area
       </p>
     </div>
   </section>
@@ -353,6 +378,7 @@
 
     <div class="contact-links">
       <a href="https://www.instagram.com/enhancevisualstudio" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.facebook.com/enhancevisualstudio" target="_blank" rel="noopener noreferrer">Facebook</a>
       <a href="https://youtube.com/@enhancevisualstudio" target="_blank" rel="noopener noreferrer">YouTube</a>
       <a href="https://enhancevisualstudio.as.me" target="_blank" rel="noopener noreferrer">Acuity Booking</a>
     </div>
