@@ -43,12 +43,16 @@
     }
 
     .site-header {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 20;
-      padding: 24px 0;
+      padding: 20px 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .header-inner {
@@ -86,6 +90,7 @@
       background:
         linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75)),
         url("assets/hero.jpg") center/cover no-repeat;
+      animation: heroZoom 12s ease-out forwards;
     }
 
     .hero-content {
@@ -285,6 +290,15 @@
       }
     }
 
+    @keyframes heroZoom {
+      from {
+        background-size: 115%;
+      }
+      to {
+        background-size: 100%;
+      }
+    }
+
     @media (max-width: 900px) {
       .grid {
         grid-template-columns: 1fr;
@@ -304,7 +318,7 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a href="#" class="brand">Enhance Visual Studio</a>
+      <a href="#" class="brand">ENHANCE</a>
       <nav class="nav">
         <a href="#portfolio">Portfolio</a>
         <a href="#about">About</a>
