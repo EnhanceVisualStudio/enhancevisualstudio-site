@@ -19,7 +19,6 @@
   <meta name="author" content="Enhance Visual Studio" />
   <link rel="canonical" href="https://www.enhancevisualstudio.com/" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Enhance Visual Studio | Luxury Photography" />
   <meta property="og:description" content="Cinematic portrait, lifestyle, and event photography with a modern and timeless feel." />
   <meta property="og:type" content="website" />
@@ -27,13 +26,13 @@
   <meta property="og:image" content="https://www.enhancevisualstudio.com/images/hero.jpg" />
   <meta property="og:site_name" content="Enhance Visual Studio" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Enhance Visual Studio | Luxury Photography" />
   <meta name="twitter:description" content="Cinematic portrait, lifestyle, and event photography with a modern and timeless feel." />
   <meta name="twitter:image" content="https://www.enhancevisualstudio.com/images/hero.jpg" />
 
-  <!-- Local business / photographer SEO -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -45,6 +44,7 @@
     "brand":"Enhance Visual Studio",
     "sameAs":[
       "https://www.instagram.com/enhancevisualstudio",
+      "https://www.facebook.com/enhancevisualstudio",
       "https://youtube.com/@enhancevisualstudio?si=1bcOeaRQPb_Vi7am"
     ],
     "areaServed":[
@@ -92,6 +92,7 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     img {
@@ -127,6 +128,19 @@
       color: var(--muted);
       max-width: 760px;
       font-size: 1.02rem;
+    }
+
+    /* cinematic fade reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 1s ease, transform 1s ease;
+      will-change: opacity, transform;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* NAV */
@@ -249,7 +263,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      transition: transform 0.7s ease;
     }
 
     .portfolio-item:hover img {
@@ -321,12 +335,21 @@
 
     .footer-links {
       display: flex;
-      gap: 16px;
+      gap: 18px;
       flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links a {
+      font-size: 20px;
+      opacity: 0.7;
+      transition: transform 0.25s ease, opacity 0.25s ease, color 0.25s ease;
     }
 
     .footer-links a:hover {
+      opacity: 1;
       color: var(--text);
+      transform: scale(1.12);
     }
 
     /* LIGHTBOX */
@@ -380,7 +403,6 @@
     .lightbox-prev:hover,
     .lightbox-next:hover {
       background: rgba(255,255,255,0.14);
-      transform: scale(1.03);
     }
 
     .lightbox-close {
@@ -443,6 +465,24 @@
         right: 12px;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal,
+      .reveal.visible,
+      .portfolio-item img,
+      .btn,
+      .footer-links a,
+      .lightbox,
+      .lightbox-close,
+      .lightbox-prev,
+      .lightbox-next {
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -464,11 +504,10 @@
   <main>
     <section class="hero" aria-label="Enhance Visual Studio hero image"></section>
 
-    <section id="about" class="section">
+    <section id="about" class="section reveal">
       <div class="container about-grid">
-        <div class="about-card">
+        <div class="about-card reveal">
           <h1 class="section-title">The Vision</h1>
-
           <p class="section-text">
             Photography has the power to preserve moments that would otherwise fade with time.
             At Enhance Visual Studio, the vision is simple: create images that feel just as
@@ -485,7 +524,7 @@
           </p>
         </div>
 
-        <div class="about-image">
+        <div class="about-image reveal">
           <img
             src="images/about.jpg"
             alt="Featured portrait work by Enhance Visual Studio"
@@ -496,7 +535,7 @@
       </div>
     </section>
 
-    <section id="portfolio" class="section">
+    <section id="portfolio" class="section reveal">
       <div class="container">
         <h2 class="section-title">Portfolio</h2>
         <p class="section-text">
@@ -504,68 +543,61 @@
         </p>
 
         <div class="portfolio-grid">
-          <article class="portfolio-item">
+          <article class="portfolio-item reveal">
             <img src="images/portfolio-1.jpg" alt="Portrait photography by Enhance Visual Studio" loading="lazy" decoding="async" data-full="images/portfolio-1.jpg" />
           </article>
 
-          <article class="portfolio-item">
+          <article class="portfolio-item reveal">
             <img src="images/portfolio-2.jpg" alt="Lifestyle photography by Enhance Visual Studio" loading="lazy" decoding="async" data-full="images/portfolio-2.jpg" />
           </article>
 
-          <article class="portfolio-item">
+          <article class="portfolio-item reveal">
             <img src="images/portfolio-3.jpg" alt="Event photography by Enhance Visual Studio" loading="lazy" decoding="async" data-full="images/portfolio-3.jpg" />
           </article>
 
-          <article class="portfolio-item">
+          <article class="portfolio-item reveal">
             <img src="images/portfolio-4.jpg" alt="Studio photography by Enhance Visual Studio" loading="lazy" decoding="async" data-full="images/portfolio-4.jpg" />
           </article>
 
-          <article class="portfolio-item">
+          <article class="portfolio-item reveal">
             <img src="images/portfolio-5.jpg" alt="Creative photography by Enhance Visual Studio" loading="lazy" decoding="async" data-full="images/portfolio-5.jpg" />
           </article>
 
-          <article class="portfolio-item">
+          <article class="portfolio-item reveal">
             <img src="images/portfolio-6.jpg" alt="Cinematic photography by Enhance Visual Studio" loading="lazy" decoding="async" data-full="images/portfolio-6.jpg" />
           </article>
         </div>
       </div>
     </section>
 
-    <section id="instagram" class="section">
+    <section id="instagram" class="section reveal">
       <div class="container">
         <h2 class="section-title">Instagram</h2>
         <p class="section-text">
           Follow Enhance Visual Studio for latest work, behind-the-scenes moments, and new photo drops.
         </p>
 
-        <div class="instagram-wrap">
+        <div class="instagram-wrap reveal">
           <p class="instagram-note">
-            For a real auto-updating Instagram feed on GitHub + Cloudflare, paste your third-party embed code below this comment.
+            To make this a true auto-updating Instagram feed, paste your widget embed code here from a service like LightWidget.
           </p>
 
           <!--
             INSTAGRAM AUTO-FEED PLACEHOLDER
 
-            TRUE AUTO FEED OPTIONS:
-            1) LightWidget
-            2) Elfsight
-            3) SnapWidget
-
-            Example:
-            Paste the widget iframe/script here after you create one from a service.
-
-            Example structure only:
-            <iframe src="YOUR-INSTAGRAM-WIDGET-URL" 
-                    scrolling="no" 
-                    allowtransparency="true" 
-                    class="lightwidget-widget" 
-                    style="width:100%;border:0;overflow:hidden;">
-            </iframe>
+            Paste your Instagram widget iframe/script below this comment.
+            Example services:
+            - LightWidget
+            - Elfsight
+            - SnapWidget
           -->
 
           <div class="instagram-fallback">
             <a href="https://www.instagram.com/enhancevisualstudio" target="_blank" rel="noopener noreferrer" class="btn">
               View Instagram
+            </a>
+            <a href="https://www.facebook.com/enhancevisualstudio" target="_blank" rel="noopener noreferrer" class="btn">
+              View Facebook
             </a>
             <a href="https://youtube.com/@enhancevisualstudio?si=1bcOeaRQPb_Vi7am" target="_blank" rel="noopener noreferrer" class="btn">
               View YouTube
@@ -575,9 +607,9 @@
       </div>
     </section>
 
-    <section class="section cta">
+    <section class="section cta reveal">
       <div class="container">
-        <div class="cta-card">
+        <div class="cta-card reveal">
           <div>
             <h2 class="section-title" style="margin-bottom:10px;">Let’s create something timeless.</h2>
             <p>
@@ -598,19 +630,30 @@
     </section>
   </main>
 
-  <footer>
+  <footer class="reveal">
     <div class="container footer-inner">
       <p>© 2026 Enhance Visual Studio. All rights reserved.</p>
 
       <div class="footer-links">
-        <a href="https://www.instagram.com/enhancevisualstudio" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://youtube.com/@enhancevisualstudio?si=1bcOeaRQPb_Vi7am" target="_blank" rel="noopener noreferrer">YouTube</a>
-        <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener noreferrer">Book</a>
+        <a href="https://www.instagram.com/enhancevisualstudio" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="https://www.facebook.com/enhancevisualstudio" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+
+        <a href="https://youtube.com/@enhancevisualstudio?si=1bcOeaRQPb_Vi7am" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+
+        <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener noreferrer" aria-label="Book a session">
+          <i class="fa-solid fa-calendar-days"></i>
+        </a>
       </div>
     </div>
   </footer>
 
-  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">&times;</button>
     <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous image">&#10094;</button>
@@ -675,6 +718,23 @@
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') showPrev();
       if (e.key === 'ArrowRight') showNext();
+    });
+
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
     });
   </script>
 </body>
