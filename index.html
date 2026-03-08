@@ -1,693 +1,453 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0b0b0b" />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#0b0b0b"/>
 
-  <title>Enhance Visual Studio | Luxury Photographer | Portrait, Lifestyle & Events</title>
+<title>Enhance Visual Studio | Portrait, Lifestyle & Event Photographer</title>
 
-  <meta
-    name="description"
-    content="Enhance Visual Studio offers cinematic portrait, lifestyle, and event photography with a modern, timeless, and luxury feel."
-  />
-  <meta
-    name="keywords"
-    content="Enhance Visual Studio, photographer, portrait photographer, lifestyle photographer, event photographer, luxury photography, cinematic photography, California photographer, Los Angeles photographer, San Diego photographer, Bay Area photographer"
-  />
-  <meta name="robots" content="index, follow" />
-  <meta name="author" content="Enhance Visual Studio" />
-  <link rel="canonical" href="https://www.enhancevisualstudio.com/" />
+<meta name="description" content="Enhance Visual Studio offers portrait, lifestyle and event photography across California including Los Angeles, San Diego and the Bay Area."/>
 
-  <meta property="og:title" content="Enhance Visual Studio | Luxury Photography" />
-  <meta property="og:description" content="Cinematic portrait, lifestyle, and event photography with a modern and timeless feel." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.enhancevisualstudio.com/" />
-  <meta property="og:image" content="https://www.enhancevisualstudio.com/images/hero.jpg" />
-  <meta property="og:site_name" content="Enhance Visual Studio" />
+<link rel="canonical" href="https://www.enhancevisualstudio.com/"/>
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Enhance Visual Studio | Luxury Photography" />
-  <meta name="twitter:description" content="Cinematic portrait, lifestyle, and event photography with a modern and timeless feel." />
-  <meta name="twitter:image" content="https://www.enhancevisualstudio.com/images/hero.jpg" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"ProfessionalService",
-    "name":"Enhance Visual Studio",
-    "url":"https://www.enhancevisualstudio.com/",
-    "image":"https://www.enhancevisualstudio.com/images/hero.jpg",
-    "description":"Enhance Visual Studio offers cinematic portrait, lifestyle, and event photography with a modern and timeless feel.",
-    "brand":"Enhance Visual Studio",
-    "sameAs":[
-      "https://www.instagram.com/enhancevisualstudio",
-      "https://www.facebook.com/enhancevisualstudio",
-      "https://youtube.com/@enhancevisualstudio?si=1bcOeaRQPb_Vi7am"
-    ],
-    "areaServed":[
-      {"@type":"Place","name":"Los Angeles"},
-      {"@type":"Place","name":"San Diego"},
-      {"@type":"Place","name":"San Francisco Bay Area"},
-      {"@type":"Place","name":"California"}
-    ],
-    "serviceType":[
-      "Portrait Photography",
-      "Lifestyle Photography",
-      "Event Photography",
-      "Studio Photography"
-    ]
-  }
-  </script>
+:root{
+--bg:#0b0b0b;
+--bg-soft:#121212;
+--card:#171717;
+--text:#f5f1ea;
+--muted:#b8afa2;
+--line:rgba(255,255,255,0.08);
+--accent:#d6b98c;
+--accent-hover:#e6cda7;
+--max:1180px;
+--radius:18px;
+--shadow:0 10px 30px rgba(0,0,0,0.28);
+}
 
-  <style>
-    :root {
-      --bg: #0b0b0b;
-      --bg-soft: #121212;
-      --card: #171717;
-      --text: #f5f1ea;
-      --muted: #b8afa2;
-      --line: rgba(255,255,255,0.08);
-      --accent: #d6b98c;
-      --accent-hover: #e6cda7;
-      --max: 1180px;
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,0.28);
-    }
+*{box-sizing:border-box;margin:0;padding:0;}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+body{
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+overflow-x:hidden;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+.container{
+width:min(92%,var(--max));
+margin:0 auto;
+}
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+.section{padding:90px 0;}
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+.section-title{
+font-size:clamp(2rem,4vw,3rem);
+margin-bottom:14px;
+}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+.section-text{
+color:var(--muted);
+max-width:760px;
+}
 
-    button {
-      font: inherit;
-    }
+.nav{
+position:sticky;
+top:0;
+background:rgba(11,11,11,0.85);
+backdrop-filter:blur(10px);
+border-bottom:1px solid var(--line);
+z-index:50;
+}
 
-    .container {
-      width: min(92%, var(--max));
-      margin: 0 auto;
-    }
+.nav-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+min-height:74px;
+}
 
-    .section {
-      padding: 90px 0;
-    }
+.brand{
+font-weight:700;
+letter-spacing:.16em;
+text-transform:uppercase;
+}
 
-    .section-title {
-      font-size: clamp(1.9rem, 4vw, 3rem);
-      margin-bottom: 14px;
-      letter-spacing: 0.02em;
-    }
+.nav-links{
+display:flex;
+gap:18px;
+align-items:center;
+}
 
-    .section-text {
-      color: var(--muted);
-      max-width: 760px;
-      font-size: 1.02rem;
-    }
+.nav-links a{
+color:var(--muted);
+font-size:.95rem;
+}
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(36px);
-      transition: opacity 1s ease, transform 1s ease;
-      will-change: opacity, transform;
-    }
+.nav-links a:hover{color:var(--text);}
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.btn{
+background:var(--accent);
+color:#111;
+padding:12px 20px;
+border-radius:999px;
+font-weight:700;
+}
 
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(11,11,11,0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
-    }
+.btn:hover{background:var(--accent-hover);}
 
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 74px;
-      gap: 20px;
-    }
+.hero{
+min-height:100vh;
+background:
+linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.55)),
+url("images/hero.jpg") center/cover no-repeat;
+background-attachment:fixed;
+}
 
-    .brand {
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
+.about-grid{
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:40px;
+align-items:center;
+}
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
+.about-card{
+background:var(--bg-soft);
+border:1px solid var(--line);
+border-radius:var(--radius);
+padding:30px;
+}
 
-    .nav-links a {
-      color: var(--muted);
-      font-size: 0.96rem;
-      transition: color 0.2s ease;
-    }
+.about-image{
+border-radius:var(--radius);
+overflow:hidden;
+border:1px solid var(--line);
+}
 
-    .nav-links a:hover {
-      color: var(--text);
-    }
+.about-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
 
-    .btn {
-      display: inline-block;
-      background: var(--accent);
-      color: #111;
-      padding: 13px 20px;
-      border-radius: 999px;
-      font-weight: 700;
-      transition: transform 0.2s ease, background 0.2s ease;
-      border: none;
-      cursor: pointer;
-    }
+.portfolio-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+grid-auto-rows:420px;
+gap:26px;
+margin-top:30px;
+}
 
-    .btn:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
+.portfolio-large{grid-column:span 2;}
 
-    .hero {
-      min-height: 100vh;
-      background:
-        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)),
-        url("images/hero.jpg") center/cover no-repeat;
-      background-attachment: fixed;
-    }
+.portfolio-item{
+position:relative;
+overflow:hidden;
+border-radius:20px;
+border:1px solid var(--line);
+cursor:zoom-in;
+}
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 40px;
-      align-items: center;
-    }
+.portfolio-item img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .6s ease;
+}
 
-    .about-card {
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 30px;
-      box-shadow: var(--shadow);
-    }
+.portfolio-item:hover img{transform:scale(1.06);}
 
-    .about-image {
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      min-height: 420px;
-      background: #111;
-    }
+.portfolio-label{
+position:absolute;
+bottom:18px;
+left:18px;
+background:rgba(0,0,0,0.55);
+padding:8px 14px;
+border-radius:999px;
+font-size:.8rem;
+letter-spacing:.05em;
+opacity:0;
+transform:translateY(10px);
+transition:.35s;
+}
 
-    .about-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.portfolio-item:hover .portfolio-label{
+opacity:1;
+transform:translateY(0);
+}
 
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 26px;
-      margin-top: 30px;
-    }
+.cta{
+background:linear-gradient(180deg,var(--bg-soft),#0f0f0f);
+border-top:1px solid var(--line);
+border-bottom:1px solid var(--line);
+}
 
-    .portfolio-item {
-      overflow: hidden;
-      border-radius: 20px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      min-height: 420px;
-      box-shadow: var(--shadow);
-      cursor: zoom-in;
-    }
+.cta-card{
+padding:34px;
+border-radius:22px;
+background:var(--card);
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+}
 
-    .portfolio-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.7s ease;
-    }
+footer{padding:30px 0;}
 
-    .portfolio-item:hover img {
-      transform: scale(1.06);
-    }
+.footer-inner{
+display:flex;
+justify-content:space-between;
+border-top:1px solid var(--line);
+padding-top:22px;
+color:var(--muted);
+}
 
-    .cta {
-      background: linear-gradient(180deg, var(--bg-soft), #0f0f0f);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
+.footer-links{
+display:flex;
+gap:18px;
+}
 
-    .cta-card {
-      padding: 34px;
-      border-radius: 22px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      box-shadow: var(--shadow);
-    }
+.footer-links a{font-size:20px;}
 
-    .cta-card p {
-      color: var(--muted);
-      max-width: 700px;
-    }
+.lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.94);
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+visibility:hidden;
+transition:.25s;
+z-index:9999;
+}
 
-    footer {
-      padding: 30px 0 40px;
-    }
+.lightbox.active{
+opacity:1;
+visibility:visible;
+}
 
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      padding-top: 22px;
-    }
+.lightbox img{
+max-width:90vw;
+max-height:90vh;
+}
 
-    .footer-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
+.lightbox-close{
+position:absolute;
+top:20px;
+right:20px;
+background:rgba(255,255,255,.1);
+border-radius:50%;
+width:44px;
+height:44px;
+color:#fff;
+font-size:22px;
+}
 
-    .footer-links a {
-      font-size: 20px;
-      opacity: 0.7;
-      transition: transform 0.25s ease, opacity 0.25s ease, color 0.25s ease;
-    }
+@media(max-width:900px){
 
-    .footer-links a:hover {
-      opacity: 1;
-      color: var(--text);
-      transform: scale(1.12);
-    }
+.hero{background-attachment:scroll;}
 
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.94);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.25s ease, visibility 0.25s ease;
-      z-index: 9999;
-    }
+.about-grid{grid-template-columns:1fr;}
 
-    .lightbox.active {
-      opacity: 1;
-      visibility: visible;
-    }
+.portfolio-grid{grid-template-columns:1fr;}
 
-    .lightbox img {
-      max-width: min(92vw, 1600px);
-      max-height: 88vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-    }
+.portfolio-large{grid-column:span 1;}
 
-    .lightbox-close,
-    .lightbox-prev,
-    .lightbox-next {
-      position: absolute;
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 999px;
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      font-size: 1.3rem;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
+}
 
-    .lightbox-close:hover,
-    .lightbox-prev:hover,
-    .lightbox-next:hover {
-      background: rgba(255,255,255,0.14);
-    }
-
-    .lightbox-close {
-      top: 22px;
-      right: 22px;
-    }
-
-    .lightbox-prev {
-      left: 22px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .lightbox-next {
-      right: 22px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .lightbox-prev:hover,
-    .lightbox-next:hover {
-      transform: translateY(-50%) scale(1.03);
-    }
-
-    @media (max-width: 900px) {
-      .hero {
-        background-attachment: scroll;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .nav-inner {
-        flex-direction: column;
-        justify-content: center;
-        padding: 14px 0;
-      }
-
-      .lightbox-close,
-      .lightbox-prev,
-      .lightbox-next {
-        width: 42px;
-        height: 42px;
-      }
-
-      .lightbox-prev {
-        left: 12px;
-      }
-
-      .lightbox-next {
-        right: 12px;
-      }
-
-      .lightbox-close {
-        top: 12px;
-        right: 12px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      .reveal,
-      .reveal.visible,
-      .portfolio-item img,
-      .btn,
-      .footer-links a,
-      .lightbox,
-      .lightbox-close,
-      .lightbox-prev,
-      .lightbox-next {
-        transition: none !important;
-      }
-    }
-  </style>
+</style>
 </head>
+
 <body>
 
-  <header class="nav">
-    <div class="container nav-inner">
-      <a href="#" class="brand">Enhance Visual Studio</a>
+<header class="nav">
+<div class="container nav-inner">
 
-      <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="portraits.html">Portraits</a>
-        <a href="events.html">Events</a>
-        <a href="lifestyle.html">Lifestyle</a>
-        <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener noreferrer" class="btn">Book Now</a>
-      </nav>
-    </div>
-  </header>
+<div class="brand">Enhance Visual Studio</div>
 
-  <main>
-    <section class="hero" aria-label="Enhance Visual Studio hero image"></section>
+<nav class="nav-links">
+<a href="#about">About</a>
+<a href="#portfolio">Featured Work</a>
+<a href="portraits.html">Portraits</a>
+<a href="lifestyle.html">Lifestyle</a>
+<a href="events.html">Events</a>
+<a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" class="btn">Book Now</a>
+</nav>
 
-    <section id="about" class="section reveal">
-      <div class="container about-grid">
-        <div class="about-card reveal">
-          <h1 class="section-title">The Vision</h1>
-          <p class="section-text">
-            Photography has the power to preserve moments that would otherwise fade with time.
-            At Enhance Visual Studio, the vision is simple: create images that feel just as
-            powerful years from now as they do today.
-          </p>
-          <br />
-          <p class="section-text">
-            By combining professional equipment, modern editing techniques, and strong creative
-            direction, every image is crafted to reflect both style and authenticity.
-          </p>
-          <br />
-          <p class="section-text">
-            Because great photography isn’t just about how something looks — it’s about how it feels.
-          </p>
-        </div>
+</div>
+</header>
 
-        <div class="about-image reveal">
-          <img
-            src="images/about.jpg"
-            alt="Featured portrait work by Enhance Visual Studio"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-    </section>
+<main>
 
-    <section id="portfolio" class="section reveal">
-      <div class="container">
-        <h2 class="section-title">Portfolio</h2>
-        <p class="section-text">
-          A curated selection of portrait, lifestyle, studio, and event photography from Enhance Visual Studio.
-        </p>
+<section class="hero"></section>
 
-        <div class="portfolio-grid">
-          <article class="portfolio-item reveal">
-            <img src="images/portfolio-1.jpg" alt="Portrait photography by Enhance Visual Studio" loading="lazy" decoding="async" data-full="images/portfolio-1.jpg" />
-          </article>
+<section id="about" class="section">
+<div class="container about-grid">
 
-          <article class="portfolio-item reveal">
-            <img src="images/portfolio-2.jpg" alt="Lifestyle photography by Enhance Visual Studio" loading="lazy" decoding="async" data-full="images/portfolio-2.jpg" />
-          </article>
+<div class="about-card">
 
-          <article class="portfolio-item reveal">
-            <img src="images/portfolio-3.jpg" alt="Event photography by Enhance Visual Studio" loading="lazy" decoding="async" data-full="images/portfolio-3.jpg" />
-          </article>
+<h2 class="section-title">The Vision</h2>
 
-          <article class="portfolio-item reveal">
-            <img src="images/portfolio-4.jpg" alt="Studio photography by Enhance Visual Studio" loading="lazy" decoding="async" data-full="images/portfolio-4.jpg" />
-          </article>
+<p class="section-text">
+Photography has the power to preserve moments that would otherwise fade with time.
+At Enhance Visual Studio the vision is simple: create images that feel just as powerful years from now as they do today.
+</p>
 
-          <article class="portfolio-item reveal">
-            <img src="images/portfolio-5.jpg" alt="Creative photography by Enhance Visual Studio" loading="lazy" decoding="async" data-full="images/portfolio-5.jpg" />
-          </article>
+<br>
 
-          <article class="portfolio-item reveal">
-            <img src="images/portfolio-6.jpg" alt="Family / kids photography by Enhance Visual Studio" loading="lazy" decoding="async" data-full="images/portfolio-6.jpg" />
-          </article>
-        </div>
-      </div>
-    </section>
+<p class="section-text">
+By combining professional equipment, modern editing techniques and strong creative direction every image is crafted to reflect both style and authenticity.
+</p>
 
-    <section class="section reveal">
-      <div class="container">
-        <h2 class="section-title">Photography Services in California</h2>
+</div>
 
-        <p class="section-text">
-          Enhance Visual Studio is a professional photography studio specializing in portrait, lifestyle, and event photography across California. Sessions are available in Los Angeles, San Diego, and the San Francisco Bay Area, with a focus on creating cinematic, timeless imagery that captures authentic moments.
-        </p>
+<div class="about-image">
+<img src="images/about.jpg" loading="lazy" alt="Enhance Visual Studio photography">
+</div>
 
-        <br />
+</div>
+</section>
 
-        <p class="section-text">
-          Whether you're looking for a portrait photographer in Los Angeles, a lifestyle shoot in San Diego, or event photography in the Bay Area, Enhance Visual Studio delivers modern, high-end photography designed to feel powerful and lasting.
-        </p>
-      </div>
-    </section>
+<section id="portfolio" class="section">
 
-    <section class="section cta reveal">
-      <div class="container">
-        <div class="cta-card reveal">
-          <div>
-            <h2 class="section-title" style="margin-bottom:10px;">Let’s create something timeless.</h2>
-            <p>
-              Ready to book your portrait, lifestyle, studio, or event session with Enhance Visual Studio?
-            </p>
-          </div>
-          <a
-            href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn"
-          >
-            Schedule Now
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+<div class="container">
 
-  <footer class="reveal">
-    <div class="container footer-inner">
-      <p>© 2026 Enhance Visual Studio. All rights reserved.</p>
+<h2 class="section-title">Featured Work</h2>
 
-      <div class="footer-links">
-        <a href="https://www.instagram.com/enhancevisualstudio" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
+<p class="section-text">
+A curated selection of portrait, lifestyle and event photography from Enhance Visual Studio.
+</p>
 
-        <a href="https://www.facebook.com/enhancevisualstudio" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <i class="fa-brands fa-facebook-f"></i>
-        </a>
+<div class="portfolio-grid">
 
-        <a href="https://youtube.com/@enhancevisualstudio?si=1bcOeaRQPb_Vi7am" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-          <i class="fa-brands fa-youtube"></i>
-        </a>
+<article class="portfolio-item portfolio-large">
+<img src="images/portfolio-1.jpg" loading="lazy" data-full="images/portfolio-1.jpg">
+<span class="portfolio-label">Portrait</span>
+</article>
 
-        <a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" rel="noopener noreferrer" aria-label="Book a session">
-          <i class="fa-solid fa-calendar-days"></i>
-        </a>
-      </div>
-    </div>
-  </footer>
+<article class="portfolio-item">
+<img src="images/portfolio-2.jpg" loading="lazy" data-full="images/portfolio-2.jpg">
+<span class="portfolio-label">Lifestyle</span>
+</article>
 
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">&times;</button>
-    <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous image">&#10094;</button>
-    <img id="lightboxImage" src="" alt="Fullscreen portfolio image" />
-    <button class="lightbox-next" id="lightboxNext" aria-label="Next image">&#10095;</button>
-  </div>
+<article class="portfolio-item">
+<img src="images/portfolio-3.jpg" loading="lazy" data-full="images/portfolio-3.jpg">
+<span class="portfolio-label">Events</span>
+</article>
 
-  <script>
-    const portfolioImages = Array.from(document.querySelectorAll('.portfolio-item img'));
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightboxImage');
-    const lightboxClose = document.getElementById('lightboxClose');
-    const lightboxPrev = document.getElementById('lightboxPrev');
-    const lightboxNext = document.getElementById('lightboxNext');
+<article class="portfolio-item">
+<img src="images/portfolio-4.jpg" loading="lazy" data-full="images/portfolio-4.jpg">
+<span class="portfolio-label">Portrait</span>
+</article>
 
-    let currentIndex = 0;
+<article class="portfolio-item">
+<img src="images/portfolio-5.jpg" loading="lazy" data-full="images/portfolio-5.jpg">
+<span class="portfolio-label">Lifestyle</span>
+</article>
 
-    function openLightbox(index) {
-      currentIndex = index;
-      const selectedImage = portfolioImages[currentIndex];
-      lightboxImage.src = selectedImage.dataset.full || selectedImage.src;
-      lightboxImage.alt = selectedImage.alt || 'Fullscreen portfolio image';
-      lightbox.classList.add('active');
-      lightbox.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
+<article class="portfolio-item">
+<img src="images/portfolio-6.jpg" loading="lazy" data-full="images/portfolio-6.jpg">
+<span class="portfolio-label">Events</span>
+</article>
 
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      lightbox.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      setTimeout(() => {
-        lightboxImage.src = '';
-      }, 200);
-    }
+</div>
 
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + portfolioImages.length) % portfolioImages.length;
-      openLightbox(currentIndex);
-    }
+</div>
 
-    function showNext() {
-      currentIndex = (currentIndex + 1) % portfolioImages.length;
-      openLightbox(currentIndex);
-    }
+</section>
 
-    portfolioImages.forEach((img, index) => {
-      img.addEventListener('click', () => openLightbox(index));
-    });
+<section class="section">
 
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightboxPrev.addEventListener('click', showPrev);
-    lightboxNext.addEventListener('click', showNext);
+<div class="container">
 
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
+<h2 class="section-title">Photography Services in California</h2>
 
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('active')) return;
+<p class="section-text">
+Enhance Visual Studio provides portrait, lifestyle and event photography across California including Los Angeles, San Diego and the San Francisco Bay Area.
+</p>
 
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') showPrev();
-      if (e.key === 'ArrowRight') showNext();
-    });
+</div>
 
-    const revealElements = document.querySelectorAll('.reveal');
+</section>
 
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.12
-    });
+<section class="section cta">
 
-    revealElements.forEach((element) => {
-      revealObserver.observe(element);
-    });
-  </script>
+<div class="container">
+
+<div class="cta-card">
+
+<div>
+
+<h2 class="section-title">Let’s create something timeless.</h2>
+
+<p>Ready to book your next photography session?</p>
+
+</div>
+
+<a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" class="btn">
+Schedule Now
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+<div class="container footer-inner">
+
+<p>© 2026 Enhance Visual Studio</p>
+
+<div class="footer-links">
+
+<a href="https://www.instagram.com/enhancevisualstudio"><i class="fa-brands fa-instagram"></i></a>
+
+<a href="https://www.facebook.com/enhancevisualstudio"><i class="fa-brands fa-facebook-f"></i></a>
+
+<a href="https://youtube.com/@enhancevisualstudio"><i class="fa-brands fa-youtube"></i></a>
+
+</div>
+
+</div>
+
+</footer>
+
+<div class="lightbox" id="lightbox">
+<button class="lightbox-close" id="lightboxClose">&times;</button>
+<img id="lightboxImage">
+</div>
+
+<script>
+
+const portfolioImages=document.querySelectorAll('.portfolio-item img');
+const lightbox=document.getElementById('lightbox');
+const lightboxImage=document.getElementById('lightboxImage');
+
+portfolioImages.forEach(img=>{
+img.addEventListener('click',()=>{
+lightboxImage.src=img.dataset.full;
+lightbox.classList.add('active');
+});
+});
+
+document.getElementById('lightboxClose').onclick=()=>{
+lightbox.classList.remove('active');
+};
+
+lightbox.onclick=e=>{
+if(e.target===lightbox)lightbox.classList.remove('active');
+};
+
+</script>
+
 </body>
 </html>
