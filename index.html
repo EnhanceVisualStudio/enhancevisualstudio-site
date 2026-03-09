@@ -141,7 +141,8 @@ object-fit:cover;
 
 .portfolio-grid{
 display:grid;
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:repeat(12,1fr);
+grid-auto-rows:120px;
 gap:26px;
 margin-top:30px;
 }
@@ -151,6 +152,8 @@ overflow:hidden;
 border-radius:20px;
 border:1px solid var(--line);
 cursor:pointer;
+box-shadow:var(--shadow);
+background:var(--bg-soft);
 }
 
 .portfolio-item img{
@@ -162,6 +165,16 @@ transition:transform .5s ease;
 
 .portfolio-item:hover img{
 transform:scale(1.05);
+}
+
+.portfolio-large{
+grid-column:span 12;
+grid-row:span 4;
+}
+
+.portfolio-half{
+grid-column:span 6;
+grid-row:span 3;
 }
 
 footer{
@@ -217,7 +230,17 @@ cursor:pointer;
 
 @media(max-width:900px){
 .about-grid{grid-template-columns:1fr;}
-.portfolio-grid{grid-template-columns:1fr;}
+
+.portfolio-grid{
+grid-template-columns:1fr;
+grid-auto-rows:320px;
+}
+
+.portfolio-large,
+.portfolio-half{
+grid-column:span 1;
+grid-row:span 1;
+}
 }
 
 </style>
@@ -280,27 +303,27 @@ A curated collection of portrait, lifestyle and creative photography by Enhance 
 
 <div class="portfolio-grid">
 
-<div class="portfolio-item">
+<div class="portfolio-item portfolio-large">
 <img src="images/portfolio1.jpg" alt="San Francisco portrait photography" loading="lazy">
 </div>
 
-<div class="portfolio-item">
+<div class="portfolio-item portfolio-half">
 <img src="images/portfolio2.jpg" alt="Bay Area lifestyle photography" loading="lazy">
 </div>
 
-<div class="portfolio-item">
+<div class="portfolio-item portfolio-half">
 <img src="images/portfolio3.jpg" alt="Creative portrait photography San Francisco" loading="lazy">
 </div>
 
-<div class="portfolio-item">
+<div class="portfolio-item portfolio-half">
 <img src="images/portfolio4.jpg" alt="Lifestyle photographer Bay Area" loading="lazy">
 </div>
 
-<div class="portfolio-item">
+<div class="portfolio-item portfolio-half">
 <img src="images/portfolio5.jpg" alt="San Francisco creative photography session" loading="lazy">
 </div>
 
-<div class="portfolio-item">
+<div class="portfolio-item portfolio-large">
 <img src="images/portfolio6.jpg" alt="Portrait photographer Bay Area" loading="lazy">
 </div>
 
@@ -351,7 +374,7 @@ Enhance Visual Studio provides portrait, lifestyle and creative photography thro
 
 <div class="lightbox" id="lightbox">
 <span class="lightbox-close" id="close">&times;</span>
-<img id="lightboxImg">
+<img id="lightboxImg" alt="Expanded portfolio image">
 </div>
 
 <script>
@@ -364,6 +387,7 @@ images.forEach(img=>{
 img.addEventListener('click',()=>{
 lightbox.classList.add('active');
 lightboxImg.src=img.src;
+lightboxImg.alt=img.alt;
 });
 });
 
