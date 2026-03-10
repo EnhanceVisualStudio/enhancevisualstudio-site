@@ -1,407 +1,640 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b0b0b">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0b" />
 
-<title>Enhance Visual Studio | San Francisco Portrait, Lifestyle & Creative Photographer</title>
+  <title>Book a Session | Enhance Visual Studio</title>
+  <meta
+    name="description"
+    content="Book your photography session with Enhance Visual Studio. Portraits, studio sessions, couples, lifestyle, and events."
+  />
 
-<meta name="description" content="Enhance Visual Studio is a San Francisco and Bay Area photographer specializing in portrait, lifestyle and creative photography with a modern cinematic style.">
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --bg-soft:#121212;
+      --panel:#161616;
+      --text:#f5f1ea;
+      --muted:#b8afa2;
+      --line:rgba(255,255,255,0.08);
+      --accent:#d6b98c;
+      --accent-hover:#e6cda7;
+      --max:1180px;
+      --radius:18px;
+      --shadow:0 20px 60px rgba(0,0,0,0.35);
+    }
 
-<meta name="keywords" content="San Francisco portrait photographer, Bay Area portrait photographer, lifestyle photographer San Francisco, creative photographer Bay Area">
+    *{box-sizing:border-box}
 
-<link rel="canonical" href="https://www.enhancevisualstudio.com/">
+    html{scroll-behavior:smooth}
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
 
-<style>
+    img{
+      max-width:100%;
+      display:block;
+    }
 
-:root{
---bg:#0b0b0b;
---bg-soft:#121212;
---text:#f5f1ea;
---muted:#b8afa2;
---line:rgba(255,255,255,0.08);
---accent:#d6b98c;
---accent-hover:#e6cda7;
---max:1180px;
---radius:18px;
---shadow:0 10px 30px rgba(0,0,0,0.28);
-}
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
 
-*{box-sizing:border-box;margin:0;padding:0;}
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
 
-body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-background:var(--bg);
-color:var(--text);
-line-height:1.6;
-}
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(11,11,11,0.85);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
+    }
 
-img{
-max-width:100%;
-display:block;
-}
+    .nav{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
 
-a{text-decoration:none;color:inherit;}
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
 
-.container{
-width:min(92%,var(--max));
-margin:auto;
-}
+    .brand-name{
+      font-size:1rem;
+      font-weight:700;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
 
-.section{
-padding:90px 0;
-}
+    .brand-tag{
+      font-size:0.78rem;
+      color:var(--muted);
+      letter-spacing:0.08em;
+    }
 
-.section-title{
-font-size:clamp(2rem,4vw,3rem);
-margin-bottom:14px;
-}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
 
-.section-text{
-color:var(--muted);
-max-width:760px;
-}
+    .nav-links a{
+      color:var(--muted);
+      font-size:0.95rem;
+      transition:color .2s ease;
+    }
 
-.nav{
-position:sticky;
-top:0;
-background:rgba(11,11,11,.85);
-backdrop-filter:blur(10px);
-border-bottom:1px solid var(--line);
-z-index:50;
-}
+    .nav-links a:hover{
+      color:var(--text);
+    }
 
-.nav-inner{
-display:flex;
-align-items:center;
-justify-content:space-between;
-min-height:74px;
-}
+    .nav-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border-radius:999px;
+      background:var(--accent);
+      color:#111;
+      font-weight:700;
+      transition:transform .2s ease, background .2s ease;
+    }
 
-.brand{
-font-weight:700;
-letter-spacing:.15em;
-text-transform:uppercase;
-}
+    .nav-cta:hover{
+      background:var(--accent-hover);
+      transform:translateY(-1px);
+    }
 
-.nav-links{
-display:flex;
-gap:18px;
-align-items:center;
-}
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+      background:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.72)),
+        url('images/booking-hero.jpg') center/cover no-repeat;
+    }
 
-.btn{
-background:var(--accent);
-color:#111;
-padding:12px 20px;
-border-radius:999px;
-font-weight:700;
-}
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top right, rgba(214,185,140,0.18), transparent 35%);
+      pointer-events:none;
+    }
 
-.btn:hover{
-background:var(--accent-hover);
-}
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      min-height:68vh;
+      display:flex;
+      align-items:center;
+      padding:90px 0 80px;
+    }
 
-.hero{
-min-height:100vh;
-background:
-linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.55)),
-url("images/hero.jpg") center/cover no-repeat;
-}
+    .hero-copy{
+      max-width:760px;
+    }
 
-.about-grid{
-display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:40px;
-align-items:center;
-}
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:14px;
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      font-size:0.78rem;
+      font-weight:700;
+    }
 
-.about-card{
-background:var(--bg-soft);
-border:1px solid var(--line);
-border-radius:var(--radius);
-padding:30px;
-box-shadow:var(--shadow);
-}
+    h1{
+      margin:0 0 18px;
+      font-size:clamp(2.3rem, 6vw, 4.9rem);
+      line-height:1.02;
+      letter-spacing:-0.03em;
+    }
 
-.about-image{
-border-radius:var(--radius);
-overflow:hidden;
-border:1px solid var(--line);
-}
+    .hero-copy p{
+      margin:0 0 28px;
+      max-width:680px;
+      font-size:1.05rem;
+      color:var(--muted);
+    }
 
-.about-image img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
 
-.portfolio-grid{
-display:grid;
-grid-template-columns:repeat(12,1fr);
-grid-auto-rows:120px;
-gap:26px;
-margin-top:30px;
-}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:999px;
+      font-weight:700;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+    }
 
-.portfolio-item{
-overflow:hidden;
-border-radius:20px;
-border:1px solid var(--line);
-cursor:pointer;
-box-shadow:var(--shadow);
-background:var(--bg-soft);
-}
+    .btn-primary{
+      background:var(--accent);
+      color:#111;
+    }
 
-.portfolio-item img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:transform .5s ease;
-}
+    .btn-primary:hover{
+      background:var(--accent-hover);
+      transform:translateY(-1px);
+    }
 
-.portfolio-item:hover img{
-transform:scale(1.05);
-}
+    .btn-secondary{
+      border:1px solid var(--line);
+      color:var(--text);
+      background:rgba(255,255,255,0.02);
+    }
 
-.portfolio-large{
-grid-column:span 12;
-grid-row:span 4;
-}
+    .btn-secondary:hover{
+      border-color:rgba(255,255,255,0.18);
+      transform:translateY(-1px);
+    }
 
-.portfolio-half{
-grid-column:span 6;
-grid-row:span 3;
-}
+    section{
+      padding:84px 0;
+    }
 
-footer{
-padding:30px 0;
-border-top:1px solid var(--line);
-color:var(--muted);
-}
+    .section-head{
+      max-width:760px;
+      margin:0 0 34px;
+    }
 
-.footer-inner{
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
-}
+    .section-head h2{
+      margin:0 0 12px;
+      font-size:clamp(1.7rem, 4vw, 2.6rem);
+      letter-spacing:-0.03em;
+    }
 
-.footer-links{
-display:flex;
-gap:18px;
-font-size:20px;
-}
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+    }
 
-.lightbox{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.95);
-display:flex;
-align-items:center;
-justify-content:center;
-opacity:0;
-visibility:hidden;
-transition:.3s;
-z-index:9999;
-}
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:18px;
+    }
 
-.lightbox.active{
-opacity:1;
-visibility:visible;
-}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
 
-.lightbox img{
-max-width:90vw;
-max-height:90vh;
-}
+    .card h3{
+      margin:0 0 10px;
+      font-size:1.18rem;
+    }
 
-.lightbox-close{
-position:absolute;
-top:20px;
-right:20px;
-font-size:30px;
-color:#fff;
-cursor:pointer;
-}
+    .card p{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:0.96rem;
+    }
 
-@media(max-width:900px){
-.about-grid{grid-template-columns:1fr;}
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      color:var(--text);
+    }
 
-.portfolio-grid{
-grid-template-columns:1fr;
-grid-auto-rows:320px;
-}
+    .card li{
+      margin:8px 0;
+    }
 
-.portfolio-large,
-.portfolio-half{
-grid-column:span 1;
-grid-row:span 1;
-}
-}
+    .scheduler-wrap{
+      background:var(--bg-soft);
+    }
 
-</style>
+    .scheduler-shell{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .scheduler-note{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .scheduler-frame{
+      width:100%;
+      min-height:1200px;
+      border:0;
+      border-radius:18px;
+      background:#fff;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .info-list{
+      display:grid;
+      gap:14px;
+    }
+
+    .info-item{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--panel);
+      padding:18px 18px;
+    }
+
+    .info-item strong{
+      display:block;
+      margin-bottom:6px;
+      color:var(--text);
+      font-size:0.98rem;
+    }
+
+    .info-item span{
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .faq{
+      display:grid;
+      gap:14px;
+    }
+
+    .faq-item{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px;
+      background:var(--panel);
+    }
+
+    .faq-item h3{
+      margin:0 0 8px;
+      font-size:1rem;
+    }
+
+    .faq-item p{
+      margin:0;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .cta-strip{
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(214,185,140,0.06), rgba(214,185,140,0.02));
+    }
+
+    .cta-strip-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .cta-strip h2{
+      margin:0 0 8px;
+      font-size:clamp(1.4rem, 3vw, 2rem);
+    }
+
+    .cta-strip p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .site-footer{
+      padding:40px 0 55px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    .site-footer a{
+      color:var(--text);
+    }
+
+    @media (max-width:980px){
+      .cards,
+      .two-col{
+        grid-template-columns:1fr;
+      }
+
+      .hero-inner{
+        min-height:auto;
+        padding:80px 0 70px;
+      }
+
+      .scheduler-frame{
+        min-height:1300px;
+      }
+    }
+
+    @media (max-width:720px){
+      .nav{
+        padding:12px 0;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .nav-links{
+        width:100%;
+        justify-content:flex-start;
+      }
+
+      section{
+        padding:66px 0;
+      }
+
+      .card{
+        padding:20px;
+      }
+
+      .scheduler-shell{
+        padding:12px;
+        border-radius:18px;
+      }
+
+      .scheduler-frame{
+        min-height:1400px;
+        border-radius:14px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header class="nav">
-<div class="container nav-inner">
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <span class="brand-name">Enhance Visual Studio</span>
+        <span class="brand-tag">See it. frame it. Feeel it.</span>
+      </a>
 
-<div class="brand">Enhance Visual Studio</div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#portfolio">Portfolio</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="#booking" class="nav-cta">Book Now</a>
+      </nav>
+    </div>
+  </header>
 
-<nav class="nav-links">
-<a href="#about">About</a>
-<a href="#portfolio">Portfolio</a>
-<a href="https://calendly.com/bookenhancevisualstudio/1-hour-photography-session" target="_blank" class="btn">Book Now</a>
-</nav>
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Enhance Visual Studio Booking</span>
+          <h1>Book your session with confidence.</h1>
+          <p>
+            Whether you’re planning portraits, studio images, couples photos, lifestyle content,
+            or event coverage, your session is designed to create polished, cinematic images that
+            feel as powerful as they look.
+          </p>
 
-</div>
-</header>
+          <div class="hero-actions">
+            <a href="#booking" class="btn btn-primary">Book Your Session</a>
+            <a href="#details" class="btn btn-secondary">View Session Info</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<main>
+    <section id="details">
+      <div class="container">
+        <div class="section-head">
+          <h2>Session types designed around your vision</h2>
+          <p>
+            Start with the option that fits your needs best. Final details like concept, location,
+            styling, and creative direction can be refined after booking.
+          </p>
+        </div>
 
-<section class="hero"></section>
+        <div class="cards">
+          <article class="card">
+            <h3>Portrait Sessions</h3>
+            <p>For individual portraits, lifestyle images, branding, and creative concepts.</p>
+            <ul>
+              <li>Mini Portrait Session — 30 minutes</li>
+              <li>Standard Portrait Session — 1 hour</li>
+              <li>Creative Portrait Session — 90 minutes</li>
+              <li>Graduation / Personal Branding — customizable</li>
+            </ul>
+          </article>
 
-<section id="about" class="section">
-<div class="container about-grid">
+          <article class="card">
+            <h3>Studio & Couples</h3>
+            <p>Perfect for controlled lighting, headshots, couples, and intimate storytelling.</p>
+            <ul>
+              <li>Studio Headshots — 30 minutes</li>
+              <li>Studio Portrait Session — 1 hour</li>
+              <li>Couples Session — 1 hour</li>
+              <li>Engagement / Lifestyle Session — 90 minutes</li>
+            </ul>
+          </article>
 
-<div class="about-card">
+          <article class="card">
+            <h3>Events</h3>
+            <p>Coverage for celebrations, nightlife, private events, and select special occasions.</p>
+            <ul>
+              <li>Event Coverage — 2 hours</li>
+              <li>Event Coverage — 4 hours</li>
+              <li>Custom Event Quote</li>
+              <li>Consultation Call — 15 minutes</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<h1 class="section-title">The Vision</h1>
+    <section id="booking" class="scheduler-wrap">
+      <div class="container">
+        <div class="section-head">
+          <h2>Reserve your date</h2>
+          <p>
+            Choose your session, select your date, and complete the booking form. You’ll receive
+            a confirmation email with next steps once your appointment is locked in.
+          </p>
+        </div>
 
-<p class="section-text">
-Enhance Visual Studio is a San Francisco and Bay Area photographer specializing in portrait, lifestyle and creative photography. The goal is to create images that feel timeless, cinematic and authentic.
-</p>
+        <div class="scheduler-shell">
+          <p class="scheduler-note">
+            Replace the iframe link below with your Acuity scheduling embed URL.
+          </p>
 
-<br>
+          <iframe
+            class="scheduler-frame"
+            src="https://YOUR-ACUITY-EMBED-LINK"
+            title="Enhance Visual Studio Scheduler">
+          </iframe>
+        </div>
+      </div>
+    </section>
 
-<p class="section-text">
-By combining professional equipment, modern editing techniques and strong creative direction, every session is crafted to capture natural expression and powerful visual storytelling.
-</p>
+    <section>
+      <div class="container two-col">
+        <div>
+          <div class="section-head">
+            <h2>What to expect after booking</h2>
+            <p>
+              A smooth client experience matters just as much as the images themselves.
+            </p>
+          </div>
 
-</div>
+          <div class="info-list">
+            <div class="info-item">
+              <strong>1. Confirmation</strong>
+              <span>You’ll receive an email confirming your selected date, time, and session type.</span>
+            </div>
 
-<div class="about-image">
-<img src="images/about.jpg" alt="Portrait and lifestyle photography by Enhance Visual Studio" loading="lazy">
-</div>
+            <div class="info-item">
+              <strong>2. Session planning</strong>
+              <span>We’ll finalize location, wardrobe direction, mood, and any key visual ideas for the shoot.</span>
+            </div>
 
-</div>
-</section>
+            <div class="info-item">
+              <strong>3. Shoot day</strong>
+              <span>Your session is guided with a balance of direction, natural energy, and polished creative execution.</span>
+            </div>
 
-<section id="portfolio" class="section">
-<div class="container">
+            <div class="info-item">
+              <strong>4. Delivery</strong>
+              <span>Edited images are delivered in a polished online gallery within your stated turnaround window.</span>
+            </div>
+          </div>
+        </div>
 
-<h2 class="section-title">Portfolio</h2>
+        <div>
+          <div class="section-head">
+            <h2>Booking policy</h2>
+            <p>
+              Clear expectations help protect both the client experience and the creative process.
+            </p>
+          </div>
 
-<p class="section-text">
-A curated collection of portrait, lifestyle and creative photography by Enhance Visual Studio.
-</p>
+          <div class="faq">
+            <div class="faq-item">
+              <h3>Retainer</h3>
+              <p>A non-refundable retainer is required to secure your booking date and time.</p>
+            </div>
 
-<div class="portfolio-grid">
+            <div class="faq-item">
+              <h3>Remaining balance</h3>
+              <p>The remaining balance is due on or before the day of the shoot unless otherwise agreed in writing.</p>
+            </div>
 
-<div class="portfolio-item portfolio-large">
-<img src="images/portfolio1.jpg" alt="San Francisco portrait photography" loading="lazy">
-</div>
+            <div class="faq-item">
+              <h3>Rescheduling</h3>
+              <p>Sessions may be rescheduled with at least 48 hours notice, subject to availability.</p>
+            </div>
 
-<div class="portfolio-item portfolio-half">
-<img src="images/portfolio2.jpg" alt="Bay Area lifestyle photography" loading="lazy">
-</div>
+            <div class="faq-item">
+              <h3>Turnaround time</h3>
+              <p>Edited images are typically delivered within 5–7 days unless your package states otherwise.</p>
+            </div>
 
-<div class="portfolio-item portfolio-half">
-<img src="images/portfolio3.jpg" alt="Creative portrait photography San Francisco" loading="lazy">
-</div>
+            <div class="faq-item">
+              <h3>Custom events</h3>
+              <p>Larger events, weddings, or specialized productions may require a custom quote before booking is confirmed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="portfolio-item portfolio-half">
-<img src="images/portfolio4.jpg" alt="Lifestyle photographer Bay Area" loading="lazy">
-</div>
+    <section class="cta-strip">
+      <div class="container cta-strip-inner">
+        <div>
+          <h2>Ready to create something timeless?</h2>
+          <p>
+            Book your session today and let’s turn your vision into images that last.
+          </p>
+        </div>
 
-<div class="portfolio-item portfolio-half">
-<img src="images/portfolio5.jpg" alt="San Francisco creative photography session" loading="lazy">
-</div>
+        <a href="#booking" class="btn btn-primary">Start Booking</a>
+      </div>
+    </section>
+  </main>
 
-<div class="portfolio-item portfolio-large">
-<img src="images/portfolio6.jpg" alt="Portrait photographer Bay Area" loading="lazy">
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section class="section">
-<div class="container">
-
-<h2 class="section-title">San Francisco Portrait & Lifestyle Photography</h2>
-
-<p class="section-text">
-Enhance Visual Studio provides portrait, lifestyle and creative photography throughout San Francisco and the Bay Area. Each session focuses on capturing authentic personality, creative expression and modern imagery that feels both natural and cinematic.
-</p>
-
-</div>
-</section>
-
-</main>
-
-<footer>
-
-<div class="container footer-inner">
-
-<p>© 2026 Enhance Visual Studio</p>
-
-<div class="footer-links">
-
-<a href="https://www.instagram.com/enhancevisualstudio" target="_blank">
-<i class="fa-brands fa-instagram"></i>
-</a>
-
-<a href="https://www.facebook.com/enhancevisualstudio" target="_blank">
-<i class="fa-brands fa-facebook-f"></i>
-</a>
-
-<a href="https://youtube.com/@enhancevisualstudio" target="_blank">
-<i class="fa-brands fa-youtube"></i>
-</a>
-
-</div>
-
-</div>
-
-</footer>
-
-<div class="lightbox" id="lightbox">
-<span class="lightbox-close" id="close">&times;</span>
-<img id="lightboxImg" alt="Expanded portfolio image">
-</div>
-
-<script>
-
-const images=document.querySelectorAll('.portfolio-item img');
-const lightbox=document.getElementById('lightbox');
-const lightboxImg=document.getElementById('lightboxImg');
-
-images.forEach(img=>{
-img.addEventListener('click',()=>{
-lightbox.classList.add('active');
-lightboxImg.src=img.src;
-lightboxImg.alt=img.alt;
-});
-});
-
-document.getElementById('close').onclick=()=>{
-lightbox.classList.remove('active');
-}
-
-lightbox.onclick=e=>{
-if(e.target===lightbox){
-lightbox.classList.remove('active');
-}
-}
-
-</script>
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Enhance Visual Studio ·
+        <a href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com</a>
+      </p>
+    </div>
+  </footer>
 
 </body>
 </html>
