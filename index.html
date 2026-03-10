@@ -1,640 +1,583 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0b0b0b" />
-
-  <title>Book a Session | Enhance Visual Studio</title>
-  <meta
-    name="description"
-    content="Book your photography session with Enhance Visual Studio. Portraits, studio sessions, couples, lifestyle, and events."
-  />
-
-  <style>
-    :root{
-      --bg:#0b0b0b;
-      --bg-soft:#121212;
-      --panel:#161616;
-      --text:#f5f1ea;
-      --muted:#b8afa2;
-      --line:rgba(255,255,255,0.08);
-      --accent:#d6b98c;
-      --accent-hover:#e6cda7;
-      --max:1180px;
-      --radius:18px;
-      --shadow:0 20px 60px rgba(0,0,0,0.35);
-    }
-
-    *{box-sizing:border-box}
-
-    html{scroll-behavior:smooth}
-
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
-    }
-
-    img{
-      max-width:100%;
-      display:block;
-    }
-
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
-
-    .container{
-      width:min(var(--max), calc(100% - 32px));
-      margin:0 auto;
-    }
-
-    .site-header{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:rgba(11,11,11,0.85);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--line);
-    }
-
-    .nav{
-      min-height:74px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
-
-    .brand{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-    }
-
-    .brand-name{
-      font-size:1rem;
-      font-weight:700;
-      letter-spacing:0.08em;
-      text-transform:uppercase;
-    }
-
-    .brand-tag{
-      font-size:0.78rem;
-      color:var(--muted);
-      letter-spacing:0.08em;
-    }
-
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-
-    .nav-links a{
-      color:var(--muted);
-      font-size:0.95rem;
-      transition:color .2s ease;
-    }
-
-    .nav-links a:hover{
-      color:var(--text);
-    }
-
-    .nav-cta{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:12px 18px;
-      border-radius:999px;
-      background:var(--accent);
-      color:#111;
-      font-weight:700;
-      transition:transform .2s ease, background .2s ease;
-    }
-
-    .nav-cta:hover{
-      background:var(--accent-hover);
-      transform:translateY(-1px);
-    }
-
-    .hero{
-      position:relative;
-      overflow:hidden;
-      border-bottom:1px solid var(--line);
-      background:
-        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.72)),
-        url('images/booking-hero.jpg') center/cover no-repeat;
-    }
-
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:radial-gradient(circle at top right, rgba(214,185,140,0.18), transparent 35%);
-      pointer-events:none;
-    }
-
-    .hero-inner{
-      position:relative;
-      z-index:1;
-      min-height:68vh;
-      display:flex;
-      align-items:center;
-      padding:90px 0 80px;
-    }
-
-    .hero-copy{
-      max-width:760px;
-    }
-
-    .eyebrow{
-      display:inline-block;
-      margin-bottom:14px;
-      color:var(--accent);
-      text-transform:uppercase;
-      letter-spacing:0.16em;
-      font-size:0.78rem;
-      font-weight:700;
-    }
-
-    h1{
-      margin:0 0 18px;
-      font-size:clamp(2.3rem, 6vw, 4.9rem);
-      line-height:1.02;
-      letter-spacing:-0.03em;
-    }
-
-    .hero-copy p{
-      margin:0 0 28px;
-      max-width:680px;
-      font-size:1.05rem;
-      color:var(--muted);
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:14px 22px;
-      border-radius:999px;
-      font-weight:700;
-      transition:transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-
-    .btn-primary{
-      background:var(--accent);
-      color:#111;
-    }
-
-    .btn-primary:hover{
-      background:var(--accent-hover);
-      transform:translateY(-1px);
-    }
-
-    .btn-secondary{
-      border:1px solid var(--line);
-      color:var(--text);
-      background:rgba(255,255,255,0.02);
-    }
-
-    .btn-secondary:hover{
-      border-color:rgba(255,255,255,0.18);
-      transform:translateY(-1px);
-    }
-
-    section{
-      padding:84px 0;
-    }
-
-    .section-head{
-      max-width:760px;
-      margin:0 0 34px;
-    }
-
-    .section-head h2{
-      margin:0 0 12px;
-      font-size:clamp(1.7rem, 4vw, 2.6rem);
-      letter-spacing:-0.03em;
-    }
-
-    .section-head p{
-      margin:0;
-      color:var(--muted);
-    }
-
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:18px;
-    }
-
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:24px;
-      box-shadow:var(--shadow);
-    }
-
-    .card h3{
-      margin:0 0 10px;
-      font-size:1.18rem;
-    }
-
-    .card p{
-      margin:0 0 14px;
-      color:var(--muted);
-      font-size:0.96rem;
-    }
-
-    .card ul{
-      margin:0;
-      padding-left:18px;
-      color:var(--text);
-    }
-
-    .card li{
-      margin:8px 0;
-    }
-
-    .scheduler-wrap{
-      background:var(--bg-soft);
-    }
-
-    .scheduler-shell{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:18px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-
-    .scheduler-note{
-      margin:0 0 18px;
-      color:var(--muted);
-      font-size:0.95rem;
-    }
-
-    .scheduler-frame{
-      width:100%;
-      min-height:1200px;
-      border:0;
-      border-radius:18px;
-      background:#fff;
-    }
-
-    .two-col{
-      display:grid;
-      grid-template-columns:1.05fr 0.95fr;
-      gap:22px;
-      align-items:start;
-    }
-
-    .info-list{
-      display:grid;
-      gap:14px;
-    }
-
-    .info-item{
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:var(--panel);
-      padding:18px 18px;
-    }
-
-    .info-item strong{
-      display:block;
-      margin-bottom:6px;
-      color:var(--text);
-      font-size:0.98rem;
-    }
-
-    .info-item span{
-      color:var(--muted);
-      font-size:0.95rem;
-    }
-
-    .faq{
-      display:grid;
-      gap:14px;
-    }
-
-    .faq-item{
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:18px;
-      background:var(--panel);
-    }
-
-    .faq-item h3{
-      margin:0 0 8px;
-      font-size:1rem;
-    }
-
-    .faq-item p{
-      margin:0;
-      color:var(--muted);
-      font-size:0.95rem;
-    }
-
-    .cta-strip{
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(214,185,140,0.06), rgba(214,185,140,0.02));
-    }
-
-    .cta-strip-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-
-    .cta-strip h2{
-      margin:0 0 8px;
-      font-size:clamp(1.4rem, 3vw, 2rem);
-    }
-
-    .cta-strip p{
-      margin:0;
-      color:var(--muted);
-    }
-
-    .site-footer{
-      padding:40px 0 55px;
-      color:var(--muted);
-      text-align:center;
-    }
-
-    .site-footer a{
-      color:var(--text);
-    }
-
-    @media (max-width:980px){
-      .cards,
-      .two-col{
-        grid-template-columns:1fr;
-      }
-
-      .hero-inner{
-        min-height:auto;
-        padding:80px 0 70px;
-      }
-
-      .scheduler-frame{
-        min-height:1300px;
-      }
-    }
-
-    @media (max-width:720px){
-      .nav{
-        padding:12px 0;
-        align-items:flex-start;
-        flex-direction:column;
-      }
-
-      .nav-links{
-        width:100%;
-        justify-content:flex-start;
-      }
-
-      section{
-        padding:66px 0;
-      }
-
-      .card{
-        padding:20px;
-      }
-
-      .scheduler-shell{
-        padding:12px;
-        border-radius:18px;
-      }
-
-      .scheduler-frame{
-        min-height:1400px;
-        border-radius:14px;
-      }
-    }
-  </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Enhance Visual Studio | Pose. Capture. Enhance.</title>
+
+<meta name="description" content="Portrait, studio, couples, and event photography by Enhance Visual Studio.">
+
+<style>
+
+/* ---------- ROOT ---------- /
+
+:root{
+--bg:#0b0b0b;
+--bg-soft:#121212;
+--panel:#161616;
+--text:#f5f1ea;
+--muted:#b8afa2;
+--accent:#d6b98c;
+--accent-hover:#e6cda7;
+--line:rgba(255,255,255,0.08);
+--max:1180px;
+}
+
+/ ---------- GLOBAL ---------- */
+
+{
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+}
+
+.container{
+width:min(var(--max),calc(100% - 32px));
+margin:auto;
+}
+
+img{
+width:100%;
+display:block;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+section{
+padding:90px 0;
+}
+
+/ ---------- HEADER ---------- /
+
+.site-header{
+position:sticky;
+top:0;
+z-index:999;
+background:rgba(11,11,11,0.9);
+backdrop-filter:blur(12px);
+border-bottom:1px solid var(--line);
+}
+
+.nav{
+display:flex;
+align-items:center;
+justify-content:space-between;
+height:70px;
+}
+
+.brand{
+display:flex;
+flex-direction:column;
+}
+
+.brand-name{
+font-weight:700;
+letter-spacing:.08em;
+text-transform:uppercase;
+font-size:.95rem;
+}
+
+.brand-tag{
+font-size:.75rem;
+color:var(--muted);
+}
+
+.nav-links{
+display:flex;
+gap:22px;
+align-items:center;
+}
+
+.nav-links a{
+font-size:.9rem;
+color:var(--muted);
+}
+
+.nav-links a:hover{
+color:var(--text);
+}
+
+.nav-cta{
+background:var(--accent);
+color:#111;
+padding:10px 18px;
+border-radius:999px;
+font-weight:700;
+}
+
+/ ---------- HERO ---------- /
+
+.hero{
+height:92vh;
+display:flex;
+align-items:center;
+background:
+linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.85)),
+url('images/hero.jpg') center/cover no-repeat;
+}
+
+.hero-content{
+max-width:720px;
+}
+
+.hero-eyebrow{
+color:var(--accent);
+letter-spacing:.2em;
+text-transform:uppercase;
+font-size:.75rem;
+}
+
+.hero h1{
+font-size:clamp(2.6rem,6vw,5rem);
+line-height:1.05;
+margin:12px 0;
+}
+
+.hero-sub{
+color:var(--muted);
+max-width:600px;
+}
+
+.hero-buttons{
+margin-top:28px;
+display:flex;
+gap:14px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:14px 22px;
+border-radius:999px;
+font-weight:700;
+}
+
+.btn-primary{
+background:var(--accent);
+color:#111;
+}
+
+.btn-secondary{
+border:1px solid var(--line);
+}
+
+/ ---------- HEADINGS ---------- /
+
+.section-head{
+max-width:680px;
+margin-bottom:40px;
+}
+
+.section-head h2{
+margin:0 0 10px;
+font-size:2.3rem;
+}
+
+.section-head p{
+margin:0;
+color:var(--muted);
+}
+
+/ ---------- PORTFOLIO ---------- /
+
+.portfolio-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+}
+
+.portfolio-grid img{
+aspect-ratio:4/5;
+object-fit:cover;
+border-radius:12px;
+cursor:pointer;
+transition:transform .35s ease;
+}
+
+.portfolio-grid img:hover{
+transform:scale(1.05);
+}
+
+/ ---------- LIGHTBOX ---------- /
+
+.lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.lightbox img{
+max-width:90%;
+max-height:85%;
+border-radius:10px;
+}
+
+/ ---------- SERVICES ---------- /
+
+.services-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.service{
+background:var(--panel);
+padding:26px;
+border-radius:14px;
+border:1px solid var(--line);
+}
+
+/ ---------- ABOUT ---------- /
+
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+
+/ ---------- TESTIMONIALS ---------- /
+
+.testimonials-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.testimonial{
+background:var(--panel);
+padding:22px;
+border-radius:14px;
+border:1px solid var(--line);
+}
+
+.testimonial p{
+color:var(--muted);
+}
+
+/ ---------- INSTAGRAM ---------- /
+
+.instagram-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+}
+
+/ ---------- CTA ---------- /
+
+.booking-cta{
+text-align:center;
+border-top:1px solid var(--line);
+border-bottom:1px solid var(--line);
+background:linear-gradient(180deg,rgba(214,185,140,0.05),transparent);
+}
+
+/ ---------- FOOTER ---------- /
+
+.site-footer{
+padding:50px 0;
+text-align:center;
+color:var(--muted);
+}
+
+/ ---------- SCROLL ANIMATION ---------- /
+
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:all .8s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+/ ---------- MOBILE ---------- /
+
+@media(max-width:900px){
+
+.portfolio-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.services-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.testimonials-grid{
+grid-template-columns:1fr;
+}
+
+.about-grid{
+grid-template-columns:1fr;
+}
+
+.instagram-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.hero{
+height:auto;
+padding:120px 0;
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-  <header class="site-header">
-    <div class="container nav">
-      <a href="index.html" class="brand">
-        <span class="brand-name">Enhance Visual Studio</span>
-        <span class="brand-tag">Pose. Capture. Enhance </span>
-      </a>
+<header class="site-header">
 
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="index.html#portfolio">Portfolio</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#contact">Contact</a>
-        <a href="#booking" class="nav-cta">Book Now</a>
-      </nav>
-    </div>
-  </header>
+<div class="container nav">
 
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <span class="eyebrow">Enhance Visual Studio Booking</span>
-          <h1>Book your session with confidence.</h1>
-          <p>
-            Whether you’re planning portraits, studio images, couples photos, lifestyle content,
-            or event coverage, your session is designed to create polished, cinematic images that
-            feel as powerful as they look.
-          </p>
+<a class="brand">
+<span class="brand-name">Enhance Visual Studio</span>
+<span class="brand-tag">Pose. Capture. Enhance.</span>
+</a>
 
-          <div class="hero-actions">
-            <a href="#booking" class="btn btn-primary">Book Your Session</a>
-            <a href="#details" class="btn btn-secondary">View Session Info</a>
-          </div>
-        </div>
-      </div>
-    </section>
+<nav class="nav-links">
+<a href="#portfolio">Portfolio</a>
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="booking.html" class="nav-cta">Book</a>
+</nav>
 
-    <section id="details">
-      <div class="container">
-        <div class="section-head">
-          <h2>Session types designed around your vision</h2>
-          <p>
-            Start with the option that fits your needs best. Final details like concept, location,
-            styling, and creative direction can be refined after booking.
-          </p>
-        </div>
+</div>
 
-        <div class="cards">
-          <article class="card">
-            <h3>Portrait Sessions</h3>
-            <p>For individual portraits, lifestyle images, branding, and creative concepts.</p>
-            <ul>
-              <li>Mini Portrait Session — 30 minutes</li>
-              <li>Standard Portrait Session — 1 hour</li>
-              <li>Creative Portrait Session — 90 minutes</li>
-              <li>Graduation / Personal Branding — customizable</li>
-            </ul>
-          </article>
+</header>
 
-          <article class="card">
-            <h3>Studio & Couples</h3>
-            <p>Perfect for controlled lighting, headshots, couples, and intimate storytelling.</p>
-            <ul>
-              <li>Studio Headshots — 30 minutes</li>
-              <li>Studio Portrait Session — 1 hour</li>
-              <li>Couples Session — 1 hour</li>
-              <li>Engagement / Lifestyle Session — 90 minutes</li>
-            </ul>
-          </article>
+<section class="hero">
 
-          <article class="card">
-            <h3>Events</h3>
-            <p>Coverage for celebrations, nightlife, private events, and select special occasions.</p>
-            <ul>
-              <li>Event Coverage — 2 hours</li>
-              <li>Event Coverage — 4 hours</li>
-              <li>Custom Event Quote</li>
-              <li>Consultation Call — 15 minutes</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
+<div class="container hero-content">
 
-    <section id="booking" class="scheduler-wrap">
-      <div class="container">
-        <div class="section-head">
-          <h2>Reserve your date</h2>
-          <p>
-            Choose your session, select your date, and complete the booking form. You’ll receive
-            a confirmation email with next steps once your appointment is locked in.
-          </p>
-        </div>
+<p class="hero-eyebrow">Enhance Visual Studio</p>
 
-        <div class="scheduler-shell">
-          <p class="scheduler-note">
-            Replace the iframe link below with your Acuity scheduling embed URL.
-          </p>
+<h1>Cinematic Portrait & Event Photography</h1>
 
-          <iframe
-            class="scheduler-frame"
-            src="https://YOUR-ACUITY-EMBED-LINK"
-            title="Enhance Visual Studio Scheduler">
-          </iframe>
-        </div>
-      </div>
-    </section>
+<p class="hero-sub">
+Portraits, couples sessions, studio photography, and live event coverage captured with cinematic polish.
+</p>
 
-    <section>
-      <div class="container two-col">
-        <div>
-          <div class="section-head">
-            <h2>What to expect after booking</h2>
-            <p>
-              A smooth client experience matters just as much as the images themselves.
-            </p>
-          </div>
+<div class="hero-buttons">
+<a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+<a href="booking.html" class="btn btn-secondary">Book Session</a>
+</div>
 
-          <div class="info-list">
-            <div class="info-item">
-              <strong>1. Confirmation</strong>
-              <span>You’ll receive an email confirming your selected date, time, and session type.</span>
-            </div>
+</div>
 
-            <div class="info-item">
-              <strong>2. Session planning</strong>
-              <span>We’ll finalize location, wardrobe direction, mood, and any key visual ideas for the shoot.</span>
-            </div>
+</section>
 
-            <div class="info-item">
-              <strong>3. Shoot day</strong>
-              <span>Your session is guided with a balance of direction, natural energy, and polished creative execution.</span>
-            </div>
+<section id="portfolio" class="reveal">
 
-            <div class="info-item">
-              <strong>4. Delivery</strong>
-              <span>Edited images are delivered in a polished online gallery within your stated turnaround window.</span>
-            </div>
-          </div>
-        </div>
+<div class="container">
 
-        <div>
-          <div class="section-head">
-            <h2>Booking policy</h2>
-            <p>
-              Clear expectations help protect both the client experience and the creative process.
-            </p>
-          </div>
+<div class="section-head">
+<h2>Selected Work</h2>
+<p>A glimpse into recent sessions and creative photography.</p>
+</div>
 
-          <div class="faq">
-            <div class="faq-item">
-              <h3>Retainer</h3>
-              <p>A non-refundable retainer is required to secure your booking date and time.</p>
-            </div>
+<div class="portfolio-grid">
 
-            <div class="faq-item">
-              <h3>Remaining balance</h3>
-              <p>The remaining balance is due on or before the day of the shoot unless otherwise agreed in writing.</p>
-            </div>
+<img src="images/portfolio1.jpg">
+<img src="images/portfolio2.jpg">
+<img src="images/portfolio3.jpg">
+<img src="images/portfolio4.jpg">
+<img src="images/portfolio5.jpg">
+<img src="images/portfolio6.jpg">
 
-            <div class="faq-item">
-              <h3>Rescheduling</h3>
-              <p>Sessions may be rescheduled with at least 48 hours notice, subject to availability.</p>
-            </div>
+</div>
 
-            <div class="faq-item">
-              <h3>Turnaround time</h3>
-              <p>Edited images are typically delivered within 5–7 days unless your package states otherwise.</p>
-            </div>
+</div>
 
-            <div class="faq-item">
-              <h3>Custom events</h3>
-              <p>Larger events, weddings, or specialized productions may require a custom quote before booking is confirmed.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+</section>
 
-    <section class="cta-strip">
-      <div class="container cta-strip-inner">
-        <div>
-          <h2>Ready to create something timeless?</h2>
-          <p>
-            Book your session today and let’s turn your vision into images that last.
-          </p>
-        </div>
+<section id="services" class="reveal">
 
-        <a href="#booking" class="btn btn-primary">Start Booking</a>
-      </div>
-    </section>
-  </main>
+<div class="container">
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>
-        Enhance Visual Studio ·
-        <a href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com</a>
-      </p>
-    </div>
-  </footer>
+<div class="section-head">
+<h2>Photography Services</h2>
+</div>
+
+<div class="services-grid">
+
+<div class="service">
+<h3>Portrait Photography</h3>
+<p>Professional portraits, branding sessions, and lifestyle photography.</p>
+</div>
+
+<div class="service">
+<h3>Studio Sessions</h3>
+<p>Controlled lighting studio portraits and professional headshots.</p>
+</div>
+
+<div class="service">
+<h3>Couples Photography</h3>
+<p>Couples sessions, engagement shoots, and romantic storytelling.</p>
+</div>
+
+<div class="service">
+<h3>Event Coverage</h3>
+<p>Private events, nightlife photography, and special occasions.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="about" class="reveal">
+
+<div class="container about-grid">
+
+<div>
+
+<h2>About Enhance Visual Studio</h2>
+
+<p>
+Enhance Visual Studio creates cinematic photography for portraits, couples, and live events.
+</p>
+
+<p>
+Every session blends creative direction, professional lighting, and attention to detail to deliver images that feel powerful, natural, and timeless.
+</p>
+
+</div>
+
+<img src="images/photographer.jpg">
+
+</div>
+
+</section>
+
+<section class="reveal">
+
+<div class="container">
+
+<div class="section-head">
+<h2>Client Experiences</h2>
+</div>
+
+<div class="testimonials-grid">
+
+<div class="testimonial">
+<p>"Amazing photographer and incredible attention to detail."</p>
+<strong>— Sarah M.</strong>
+</div>
+
+<div class="testimonial">
+<p>"The photos exceeded our expectations."</p>
+<strong>— David R.</strong>
+</div>
+
+<div class="testimonial">
+<p>"Professional, creative, and fun to work with."</p>
+<strong>— Jessica & Alex</strong>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="booking-cta reveal">
+
+<div class="container">
+
+<h2>Ready to create something timeless?</h2>
+
+<p>Book your session today.</p>
+
+<br>
+
+<a href="booking.html" class="btn btn-primary">Book Your Session</a>
+
+</div>
+
+</section>
+
+<footer class="site-footer">
+
+<div class="container">
+
+<p>Enhance Visual Studio</p>
+<p>Pose. Capture. Enhance.</p>
+<p>hello@enhancevisualstudio.com</p>
+
+</div>
+
+</footer>
+
+<div class="lightbox" id="lightbox">
+<img src="" id="lightbox-img">
+</div>
+
+<script>
+
+/ LIGHTBOX /
+
+const images=document.querySelectorAll(".portfolio-grid img");
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightbox-img");
+
+images.forEach(img=>{
+img.addEventListener("click",()=>{
+lightbox.style.display="flex";
+lightboxImg.src=img.src;
+});
+});
+
+lightbox.addEventListener("click",()=>{
+lightbox.style.display="none";
+});
+
+/ SCROLL REVEAL */
+
+const reveals=document.querySelectorAll(".reveal");
+
+function reveal(){
+
+reveals.forEach(el=>{
+
+const windowHeight=window.innerHeight;
+const top=el.getBoundingClientRect().top;
+
+if(top<windowHeight-80){
+el.classList.add("active");
+}
+
+});
+
+}
+
+window.addEventListener("scroll",reveal);
+
+</script>
 
 </body>
 </html>
