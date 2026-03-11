@@ -8,11 +8,7 @@
 
 <title>Enhance Visual Studio | Luxury Portrait Photography</title>
 
-<meta name="description" content="Enhance Visual Studio provides luxury portrait photography across Los Angeles, San Francisco, Bay Area, and San Diego. Portraits, couples sessions, and studio photography.">
-
-<meta name="keywords" content="portrait photographer Los Angeles, Bay Area portrait photographer, couples photographer San Diego, luxury portraits California">
-
-<meta name="author" content="Enhance Visual Studio">
+<meta name="description" content="Luxury portrait photography by Enhance Visual Studio serving Los Angeles, San Francisco, Bay Area and San Diego.">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -28,32 +24,26 @@ padding:0;
 box-sizing:border-box;
 }
 
-html{
-scroll-behavior:smooth;
-}
-
 body{
-background:#0b0b0b;
-color:#f5f1ea;
+background:#0a0a0a;
+color:#f5f5f5;
 font-family:Inter,sans-serif;
-line-height:1.6;
 }
 
 .container{
 width:92%;
-max-width:1200px;
+max-width:1300px;
 margin:auto;
 }
 
-/ NAVIGATION /
+/ NAVBAR /
 
 header{
 position:fixed;
 top:0;
 width:100%;
 background:rgba(0,0,0,0.6);
-backdrop-filter:blur(12px);
-border-bottom:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
 z-index:999;
 }
 
@@ -66,20 +56,20 @@ padding:18px 0;
 
 .logo{
 font-family:"Playfair Display",serif;
-font-size:20px;
 letter-spacing:2px;
+font-size:20px;
 }
 
 .nav-links a{
 margin-left:30px;
-color:#ddd;
 text-decoration:none;
+color:#ddd;
 font-size:14px;
 transition:.3s;
 }
 
 .nav-links a:hover{
-color:#fff;
+color:white;
 }
 
 / HERO /
@@ -99,9 +89,7 @@ content:"";
 position:absolute;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.55);
-top:0;
-left:0;
+background:rgba(0,0,0,0.6);
 }
 
 .hero-content{
@@ -111,61 +99,57 @@ z-index:2;
 
 .hero h1{
 font-family:"Playfair Display",serif;
-font-size:70px;
+font-size:80px;
+letter-spacing:2px;
 }
 
 .hero p{
 margin-top:15px;
-font-size:18px;
+font-size:20px;
 color:#ddd;
 }
 
 .btn{
 display:inline-block;
 margin-top:30px;
-padding:15px 36px;
+padding:16px 40px;
 background:#d6b98c;
-color:#000;
-font-weight:600;
-border-radius:40px;
+color:black;
 text-decoration:none;
-transition:.3s;
-}
-
-.btn:hover{
-background:#e6cfa4;
+border-radius:40px;
+font-weight:600;
 }
 
 / SECTIONS /
 
 section{
-padding:110px 0;
+padding:120px 0;
 }
 
 h2{
 font-family:"Playfair Display",serif;
-font-size:42px;
+font-size:48px;
 text-align:center;
-margin-bottom:60px;
+margin-bottom:70px;
 }
 
-/ PORTFOLIO /
+/ MASONRY PORTFOLIO /
 
-.portfolio-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:24px;
+.portfolio{
+column-count:3;
+column-gap:20px;
 }
 
-.portfolio-grid img{
+.portfolio img{
 width:100%;
-border-radius:12px;
+margin-bottom:20px;
+border-radius:10px;
 cursor:pointer;
-transition:.35s;
+transition:.3s;
 }
 
-.portfolio-grid img:hover{
-transform:scale(1.06);
+.portfolio img:hover{
+transform:scale(1.04);
 }
 
 / SERVICES /
@@ -177,16 +161,14 @@ gap:30px;
 }
 
 .service{
-background:#141414;
-padding:30px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,0.05);
-transition:.3s;
+background:#121212;
+padding:35px;
+border-radius:10px;
+border:1px solid #222;
 }
 
-.service:hover{
-transform:translateY(-6px);
-border-color:#d6b98c;
+.service h3{
+margin-bottom:10px;
 }
 
 / ABOUT /
@@ -195,15 +177,28 @@ border-color:#d6b98c;
 max-width:800px;
 margin:auto;
 text-align:center;
-color:#cfcfcf;
-font-size:17px;
+font-size:18px;
+color:#ccc;
+}
+
+/ INSTAGRAM /
+
+.instagram-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:10px;
+}
+
+.instagram-grid img{
+width:100%;
+border-radius:8px;
 }
 
 / SERVICE AREA /
 
 .area{
 text-align:center;
-font-size:18px;
+font-size:20px;
 color:#ddd;
 }
 
@@ -212,17 +207,16 @@ color:#ddd;
 .cta{
 text-align:center;
 background:#111;
-padding:120px 20px;
-border-top:1px solid #222;
-border-bottom:1px solid #222;
+padding:140px 20px;
 }
 
 / FOOTER /
 
 footer{
-padding:60px 20px;
 text-align:center;
+padding:60px 20px;
 color:#777;
+border-top:1px solid #222;
 }
 
 .socials{
@@ -230,61 +224,25 @@ margin-bottom:20px;
 }
 
 .socials a{
+margin:0 15px;
 color:#ccc;
-margin:0 14px;
-font-size:22px;
-transition:.3s;
+font-size:24px;
 }
 
 .socials a:hover{
 color:#d6b98c;
 }
 
-/ LIGHTBOX /
+/ MOBILE */
 
-.lightbox{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.95);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:1000;
-}
-
-.lightbox img{
-max-width:90%;
-max-height:90%;
-border-radius:10px;
-}
-
-/ SCROLL ANIMATION /
-
-.reveal{
-opacity:0;
-transform:translateY(40px);
-transition:1s;
-}
-
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
-
-/ MOBILE /
-
-@media(max-width:768px){
+@media(max-width:900px){
 
 .hero h1{
-font-size:42px;
+font-size:48px;
 }
 
-nav{
-flex-direction:column;
-gap:10px;
+.portfolio{
+column-count:1;
 }
 
 }
@@ -301,15 +259,15 @@ gap:10px;
 
 <nav>
 
-<div class="logo">
-Enhance Visual Studio
-</div>
+<div class="logo">Enhance Visual Studio</div>
 
 <div class="nav-links">
+
 <a href="#portfolio">Portfolio</a>
 <a href="#services">Services</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
+
 </div>
 
 </nav>
@@ -336,13 +294,13 @@ Enhance Visual Studio
 
 <!-- PORTFOLIO -->
 
-<section id="portfolio" class="reveal">
+<section id="portfolio">
 
 <div class="container">
 
 <h2>Portfolio</h2>
 
-<div class="portfolio-grid">
+<div class="portfolio">
 
 <img src="images/photo1.jpg">
 <img src="images/photo2.jpg">
@@ -350,6 +308,8 @@ Enhance Visual Studio
 <img src="images/photo4.jpg">
 <img src="images/photo5.jpg">
 <img src="images/photo6.jpg">
+<img src="images/photo7.jpg">
+<img src="images/photo8.jpg">
 
 </div>
 
@@ -359,7 +319,7 @@ Enhance Visual Studio
 
 <!-- SERVICES -->
 
-<section id="services" class="reveal">
+<section id="services">
 
 <div class="container">
 
@@ -369,22 +329,22 @@ Enhance Visual Studio
 
 <div class="service">
 <h3>Portrait Sessions</h3>
-<p>Professional portrait photography with cinematic lighting.</p>
+<p>Luxury portraits with cinematic lighting.</p>
 </div>
 
 <div class="service">
 <h3>Couples Photography</h3>
-<p>Romantic and storytelling style couples portraits.</p>
+<p>Romantic storytelling photography sessions.</p>
 </div>
 
 <div class="service">
-<h3>Studio Portraits</h3>
-<p>Professional lighting setups for high-end portrait sessions.</p>
+<h3>Studio Photography</h3>
+<p>Professional studio lighting portraits.</p>
 </div>
 
 <div class="service">
-<h3>Event Coverage</h3>
-<p>Photography for events, celebrations, and nightlife.</p>
+<h3>Event Photography</h3>
+<p>Private events and nightlife coverage.</p>
 </div>
 
 </div>
@@ -395,21 +355,36 @@ Enhance Visual Studio
 
 <!-- ABOUT -->
 
-<section id="about" class="reveal">
+<section id="about">
 
 <div class="container">
 
-<h2>About Enhance Visual Studio</h2>
+<h2>About</h2>
 
-<div class="about">
+<p class="about">
 
-<p>
-
-Enhance Visual Studio creates powerful portrait photography designed to capture authentic personality and timeless emotion.
-
-Each session blends professional lighting, creative direction, and refined editing to produce cinematic images.
+Enhance Visual Studio is a luxury portrait photography brand focused on capturing powerful imagery with cinematic lighting and refined editing.
 
 </p>
+
+</div>
+
+</section>
+
+<!-- INSTAGRAM -->
+
+<section>
+
+<div class="container">
+
+<h2>Instagram</h2>
+
+<div class="instagram-grid">
+
+<img src="images/photo1.jpg">
+<img src="images/photo2.jpg">
+<img src="images/photo3.jpg">
+<img src="images/photo4.jpg">
 
 </div>
 
@@ -419,7 +394,7 @@ Each session blends professional lighting, creative direction, and refined editi
 
 <!-- SERVICE AREA -->
 
-<section class="reveal">
+<section>
 
 <div class="container">
 
@@ -428,30 +403,6 @@ Each session blends professional lighting, creative direction, and refined editi
 <p class="area">
 
 Los Angeles • San Francisco • Bay Area • San Diego
-
-</p>
-
-</div>
-
-</section>
-
-<!-- CLIENT GALLERY -->
-
-<section class="reveal">
-
-<div class="container">
-
-<h2>Client Galleries</h2>
-
-<p style="text-align:center">
-
-View delivered client photos.
-
-</p>
-
-<p style="text-align:center">
-
-<a class="btn" href="#">Open Client Gallery</a>
 
 </p>
 
@@ -484,8 +435,6 @@ View delivered client photos.
 Email: hello@enhancevisualstudio.com  
 <br><br>
 Instagram: @enhancevisualstudio  
-<br><br>
-Serving: Los Angeles • San Francisco • Bay Area • San Diego
 
 </p>
 
@@ -511,46 +460,6 @@ Serving: Los Angeles • San Francisco • Bay Area • San Diego
 </p>
 
 </footer>
-
-<div class="lightbox" id="lightbox">
-
-<img src="" id="lightbox-img">
-
-</div>
-
-<script>
-
-/ LIGHTBOX /
-
-const images=document.querySelectorAll(".portfolio-grid img");
-const lightbox=document.getElementById("lightbox");
-const lightboxImg=document.getElementById("lightbox-img");
-
-images.forEach(img=>{
-img.addEventListener("click",()=>{
-lightbox.style.display="flex";
-lightboxImg.src=img.src;
-});
-});
-
-lightbox.addEventListener("click",()=>{
-lightbox.style.display="none";
-});
-
-/ SCROLL REVEAL */
-
-window.addEventListener("scroll",()=>{
-document.querySelectorAll(".reveal").forEach(el=>{
-let top=el.getBoundingClientRect().top;
-let windowHeight=window.innerHeight;
-
-if(top < windowHeight-100){
-el.classList.add("active");
-}
-});
-});
-
-</script>
 
 </body>
 </html>
