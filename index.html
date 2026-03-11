@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -9,87 +10,131 @@
 
 <style>
 
-body{
+*{
 margin:0;
-font-family:Helvetica, Arial, sans-serif;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 background:#0b0b0b;
-color:#ffffff;
+color:#f5f1ea;
 line-height:1.6;
 }
 
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
 header{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(255,255,255,0.1);
+z-index:100;
+}
+
+nav{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 10%;
-border-bottom:1px solid #222;
+padding:18px 0;
 }
 
 .logo{
-font-size:22px;
-font-weight:700;
+font-size:18px;
 letter-spacing:2px;
+font-weight:700;
 }
 
-nav a{
-margin-left:20px;
+.nav-links a{
+margin-left:25px;
+color:#ccc;
 text-decoration:none;
-color:#ddd;
 font-size:14px;
 }
 
-nav a:hover{
-color:#fff;
+.nav-links a:hover{
+color:white;
 }
 
 .hero{
-height:90vh;
+height:100vh;
+background:url('images/hero.jpg') center/cover no-repeat;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-background:url('images/hero.jpg') center/cover no-repeat;
+position:relative;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
 }
 
 .hero h1{
-font-size:52px;
-margin-bottom:10px;
+font-size:60px;
+letter-spacing:1px;
 }
 
 .hero p{
+margin-top:15px;
+color:#ddd;
 font-size:18px;
-color:#ccc;
 }
 
 .btn{
 display:inline-block;
-margin-top:20px;
+margin-top:25px;
 padding:14px 28px;
 background:#d6b98c;
-color:#000;
-text-decoration:none;
+color:black;
 font-weight:bold;
-border-radius:30px;
+border-radius:40px;
+text-decoration:none;
 }
 
-.section{
-padding:80px 10%;
+section{
+padding:100px 0;
 }
 
-.section h2{
-font-size:34px;
-margin-bottom:30px;
+h2{
+font-size:36px;
+margin-bottom:40px;
+text-align:center;
 }
 
-.portfolio{
+.portfolio-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
 }
 
-.portfolio img{
+.portfolio-grid img{
 width:100%;
 border-radius:10px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.portfolio-grid img:hover{
+transform:scale(1.03);
 }
 
 .services{
@@ -98,27 +143,52 @@ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
 }
 
-.card{
-background:#151515;
-padding:25px;
+.service{
+background:#141414;
+padding:30px;
 border-radius:12px;
 }
 
-.card h3{
-margin-top:0;
+.service h3{
+margin-bottom:10px;
+}
+
+.about{
+max-width:800px;
+margin:auto;
+text-align:center;
+color:#ccc;
 }
 
 .cta{
 text-align:center;
 background:#111;
-padding:80px 10%;
+padding:120px 20px;
 }
 
 footer{
-text-align:center;
-padding:40px;
 border-top:1px solid #222;
-color:#aaa;
+padding:40px;
+text-align:center;
+color:#888;
+}
+
+.lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:200;
+}
+
+.lightbox img{
+max-width:90%;
+max-height:90%;
 }
 
 </style>
@@ -128,34 +198,47 @@ color:#aaa;
 <body>
 
 <header>
-
-<div class="logo">Enhance Visual Studio</div>
+<div class="container">
 
 <nav>
+
+<div class="logo">
+Enhance Visual Studio
+</div>
+
+<div class="nav-links">
 <a href="#portfolio">Portfolio</a>
 <a href="#services">Services</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
+</div>
+
 </nav>
 
+</div>
 </header>
 
 <section class="hero">
 
-<div>
+<div class="hero-content">
+
 <h1>Pose. Capture. Enhance.</h1>
+
 <p>Luxury portrait photography for individuals, couples, and events.</p>
 
 <a class="btn" href="#contact">Book Your Session</a>
+
 </div>
 
 </section>
 
-<section class="section" id="portfolio">
+<section id="portfolio">
+
+<div class="container">
 
 <h2>Portfolio</h2>
 
-<div class="portfolio">
+<div class="portfolio-grid">
 
 <img src="images/photo1.jpg">
 <img src="images/photo2.jpg">
@@ -166,49 +249,63 @@ color:#aaa;
 
 </div>
 
+</div>
+
 </section>
 
-<section class="section" id="services">
+<section id="services">
 
-<h2>Photography Services</h2>
+<div class="container">
+
+<h2>Services</h2>
 
 <div class="services">
 
-<div class="card">
+<div class="service">
 <h3>Portrait Sessions</h3>
-<p>Individual portraits designed to highlight personality, confidence, and style.</p>
+<p>Professional portraits designed to capture confidence, style, and personality.</p>
 </div>
 
-<div class="card">
+<div class="service">
 <h3>Couples Photography</h3>
-<p>Romantic and cinematic photography for couples, engagements, and anniversaries.</p>
+<p>Romantic cinematic photography for couples and engagements.</p>
 </div>
 
-<div class="card">
+<div class="service">
 <h3>Studio Photography</h3>
-<p>Professional lighting setups for polished studio portraits.</p>
+<p>Controlled lighting for polished studio portrait sessions.</p>
 </div>
 
-<div class="card">
-<h3>Event Photography</h3>
-<p>Coverage for private events, celebrations, and special moments.</p>
+<div class="service">
+<h3>Event Coverage</h3>
+<p>Photography for celebrations, nightlife, and private events.</p>
+</div>
+
 </div>
 
 </div>
 
 </section>
 
-<section class="section" id="about">
+<section id="about">
 
-<h2>About Enhance Visual Studio</h2>
+<div class="container">
+
+<h2>About</h2>
+
+<div class="about">
 
 <p>
 
-Enhance Visual Studio specializes in cinematic portrait photography designed to capture authentic emotion, powerful expression, and timeless visual storytelling.
+Enhance Visual Studio is a portrait photography brand focused on creating cinematic, polished imagery that highlights authentic emotion and powerful visual storytelling.
 
-Using professional lighting techniques and creative direction, every session is crafted to produce images that feel both natural and elevated.
+Each session is guided with professional lighting, creative direction, and a refined editing style designed to produce timeless images.
 
 </p>
+
+</div>
+
+</div>
 
 </section>
 
@@ -218,19 +315,27 @@ Using professional lighting techniques and creative direction, every session is 
 
 <p>Book your portrait session today.</p>
 
-<a class="btn" href="#contact">Schedule Your Session</a>
+<a class="btn" href="#contact">Schedule Now</a>
 
 </section>
 
-<section class="section" id="contact">
+<section id="contact">
+
+<div class="container">
 
 <h2>Contact</h2>
 
-<p>Email: hello@enhancevisualstudio.com</p>
+<p style="text-align:center">
 
-<p>Instagram: @enhancevisualstudio</p>
+Email: hello@enhancevisualstudio.com  
+<br><br>
+Instagram: @enhancevisualstudio  
+<br><br>
+Location: Southern California
 
-<p>Location: Southern California</p>
+</p>
+
+</div>
 
 </section>
 
@@ -240,6 +345,36 @@ Using professional lighting techniques and creative direction, every session is 
 
 </footer>
 
-</body>
+<div class="lightbox" id="lightbox">
 
+<img src="" id="lightbox-img">
+
+</div>
+
+<script>
+
+const images = document.querySelectorAll(".portfolio-grid img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+images.forEach(img => {
+
+img.addEventListener("click", () => {
+
+lightbox.style.display = "flex";
+lightboxImg.src = img.src;
+
+});
+
+});
+
+lightbox.addEventListener("click", () => {
+
+lightbox.style.display = "none";
+
+});
+
+</script>
+
+</body>
 </html>
