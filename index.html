@@ -6,13 +6,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Enhance Visual Studio | Pose. Capture. Enhance.</title>
+<title>Enhance Visual Studio | Luxury Portrait Photography</title>
+
+<meta name="description" content="Enhance Visual Studio provides luxury portrait photography across Los Angeles, San Francisco, Bay Area, and San Diego. Portraits, couples sessions, and studio photography.">
+
+<meta name="keywords" content="portrait photographer Los Angeles, Bay Area portrait photographer, couples photographer San Diego, luxury portraits California">
+
+<meta name="author" content="Enhance Visual Studio">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+
+/* GLOBAL */
 
 {
 margin:0;
@@ -37,13 +45,13 @@ max-width:1200px;
 margin:auto;
 }
 
-/ NAV /
+/ NAVIGATION /
 
 header{
 position:fixed;
 top:0;
 width:100%;
-background:rgba(0,0,0,0.5);
+background:rgba(0,0,0,0.6);
 backdrop-filter:blur(12px);
 border-bottom:1px solid rgba(255,255,255,0.08);
 z-index:999;
@@ -74,44 +82,30 @@ transition:.3s;
 color:#fff;
 }
 
-/ HERO SLIDER /
+/ HERO /
 
 .hero{
 height:100vh;
+background:url("images/hero.jpg") center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
 position:relative;
-overflow:hidden;
 }
 
-.slide{
+.hero::after{
+content:"";
 position:absolute;
-width:100%;
-height:100%;
-background-size:cover;
-background-position:center;
-opacity:0;
-transition:opacity 2s ease;
-}
-
-.slide.active{
-opacity:1;
-}
-
-.hero-overlay{
-position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,0.55);
-z-index:1;
+top:0;
+left:0;
 }
 
 .hero-content{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-text-align:center;
+position:relative;
 z-index:2;
 }
 
@@ -121,14 +115,14 @@ font-size:70px;
 }
 
 .hero p{
-margin-top:12px;
+margin-top:15px;
 font-size:18px;
 color:#ddd;
 }
 
 .btn{
 display:inline-block;
-margin-top:28px;
+margin-top:30px;
 padding:15px 36px;
 background:#d6b98c;
 color:#000;
@@ -167,7 +161,7 @@ gap:24px;
 width:100%;
 border-radius:12px;
 cursor:pointer;
-transition:.4s;
+transition:.35s;
 }
 
 .portfolio-grid img:hover{
@@ -328,15 +322,10 @@ Enhance Visual Studio
 
 <section class="hero">
 
-<div class="slide active" style="background-image:url('images/hero1.jpg')"></div>
-<div class="slide" style="background-image:url('images/hero2.jpg')"></div>
-<div class="slide" style="background-image:url('images/hero3.jpg')"></div>
-
-<div class="hero-overlay"></div>
-
 <div class="hero-content">
 
 <h1>Pose. Capture. Enhance.</h1>
+
 <p>Luxury portrait photography crafted with cinematic lighting.</p>
 
 <a class="btn" href="#contact">Book Your Session</a>
@@ -379,23 +368,23 @@ Enhance Visual Studio
 <div class="services">
 
 <div class="service">
-<h3>Portrait Photography</h3>
-<p>Professional portraits with cinematic lighting and direction.</p>
+<h3>Portrait Sessions</h3>
+<p>Professional portrait photography with cinematic lighting.</p>
 </div>
 
 <div class="service">
 <h3>Couples Photography</h3>
-<p>Romantic storytelling photography for couples.</p>
+<p>Romantic and storytelling style couples portraits.</p>
 </div>
 
 <div class="service">
-<h3>Studio Sessions</h3>
-<p>Professional studio portraits with controlled lighting.</p>
+<h3>Studio Portraits</h3>
+<p>Professional lighting setups for high-end portrait sessions.</p>
 </div>
 
 <div class="service">
-<h3>Event Photography</h3>
-<p>Coverage for events, celebrations, and nightlife.</p>
+<h3>Event Coverage</h3>
+<p>Photography for events, celebrations, and nightlife.</p>
 </div>
 
 </div>
@@ -410,15 +399,15 @@ Enhance Visual Studio
 
 <div class="container">
 
-<h2>About</h2>
+<h2>About Enhance Visual Studio</h2>
 
 <div class="about">
 
 <p>
 
-Enhance Visual Studio specializes in cinematic portrait photography designed to capture authentic emotion and timeless storytelling.
+Enhance Visual Studio creates powerful portrait photography designed to capture authentic personality and timeless emotion.
 
-Every session blends professional lighting, creative direction, and refined editing to create powerful and polished imagery.
+Each session blends professional lighting, creative direction, and refined editing to produce cinematic images.
 
 </p>
 
@@ -446,6 +435,30 @@ Los Angeles • San Francisco • Bay Area • San Diego
 
 </section>
 
+<!-- CLIENT GALLERY -->
+
+<section class="reveal">
+
+<div class="container">
+
+<h2>Client Galleries</h2>
+
+<p style="text-align:center">
+
+View delivered client photos.
+
+</p>
+
+<p style="text-align:center">
+
+<a class="btn" href="#">Open Client Gallery</a>
+
+</p>
+
+</div>
+
+</section>
+
 <!-- CTA -->
 
 <section class="cta">
@@ -454,7 +467,7 @@ Los Angeles • San Francisco • Bay Area • San Diego
 
 <p>Book your portrait session today.</p>
 
-<a class="btn" href="#contact">Start Booking</a>
+<a class="btn" href="#">Book Now</a>
 
 </section>
 
@@ -472,7 +485,7 @@ Email: hello@enhancevisualstudio.com
 <br><br>
 Instagram: @enhancevisualstudio  
 <br><br>
-Location: California
+Serving: Los Angeles • San Francisco • Bay Area • San Diego
 
 </p>
 
@@ -507,17 +520,6 @@ Location: California
 
 <script>
 
-/ HERO SLIDES /
-
-let slides=document.querySelectorAll(".slide");
-let index=0;
-
-setInterval(()=>{
-slides[index].classList.remove("active");
-index=(index+1)%slides.length;
-slides[index].classList.add("active");
-},5000);
-
 / LIGHTBOX /
 
 const images=document.querySelectorAll(".portfolio-grid img");
@@ -541,7 +543,8 @@ window.addEventListener("scroll",()=>{
 document.querySelectorAll(".reveal").forEach(el=>{
 let top=el.getBoundingClientRect().top;
 let windowHeight=window.innerHeight;
-if(top<windowHeight-100){
+
+if(top < windowHeight-100){
 el.classList.add("active");
 }
 });
