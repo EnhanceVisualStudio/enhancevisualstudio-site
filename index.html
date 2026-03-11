@@ -14,7 +14,7 @@
 
 <style>
 
-*{
+{
 margin:0;
 padding:0;
 box-sizing:border-box;
@@ -37,14 +37,14 @@ max-width:1200px;
 margin:auto;
 }
 
-/* NAV */
+/ NAV /
 
 header{
 position:fixed;
 top:0;
 width:100%;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(12px);
 border-bottom:1px solid rgba(255,255,255,0.08);
 z-index:999;
 }
@@ -63,60 +63,72 @@ letter-spacing:2px;
 }
 
 .nav-links a{
-margin-left:28px;
-color:#ccc;
+margin-left:30px;
+color:#ddd;
 text-decoration:none;
 font-size:14px;
 transition:.3s;
 }
 
 .nav-links a:hover{
-color:white;
+color:#fff;
 }
 
-/* HERO */
+/ HERO SLIDER /
 
 .hero{
 height:100vh;
-background:url("images/hero.jpg") center/cover no-repeat;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
 position:relative;
+overflow:hidden;
 }
 
-.hero::after{
-content:"";
+.slide{
 position:absolute;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.55);
+background-size:cover;
+background-position:center;
+opacity:0;
+transition:opacity 2s ease;
+}
+
+.slide.active{
+opacity:1;
+}
+
+.hero-overlay{
+position:absolute;
 top:0;
 left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+z-index:1;
 }
 
 .hero-content{
-position:relative;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
 z-index:2;
-animation:fadeUp 1.5s ease;
 }
 
 .hero h1{
 font-family:"Playfair Display",serif;
-font-size:68px;
-letter-spacing:1px;
+font-size:70px;
 }
 
 .hero p{
-margin-top:15px;
+margin-top:12px;
 font-size:18px;
 color:#ddd;
 }
 
 .btn{
 display:inline-block;
-margin-top:30px;
+margin-top:28px;
 padding:15px 36px;
 background:#d6b98c;
 color:#000;
@@ -130,7 +142,7 @@ transition:.3s;
 background:#e6cfa4;
 }
 
-/* SECTIONS */
+/ SECTIONS /
 
 section{
 padding:110px 0;
@@ -138,12 +150,12 @@ padding:110px 0;
 
 h2{
 font-family:"Playfair Display",serif;
-font-size:40px;
+font-size:42px;
 text-align:center;
 margin-bottom:60px;
 }
 
-/* PORTFOLIO */
+/ PORTFOLIO /
 
 .portfolio-grid{
 display:grid;
@@ -162,7 +174,7 @@ transition:.4s;
 transform:scale(1.06);
 }
 
-/* SERVICES */
+/ SERVICES /
 
 .services{
 display:grid;
@@ -183,11 +195,7 @@ transform:translateY(-6px);
 border-color:#d6b98c;
 }
 
-.service h3{
-margin-bottom:10px;
-}
-
-/* ABOUT */
+/ ABOUT /
 
 .about{
 max-width:800px;
@@ -197,7 +205,7 @@ color:#cfcfcf;
 font-size:17px;
 }
 
-/* SERVICE AREA */
+/ SERVICE AREA /
 
 .area{
 text-align:center;
@@ -205,7 +213,7 @@ font-size:18px;
 color:#ddd;
 }
 
-/* CTA */
+/ CTA /
 
 .cta{
 text-align:center;
@@ -215,7 +223,7 @@ border-top:1px solid #222;
 border-bottom:1px solid #222;
 }
 
-/* FOOTER */
+/ FOOTER /
 
 footer{
 padding:60px 20px;
@@ -229,8 +237,8 @@ margin-bottom:20px;
 
 .socials a{
 color:#ccc;
-margin:0 12px;
-font-size:20px;
+margin:0 14px;
+font-size:22px;
 transition:.3s;
 }
 
@@ -238,7 +246,7 @@ transition:.3s;
 color:#d6b98c;
 }
 
-/* LIGHTBOX */
+/ LIGHTBOX /
 
 .lightbox{
 position:fixed;
@@ -259,20 +267,20 @@ max-height:90%;
 border-radius:10px;
 }
 
-/* ANIMATION */
+/ SCROLL ANIMATION /
 
-@keyframes fadeUp{
-from{
+.reveal{
 opacity:0;
 transform:translateY(40px);
+transition:1s;
 }
-to{
+
+.reveal.active{
 opacity:1;
 transform:translateY(0);
 }
-}
 
-/* MOBILE */
+/ MOBILE /
 
 @media(max-width:768px){
 
@@ -316,13 +324,20 @@ Enhance Visual Studio
 
 </header>
 
+<!-- HERO -->
+
 <section class="hero">
+
+<div class="slide active" style="background-image:url('images/hero1.jpg')"></div>
+<div class="slide" style="background-image:url('images/hero2.jpg')"></div>
+<div class="slide" style="background-image:url('images/hero3.jpg')"></div>
+
+<div class="hero-overlay"></div>
 
 <div class="hero-content">
 
 <h1>Pose. Capture. Enhance.</h1>
-
-<p>Luxury portrait photography crafted with cinematic lighting and creative direction.</p>
+<p>Luxury portrait photography crafted with cinematic lighting.</p>
 
 <a class="btn" href="#contact">Book Your Session</a>
 
@@ -330,7 +345,9 @@ Enhance Visual Studio
 
 </section>
 
-<section id="portfolio">
+<!-- PORTFOLIO -->
+
+<section id="portfolio" class="reveal">
 
 <div class="container">
 
@@ -351,7 +368,9 @@ Enhance Visual Studio
 
 </section>
 
-<section id="services">
+<!-- SERVICES -->
+
+<section id="services" class="reveal">
 
 <div class="container">
 
@@ -361,22 +380,22 @@ Enhance Visual Studio
 
 <div class="service">
 <h3>Portrait Photography</h3>
-<p>Individual portraits captured with cinematic lighting and professional direction.</p>
+<p>Professional portraits with cinematic lighting and direction.</p>
 </div>
 
 <div class="service">
 <h3>Couples Photography</h3>
-<p>Romantic and emotional storytelling for couples and engagements.</p>
+<p>Romantic storytelling photography for couples.</p>
 </div>
 
 <div class="service">
 <h3>Studio Sessions</h3>
-<p>Professional studio lighting for polished editorial style portraits.</p>
+<p>Professional studio portraits with controlled lighting.</p>
 </div>
 
 <div class="service">
 <h3>Event Photography</h3>
-<p>Coverage for celebrations, nightlife, and private events.</p>
+<p>Coverage for events, celebrations, and nightlife.</p>
 </div>
 
 </div>
@@ -385,7 +404,9 @@ Enhance Visual Studio
 
 </section>
 
-<section id="about">
+<!-- ABOUT -->
+
+<section id="about" class="reveal">
 
 <div class="container">
 
@@ -395,8 +416,9 @@ Enhance Visual Studio
 
 <p>
 
-Enhance Visual Studio specializes in cinematic portrait photography designed to capture authentic emotion and timeless visual storytelling.  
-Each session blends professional lighting, creative direction, and refined editing to create images that feel powerful, polished, and unforgettable.
+Enhance Visual Studio specializes in cinematic portrait photography designed to capture authentic emotion and timeless storytelling.
+
+Every session blends professional lighting, creative direction, and refined editing to create powerful and polished imagery.
 
 </p>
 
@@ -406,7 +428,9 @@ Each session blends professional lighting, creative direction, and refined editi
 
 </section>
 
-<section>
+<!-- SERVICE AREA -->
+
+<section class="reveal">
 
 <div class="container">
 
@@ -422,6 +446,8 @@ Los Angeles • San Francisco • Bay Area • San Diego
 
 </section>
 
+<!-- CTA -->
+
 <section class="cta">
 
 <h2>Ready to Create Something Timeless?</h2>
@@ -431,6 +457,8 @@ Los Angeles • San Francisco • Bay Area • San Diego
 <a class="btn" href="#contact">Start Booking</a>
 
 </section>
+
+<!-- CONTACT -->
 
 <section id="contact">
 
@@ -479,6 +507,19 @@ Location: California
 
 <script>
 
+/ HERO SLIDES /
+
+let slides=document.querySelectorAll(".slide");
+let index=0;
+
+setInterval(()=>{
+slides[index].classList.remove("active");
+index=(index+1)%slides.length;
+slides[index].classList.add("active");
+},5000);
+
+/ LIGHTBOX /
+
 const images=document.querySelectorAll(".portfolio-grid img");
 const lightbox=document.getElementById("lightbox");
 const lightboxImg=document.getElementById("lightbox-img");
@@ -492,6 +533,18 @@ lightboxImg.src=img.src;
 
 lightbox.addEventListener("click",()=>{
 lightbox.style.display="none";
+});
+
+/ SCROLL REVEAL */
+
+window.addEventListener("scroll",()=>{
+document.querySelectorAll(".reveal").forEach(el=>{
+let top=el.getBoundingClientRect().top;
+let windowHeight=window.innerHeight;
+if(top<windowHeight-100){
+el.classList.add("active");
+}
+});
 });
 
 </script>
