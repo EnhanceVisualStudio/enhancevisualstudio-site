@@ -6,7 +6,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Enhance Visual Studio | Portrait Photography</title>
+<title>Enhance Visual Studio | Pose. Capture. Enhance.</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
@@ -16,15 +18,19 @@ padding:0;
 box-sizing:border-box;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
-font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 background:#0b0b0b;
 color:#f5f1ea;
+font-family:Inter,sans-serif;
 line-height:1.6;
 }
 
 .container{
-width:90%;
+width:92%;
 max-width:1200px;
 margin:auto;
 }
@@ -33,10 +39,10 @@ header{
 position:fixed;
 top:0;
 width:100%;
-background:rgba(0,0,0,0.6);
+background:rgba(0,0,0,0.7);
 backdrop-filter:blur(10px);
 border-bottom:1px solid rgba(255,255,255,0.1);
-z-index:100;
+z-index:999;
 }
 
 nav{
@@ -47,9 +53,9 @@ padding:18px 0;
 }
 
 .logo{
-font-size:18px;
+font-family:"Playfair Display",serif;
+font-size:20px;
 letter-spacing:2px;
-font-weight:700;
 }
 
 .nav-links a{
@@ -57,6 +63,7 @@ margin-left:25px;
 color:#ccc;
 text-decoration:none;
 font-size:14px;
+transition:.3s;
 }
 
 .nav-links a:hover{
@@ -65,7 +72,7 @@ color:white;
 
 .hero{
 height:100vh;
-background:url('images/hero.jpg') center/cover no-repeat;
+background:url("images/hero.jpg") center/cover no-repeat;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -76,11 +83,11 @@ position:relative;
 .hero::after{
 content:"";
 position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.5);
+background:rgba(0,0,0,0.55);
+top:0;
+left:0;
 }
 
 .hero-content{
@@ -89,52 +96,59 @@ z-index:2;
 }
 
 .hero h1{
-font-size:60px;
+font-family:"Playfair Display",serif;
+font-size:64px;
 letter-spacing:1px;
 }
 
 .hero p{
 margin-top:15px;
-color:#ddd;
 font-size:18px;
+color:#ddd;
 }
 
 .btn{
 display:inline-block;
-margin-top:25px;
-padding:14px 28px;
+margin-top:28px;
+padding:14px 32px;
 background:#d6b98c;
-color:black;
-font-weight:bold;
+color:#000;
+font-weight:600;
 border-radius:40px;
 text-decoration:none;
+transition:.3s;
+}
+
+.btn:hover{
+background:#e4cfa7;
 }
 
 section{
-padding:100px 0;
+padding:110px 0;
 }
 
 h2{
-font-size:36px;
-margin-bottom:40px;
+font-family:"Playfair Display",serif;
+font-size:40px;
 text-align:center;
+margin-bottom:60px;
 }
 
 .portfolio-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:20px;
+gap:24px;
 }
 
 .portfolio-grid img{
 width:100%;
-border-radius:10px;
+border-radius:12px;
 cursor:pointer;
-transition:0.3s;
+transition:.35s;
 }
 
 .portfolio-grid img:hover{
-transform:scale(1.03);
+transform:scale(1.05);
 }
 
 .services{
@@ -147,30 +161,45 @@ gap:30px;
 background:#141414;
 padding:30px;
 border-radius:12px;
+border:1px solid rgba(255,255,255,0.05);
+transition:.3s;
+}
+
+.service:hover{
+transform:translateY(-6px);
+border-color:#d6b98c;
 }
 
 .service h3{
 margin-bottom:10px;
+font-size:20px;
 }
 
 .about{
 max-width:800px;
 margin:auto;
 text-align:center;
-color:#ccc;
+color:#cfcfcf;
+font-size:17px;
 }
 
 .cta{
 text-align:center;
 background:#111;
 padding:120px 20px;
+border-top:1px solid #222;
+border-bottom:1px solid #222;
+}
+
+.cta h2{
+margin-bottom:20px;
 }
 
 footer{
-border-top:1px solid #222;
-padding:40px;
+padding:50px;
 text-align:center;
-color:#888;
+color:#777;
+border-top:1px solid #222;
 }
 
 .lightbox{
@@ -179,16 +208,30 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.9);
+background:rgba(0,0,0,0.95);
 display:none;
 align-items:center;
 justify-content:center;
-z-index:200;
+z-index:1000;
 }
 
 .lightbox img{
 max-width:90%;
 max-height:90%;
+border-radius:10px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:42px;
+}
+
+nav{
+flex-direction:column;
+gap:10px;
+}
+
 }
 
 </style>
@@ -198,6 +241,7 @@ max-height:90%;
 <body>
 
 <header>
+
 <div class="container">
 
 <nav>
@@ -216,6 +260,7 @@ Enhance Visual Studio
 </nav>
 
 </div>
+
 </header>
 
 <section class="hero">
@@ -263,22 +308,22 @@ Enhance Visual Studio
 
 <div class="service">
 <h3>Portrait Sessions</h3>
-<p>Professional portraits designed to capture confidence, style, and personality.</p>
+<p>Individual portraits crafted with cinematic lighting and creative direction.</p>
 </div>
 
 <div class="service">
 <h3>Couples Photography</h3>
-<p>Romantic cinematic photography for couples and engagements.</p>
+<p>Romantic and cinematic images for couples and engagement sessions.</p>
 </div>
 
 <div class="service">
-<h3>Studio Photography</h3>
-<p>Controlled lighting for polished studio portrait sessions.</p>
+<h3>Studio Portraits</h3>
+<p>Professional studio lighting for polished editorial style portraits.</p>
 </div>
 
 <div class="service">
 <h3>Event Coverage</h3>
-<p>Photography for celebrations, nightlife, and private events.</p>
+<p>Private events, nightlife photography, and celebrations captured professionally.</p>
 </div>
 
 </div>
@@ -291,15 +336,14 @@ Enhance Visual Studio
 
 <div class="container">
 
-<h2>About</h2>
+<h2>About Enhance Visual Studio</h2>
 
 <div class="about">
 
 <p>
 
-Enhance Visual Studio is a portrait photography brand focused on creating cinematic, polished imagery that highlights authentic emotion and powerful visual storytelling.
-
-Each session is guided with professional lighting, creative direction, and a refined editing style designed to produce timeless images.
+Enhance Visual Studio is a portrait photography brand focused on creating powerful, cinematic imagery.  
+Each session blends professional lighting, creative direction, and refined editing to produce timeless portraits that highlight authentic personality and emotion.
 
 </p>
 
@@ -315,7 +359,7 @@ Each session is guided with professional lighting, creative direction, and a ref
 
 <p>Book your portrait session today.</p>
 
-<a class="btn" href="#contact">Schedule Now</a>
+<a class="btn" href="#contact">Start Booking</a>
 
 </section>
 
@@ -353,25 +397,19 @@ Location: Southern California
 
 <script>
 
-const images = document.querySelectorAll(".portfolio-grid img");
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
+const images=document.querySelectorAll(".portfolio-grid img");
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightbox-img");
 
-images.forEach(img => {
-
-img.addEventListener("click", () => {
-
-lightbox.style.display = "flex";
-lightboxImg.src = img.src;
-
+images.forEach(img=>{
+img.addEventListener("click",()=>{
+lightbox.style.display="flex";
+lightboxImg.src=img.src;
+});
 });
 
-});
-
-lightbox.addEventListener("click", () => {
-
-lightbox.style.display = "none";
-
+lightbox.addEventListener("click",()=>{
+lightbox.style.display="none";
 });
 
 </script>
