@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -8,7 +7,7 @@
 
 <title>Enhance Visual Studio | Pose. Capture. Enhance.</title>
 
-<meta name="description" content="Portrait, fashion, family, fitness, boudoir, nude art and event photography by Enhance Visual Studio.">
+<meta name="description" content="Portrait, family, kids and event photography by Enhance Visual Studio serving San Francisco and the Bay Area.">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -16,7 +15,6 @@
 
 :root{
 --bg:#0b0b0b;
---bg-soft:#121212;
 --panel:#161616;
 --text:#f5f1ea;
 --muted:#b8afa2;
@@ -26,9 +24,7 @@
 --max:1180px;
 }
 
-*{box-sizing:border-box}
-
-html{scroll-behavior:smooth}
+{box-sizing:border-box}
 
 body{
 margin:0;
@@ -48,16 +44,11 @@ width:100%;
 display:block;
 }
 
-a{
-color:inherit;
-text-decoration:none;
-}
-
 section{
 padding:90px 0;
 }
 
-/* HEADER */
+/ HEADER /
 
 .site-header{
 position:sticky;
@@ -96,10 +87,7 @@ align-items:center;
 .nav-links a{
 color:var(--muted);
 font-size:.9rem;
-}
-
-.nav-links a:hover{
-color:var(--text);
+text-decoration:none;
 }
 
 .nav-cta{
@@ -110,55 +98,29 @@ border-radius:999px;
 font-weight:700;
 }
 
-/* HERO */
+/ HERO SLIDESHOW /
 
 .hero{
 height:92vh;
-display:flex;
-align-items:center;
-background:
-linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.85)),
-url('images/hero.jpg') center/cover no-repeat;
+position:relative;
+overflow:hidden;
 }
 
-.hero-content{
-max-width:750px;
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+transition:opacity 1s ease;
 }
 
-.hero h1{
-font-size:clamp(2.5rem,6vw,5rem);
-line-height:1.05;
-margin:12px 0;
+.slide.active{
+opacity:1;
 }
 
-.hero-sub{
-color:var(--muted);
-max-width:580px;
-}
-
-.hero-buttons{
-margin-top:28px;
-display:flex;
-gap:14px;
-}
-
-.btn{
-padding:14px 22px;
-border-radius:999px;
-font-weight:700;
-display:inline-block;
-}
-
-.btn-primary{
-background:var(--accent);
-color:#111;
-}
-
-.btn-secondary{
-border:1px solid var(--line);
-}
-
-/* SECTION HEAD */
+/ SECTION HEAD /
 
 .section-head{
 max-width:680px;
@@ -175,7 +137,7 @@ margin:0;
 color:var(--muted);
 }
 
-/* PORTFOLIO */
+/ PORTFOLIO /
 
 .portfolio-grid{
 display:grid;
@@ -209,7 +171,7 @@ border-radius:6px;
 font-size:12px;
 }
 
-/* SERVICES */
+/ SERVICES /
 
 .services-grid{
 display:grid;
@@ -224,7 +186,7 @@ border-radius:14px;
 border:1px solid var(--line);
 }
 
-/* ABOUT */
+/ ABOUT /
 
 .about-grid{
 display:grid;
@@ -233,7 +195,7 @@ gap:40px;
 align-items:center;
 }
 
-/* TESTIMONIALS */
+/ TESTIMONIALS /
 
 .testimonials-grid{
 display:grid;
@@ -252,7 +214,7 @@ border-radius:14px;
 color:var(--muted);
 }
 
-/* PRICING */
+/ PRICING /
 
 .pricing-grid{
 display:grid;
@@ -268,7 +230,7 @@ border:1px solid var(--line);
 text-align:center;
 }
 
-/* INSTAGRAM */
+/ INSTAGRAM /
 
 .instagram-grid{
 display:grid;
@@ -276,7 +238,7 @@ grid-template-columns:repeat(3,1fr);
 gap:14px;
 }
 
-/* CTA */
+/ CTA /
 
 .booking-cta{
 text-align:center;
@@ -284,7 +246,7 @@ border-top:1px solid var(--line);
 border-bottom:1px solid var(--line);
 }
 
-/* FOOTER */
+/ FOOTER /
 
 .site-footer{
 padding:60px 0;
@@ -307,7 +269,7 @@ color:var(--muted);
 color:var(--accent);
 }
 
-/* LIGHTBOX */
+/ LIGHTBOX /
 
 #lightbox{
 position:fixed;
@@ -328,7 +290,7 @@ max-height:90%;
 border-radius:12px;
 }
 
-/* MOBILE */
+/ MOBILE /
 
 @media(max-width:900px){
 
@@ -337,12 +299,11 @@ border-radius:12px;
 .testimonials-grid{grid-template-columns:1fr}
 .pricing-grid{grid-template-columns:1fr}
 .about-grid{grid-template-columns:1fr}
-.hero{height:auto;padding:120px 0}
+.hero{height:60vh}
 
 }
 
 </style>
-
 </head>
 
 <body>
@@ -365,21 +326,14 @@ border-radius:12px;
 </div>
 </header>
 
+<!-- HERO SLIDESHOW -->
+
 <section class="hero">
-<div class="container hero-content">
 
-<h1>Pose. Capture. Enhance.</h1>
+<div class="slide active" style="background-image:url('images/hero1.jpg')"></div>
+<div class="slide" style="background-image:url('images/hero2.jpg')"></div>
+<div class="slide" style="background-image:url('images/hero3.jpg')"></div>
 
-<p class="hero-sub">
-Portrait, fashion, fitness, boudoir and event photography serving Los Angeles, San Francisco, the Bay Area and San Diego.
-</p>
-
-<div class="hero-buttons">
-<a href="booking.html" class="btn btn-primary">Book a Session</a>
-<a href="#portfolio" class="btn btn-secondary">View Portfolio</a>
-</div>
-
-</div>
 </section>
 
 <section id="portfolio">
@@ -387,34 +341,34 @@ Portrait, fashion, fitness, boudoir and event photography serving Los Angeles, S
 
 <div class="section-head">
 <h2>Portfolio</h2>
-<p>A selection of recent work.</p>
+<p>Portrait, family, kids and event photography.</p>
 </div>
 
 <div class="portfolio-grid">
 
 <div class="portfolio-item">
 <img src="images/portfolio1.jpg">
-<div class="portfolio-label">Portrait</div>
+<div class="portfolio-label">Portraits</div>
 </div>
 
 <div class="portfolio-item">
 <img src="images/portfolio2.jpg">
-<div class="portfolio-label">Fashion</div>
-</div>
-
-<div class="portfolio-item">
-<img src="images/portfolio3.jpg">
-<div class="portfolio-label">Fitness</div>
-</div>
-
-<div class="portfolio-item">
-<img src="images/portfolio4.jpg">
 <div class="portfolio-label">Family</div>
 </div>
 
 <div class="portfolio-item">
+<img src="images/portfolio3.jpg">
+<div class="portfolio-label">Kids</div>
+</div>
+
+<div class="portfolio-item">
+<img src="images/portfolio4.jpg">
+<div class="portfolio-label">Portraits</div>
+</div>
+
+<div class="portfolio-item">
 <img src="images/portfolio5.jpg">
-<div class="portfolio-label">Boudoir</div>
+<div class="portfolio-label">Family</div>
 </div>
 
 <div class="portfolio-item">
@@ -438,22 +392,18 @@ Portrait, fashion, fitness, boudoir and event photography serving Los Angeles, S
 
 <div class="service">
 <h3>Portrait Photography</h3>
-<p>Professional portraits and lifestyle photography.</p>
 </div>
 
 <div class="service">
-<h3>Fashion Photography</h3>
-<p>Creative editorial and fashion photography sessions.</p>
+<h3>Family Sessions</h3>
 </div>
 
 <div class="service">
-<h3>Fitness Photography</h3>
-<p>Athletic and physique focused photography.</p>
+<h3>Kids Photography</h3>
 </div>
 
 <div class="service">
 <h3>Event Coverage</h3>
-<p>Private events, nightlife and celebrations.</p>
 </div>
 
 </div>
@@ -476,12 +426,12 @@ Portrait, fashion, fitness, boudoir and event photography serving Los Angeles, S
 </div>
 
 <div class="price-card">
-<h3>Studio Sessions</h3>
+<h3>Family Sessions</h3>
 <p>Starting at $300</p>
 </div>
 
 <div class="price-card">
-<h3>Event Coverage</h3>
+<h3>Events</h3>
 <p>Starting at $400</p>
 </div>
 
@@ -498,31 +448,12 @@ Portrait, fashion, fitness, boudoir and event photography serving Los Angeles, S
 <h2>About Enhance Visual Studio</h2>
 
 <p>
-Enhance Visual Studio creates cinematic imagery through professional lighting, creative direction and attention to detail.
+Enhance Visual Studio specializes in portrait, family and event photography throughout San Francisco and the Bay Area.
 </p>
 
 </div>
 
 <img src="images/photographer.jpg">
-
-</div>
-</section>
-
-<section>
-<div class="container">
-
-<div class="section-head">
-<h2>Latest Work</h2>
-<p>Follow along on Instagram.</p>
-</div>
-
-<div class="instagram-grid">
-
-<img src="images/portfolio1.jpg">
-<img src="images/portfolio2.jpg">
-<img src="images/portfolio3.jpg">
-
-</div>
 
 </div>
 </section>
@@ -579,11 +510,14 @@ Enhance Visual Studio creates cinematic imagery through professional lighting, c
 
 <div class="footer-social">
 
-<a href="#"><i class="fab fa-instagram"></i></a> <a href="#"><i class="fab fa-facebook"></i></a> <a href="#"><i class="fab fa-youtube"></i></a> <a href="#"><i class="fab fa-tiktok"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-youtube"></i></a>
+<a href="#"><i class="fab fa-tiktok"></i></a>
 
 </div>
 
-<p>Serving Los Angeles • San Francisco • Bay Area • San Diego</p>
+<p>Serving San Francisco • Bay Area</p>
 
 <p>© 2026 Enhance Visual Studio — All Rights Reserved</p>
 
@@ -596,6 +530,19 @@ Enhance Visual Studio creates cinematic imagery through professional lighting, c
 </div>
 
 <script>
+
+/ HERO SLIDESHOW /
+
+let slides=document.querySelectorAll(".slide");
+let index=0;
+
+setInterval(()=>{
+slides[index].classList.remove("active");
+index=(index+1)%slides.length;
+slides[index].classList.add("active");
+},4000);
+
+/ LIGHTBOX */
 
 const images=document.querySelectorAll(".portfolio-grid img");
 const lightbox=document.getElementById("lightbox");
