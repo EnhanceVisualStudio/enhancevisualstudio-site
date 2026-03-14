@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 
@@ -23,11 +22,9 @@
 --max:1300px;
 }
 
-*{box-sizing:border-box}
+{box-sizing:border-box}
 
-html{
-scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth;}
 
 body{
 margin:0;
@@ -36,28 +33,25 @@ background:var(--bg);
 color:var(--text);
 }
 
-/* CONTAINER */
+/ CONTAINER /
 
 .container{
 width:min(var(--max),calc(100% - 40px));
 margin:auto;
 }
 
-img{
-width:100%;
-display:block;
-}
+img{width:100%;display:block}
 
-/* HEADER */
+/ HEADER /
 
 header{
 position:fixed;
 top:0;
 width:100%;
-z-index:999;
 background:rgba(0,0,0,.55);
 backdrop-filter:blur(10px);
 border-bottom:1px solid var(--line);
+z-index:1000;
 }
 
 .nav{
@@ -80,24 +74,12 @@ color:var(--muted);
 font-size:14px;
 }
 
-.nav a:hover{
-color:var(--text);
-}
-
-/* HERO */
+/ HERO /
 
 .hero{
 height:100vh;
 position:relative;
 overflow:hidden;
-}
-
-.hero-overlay{
-position:absolute;
-width:100%;
-height:100%;
-background:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.85));
-z-index:1;
 }
 
 .slide{
@@ -110,31 +92,25 @@ opacity:0;
 transition:opacity 2s ease;
 }
 
-.slide.active{
-opacity:1;
+.slide.active{opacity:1}
+
+.hero-overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.85));
 }
 
-/* PORTFOLIO */
+/ PORTFOLIO /
 
-.portfolio{
-padding:120px 0;
-}
+.portfolio{padding:120px 0}
 
 .section-title{
 text-align:center;
 margin-bottom:60px;
 }
 
-.section-title h2{
-font-size:32px;
-margin-bottom:10px;
-}
-
-.section-title p{
-color:var(--muted);
-}
-
-/* MASONRY LAYOUT */
+.section-title p{color:var(--muted)}
 
 .masonry{
 columns:3 300px;
@@ -144,20 +120,17 @@ column-gap:20px;
 .masonry img{
 margin-bottom:20px;
 border-radius:12px;
-transition:transform .5s ease, filter .5s ease;
 cursor:pointer;
+transition:transform .5s ease;
 }
 
 .masonry img:hover{
 transform:scale(1.05);
-filter:brightness(1.15);
 }
 
-/* ABOUT */
+/ ABOUT /
 
-.about{
-padding:120px 0;
-}
+.about{padding:120px 0}
 
 .about-grid{
 display:grid;
@@ -166,23 +139,15 @@ gap:60px;
 align-items:center;
 }
 
-.about p{
-color:var(--muted);
-line-height:1.6;
-}
+.about p{color:var(--muted)}
 
-/* CTA */
+/ CTA /
 
 .cta{
 padding:110px 0;
 text-align:center;
 border-top:1px solid var(--line);
 border-bottom:1px solid var(--line);
-}
-
-.cta h2{
-font-size:34px;
-margin-bottom:10px;
 }
 
 .btn{
@@ -194,14 +159,9 @@ background:var(--accent);
 color:#111;
 text-decoration:none;
 font-weight:700;
-transition:.3s;
 }
 
-.btn:hover{
-background:#e6cda7;
-}
-
-/* FOOTER */
+/ FOOTER /
 
 footer{
 padding:70px 0;
@@ -209,54 +169,59 @@ text-align:center;
 color:var(--muted);
 }
 
-.social{
-margin:20px 0;
-}
-
 .social a{
 margin:0 10px;
-color:var(--muted);
 font-size:20px;
-transition:.3s;
+color:var(--muted);
 }
 
-.social a:hover{
-color:var(--accent);
+/ LIGHTBOX VIEWER /
+
+#viewer{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.96);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:9999;
 }
 
-/* SCROLL ANIMATION */
-
-.fade{
-opacity:0;
-transform:translateY(40px);
-transition:all 1s ease;
+#viewer img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
 }
 
-.fade.visible{
-opacity:1;
-transform:translateY(0);
+.viewer-arrow{
+position:absolute;
+top:50%;
+font-size:40px;
+color:white;
+cursor:pointer;
+padding:20px;
+user-select:none;
 }
 
-/* MOBILE */
+#prev{left:20px}
+#next{right:20px}
+
+/ MOBILE /
 
 @media(max-width:900px){
 
-.masonry{
-columns:1;
-}
+.masonry{columns:1}
 
-.about-grid{
-grid-template-columns:1fr;
-}
+.about-grid{grid-template-columns:1fr}
 
-.hero{
-height:70vh;
-}
+.hero{height:70vh}
 
 }
 
 </style>
-
 </head>
 
 <body>
@@ -289,7 +254,7 @@ height:70vh;
 
 <!-- PORTFOLIO -->
 
-<section id="portfolio" class="portfolio fade">
+<section id="portfolio" class="portfolio">
 
 <div class="container">
 
@@ -317,7 +282,7 @@ height:70vh;
 
 <!-- ABOUT -->
 
-<section id="about" class="about fade">
+<section id="about" class="about">
 
 <div class="container about-grid">
 
@@ -343,7 +308,7 @@ Our goal is simple: create powerful imagery that feels authentic, cinematic and 
 
 <!-- CTA -->
 
-<section id="contact" class="cta fade">
+<section id="contact" class="cta">
 
 <div class="container">
 
@@ -357,8 +322,6 @@ Our goal is simple: create powerful imagery that feels authentic, cinematic and 
 
 </section>
 
-<!-- FOOTER -->
-
 <footer>
 
 <div class="container">
@@ -367,7 +330,10 @@ Our goal is simple: create powerful imagery that feels authentic, cinematic and 
 
 <div class="social">
 
-<a href="#"><i class="fab fa-instagram"></i></a> <a href="#"><i class="fab fa-facebook"></i></a> <a href="#"><i class="fab fa-youtube"></i></a> <a href="#"><i class="fab fa-tiktok"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-youtube"></i></a>
+<a href="#"><i class="fab fa-tiktok"></i></a>
 
 </div>
 
@@ -379,33 +345,63 @@ Our goal is simple: create powerful imagery that feels authentic, cinematic and 
 
 </footer>
 
+<!-- IMAGE VIEWER -->
+
+<div id="viewer">
+
+<div class="viewer-arrow" id="prev">❮</div>
+
+<img id="viewer-img">
+
+<div class="viewer-arrow" id="next">❯</div>
+
+</div>
+
 <script>
 
-/* HERO SLIDESHOW */
+/ HERO SLIDESHOW /
 
 let slides=document.querySelectorAll(".slide");
 let index=0;
 
 setInterval(()=>{
-
 slides[index].classList.remove("active");
 index=(index+1)%slides.length;
 slides[index].classList.add("active");
-
 },5000);
 
-/* SCROLL ANIMATION */
+/ PORTFOLIO VIEWER */
 
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("visible");
+const images=document.querySelectorAll(".masonry img");
+const viewer=document.getElementById("viewer");
+const viewerImg=document.getElementById("viewer-img");
+
+let current=0;
+
+images.forEach((img,i)=>{
+img.onclick=()=>{
+viewer.style.display="flex";
+viewerImg.src=img.src;
+current=i;
+};
+});
+
+function showImage(i){
+current=(i+images.length)%images.length;
+viewerImg.src=images[current].src;
 }
-});
-});
 
-document.querySelectorAll(".fade").forEach(el=>{
-observer.observe(el);
+document.getElementById("next").onclick=()=>showImage(current+1);
+document.getElementById("prev").onclick=()=>showImage(current-1);
+
+viewer.onclick=()=>{
+viewer.style.display="none";
+};
+
+document.addEventListener("keydown",(e)=>{
+if(e.key==="ArrowRight")showImage(current+1);
+if(e.key==="ArrowLeft")showImage(current-1);
+if(e.key==="Escape")viewer.style.display="none";
 });
 
 </script>
