@@ -7,7 +7,7 @@
 
 <title>Enhance Visual Studio | Pose. Capture. Enhance.</title>
 
-<meta name="description" content="Portrait, family, kids and event photography serving San Francisco and the Bay Area.">
+<meta name="description" content="Portrait, studio, couples, family, kids and event photography serving San Francisco and the Bay Area.">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -24,7 +24,9 @@
 --max:1180px;
 }
 
-{box-sizing:border-box}
+{
+box-sizing:border-box;
+}
 
 body{
 margin:0;
@@ -87,6 +89,10 @@ align-items:center;
 color:var(--muted);
 text-decoration:none;
 font-size:.9rem;
+}
+
+.nav-links a:hover{
+color:var(--text);
 }
 
 .nav-cta{
@@ -224,7 +230,7 @@ font-size:12px;
 
 .services-grid{
 display:grid;
-grid-template-columns:repeat(4,1fr);
+grid-template-columns:repeat(3,1fr);
 gap:20px;
 }
 
@@ -331,7 +337,7 @@ max-height:90%;
 border-radius:12px;
 }
 
-/ MOBILE /
+/ MOBILE */
 
 @media(max-width:900px){
 
@@ -387,12 +393,14 @@ border-radius:12px;
 
 <div class="section-head">
 <h2>Portfolio</h2>
-<p>Portrait, family, kids and event photography.</p>
+<p>Portrait, studio, couples, family, kids and event photography.</p>
 </div>
 
 <div class="filters">
 <div class="filter-btn active" data-filter="all">All</div>
 <div class="filter-btn" data-filter="portraits">Portraits</div>
+<div class="filter-btn" data-filter="studio">Studio</div>
+<div class="filter-btn" data-filter="couples">Couples</div>
 <div class="filter-btn" data-filter="family">Family</div>
 <div class="filter-btn" data-filter="kids">Kids</div>
 <div class="filter-btn" data-filter="events">Events</div>
@@ -401,10 +409,10 @@ border-radius:12px;
 <div class="portfolio-grid">
 
 <div class="portfolio-item portraits"><img src="images/p1.jpg"><div class="portfolio-label">Portraits</div></div>
-<div class="portfolio-item family"><img src="images/p2.jpg"><div class="portfolio-label">Family</div></div>
-<div class="portfolio-item kids"><img src="images/p3.jpg"><div class="portfolio-label">Kids</div></div>
-<div class="portfolio-item portraits"><img src="images/p4.jpg"><div class="portfolio-label">Portraits</div></div>
-<div class="portfolio-item family"><img src="images/p5.jpg"><div class="portfolio-label">Family</div></div>
+<div class="portfolio-item studio"><img src="images/p2.jpg"><div class="portfolio-label">Studio</div></div>
+<div class="portfolio-item couples"><img src="images/p3.jpg"><div class="portfolio-label">Couples</div></div>
+<div class="portfolio-item family"><img src="images/p4.jpg"><div class="portfolio-label">Family</div></div>
+<div class="portfolio-item kids"><img src="images/p5.jpg"><div class="portfolio-label">Kids</div></div>
 <div class="portfolio-item events"><img src="images/p6.jpg"><div class="portfolio-label">Events</div></div>
 
 </div>
@@ -422,6 +430,8 @@ border-radius:12px;
 <div class="services-grid">
 
 <div class="service"><h3>Portrait Photography</h3></div>
+<div class="service"><h3>Studio Photography</h3></div>
+<div class="service"><h3>Couples Photography</h3></div>
 <div class="service"><h3>Family Sessions</h3></div>
 <div class="service"><h3>Kids Photography</h3></div>
 <div class="service"><h3>Event Coverage</h3></div>
@@ -457,7 +467,7 @@ border-radius:12px;
 <h2>About Enhance Visual Studio</h2>
 
 <p>
-Enhance Visual Studio provides portrait, family, kids and event photography throughout San Francisco and the Bay Area.
+Enhance Visual Studio provides portrait, studio, couples, family, kids and event photography throughout San Francisco and the Bay Area.
 </p>
 
 </div>
@@ -540,8 +550,6 @@ Enhance Visual Studio provides portrait, family, kids and event photography thro
 
 <script>
 
-/ HERO SLIDESHOW /
-
 let slides=document.querySelectorAll(".slide");
 let index=0;
 
@@ -557,8 +565,6 @@ document.getElementById("next").onclick=()=>showSlide(index+1);
 document.getElementById("prev").onclick=()=>showSlide(index-1);
 
 setInterval(()=>showSlide(index+1),5000);
-
-/ PORTFOLIO FILTER /
 
 const filters=document.querySelectorAll(".filter-btn");
 const items=document.querySelectorAll(".portfolio-item");
@@ -581,8 +587,6 @@ item.style.display="none";
 
 };
 });
-
-/ LIGHTBOX */
 
 const images=document.querySelectorAll(".portfolio-grid img");
 const lightbox=document.getElementById("lightbox");
