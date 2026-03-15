@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Enhance Visual Studio | Pose. Capture. Enhance.</title>
+<title>Enhance Visual Studio</title>
 
 <meta name="description" content="Portrait, family, kids and event photography in San Francisco and the Bay Area.">
 
@@ -31,14 +31,15 @@ background:var(--bg);
 color:var(--text);
 }
 
-html{scroll-behavior:smooth}
+img{
+width:100%;
+display:block;
+}
 
 .container{
 width:min(var(--max),calc(100% - 40px));
 margin:auto;
 }
-
-img{width:100%;display:block}
 
 / HEADER /
 
@@ -46,10 +47,10 @@ header{
 position:fixed;
 top:0;
 width:100%;
-background:rgba(0,0,0,.55);
+z-index:1000;
+background:rgba(0,0,0,.5);
 backdrop-filter:blur(10px);
 border-bottom:1px solid var(--line);
-z-index:999;
 }
 
 .nav{
@@ -69,6 +70,11 @@ text-transform:uppercase;
 margin-left:20px;
 text-decoration:none;
 color:var(--muted);
+font-size:14px;
+}
+
+.nav a:hover{
+color:var(--text);
 }
 
 / HERO /
@@ -86,82 +92,59 @@ height:100%;
 background-size:cover;
 background-position:center;
 opacity:0;
-transition:opacity 2s ease;
+transition:opacity 1.8s ease;
 }
 
-.slide.active{opacity:1}
+.slide.active{
+opacity:1;
+}
 
 .hero-overlay{
 position:absolute;
 width:100%;
 height:100%;
-background:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.85));
+background:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.8));
 }
 
-/ PORTFOLIO /
+/ PORTFOLIO LAYOUT /
 
-.portfolio{padding:120px 0}
+.portfolio{
+padding:120px 0;
+}
+
+.grid{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+margin-bottom:20px;
+}
+
+.grid img{
+border-radius:10px;
+object-fit:cover;
+height:100%;
+}
+
+.grid-small{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+/ SECTION TITLE /
 
 .section-title{
 text-align:center;
 margin-bottom:60px;
 }
 
-.section-title p{color:var(--muted)}
-
-.masonry{
-columns:3 300px;
-column-gap:20px;
+.section-title h2{
+font-size:32px;
+margin-bottom:10px;
 }
 
-.masonry img{
-margin-bottom:20px;
-border-radius:12px;
-cursor:pointer;
-transition:.5s;
-}
-
-.masonry img:hover{
-transform:scale(1.05);
-}
-
-/ CLIENT GALLERY /
-
-.client-area{
-padding:120px 0;
-text-align:center;
-border-top:1px solid var(--line);
-border-bottom:1px solid var(--line);
-}
-
-.client-area input{
-padding:14px;
-width:260px;
-border:none;
-border-radius:6px;
-margin-right:10px;
-}
-
-.client-area button{
-padding:14px 24px;
-background:var(--accent);
-border:none;
-border-radius:999px;
-font-weight:bold;
-}
-
-/ CLIENT IMAGES /
-
-.client-gallery{
-columns:3 300px;
-column-gap:20px;
-padding:60px 0;
-display:none;
-}
-
-.client-gallery img{
-margin-bottom:20px;
-border-radius:10px;
+.section-title p{
+color:var(--muted);
 }
 
 / ABOUT /
@@ -177,94 +160,68 @@ gap:60px;
 align-items:center;
 }
 
-/ INSTAGRAM /
-
-.instagram{
-padding:120px 0;
-text-align:center;
-}
-
-.instagram-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:40px;
-}
-
 / CTA /
 
 .cta{
-padding:100px 0;
 text-align:center;
+padding:100px 0;
 border-top:1px solid var(--line);
 border-bottom:1px solid var(--line);
 }
 
+.cta h2{
+font-size:32px;
+margin-bottom:10px;
+}
+
 .btn{
 display:inline-block;
-margin-top:20px;
-padding:14px 28px;
-border-radius:999px;
+padding:14px 26px;
 background:var(--accent);
 color:#111;
+border-radius:999px;
 text-decoration:none;
 font-weight:700;
+margin-top:20px;
 }
 
 / FOOTER /
 
 footer{
-padding:70px 0;
 text-align:center;
+padding:60px 0;
 color:var(--muted);
+}
+
+.social{
+margin:20px 0;
 }
 
 .social a{
 margin:0 10px;
-font-size:20px;
 color:var(--muted);
+font-size:20px;
 }
 
-/ LIGHTBOX /
-
-#viewer{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.96);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:9999;
+.social a:hover{
+color:var(--accent);
 }
 
-#viewer img{
-max-width:90%;
-max-height:90%;
-}
-
-.viewer-arrow{
-position:absolute;
-top:50%;
-font-size:40px;
-color:white;
-cursor:pointer;
-padding:20px;
-}
-
-#prev{left:20px}
-#next{right:20px}
-
-/ MOBILE /
+/ MOBILE */
 
 @media(max-width:900px){
 
-.masonry{columns:1}
-.client-gallery{columns:1}
-.about-grid{grid-template-columns:1fr}
-.hero{height:70vh}
+.grid{
+grid-template-columns:1fr;
+}
+
+.about-grid{
+grid-template-columns:1fr;
+}
+
+.hero{
+height:70vh;
+}
 
 }
 
@@ -274,20 +231,17 @@ padding:20px;
 <body>
 
 <header>
-
 <div class="container nav">
 
 <div class="logo">Enhance Visual Studio</div>
 
 <div>
 <a href="#portfolio">Portfolio</a>
-<a href="#clients">Client Gallery</a>
 <a href="#about">About</a>
 <a href="#contact">Book</a>
 </div>
 
 </div>
-
 </header>
 
 <!-- HERO -->
@@ -313,34 +267,29 @@ padding:20px;
 <p>Portrait • Family • Kids • Events</p>
 </div>
 
-<div class="masonry">
+<div class="grid">
 
 <img src="images/p1.jpg">
+
+<div class="grid-small">
 <img src="images/p2.jpg">
 <img src="images/p3.jpg">
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="grid-small">
 <img src="images/p4.jpg">
 <img src="images/p5.jpg">
+</div>
+
 <img src="images/p6.jpg">
 
 </div>
 
 </div>
-
-</section>
-
-<!-- CLIENT GALLERY ACCESS -->
-
-<section id="clients" class="client-area">
-
-<h2>Client Galleries</h2>
-
-<p>Enter your gallery code to view and download your photos</p>
-
-<input id="galleryCode" placeholder="Gallery Code">
-
-<button onclick="loadGallery()">Open Gallery</button>
-
-<div id="clientGallery" class="client-gallery"></div>
 
 </section>
 
@@ -355,7 +304,11 @@ padding:20px;
 <h2>About Enhance Visual Studio</h2>
 
 <p>
-Enhance Visual Studio creates portrait, family, kids and event photography across San Francisco and the Bay Area.
+Enhance Visual Studio creates modern portrait, family, kids and event photography across San Francisco and the Bay Area.
+</p>
+
+<p>
+Every session focuses on authentic moments, cinematic lighting and timeless imagery.
 </p>
 
 </div>
@@ -363,20 +316,6 @@ Enhance Visual Studio creates portrait, family, kids and event photography acros
 <img src="images/photographer.jpg">
 
 </div>
-
-</section>
-
-<!-- INSTAGRAM -->
-
-<section class="instagram">
-
-<h2>Latest Work</h2>
-
-<div class="instagram-grid">
-
-<img src="images/ig1.jpg">
-<img src="images/ig2.jpg">
-<img src="images/ig3.jpg">
 
 </div>
 
@@ -386,15 +325,23 @@ Enhance Visual Studio creates portrait, family, kids and event photography acros
 
 <section id="contact" class="cta">
 
+<div class="container">
+
 <h2>Ready to create something timeless?</h2>
 
 <p>Book your photography session today.</p>
 
-<a href="booking.html" class="btn">Book Your Session</a>
+<a href="#" class="btn">Book Your Session</a>
+
+</div>
 
 </section>
 
+<!-- FOOTER -->
+
 <footer>
+
+<div class="container">
 
 <strong>Enhance Visual Studio</strong>
 
@@ -403,6 +350,7 @@ Enhance Visual Studio creates portrait, family, kids and event photography acros
 <a href="#"><i class="fab fa-instagram"></i></a>
 <a href="#"><i class="fab fa-facebook"></i></a>
 <a href="#"><i class="fab fa-youtube"></i></a>
+<a href="#"><i class="fab fa-tiktok"></i></a>
 
 </div>
 
@@ -410,21 +358,11 @@ Enhance Visual Studio creates portrait, family, kids and event photography acros
 
 <p>© 2026 Enhance Visual Studio</p>
 
-</footer>
-
-<div id="viewer">
-
-<div class="viewer-arrow" id="prev">❮</div>
-
-<img id="viewer-img">
-
-<div class="viewer-arrow" id="next">❯</div>
-
 </div>
 
-<script>
+</footer>
 
-/ HERO SLIDESHOW /
+<script>
 
 let slides=document.querySelectorAll(".slide");
 let index=0;
@@ -436,58 +374,6 @@ index=(index+1)%slides.length;
 slides[index].classList.add("active");
 
 },5000);
-
-/ CLIENT GALLERY /
-
-function loadGallery(){
-
-let code=document.getElementById("galleryCode").value;
-
-let gallery=document.getElementById("clientGallery");
-
-gallery.style.display="block";
-
-gallery.innerHTML="";
-
-for(let i=1;i<=12;i++){
-
-let img=document.createElement("img");
-
-img.src="client-galleries/"+code+"/"+i+".jpg";
-
-img.onclick=()=>window.open(img.src);
-
-gallery.appendChild(img);
-
-}
-
-}
-
-/ PORTFOLIO VIEWER */
-
-const images=document.querySelectorAll(".masonry img");
-const viewer=document.getElementById("viewer");
-const viewerImg=document.getElementById("viewer-img");
-
-let current=0;
-
-images.forEach((img,i)=>{
-img.onclick=()=>{
-viewer.style.display="flex";
-viewerImg.src=img.src;
-current=i;
-};
-});
-
-function showImage(i){
-current=(i+images.length)%images.length;
-viewerImg.src=images[current].src;
-}
-
-document.getElementById("next").onclick=()=>showImage(current+1);
-document.getElementById("prev").onclick=()=>showImage(current-1);
-
-viewer.onclick=()=>viewer.style.display="none";
 
 </script>
 
