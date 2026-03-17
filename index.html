@@ -2,31 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Enhance Visual Studio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
       color: #111;
     }
 
-    header {
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    h1,h2,h3 {
+      font-family: 'Playfair Display', serif;
     }
 
-    header h1 {
-      font-size: 18px;
-      font-weight: 500;
-      letter-spacing: 1px;
+    header {
+      position: sticky;
+      top: 0;
+      background: white;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      z-index: 1000;
     }
 
     nav a {
-      margin-left: 20px;
+      margin-left: 25px;
       text-decoration: none;
       color: #111;
       font-size: 14px;
@@ -34,84 +40,96 @@
 
     .hero {
       height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
     }
 
     .hero h2 {
-      font-size: 36px;
-      font-weight: 500;
-      max-width: 700px;
-    }
-
-    .hero p {
-      margin-top: 10px;
-      font-size: 16px;
-      color: #555;
+      font-size: 42px;
     }
 
     .btn {
-      margin-top: 20px;
-      padding: 12px 24px;
-      border: 1px solid #111;
-      text-decoration: none;
-      color: #111;
-      font-size: 14px;
-      transition: 0.3s;
+      margin-top:20px;
+      padding:12px 28px;
+      border:1px solid #111;
+      text-decoration:none;
+      color:#111;
+      transition:0.3s;
     }
 
     .btn:hover {
-      background-color: #111;
-      color: #fff;
+      background:#111;
+      color:#fff;
     }
 
     section {
-      padding: 80px 40px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .section-title {
-      font-size: 24px;
-      margin-bottom: 20px;
+      padding:100px 60px;
+      max-width:1100px;
+      margin:auto;
     }
 
     .portfolio {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
     }
 
     .portfolio img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
+      width:100%;
+      height:350px;
+      object-fit:cover;
+      transition:0.3s;
+    }
+
+    .portfolio img:hover {
+      transform:scale(1.03);
     }
 
     .pricing {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
     }
 
     .card {
-      border: 1px solid #eee;
-      padding: 20px;
+      border:1px solid #eee;
+      padding:25px;
     }
 
-    .card h3 {
-      margin-top: 0;
+    /* FORM */
+    form {
+      max-width:500px;
+      margin-top:20px;
+    }
+
+    input, textarea {
+      width:100%;
+      padding:12px;
+      margin-bottom:15px;
+      border:1px solid #ddd;
+      font-size:14px;
+    }
+
+    button {
+      padding:12px 20px;
+      border:1px solid #111;
+      background:white;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover {
+      background:#111;
+      color:#fff;
     }
 
     footer {
-      text-align: center;
-      padding: 40px;
-      font-size: 14px;
-      color: #777;
+      text-align:center;
+      padding:40px;
+      color:#777;
     }
   </style>
 </head>
@@ -134,45 +152,57 @@
 </section>
 
 <section id="portfolio">
-  <h2 class="section-title">Portfolio</h2>
+  <h2>Portfolio</h2>
   <div class="portfolio">
-    <img src="https://via.placeholder.com/600x800" />
-    <img src="https://via.placeholder.com/600x800" />
-    <img src="https://via.placeholder.com/600x800" />
-    <img src="https://via.placeholder.com/600x800" />
+    <img src="https://via.placeholder.com/600x800">
+    <img src="https://via.placeholder.com/600x800">
+    <img src="https://via.placeholder.com/600x800">
   </div>
 </section>
 
 <section id="pricing">
-  <h2 class="section-title">Investment</h2>
+  <h2>Investment</h2>
   <div class="pricing">
-    
+
     <div class="card">
       <h3>Signature Portrait</h3>
       <p>$350</p>
-      <p>1 Hour Session<br>1 Location<br>5 Edited Images<br>Guided Posing</p>
     </div>
 
     <div class="card">
       <h3>Premium Portrait</h3>
       <p>$500</p>
-      <p>1.5–2 Hours<br>1–2 Locations<br>10 Edited Images<br>Outfit Changes</p>
     </div>
 
     <div class="card">
       <h3>Lifestyle Session</h3>
       <p>$450–$600</p>
-      <p>1–2 Hours<br>Natural Direction<br>8–12 Images<br>Couples Focus</p>
     </div>
 
   </div>
 </section>
 
 <section id="contact">
-  <h2 class="section-title">Contact</h2>
-  <p>Ready to book your session? Reach out below.</p>
-  <p>Email: your@email.com</p>
-  <p>Instagram: @enhancevisualstudio</p>
+  <h2>Book Your Session</h2>
+  <p>Fill out the form below and I’ll get back to you within 24 hours.</p>
+
+  <!-- 🔥 FORM START -->
+  <form action="https://formspree.io/f/xxxxabcd" method="POST">
+    
+    <input type="text" name="name" placeholder="Your Name" required>
+
+    <input type="email" name="email" placeholder="Your Email" required>
+
+    <input type="text" name="shoot" placeholder="Type of Shoot (Portrait / Lifestyle)">
+
+    <input type="date" name="date">
+
+    <textarea name="message" rows="5" placeholder="Tell me about your vision"></textarea>
+
+    <button type="submit">Submit Inquiry</button>
+  </form>
+  <!-- 🔥 FORM END -->
+
 </section>
 
 <footer>
