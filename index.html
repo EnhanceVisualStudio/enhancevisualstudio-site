@@ -1,274 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enhance Visual Studio</title>
+  <link rel="stylesheet" href="styles.css" />
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Enhance Visual Studio | Portrait Photography</title>
-
-<meta name="description" content="Portrait photography in San Francisco & Bay Area. Book your session with Enhance Visual Studio.">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<style>
-
-:root{
---bg:#0a0a0a;
---text:#f5f1ea;
---muted:#aaa;
---accent:#d6b98c;
---max:1200px;
-}
-
-{box-sizing:border-box}
-
-body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-background:var(--bg);
-color:var(--text);
-}
-
-.container{
-width:min(var(--max),calc(100% - 32px));
-margin:auto;
-}
-
-/ NAV /
-
-.header{
-position:fixed;
-width:100%;
-z-index:999;
-padding:20px 0;
-background:rgba(0,0,0,0.4);
-backdrop-filter:blur(10px);
-}
-
-.nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.logo{
-font-weight:700;
-letter-spacing:.1em;
-}
-
-.nav a{
-color:var(--muted);
-text-decoration:none;
-margin-left:20px;
-font-size:.9rem;
-}
-
-/ HERO /
-
-.hero{
-height:100vh;
-position:relative;
-overflow:hidden;
-}
-
-.slide{
-position:absolute;
-width:100%;
-height:100%;
-background-size:cover;
-background-position:center;
-opacity:0;
-transition:1.5s;
-}
-
-.slide.active{opacity:1}
-
-/ PORTFOLIO /
-
-.section{
-padding:100px 0;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-}
-
-.grid img{
-width:100%;
-height:100%;
-object-fit:cover;
-aspect-ratio:4/5;
-cursor:pointer;
-transition:.4s;
-}
-
-.grid img:hover{
-transform:scale(1.05);
-}
-
-/ CATEGORY BAR /
-
-.categories{
-display:flex;
-gap:10px;
-margin-bottom:30px;
-flex-wrap:wrap;
-}
-
-.cat{
-border:1px solid #333;
-padding:8px 16px;
-border-radius:999px;
-cursor:pointer;
-font-size:.8rem;
-}
-
-/ ABOUT /
-
-.about{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-align-items:center;
-}
-
-/ CTA /
-
-.cta{
-text-align:center;
-padding:100px 0;
-border-top:1px solid #222;
-border-bottom:1px solid #222;
-}
-
-.cta a{
-background:var(--accent);
-padding:14px 30px;
-border-radius:999px;
-color:#111;
-text-decoration:none;
-font-weight:700;
-}
-
-/ FOOTER */
-
-.footer{
-text-align:center;
-padding:60px 0;
-color:var(--muted);
-}
-
-.social i{
-margin:0 10px;
-font-size:20px;
-}
-
-@media(max-width:900px){
-.grid{grid-template-columns:1fr 1fr}
-.about{grid-template-columns:1fr}
-}
-
-</style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<header class="header">
-<div class="container nav">
-<div class="logo">Enhance Visual Studio</div>
-<div>
-<a href="#portfolio">Portfolio</a>
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
-</div>
-</div>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">Enhance Visual Studio</div>
+  <nav>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="btn">Book</a>
+  </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-<div class="slide active" style="background-image:url('images/hero1.jpg')"></div>
-<div class="slide" style="background-image:url('images/hero2.jpg')"></div>
-<div class="slide" style="background-image:url('images/hero3.jpg')"></div>
+  <div class="hero-overlay">
+    <h1>Luxury Portrait Photography</h1>
+    <p>San Francisco & Bay Area</p>
+    <a href="#contact" class="btn">Book Your Session</a>
+  </div>
 </section>
 
+<!-- PORTFOLIO -->
 <section id="portfolio" class="section">
-<div class="container">
-
-<div class="categories">
-<div class="cat">Portraits</div>
-<div class="cat">Studio</div>
-<div class="cat">Couples</div>
-<div class="cat">Family</div>
-<div class="cat">Kids</div>
-<div class="cat">Events</div>
-</div>
-
-<div class="grid">
-
-<img src="images/p1.jpg">
-<img src="images/p2.jpg">
-<img src="images/p3.jpg">
-<img src="images/p4.jpg">
-<img src="images/p5.jpg">
-<img src="images/p6.jpg">
-
-</div>
-
-</div>
+  <h2>Portfolio</h2>
+  <div class="grid">
+    <img src="images/1.jpg" />
+    <img src="images/2.jpg" />
+    <img src="images/3.jpg" />
+    <img src="images/4.jpg" />
+    <img src="images/5.jpg" />
+    <img src="images/6.jpg" />
+  </div>
 </section>
 
-<section id="about" class="section">
-<div class="container about">
-
-<div>
-<h2>Portrait Photography</h2>
-<p>
-Enhance Visual Studio specializes in modern portrait photography designed to elevate your image. Serving San Francisco and the Bay Area.
-</p>
-</div>
-
-<img src="images/about.jpg">
-
-</div>
+<!-- VALUE -->
+<section class="section value">
+  <p>
+    A premium portrait experience designed to elevate your confidence and capture your best self — through expert posing, controlled lighting, and refined editing.
+  </p>
 </section>
 
-<section class="cta">
-<h2>Book Your Portrait Session</h2>
-<p>Now booking San Francisco & Bay Area clients</p>
-<br>
-<a href="#">Book Now</a>
+<!-- PRICING -->
+<section id="pricing" class="section">
+  <h2>Pricing</h2>
+
+  <div class="pricing-grid">
+
+    <div class="card">
+      <h3>Signature</h3>
+      <h4>$350</h4>
+      <ul>
+        <li>1 Hour Session</li>
+        <li>5 Edited Images</li>
+        <li>1 Location</li>
+        <li>Guided Posing</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Premium</h3>
+      <h4>$500</h4>
+      <ul>
+        <li>1.5–2 Hour Session</li>
+        <li>10 Edited Images</li>
+        <li>Outfit Changes</li>
+        <li>Priority Editing</li>
+      </ul>
+    </div>
+
+  </div>
 </section>
 
-<footer class="footer">
+<!-- ABOUT -->
+<section id="about" class="section about">
+  <h2>About</h2>
+  <p>
+    Enhance Visual Studio delivers high-end portrait experiences through intentional lighting, guided posing, and refined editing — creating clean, timeless, and impactful images.
+  </p>
+</section>
 
-<div class="social">
-<i class="fab fa-instagram"></i>
-<i class="fab fa-facebook"></i>
-<i class="fab fa-youtube"></i>
-<i class="fab fa-tiktok"></i>
-</div>
+<!-- CONTACT -->
+<section id="contact" class="section contact">
+  <h2>Book Your Session</h2>
 
-<p>Serving San Francisco • Bay Area</p>
-<p>© 2026 Enhance Visual Studio</p>
+  <form>
+    <input type="text" placeholder="Name" required />
+    <input type="email" placeholder="Email" required />
+    <input type="text" placeholder="Type of Session" />
+    <input type="date" />
+    <button type="submit">Submit</button>
+  </form>
 
+</section>
+
+<footer>
+  <p>© 2026 Enhance Visual Studio</p>
 </footer>
-
-<script>
-
-/ slideshow */
-
-let slides=document.querySelectorAll(".slide");
-let i=0;
-
-setInterval(()=>{
-slides[i].classList.remove("active");
-i=(i+1)%slides.length;
-slides[i].classList.add("active");
-},5000);
-
-</script>
 
 </body>
 </html>
