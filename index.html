@@ -5,33 +5,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Enhance Visual Studio | Luxury Portrait Photography</title>
+<title>Enhance Visual Studio | Portrait Photography</title>
 
-<meta name="description" content="Luxury portrait photography in San Francisco and the Bay Area. Studio, couples, and personal portraits.">
+<meta name="description" content="Portrait photography in San Francisco & Bay Area. Book your session with Enhance Visual Studio.">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
-html{
-scroll-behavior:smooth;
-}
-
 :root{
---bg:#0b0b0b;
---panel:#161616;
+--bg:#0a0a0a;
 --text:#f5f1ea;
---muted:#b8afa2;
+--muted:#aaa;
 --accent:#d6b98c;
---line:rgba(255,255,255,0.08);
---max:1180px;
+--max:1200px;
 }
 
-{box-sizing:border-box;}
+{box-sizing:border-box}
 
 body{
 margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 background:var(--bg);
 color:var(--text);
 }
@@ -41,69 +35,39 @@ width:min(var(--max),calc(100% - 32px));
 margin:auto;
 }
 
-img{
+/ NAV /
+
+.header{
+position:fixed;
 width:100%;
-display:block;
-}
-
-section{
-padding:100px 0;
-}
-
-/ HEADER /
-
-.site-header{
-position:sticky;
-top:0;
 z-index:999;
-background:rgba(0,0,0,0.9);
+padding:20px 0;
+background:rgba(0,0,0,0.4);
 backdrop-filter:blur(10px);
-border-bottom:1px solid var(--line);
 }
 
 .nav{
 display:flex;
 justify-content:space-between;
 align-items:center;
-height:72px;
 }
 
-.brand-name{
+.logo{
 font-weight:700;
 letter-spacing:.1em;
-text-transform:uppercase;
-font-size:.95rem;
 }
 
-.nav-links{
-display:flex;
-gap:20px;
-align-items:center;
-}
-
-.nav-links a{
+.nav a{
 color:var(--muted);
 text-decoration:none;
+margin-left:20px;
 font-size:.9rem;
-}
-
-.nav-links a:hover{
-color:var(--text);
-}
-
-.nav-cta{
-background:var(--accent);
-color:#111;
-padding:10px 18px;
-border-radius:999px;
-font-weight:700;
-text-decoration:none;
 }
 
 / HERO /
 
 .hero{
-height:92vh;
+height:100vh;
 position:relative;
 overflow:hidden;
 }
@@ -115,366 +79,194 @@ height:100%;
 background-size:cover;
 background-position:center;
 opacity:0;
-transition:opacity 2.5s ease;
+transition:1.5s;
 }
 
-.slide.active{
-opacity:1;
-}
-
-.hero-overlay{
-position:absolute;
-width:100%;
-height:100%;
-background:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.75));
-}
+.slide.active{opacity:1}
 
 / PORTFOLIO /
 
-.section-head{
-margin-bottom:40px;
-max-width:600px;
+.section{
+padding:100px 0;
 }
 
-.section-head h2{
-font-size:2.5rem;
-margin-bottom:10px;
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
 }
 
-.section-head p{
-color:var(--muted);
+.grid img{
+width:100%;
+height:100%;
+object-fit:cover;
+aspect-ratio:4/5;
+cursor:pointer;
+transition:.4s;
 }
 
-.filters{
+.grid img:hover{
+transform:scale(1.05);
+}
+
+/ CATEGORY BAR /
+
+.categories{
 display:flex;
 gap:10px;
 margin-bottom:30px;
 flex-wrap:wrap;
 }
 
-.filter-btn{
+.cat{
+border:1px solid #333;
 padding:8px 16px;
-border:1px solid var(--line);
 border-radius:999px;
 cursor:pointer;
-}
-
-.filter-btn.active{
-background:var(--accent);
-color:#111;
-}
-
-.portfolio-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px;
-}
-
-.portfolio-item{
-position:relative;
-border-radius:12px;
-overflow:hidden;
-opacity:0;
-transform:translateY(30px);
-transition:.6s;
-}
-
-.portfolio-item.show{
-opacity:1;
-transform:translateY(0);
-}
-
-.portfolio-item img{
-aspect-ratio:4/5;
-object-fit:cover;
-transition:.5s;
-}
-
-.portfolio-item:hover img{
-transform:scale(1.08);
-}
-
-.portfolio-item::after{
-content:"";
-position:absolute;
-inset:0;
-background:rgba(0,0,0,.25);
-opacity:0;
-transition:.4s;
-}
-
-.portfolio-item:hover::after{
-opacity:1;
-}
-
-.portfolio-label{
-position:absolute;
-bottom:10px;
-left:10px;
-background:rgba(0,0,0,.6);
-padding:6px 10px;
-font-size:12px;
-border-radius:6px;
-}
-
-/ SERVICES /
-
-.services-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
-
-.service{
-background:var(--panel);
-padding:30px;
-border-radius:14px;
-border:1px solid var(--line);
-text-align:center;
+font-size:.8rem;
 }
 
 / ABOUT /
 
 .about{
-max-width:700px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
 }
 
 / CTA /
 
 .cta{
 text-align:center;
-border-top:1px solid var(--line);
-border-bottom:1px solid var(--line);
+padding:100px 0;
+border-top:1px solid #222;
+border-bottom:1px solid #222;
 }
 
-/ FOOTER /
+.cta a{
+background:var(--accent);
+padding:14px 30px;
+border-radius:999px;
+color:#111;
+text-decoration:none;
+font-weight:700;
+}
+
+/ FOOTER */
 
 .footer{
 text-align:center;
 padding:60px 0;
-border-top:1px solid var(--line);
 color:var(--muted);
 }
 
-.footer a{
-color:var(--muted);
+.social i{
 margin:0 10px;
 font-size:20px;
 }
 
-.footer a:hover{
-color:var(--accent);
-}
-
-/ FLOAT BUTTON /
-
-.floating-book{
-position:fixed;
-bottom:30px;
-right:30px;
-z-index:999;
-}
-
-/ MOBILE */
-
 @media(max-width:900px){
-.portfolio-grid{grid-template-columns:1fr 1fr;}
-.services-grid{grid-template-columns:1fr;}
-.hero{height:60vh;}
+.grid{grid-template-columns:1fr 1fr}
+.about{grid-template-columns:1fr}
 }
 
 </style>
-
 </head>
 
 <body>
 
-<header class="site-header">
+<header class="header">
 <div class="container nav">
-
-<div class="brand-name">Enhance Visual Studio</div>
-
-<nav class="nav-links">
+<div class="logo">Enhance Visual Studio</div>
+<div>
 <a href="#portfolio">Portfolio</a>
-<a href="#services">Services</a>
 <a href="#about">About</a>
-<a href="#" class="nav-cta">Book</a>
-</nav>
-
+<a href="#contact">Contact</a>
+</div>
 </div>
 </header>
 
 <section class="hero">
-
 <div class="slide active" style="background-image:url('images/hero1.jpg')"></div>
 <div class="slide" style="background-image:url('images/hero2.jpg')"></div>
 <div class="slide" style="background-image:url('images/hero3.jpg')"></div>
-
-<div class="hero-overlay"></div>
-
 </section>
 
-<section id="portfolio">
+<section id="portfolio" class="section">
 <div class="container">
 
-<div class="section-head">
-<h2>Portrait Portfolio</h2>
-<p>Luxury portrait photography focused on timeless, high-end imagery.</p>
+<div class="categories">
+<div class="cat">Portraits</div>
+<div class="cat">Studio</div>
+<div class="cat">Couples</div>
+<div class="cat">Family</div>
+<div class="cat">Kids</div>
+<div class="cat">Events</div>
 </div>
 
-<div class="filters">
-<div class="filter-btn active" data-filter="all">All</div>
-<div class="filter-btn" data-filter="portraits">Portraits</div>
-<div class="filter-btn" data-filter="studio">Studio</div>
-<div class="filter-btn" data-filter="couples">Couples</div>
-</div>
+<div class="grid">
 
-<div class="portfolio-grid">
-
-<div class="portfolio-item portraits"><img src="images/p1.jpg"><div class="portfolio-label">Portraits</div></div>
-<div class="portfolio-item studio"><img src="images/p2.jpg"><div class="portfolio-label">Studio</div></div>
-<div class="portfolio-item couples"><img src="images/p3.jpg"><div class="portfolio-label">Couples</div></div>
-<div class="portfolio-item portraits"><img src="images/p4.jpg"><div class="portfolio-label">Portraits</div></div>
-<div class="portfolio-item studio"><img src="images/p5.jpg"><div class="portfolio-label">Studio</div></div>
-<div class="portfolio-item couples"><img src="images/p6.jpg"><div class="portfolio-label">Couples</div></div>
+<img src="images/p1.jpg">
+<img src="images/p2.jpg">
+<img src="images/p3.jpg">
+<img src="images/p4.jpg">
+<img src="images/p5.jpg">
+<img src="images/p6.jpg">
 
 </div>
 
 </div>
 </section>
 
-<section id="services">
-<div class="container">
+<section id="about" class="section">
+<div class="container about">
 
-<div class="section-head">
-<h2>Portrait Services</h2>
-</div>
-
-<div class="services-grid">
-
-<div class="service">
-<h3>Portrait Sessions</h3>
-<p>Clean, modern portraits designed to highlight personality and confidence.</p>
-</div>
-
-<div class="service">
-<h3>Studio Portraits</h3>
-<p>Controlled lighting for high-end, editorial-style imagery.</p>
-</div>
-
-<div class="service">
-<h3>Couples Sessions</h3>
-<p>Timeless portraits that capture connection and emotion.</p>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section id="about">
-<div class="container">
-
-<div class="section-head">
-<h2>About</h2>
-</div>
-
-<div class="about">
-
+<div>
+<h2>Portrait Photography</h2>
 <p>
-Enhance Visual Studio is a portrait photography brand focused on creating timeless, high-end imagery.
+Enhance Visual Studio specializes in modern portrait photography designed to elevate your image. Serving San Francisco and the Bay Area.
 </p>
-
-<p>
-Specializing in studio and natural light portraits, we craft visuals that highlight personality, confidence, and style.
-</p>
-
-<p>
-Serving San Francisco and the Bay Area.
-</p>
-
 </div>
+
+<img src="images/about.jpg">
 
 </div>
 </section>
 
 <section class="cta">
-<div class="container">
-
-<h2>Ready to elevate your image?</h2>
-<p>Book your portrait session today.</p>
-
+<h2>Book Your Portrait Session</h2>
+<p>Now booking San Francisco & Bay Area clients</p>
 <br>
-
-<a href="#" class="nav-cta">Book Your Session</a>
-
-</div>
+<a href="#">Book Now</a>
 </section>
 
 <footer class="footer">
 
-<p><strong>Enhance Visual Studio</strong></p>
-
-<div>
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-facebook"></i></a>
-<a href="#"><i class="fab fa-youtube"></i></a>
-<a href="#"><i class="fab fa-tiktok"></i></a>
+<div class="social">
+<i class="fab fa-instagram"></i>
+<i class="fab fa-facebook"></i>
+<i class="fab fa-youtube"></i>
+<i class="fab fa-tiktok"></i>
 </div>
 
-<p>San Francisco • Bay Area</p>
-
-<p>© 2026 Enhance Visual Studio — All Rights Reserved</p>
+<p>Serving San Francisco • Bay Area</p>
+<p>© 2026 Enhance Visual Studio</p>
 
 </footer>
 
-<div class="floating-book">
-<a href="#" class="nav-cta">Book Now</a>
-</div>
-
 <script>
 
-// SLIDER
+/ slideshow */
+
 let slides=document.querySelectorAll(".slide");
-let index=0;
+let i=0;
 
-function showSlide(i){
-slides[index].classList.remove("active");
-index=(i+slides.length)%slides.length;
-slides[index].classList.add("active");
-}
-
-setInterval(()=>showSlide(index+1),5000);
-
-// FILTERS
-const filters=document.querySelectorAll(".filter-btn");
-const items=document.querySelectorAll(".portfolio-item");
-
-filters.forEach(btn=>{
-btn.onclick=()=>{
-filters.forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-
-let filter=btn.dataset.filter;
-
-items.forEach(item=>{
-item.style.display=(filter==="all"||item.classList.contains(filter))?"block":"none";
-});
-};
-});
-
-// ANIMATION
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("show");
-}
-});
-});
-
-document.querySelectorAll(".portfolio-item").forEach(el=>{
-observer.observe(el);
-});
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},5000);
 
 </script>
 
