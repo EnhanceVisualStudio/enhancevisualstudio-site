@@ -1,14 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Enhance Visual Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background: #0a0a0a;
@@ -21,8 +26,8 @@ h1,h2,h3 {
 }
 
 section {
-  padding: 80px 20px;
-  max-width: 1100px;
+  padding: 100px 20px;
+  max-width: 1200px;
   margin: auto;
 }
 
@@ -32,19 +37,23 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(black, #0a0a0a);
 }
 
 .hero h1 {
-  font-size: 56px;
+  font-size: 60px;
+}
+
+.hero p {
+  opacity: 0.7;
 }
 
 .btn {
-  padding: 14px 30px;
-  margin: 10px;
-  border-radius: 30px;
+  padding: 14px 34px;
+  border-radius: 40px;
   text-decoration: none;
-  transition: .3s;
+  margin: 10px;
+  display: inline-block;
+  transition: 0.3s;
 }
 
 .primary {
@@ -58,31 +67,72 @@ section {
 }
 
 .btn:hover {
-  transform: scale(1.05);
+  transform: translateY(-3px);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 20px;
-}
-
-.card {
-  background: #111;
-  padding: 30px;
-  border-radius: 10px;
+/* PORTFOLIO */
+.portfolio {
+  column-count: 3;
+  column-gap: 15px;
 }
 
 .portfolio img {
   width: 100%;
+  margin-bottom: 15px;
   border-radius: 10px;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 25px;
+}
+
+.card {
+  background: #111;
+  padding: 35px;
+  border-radius: 12px;
+}
+
+/* TESTIMONIALS */
+.testimonials {
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+}
+
+.testimonials p {
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+/* INSTAGRAM */
+.instagram {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 10px;
+}
+
+.instagram img {
+  width: 100%;
 }
 
 footer {
   text-align: center;
-  padding: 40px;
-  opacity: .5;
+  padding: 60px;
+  opacity: 0.4;
 }
+
+@media(max-width: 800px){
+  .portfolio {
+    column-count: 1;
+  }
+  .instagram {
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>
 </head>
 
@@ -93,9 +143,10 @@ footer {
   <div>
     <h1>Enhance Visual Studio</h1>
     <p>Pose. Capture. Enhance.</p>
-    <p>Luxury Portrait Photography — San Francisco & Bay Area</p>
+    <p>San Francisco & Bay Area</p>
 
-    <a href="https://calendly.com/YOUR-REAL-LINK" class="btn primary">Book Your Session</a>
+    <a href="https://calendly.com/bookenhancevisualstudio/bookmysession" class="btn primary">Book Your Session</a>
+
     <a href="https://paypal.me/EnhanceVisualStudio/100" class="btn outline">Pay Deposit</a>
   </div>
 </section>
@@ -103,59 +154,94 @@ footer {
 <!-- PORTFOLIO -->
 <section>
   <h2 style="text-align:center;">Portfolio</h2>
-  <div class="grid portfolio">
-    <img src="https://via.placeholder.com/400x500">
-    <img src="https://via.placeholder.com/400x500">
-    <img src="https://via.placeholder.com/400x500">
-    <img src="https://via.placeholder.com/400x500">
+
+  <div class="portfolio">
+    <img src="images/1.jpg">
+    <img src="images/2.jpg">
+    <img src="images/3.jpg">
+    <img src="images/4.jpg">
+    <img src="images/5.jpg">
+    <img src="images/6.jpg">
   </div>
 </section>
 
 <!-- SERVICES -->
 <section>
   <h2 style="text-align:center;">Services</h2>
+
   <div class="grid">
     <div class="card">
-      <h3>Portrait</h3>
-      <p>Clean, professional, high-end portraits.</p>
+      <h3>Portrait Sessions</h3>
+      <p>Clean, elevated, professional portraits.</p>
     </div>
+
     <div class="card">
       <h3>Lifestyle</h3>
-      <p>Authentic storytelling with a luxury feel.</p>
+      <p>Natural storytelling with a luxury feel.</p>
     </div>
+
     <div class="card">
       <h3>Couples</h3>
-      <p>Real connection, beautifully captured.</p>
+      <p>Authentic connection captured beautifully.</p>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
+<!-- EXPERIENCE -->
 <section>
   <h2 style="text-align:center;">The Experience</h2>
+
   <div class="grid">
     <div class="card">
       <h3>1. Book</h3>
-      <p>Select your date through our booking system.</p>
+      <p>Select your session date online.</p>
     </div>
+
     <div class="card">
-      <h3>2. Deposit</h3>
-      <p>$100 secures your session.</p>
+      <h3>2. Secure</h3>
+      <p>$100 deposit confirms your booking.</p>
     </div>
+
     <div class="card">
       <h3>3. Shoot</h3>
-      <p>Guided posing + direction.</p>
+      <p>Guided posing + creative direction.</p>
     </div>
+
     <div class="card">
       <h3>4. Delivery</h3>
-      <p>Luxury edited images delivered.</p>
+      <p>Professionally edited images delivered.</p>
     </div>
   </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <h2>Client Experience</h2>
+
+  <p>"Amazing experience, made me feel confident the whole shoot."</p>
+  <p>"Super professional and the photos came out incredible."</p>
+  <p>"Best photographer I've worked with in the Bay Area."</p>
+</section>
+
+<!-- INSTAGRAM -->
+<section>
+  <h2 style="text-align:center;">Instagram</h2>
+
+  <div class="instagram">
+    <img src="images/1.jpg">
+    <img src="images/2.jpg">
+    <img src="images/3.jpg">
+  </div>
+
+  <p style="text-align:center; margin-top:20px;">
+    @EnhanceVisualStudio
+  </p>
 </section>
 
 <!-- CTA -->
 <section style="text-align:center;">
   <h2>Ready to Elevate Your Look?</h2>
+
   <a href="https://calendly.com/bookenhancevisualstudio/bookmysession" class="btn primary">Book Now</a>
 </section>
 
