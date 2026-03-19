@@ -1,108 +1,89 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enhance Visual Studio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enhance Visual Studio</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #0a0a0a;
-      color: #fff;
-    }
+<style>
+body {
+  margin: 0;
+  background: #0a0a0a;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
 
-    h1, h2 {
-      font-family: 'Playfair Display', serif;
-    }
+h1,h2,h3 {
+  font-family: 'Playfair Display', serif;
+}
 
-    .container {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
+section {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
 
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), #0a0a0a);
-      animation: fadeIn 1.5s ease-in;
-    }
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(black, #0a0a0a);
+}
 
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
+.hero h1 {
+  font-size: 56px;
+}
 
-    .hero p {
-      opacity: 0.7;
-      margin-bottom: 30px;
-    }
+.btn {
+  padding: 14px 30px;
+  margin: 10px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: .3s;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 14px 28px;
-      margin: 10px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-    }
+.primary {
+  background: white;
+  color: black;
+}
 
-    .btn-primary {
-      background: #fff;
-      color: #000;
-    }
+.outline {
+  border: 1px solid white;
+  color: white;
+}
 
-    .btn-primary:hover {
-      transform: scale(1.05);
-    }
+.btn:hover {
+  transform: scale(1.05);
+}
 
-    .btn-outline {
-      border: 1px solid #fff;
-      color: #fff;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 20px;
+}
 
-    .section {
-      text-align: center;
-    }
+.card {
+  background: #111;
+  padding: 30px;
+  border-radius: 10px;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
-    }
+.portfolio img {
+  width: 100%;
+  border-radius: 10px;
+}
 
-    .card {
-      background: #111;
-      padding: 30px;
-      border-radius: 12px;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      opacity: 0.5;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-  </style>
+footer {
+  text-align: center;
+  padding: 40px;
+  opacity: .5;
+}
+</style>
 </head>
 
 <body>
@@ -112,70 +93,74 @@
   <div>
     <h1>Enhance Visual Studio</h1>
     <p>Pose. Capture. Enhance.</p>
-    <p>Luxury Portrait & Lifestyle Photography — San Francisco & Bay Area</p>
+    <p>Luxury Portrait Photography — San Francisco & Bay Area</p>
 
-    <!-- BOOK BUTTON -->
-    <a href="https://calendly.com/YOUR-LINK" class="btn btn-primary">Book Your Session</a>
+    <a href="https://calendly.com/YOUR-REAL-LINK" class="btn primary">Book Your Session</a>
+    <a href="https://paypal.me/EnhanceVisualStudio/100" class="btn outline">Pay Deposit</a>
+  </div>
+</section>
 
-    <!-- DEPOSIT BUTTON -->
-    <a href="https://paypal.me/EnhanceVisualStudio/100" class="btn btn-outline">Pay Deposit</a>
+<!-- PORTFOLIO -->
+<section>
+  <h2 style="text-align:center;">Portfolio</h2>
+  <div class="grid portfolio">
+    <img src="https://via.placeholder.com/400x500">
+    <img src="https://via.placeholder.com/400x500">
+    <img src="https://via.placeholder.com/400x500">
+    <img src="https://via.placeholder.com/400x500">
   </div>
 </section>
 
 <!-- SERVICES -->
-<section class="container section">
-  <h2>Services</h2>
+<section>
+  <h2 style="text-align:center;">Services</h2>
   <div class="grid">
     <div class="card">
-      <h3>Portrait Sessions</h3>
-      <p>Clean, professional, and timeless portraits.</p>
+      <h3>Portrait</h3>
+      <p>Clean, professional, high-end portraits.</p>
     </div>
     <div class="card">
-      <h3>Lifestyle Shoots</h3>
+      <h3>Lifestyle</h3>
       <p>Authentic storytelling with a luxury feel.</p>
     </div>
     <div class="card">
       <h3>Couples</h3>
-      <p>Capture connection and real moments.</p>
+      <p>Real connection, beautifully captured.</p>
     </div>
   </div>
 </section>
 
 <!-- PROCESS -->
-<section class="container section">
-  <h2>The Experience</h2>
+<section>
+  <h2 style="text-align:center;">The Experience</h2>
   <div class="grid">
     <div class="card">
       <h3>1. Book</h3>
-      <p>Select your session date through our booking system.</p>
+      <p>Select your date through our booking system.</p>
     </div>
     <div class="card">
-      <h3>2. Secure</h3>
-      <p>$100 deposit confirms your session.</p>
+      <h3>2. Deposit</h3>
+      <p>$100 secures your session.</p>
     </div>
     <div class="card">
       <h3>3. Shoot</h3>
-      <p>Guided posing + professional direction.</p>
+      <p>Guided posing + direction.</p>
     </div>
     <div class="card">
-      <h3>4. Deliver</h3>
-      <p>Edited images delivered with a luxury finish.</p>
+      <h3>4. Delivery</h3>
+      <p>Luxury edited images delivered.</p>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="container section">
+<section style="text-align:center;">
   <h2>Ready to Elevate Your Look?</h2>
-  <p>Secure your session today.</p>
-
-  <a href="https://calendly.com/bookenhancevisualstudio/bookmysession/" class="btn btn-primary">Book Now</a>
-  <a href="https://paypal.me/EnhanceVisualStudio/100" class="btn btn-outline">Pay Deposit</a>
+  <a href="https://calendly.com/bookenhancevisualstudio/bookmysession" class="btn primary">Book Now</a>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>© 2026 Enhance Visual Studio</p>
+  <p>© Enhance Visual Studio</p>
 </footer>
 
 </body>
