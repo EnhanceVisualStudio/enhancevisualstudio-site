@@ -71,19 +71,26 @@ section {
   transform: translateY(-3px);
 }
 
-/* PORTFOLIO HERO */
+/* ANIMATIONS */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* PORTFOLIO */
 .portfolio-hero img {
   width: 100%;
   border-radius: 14px;
   margin-bottom: 25px;
-  transition: 0.5s ease;
+  cursor: pointer;
 }
 
-.portfolio-hero img:hover {
-  transform: scale(1.02);
-}
-
-/* PORTFOLIO GRID */
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -93,21 +100,40 @@ section {
 .portfolio-grid img {
   width: 100%;
   border-radius: 12px;
-  transition: all 0.4s ease;
+  cursor: pointer;
+  transition: 0.4s;
 }
 
 .portfolio-grid img:hover {
   transform: scale(1.04);
-  opacity: 0.95;
 }
 
-@media(max-width: 768px){
+@media(max-width:768px){
   .portfolio-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* SERVICES */
+/* LIGHTBOX */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
@@ -118,18 +144,6 @@ section {
   background: #111;
   padding: 35px;
   border-radius: 12px;
-}
-
-/* TESTIMONIALS */
-.testimonials {
-  text-align: center;
-  max-width: 700px;
-  margin: auto;
-}
-
-.testimonials p {
-  opacity: 0.7;
-  margin-bottom: 20px;
 }
 
 /* INSTAGRAM */
@@ -144,12 +158,6 @@ section {
   border-radius: 8px;
 }
 
-@media(max-width: 768px){
-  .instagram {
-    grid-template-columns: 1fr;
-  }
-}
-
 footer {
   text-align: center;
   padding: 60px;
@@ -161,102 +169,57 @@ footer {
 
 <body>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+</div>
+
 <!-- HERO -->
-<section class="hero">
+<section class="hero fade-in">
   <div>
     <h1>Enhance Visual Studio</h1>
     <p>Pose. Capture. Enhance.</p>
     <p>San Francisco & Bay Area</p>
 
     <a href="https://calendly.com/bookenhancevisualstudio/bookmysession" class="btn primary">Book Your Session</a>
-
     <a href="https://paypal.me/EnhanceVisualStudio/100" class="btn outline">Pay Deposit</a>
   </div>
 </section>
 
 <!-- PORTFOLIO -->
-<section>
+<section class="fade-in">
   <h2 style="text-align:center;">Portfolio</h2>
 
   <p style="text-align:center; max-width:600px; margin:0 auto 40px; opacity:0.6;">
     A curated collection of portrait and lifestyle work across San Francisco & the Bay Area.
   </p>
 
-  <!-- HERO IMAGE -->
   <div class="portfolio-hero">
-    <img src="images/1.jpg">
+    <img src="images/1.jpg" onclick="openLightbox(this.src)">
   </div>
 
-  <!-- GRID -->
   <div class="portfolio-grid">
-    <img src="images/2.jpg">
-    <img src="images/3.jpg">
-    <img src="images/4.jpg">
-    <img src="images/5.jpg">
-    <img src="images/6.jpg">
+    <img src="images/2.jpg" onclick="openLightbox(this.src)">
+    <img src="images/3.jpg" onclick="openLightbox(this.src)">
+    <img src="images/4.jpg" onclick="openLightbox(this.src)">
+    <img src="images/5.jpg" onclick="openLightbox(this.src)">
+    <img src="images/6.jpg" onclick="openLightbox(this.src)">
   </div>
 </section>
 
 <!-- SERVICES -->
-<section>
+<section class="fade-in">
   <h2 style="text-align:center;">Services</h2>
 
   <div class="grid">
-    <div class="card">
-      <h3>Portrait Sessions</h3>
-      <p>Clean, elevated, professional portraits.</p>
-    </div>
-
-    <div class="card">
-      <h3>Lifestyle</h3>
-      <p>Natural storytelling with a luxury feel.</p>
-    </div>
-
-    <div class="card">
-      <h3>Couples</h3>
-      <p>Authentic connection captured beautifully.</p>
-    </div>
+    <div class="card"><h3>Portrait</h3><p>Clean professional portraits.</p></div>
+    <div class="card"><h3>Lifestyle</h3><p>Natural storytelling visuals.</p></div>
+    <div class="card"><h3>Couples</h3><p>Authentic connection captured.</p></div>
   </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section>
-  <h2 style="text-align:center;">The Experience</h2>
-
-  <div class="grid">
-    <div class="card">
-      <h3>1. Book</h3>
-      <p>Select your session date online.</p>
-    </div>
-
-    <div class="card">
-      <h3>2. Secure</h3>
-      <p>$100 deposit confirms your booking.</p>
-    </div>
-
-    <div class="card">
-      <h3>3. Shoot</h3>
-      <p>Guided posing + creative direction.</p>
-    </div>
-
-    <div class="card">
-      <h3>4. Delivery</h3>
-      <p>Professionally edited images delivered.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <h2>Client Experience</h2>
-
-  <p>"Amazing experience, made me feel confident the whole shoot."</p>
-  <p>"Super professional and the photos came out incredible."</p>
-  <p>"Best photographer I've worked with in the Bay Area."</p>
 </section>
 
 <!-- INSTAGRAM -->
-<section>
+<section class="fade-in">
   <h2 style="text-align:center;">Instagram</h2>
 
   <div class="instagram">
@@ -265,21 +228,45 @@ footer {
     <img src="images/3.jpg">
   </div>
 
-  <p style="text-align:center; margin-top:20px;">
-    @EnhanceVisualStudio
-  </p>
+  <p style="text-align:center;">@EnhanceVisualStudio</p>
 </section>
 
 <!-- CTA -->
-<section style="text-align:center;">
+<section style="text-align:center;" class="fade-in">
   <h2>Ready to Elevate Your Look?</h2>
-
   <a href="https://calendly.com/bookenhancevisualstudio/bookmysession" class="btn primary">Book Now</a>
 </section>
 
 <footer>
   <p>© Enhance Visual Studio</p>
 </footer>
+
+<script>
+
+/* FADE IN ON SCROLL */
+const elements = document.querySelectorAll('.fade-in');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+});
+
+elements.forEach(el => observer.observe(el));
+
+/* LIGHTBOX */
+function openLightbox(src){
+  document.getElementById('lightbox').style.display = 'flex';
+  document.getElementById('lightbox-img').src = src;
+}
+
+function closeLightbox(){
+  document.getElementById('lightbox').style.display = 'none';
+}
+
+</script>
 
 </body>
 </html>
