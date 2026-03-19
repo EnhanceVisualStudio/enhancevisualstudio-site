@@ -36,10 +36,17 @@ section {
   text-align: center;
 }
 
-.hero h1 { font-size: 58px; }
+.hero h1 { font-size: 60px; }
 
+.hero p {
+  opacity: 0.7;
+  max-width: 600px;
+  margin: 10px auto;
+}
+
+/* BUTTONS */
 .btn {
-  padding: 14px 34px;
+  padding: 14px 36px;
   border-radius: 40px;
   text-decoration: none;
   margin: 10px;
@@ -77,16 +84,45 @@ section {
 
 .calendly-inline-widget {
   min-width: 320px;
-  height: 700px;
+  height: 720px;
   margin-top: 30px;
 }
 
 /* PAYMENT BOX */
 .payment-box {
-  margin-top: 40px;
-  padding: 40px;
+  margin-top: 50px;
+  padding: 45px;
   background: #111;
   border-radius: 16px;
+}
+
+.payment-box p {
+  opacity: 0.7;
+}
+
+/* SERVICES */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 25px;
+}
+
+.card {
+  background: #111;
+  padding: 35px;
+  border-radius: 12px;
+}
+
+/* TESTIMONIALS */
+.testimonials {
+  text-align: center;
+  max-width: 700px;
+  margin: auto;
+}
+
+.testimonials p {
+  opacity: 0.7;
+  margin-bottom: 20px;
 }
 
 footer {
@@ -108,7 +144,11 @@ footer {
 <section class="hero">
   <div>
     <h1>Enhance Visual Studio</h1>
-    <p>Pose. Capture. Enhance.</p>
+
+    <p>
+      Elevated portraits designed to make you look powerful, confident, and unforgettable.
+    </p>
+
     <p>San Francisco & Bay Area</p>
 
     <a href="#booking" class="btn primary">Book Your Session</a>
@@ -118,6 +158,10 @@ footer {
 <!-- PORTFOLIO -->
 <section>
   <h2 style="text-align:center;">Portfolio</h2>
+
+  <p style="text-align:center; max-width:600px; margin:0 auto 40px; opacity:0.6;">
+    A curated collection of portrait and lifestyle work crafted with intention, lighting, and direction.
+  </p>
 
   <div class="portfolio-hero">
     <img src="images/1.jpg">
@@ -132,23 +176,28 @@ footer {
   </div>
 </section>
 
-<!-- BOOKING SECTION -->
+<!-- BOOKING -->
 <section id="booking" class="booking">
   <h2>Book Your Session</h2>
 
-  <p style="opacity:0.7;">
+  <p>
+    Sessions are limited each week to ensure a high-end, personalized experience.
+  </p>
+
+  <p style="opacity:0.6;">
     Select your date below, then secure your session with a deposit.
   </p>
 
-  <!-- CALENDLY EMBED -->
-  <div class="calendly-inline-widget" 
+  <!-- CALENDLY -->
+  <div class="calendly-inline-widget"
     data-url="https://calendly.com/bookenhancevisualstudio/bookmysession">
   </div>
 
   <!-- PAYMENT -->
   <div class="payment-box">
     <h3>Secure Your Session</h3>
-    <p style="opacity:0.7;">
+
+    <p>
       A $100 non-refundable deposit is required to confirm your booking.
     </p>
 
@@ -156,7 +205,37 @@ footer {
       Pay $100 Deposit
     </a>
   </div>
+</section>
 
+<!-- SERVICES -->
+<section>
+  <h2 style="text-align:center;">Services</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Portrait Sessions</h3>
+      <p>Clean, directed, high-end portrait photography.</p>
+    </div>
+
+    <div class="card">
+      <h3>Lifestyle</h3>
+      <p>Natural storytelling with a polished, editorial feel.</p>
+    </div>
+
+    <div class="card">
+      <h3>Couples</h3>
+      <p>Authentic connection captured with intention.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <h2>Client Experience</h2>
+
+  <p>"Made me feel confident instantly — the whole shoot felt effortless."</p>
+  <p>"Felt like a magazine shoot, not just photos."</p>
+  <p>"Super professional and the results exceeded expectations."</p>
 </section>
 
 <footer>
