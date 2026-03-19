@@ -37,7 +37,6 @@ section {
 }
 
 .hero h1 { font-size: 58px; }
-.hero p { opacity: 0.7; }
 
 .btn {
   padding: 14px 34px;
@@ -71,54 +70,33 @@ section {
   border-radius: 12px;
 }
 
-@media(max-width:768px){
-  .portfolio-grid { grid-template-columns: 1fr; }
-}
-
-/* BOOKING SECTION */
+/* BOOKING */
 .booking {
   text-align: center;
+}
+
+.calendly-inline-widget {
+  min-width: 320px;
+  height: 700px;
+  margin-top: 30px;
+}
+
+/* PAYMENT BOX */
+.payment-box {
+  margin-top: 40px;
+  padding: 40px;
   background: #111;
   border-radius: 16px;
-  padding: 60px 20px;
-}
-
-.booking p {
-  opacity: 0.7;
-  max-width: 600px;
-  margin: 10px auto 30px;
-}
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-  gap: 20px;
-  margin-top: 40px;
-}
-
-.step {
-  background: #0a0a0a;
-  padding: 25px;
-  border-radius: 12px;
-}
-
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 25px;
-}
-
-.card {
-  background: #111;
-  padding: 35px;
-  border-radius: 12px;
 }
 
 footer {
   text-align: center;
   padding: 60px;
   opacity: 0.4;
+}
+
+@media(max-width:768px){
+  .portfolio-grid { grid-template-columns: 1fr; }
 }
 
 </style>
@@ -130,7 +108,7 @@ footer {
 <section class="hero">
   <div>
     <h1>Enhance Visual Studio</h1>
-    <p>Pose. Capture. Enhance</p>
+    <p>Pose. Capture. Enhance.</p>
     <p>San Francisco & Bay Area</p>
 
     <a href="#booking" class="btn primary">Book Your Session</a>
@@ -154,66 +132,39 @@ footer {
   </div>
 </section>
 
-<!-- BOOKING -->
-<section id="booking">
-  <div class="booking">
-    <h2>Book Your Session</h2>
+<!-- BOOKING SECTION -->
+<section id="booking" class="booking">
+  <h2>Book Your Session</h2>
 
-    <p>
-      Select your preferred date and secure your session. 
-      Limited availability each week.
+  <p style="opacity:0.7;">
+    Select your date below, then secure your session with a deposit.
+  </p>
+
+  <!-- CALENDLY EMBED -->
+  <div class="calendly-inline-widget" 
+    data-url="https://calendly.com/bookenhancevisualstudio/bookmysession">
+  </div>
+
+  <!-- PAYMENT -->
+  <div class="payment-box">
+    <h3>Secure Your Session</h3>
+    <p style="opacity:0.7;">
+      A $100 non-refundable deposit is required to confirm your booking.
     </p>
 
-    <!-- BUTTONS -->
-    <a href="https://calendly.com/bookenhancevisualstudio/bookmysession" class="btn primary">Check Availability</a>
-
-    <a href="https://paypal.me/EnhanceVisualStudio/100" class="btn outline">Pay $100 Deposit</a>
-
-    <!-- STEPS -->
-    <div class="steps">
-      <div class="step">
-        <h3>1. Book</h3>
-        <p>Choose your date and time.</p>
-      </div>
-
-      <div class="step">
-        <h3>2. Secure</h3>
-        <p>$100 deposit confirms your session.</p>
-      </div>
-
-      <div class="step">
-        <h3>3. Shoot</h3>
-        <p>Guided professional experience.</p>
-      </div>
-    </div>
+    <a href="https://paypal.me/EnhanceVisualStudio/100" class="btn primary">
+      Pay $100 Deposit
+    </a>
   </div>
-</section>
 
-<!-- SERVICES -->
-<section>
-  <h2 style="text-align:center;">Services</h2>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Portrait</h3>
-      <p>Clean, elevated portraits.</p>
-    </div>
-
-    <div class="card">
-      <h3>Lifestyle</h3>
-      <p>Authentic storytelling visuals.</p>
-    </div>
-
-    <div class="card">
-      <h3>Couples</h3>
-      <p>Connection captured beautifully.</p>
-    </div>
-  </div>
 </section>
 
 <footer>
   <p>© Enhance Visual Studio</p>
 </footer>
+
+<!-- Calendly Script -->
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
 </body>
 </html>
