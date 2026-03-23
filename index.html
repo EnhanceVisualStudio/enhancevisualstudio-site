@@ -4,13 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- SEO -->
 <title>Enhance Visual Studio | Luxury Portrait Photographer San Francisco Bay Area</title>
-<meta name="description" content="Luxury portrait and lifestyle photographer in San Francisco and the Bay Area. High-end photography with guided posing and cinematic editing.">
-<meta name="keywords" content="San Francisco photographer, Bay Area portrait photographer, lifestyle photography, luxury portraits">
-<meta name="author" content="Enhance Visual Studio">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Enhance Visual Studio is a luxury portrait and lifestyle photographer serving San Francisco and the Bay Area. Book your session today.">
+<meta name="keywords" content="San Francisco photographer, Bay Area portrait photographer, lifestyle photography San Francisco, luxury portraits Bay Area">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -19,7 +18,6 @@ body{font-family:'Inter',sans-serif;color:#111;background:#fff;}
 
 h1,h2,h3{font-family:'Playfair Display',serif;}
 
-/* HEADER */
 header{
 position:fixed;
 width:100%;
@@ -51,8 +49,8 @@ padding:0 20px;
 }
 
 .hero h2{
-font-size:44px;
-max-width:800px;
+font-size:46px;
+max-width:850px;
 }
 
 .hero p{
@@ -62,7 +60,7 @@ color:#666;
 
 .btn{
 margin-top:25px;
-padding:12px 28px;
+padding:14px 30px;
 border:1px solid #111;
 text-decoration:none;
 color:#111;
@@ -81,7 +79,6 @@ max-width:1200px;
 margin:auto;
 }
 
-/* FADE ANIMATION */
 .fade{
 opacity:0;
 transform:translateY(40px);
@@ -112,11 +109,6 @@ object-fit:cover;
 transition:.4s;
 }
 
-.portfolio-item:hover img{
-transform:scale(1.05);
-}
-
-/* HOVER TITLE */
 .overlay{
 position:absolute;
 bottom:0;
@@ -127,6 +119,10 @@ background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
 color:white;
 opacity:0;
 transition:.4s;
+}
+
+.portfolio-item:hover img{
+transform:scale(1.05);
 }
 
 .portfolio-item:hover .overlay{
@@ -151,6 +147,19 @@ transform:translateY(-5px);
 box-shadow:0 10px 30px rgba(0,0,0,0.05);
 }
 
+/* TESTIMONIALS */
+.testimonials{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.testimonial{
+padding:30px;
+border:1px solid #eee;
+background:#fafafa;
+}
+
 /* BOOKING */
 iframe{
 border:none;
@@ -164,7 +173,6 @@ padding:50px;
 color:#777;
 }
 
-/* MOBILE */
 @media(max-width:768px){
 header{padding:20px;}
 section{padding:80px 20px;}
@@ -180,13 +188,14 @@ section{padding:80px 20px;}
 <nav>
 <a href="#portfolio">Portfolio</a>
 <a href="#pricing">Pricing</a>
+<a href="#reviews">Reviews</a>
 <a href="#booking">Book</a>
 </nav>
 </header>
 
 <section class="hero">
 <h2>Luxury Portrait & Lifestyle Photography</h2>
-<p>San Francisco & Bay Area</p>
+<p>Serving San Francisco & The Bay Area</p>
 <a href="#booking" class="btn">Book Your Session</a>
 </section>
 
@@ -201,13 +210,13 @@ section{padding:80px 20px;}
 </div>
 
 <div class="portfolio-item">
-<img src="images/portrait2.jpg">
-<div class="overlay">Studio</div>
+<img src="images/lifestyle1.jpg">
+<div class="overlay">Lifestyle</div>
 </div>
 
 <div class="portfolio-item">
-<img src="images/lifestyle1.jpg">
-<div class="overlay">Lifestyle</div>
+<img src="images/portrait2.jpg">
+<div class="overlay">Studio</div>
 </div>
 
 <div class="portfolio-item">
@@ -232,20 +241,31 @@ section{padding:80px 20px;}
 <h2>Investment</h2>
 
 <div class="pricing">
-
-<div class="card">
-<h3>Signature Portrait</h3>
-<p>$350</p>
+<div class="card"><h3>Signature Portrait</h3><p>$350</p></div>
+<div class="card"><h3>Premium Portrait</h3><p>$500</p></div>
+<div class="card"><h3>Lifestyle Session</h3><p>$450–$600</p></div>
 </div>
 
-<div class="card">
-<h3>Premium Portrait</h3>
-<p>$500</p>
+</section>
+
+<section id="reviews" class="fade">
+<h2>Client Experience</h2>
+
+<div class="testimonials">
+
+<div class="testimonial">
+<p>“Amazing experience. The posing guidance made everything effortless.”</p>
+<strong>— Client, San Francisco</strong>
 </div>
 
-<div class="card">
-<h3>Lifestyle Session</h3>
-<p>$450–$600</p>
+<div class="testimonial">
+<p>“Felt like a luxury shoot. The results were incredible.”</p>
+<strong>— Bay Area Client</strong>
+</div>
+
+<div class="testimonial">
+<p>“Professional, creative, and easy to work with.”</p>
+<strong>— Portrait Client</strong>
 </div>
 
 </div>
@@ -255,7 +275,7 @@ section{padding:80px 20px;}
 <h2>Book Your Session</h2>
 <p>Select your date and secure your session.</p>
 
-<iframe src="https://calendly.com/YOUR-USERNAME" width="100%" height="700"></iframe>
+<iframe src="https://calendly.com/bookenhancevisualstudio/bookmysession" width="100%" height="750"></iframe>
 </section>
 
 <footer>
@@ -265,21 +285,15 @@ section{padding:80px 20px;}
 <script>
 const faders = document.querySelectorAll('.fade');
 
-const appearOptions = {
-threshold: 0.2
-};
-
-const appearOnScroll = new IntersectionObserver(function(entries, observer){
+const observer = new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
-if(!entry.isIntersecting){return;}
+if(entry.isIntersecting){
 entry.target.classList.add('show');
-observer.unobserve(entry.target);
+}
 });
-}, appearOptions);
+});
 
-faders.forEach(fader=>{
-appearOnScroll.observe(fader);
-});
+faders.forEach(el=>observer.observe(el));
 </script>
 
 </body>
