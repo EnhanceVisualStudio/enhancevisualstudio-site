@@ -4,28 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Enhance Visual Studio | Portrait Photographer San Francisco Bay Area</title>
+<title>Enhance Visual Studio | San Francisco Portrait Photographer</title>
 
-<meta name="description" content="Portrait and lifestyle photographer serving San Francisco and the Bay Area. Guided sessions designed to help you look and feel your best. Book your session today.">
+<meta name="description" content="Luxury portrait and lifestyle photography in San Francisco & Bay Area. Guided sessions designed to elevate your image.">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Inter',sans-serif;color:#111;background:#fff;}
-h1,h2,h3{font-family:'Playfair Display',serif;}
+body{font-family:'Inter',sans-serif;background:#fff;color:#111;}
+h1,h2{font-family:'Playfair Display',serif;font-weight:500;}
 
 header{
 position:fixed;
-width:100%;
 top:0;
-background:white;
+width:100%;
 display:flex;
 justify-content:space-between;
-padding:20px 60px;
-border-bottom:1px solid #eee;
+padding:20px 50px;
+background:white;
 z-index:1000;
+border-bottom:1px solid #eee;
 }
 
 nav a{
@@ -38,42 +37,45 @@ font-size:14px;
 /* HERO */
 .hero{
 height:100vh;
-background:url('images/portrait1.jpg') center/cover no-repeat;
+background:url('images/portrait2.jpg') center/cover no-repeat;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
 color:white;
 position:relative;
-padding:0 20px;
 }
 
 .hero::before{
 content:"";
 position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.45);
+background:rgba(0,0,0,0.4);
 }
 
-.hero *{position:relative;z-index:2;}
+.hero-content{
+position:relative;
+z-index:2;
+}
 
 .hero h2{
-font-size:46px;
-max-width:850px;
+font-size:48px;
+max-width:800px;
 }
 
-.hero p{margin-top:10px;}
+.hero p{
+margin-top:10px;
+font-size:16px;
+}
 
 .btn{
 margin-top:25px;
+display:inline-block;
 padding:14px 30px;
 border:1px solid white;
-text-decoration:none;
 color:white;
+text-decoration:none;
 transition:.3s;
 }
 
@@ -82,92 +84,76 @@ background:white;
 color:#111;
 }
 
-/* SECTIONS */
-section{
-padding:120px 60px;
-max-width:1200px;
-margin:auto;
-}
-
-.fade{
-opacity:0;
-transform:translateY(40px);
-transition:1s ease;
-}
-
-.fade.show{
-opacity:1;
-transform:translateY(0);
-}
-
 /* PORTFOLIO */
 .portfolio{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
+grid-template-columns:1fr 1fr;
 }
 
 .portfolio-item{
-position:relative;
+height:70vh;
 overflow:hidden;
+position:relative;
+cursor:pointer;
 }
 
 .portfolio img{
 width:100%;
-height:420px;
+height:100%;
 object-fit:cover;
-transition:.4s;
+transition:1s ease;
 }
 
-.overlay{
-position:absolute;
-bottom:0;
+.portfolio-item:hover img{
+transform:scale(1.1);
+}
+
+/* LIGHTBOX */
+#lightbox{
+display:none;
+position:fixed;
+top:0;
 left:0;
 width:100%;
-padding:20px;
-background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-color:white;
-opacity:0;
-transition:.4s;
+height:100%;
+background:black;
+justify-content:center;
+align-items:center;
+z-index:2000;
 }
 
-.portfolio-item:hover img{transform:scale(1.05);}
-.portfolio-item:hover .overlay{opacity:1;}
+#lightbox img{
+max-width:90%;
+max-height:90%;
+}
+
+/* SECTIONS */
+.section{
+padding:120px 50px;
+max-width:1000px;
+margin:auto;
+text-align:center;
+}
+
+.section p{
+color:#555;
+margin-top:10px;
+}
 
 /* PRICING */
 .pricing{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:40px;
 }
 
 .card{
 border:1px solid #eee;
 padding:30px;
-transition:.3s;
 }
 
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
-}
-
-/* TESTIMONIALS */
-.testimonials{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
-}
-
-.testimonial{
-padding:30px;
-border:1px solid #eee;
-background:#fafafa;
-}
-
-/* BOOKING */
-iframe{border:none;margin-top:20px;}
-
+/* FOOTER */
 footer{
 text-align:center;
 padding:50px;
@@ -175,9 +161,12 @@ color:#777;
 }
 
 @media(max-width:768px){
-header{padding:20px;}
-section{padding:80px 20px;}
-.hero h2{font-size:30px;}
+.portfolio{
+grid-template-columns:1fr;
+}
+.hero h2{
+font-size:32px;
+}
 }
 </style>
 </head>
@@ -189,136 +178,111 @@ section{padding:80px 20px;}
 <nav>
 <a href="#portfolio">Portfolio</a>
 <a href="#about">About</a>
-<a href="#pricing">Pricing</a>
-<a href="#reviews">Reviews</a>
 <a href="#booking">Book</a>
 </nav>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-<h2>Portraits That Feel Like You — Elevated</h2>
-<p>Guided photography experience in San Francisco & the Bay Area</p>
-<a href="#booking" class="btn">Book Your Session</a>
-</section>
-
-<!-- INTRO -->
-<section class="fade" style="text-align:center;">
-<p style="max-width:600px;margin:auto;color:#555;">
-Every session is guided from start to finish — no modeling experience needed.
-I help you pose, move, and feel confident in front of the camera.
-</p>
-</section>
-
-<!-- PORTFOLIO -->
-<section id="portfolio" class="fade">
-<h2>Portfolio</h2>
-<div class="portfolio">
-
-<div class="portfolio-item"><img src="images/portrait1.jpg"><div class="overlay">Portrait</div></div>
-<div class="portfolio-item"><img src="images/portrait2.jpg"><div class="overlay">Lifestyle</div></div>
-<div class="portfolio-item"><img src="images/portrait3.jpg"><div class="overlay">Studio</div></div>
-<div class="portfolio-item"><img src="images/portrait4.jpg"><div class="overlay">Editorial</div></div>
-<div class="portfolio-item"><img src="images/portrait5.jpg"><div class="overlay">Couples</div></div>
-<div class="portfolio-item"><img src="images/portrait6.jpg"><div class="overlay">Luxury</div></div>
-
+<div class="hero-content">
+<h2>Elevated Portraits That Feel Like You</h2>
+<p>San Francisco & Bay Area</p>
+<a href="#booking" class="btn">Book Session</a>
 </div>
 </section>
 
+<!-- PORTFOLIO -->
+<section id="portfolio" class="portfolio">
+
+<div class="portfolio-item" onclick="openLightbox('images/portrait1.jpg')">
+<img src="images/portrait1.jpg">
+</div>
+
+<div class="portfolio-item" onclick="openLightbox('images/portrait2.jpg')">
+<img src="images/portrait2.jpg">
+</div>
+
+<div class="portfolio-item" onclick="openLightbox('images/portrait3.jpg')">
+<img src="images/portrait3.jpg">
+</div>
+
+<div class="portfolio-item" onclick="openLightbox('images/portrait4.jpg')">
+<img src="images/portrait4.jpg">
+</div>
+
+<div class="portfolio-item" onclick="openLightbox('images/portrait5.jpg')">
+<img src="images/portrait5.jpg">
+</div>
+
+<div class="portfolio-item" onclick="openLightbox('images/portrait6.jpg')">
+<img src="images/portrait6.jpg">
+</div>
+
+</section>
+
 <!-- ABOUT -->
-<section id="about" class="fade" style="text-align:center;">
+<section id="about" class="section">
 <h2>About</h2>
-<p style="max-width:600px;margin:auto;color:#555;">
-At Enhance Visual Studio, we focus on creating clean, cinematic portraits.
-My goal is to guide you through the entire process so you feel confident and look your best — no experience needed.
+<p>
+Enhance Visual Studio focuses on clean, cinematic portraits with a guided experience.
+No modeling experience needed — every session is directed to help you feel confident and look your best.
 </p>
 </section>
 
 <!-- PRICING -->
-<section id="pricing" class="fade">
+<section class="section">
 <h2>Investment</h2>
 
 <div class="pricing">
 
 <div class="card">
-<h3>Signature Portrait</h3>
-<p>$200</p>
-<ul style="margin-top:15px;color:#555;">
-<li>45 Minute Session</li>
-<li>5 Edited Photos</li>
-<li>Guided Posing</li>
-</ul>
+<h3>Signature</h3>
+<p>$350</p>
+<p>Guided session • 3 edits</p>
 </div>
 
 <div class="card">
-<h3>Premium Portrait</h3>
+<h3>Premium</h3>
 <p>$500</p>
-<ul style="margin-top:15px;color:#555;">
-<li>1 Hour Session</li>
-<li>10 Edited Photos</li>
-<li>Guided Posing</li>
-<li>Location Assistance</li>
-</ul>
+<p>1 hour • 5 edits • full direction</p>
 </div>
 
 <div class="card">
-<h3>Luxury Portrait</h3>
-<p>$1000</p>
-<ul style="margin-top:15px;color:#555;">
-<li>1-2 Hour Session</li>
-<li>20 Edited Photos</li>
-<li>Natural Direction</li>
-</ul>
+<h3>Lifestyle</h3>
+<p>$450–$600</p>
+<p>Natural sessions • storytelling</p>
 </div>
 
 </div>
-</section>
 
-<!-- TESTIMONIALS -->
-<section id="reviews" class="fade">
-<h2>Client Experience</h2>
-
-<div class="testimonials">
-
-<div class="testimonial">
-<p>“I’ve never done a shoot before but he made it super easy. The photos came out better than I imagined.”</p>
-<strong>— First-Time Client, San Francisco</strong>
-</div>
-
-<div class="testimonial">
-<p>“The whole experience felt professional and relaxed. Definitely booking again.”</p>
-<strong>— Bay Area Client</strong>
-</div>
-
-<div class="testimonial">
-<p>“He guided me the whole time and made me feel confident in front of the camera.”</p>
-<strong>— Portrait Client</strong>
-</div>
-
-</div>
 </section>
 
 <!-- BOOKING -->
-<section id="booking" class="fade">
+<section id="booking" class="section">
 <h2>Book Your Session</h2>
-<p>Select your date and secure your session.</p>
-<p style="color:#777;">Limited sessions available each month.</p>
+<p>Limited availability each month</p>
 
-<iframe src="https://calendly.com/bookenhancevisualstudio/bookmysession" width="100%" height="750"></iframe>
+<iframe src="https://calendly.com/bookenhancevisualstudio/bookmysession" width="100%" height="700"></iframe>
 </section>
 
 <footer>
-© 2026 Enhance Visual Studio — San Francisco & Bay Area Photographer
+© 2026 Enhance Visual Studio
 </footer>
 
+<!-- LIGHTBOX -->
+<div id="lightbox">
+<img id="lightbox-img">
+</div>
+
 <script>
-const faders=document.querySelectorAll('.fade');
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){entry.target.classList.add('show');}
-});
-});
-faders.forEach(el=>observer.observe(el));
+function openLightbox(src){
+document.getElementById('lightbox').style.display='flex';
+document.getElementById('lightbox-img').src=src;
+}
+
+document.getElementById('lightbox').onclick=function(){
+this.style.display='none';
+}
 </script>
 
 </body>
