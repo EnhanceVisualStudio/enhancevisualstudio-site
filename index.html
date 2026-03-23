@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Enhance Visual Studio | Luxury Portrait Photographer San Francisco Bay Area</title>
+<title>Enhance Visual Studio | Portrait Photographer San Francisco Bay Area</title>
 
-<meta name="description" content="Enhance Visual Studio is a luxury portrait and lifestyle photographer serving San Francisco and the Bay Area. Book your session today.">
-<meta name="keywords" content="San Francisco photographer, Bay Area portrait photographer, lifestyle photography San Francisco, luxury portraits Bay Area">
+<meta name="description" content="Portrait and lifestyle photographer serving San Francisco and the Bay Area. Guided sessions designed to help you look and feel your best. Book your session today.">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -37,15 +36,33 @@ color:#111;
 font-size:14px;
 }
 
-/* HERO */
+/* HERO WITH IMAGE */
 .hero{
 height:100vh;
+background:url('images/portrait1.jpg') center/cover no-repeat;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+color:white;
+position:relative;
 padding:0 20px;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.45);
+}
+
+.hero *{
+position:relative;
+z-index:2;
 }
 
 .hero h2{
@@ -55,21 +72,20 @@ max-width:850px;
 
 .hero p{
 margin-top:10px;
-color:#666;
 }
 
 .btn{
 margin-top:25px;
 padding:14px 30px;
-border:1px solid #111;
+border:1px solid white;
 text-decoration:none;
-color:#111;
+color:white;
 transition:.3s;
 }
 
 .btn:hover{
-background:#111;
-color:#fff;
+background:white;
+color:#111;
 }
 
 /* SECTIONS */
@@ -193,84 +209,115 @@ section{padding:80px 20px;}
 </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-<h2>Luxury Portrait & Lifestyle Photography</h2>
-<p>Serving San Francisco & The Bay Area</p>
+<h2>Portraits That Feel Like You — Elevated</h2>
+<p>Guided photography experience in San Francisco & the Bay Area</p>
 <a href="#booking" class="btn">Book Your Session</a>
 </section>
 
+<!-- INTRO TEXT -->
+<section class="fade" style="text-align:center;">
+<p style="max-width:600px;margin:auto;color:#555;">
+Every session is guided from start to finish — no modeling experience needed.
+I help you pose, move, and feel confident in front of the camera.
+</p>
+</section>
+
+<!-- PORTFOLIO -->
 <section id="portfolio" class="fade">
 <h2>Portfolio</h2>
 
 <div class="portfolio">
 
 <div class="portfolio-item">
-<img src="images/portrait1.jpg" alt="Portrait Photography San Francisco">
+<img src="images/portrait1.jpg">
 <div class="overlay">Portrait</div>
 </div>
 
 <div class="portfolio-item">
-<img src="images/lifestyle1.jpg" alt="Lifestyle Photography Bay Area">
+<img src="images/portrait2.jpg">
 <div class="overlay">Lifestyle</div>
 </div>
 
 <div class="portfolio-item">
-<img src="images/portrait2.jpg" alt="Studio Portrait">
+<img src="images/portrait3.jpg">
 <div class="overlay">Studio</div>
 </div>
 
 <div class="portfolio-item">
-<img src="images/portrait3.jpg" alt="Editorial Portrait">
+<img src="images/portrait4.jpg">
 <div class="overlay">Editorial</div>
 </div>
 
 <div class="portfolio-item">
-<img src="images/lifestyle2.jpg" alt="Couples Photography">
+<img src="images/portrait5.jpg">
 <div class="overlay">Couples</div>
 </div>
 
 <div class="portfolio-item">
-<img src="images/portrait4.jpg" alt="Luxury Portrait Photography">
+<img src="images/portrait6.jpg">
 <div class="overlay">Luxury</div>
 </div>
 
 </div>
 </section>
 
+<!-- PRICING -->
 <section id="pricing" class="fade">
 <h2>Investment</h2>
 
 <div class="pricing">
-<div class="card"><h3>Signature Portrait</h3><p>$350</p></div>
-<div class="card"><h3>Premium Portrait</h3><p>$500</p></div>
-<div class="card"><h3>Lifestyle Session</h3><p>$450–$600</p></div>
+
+<div class="card">
+<h3>Signature Portrait</h3>
+<p>$350</p>
 </div>
 
+<div class="card">
+<h3>Premium Portrait</h3>
+<p>$500</p>
+<ul style="margin-top:15px;color:#555;">
+<li>1 Hour Session</li>
+<li>5 Edited Photos</li>
+<li>Guided Posing</li>
+<li>Location Assistance</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Lifestyle Session</h3>
+<p>$450–$600</p>
+</div>
+
+</div>
 </section>
 
+<!-- TESTIMONIALS -->
 <section id="reviews" class="fade">
 <h2>Client Experience</h2>
 
 <div class="testimonials">
 
 <div class="testimonial">
-<p>“Amazing experience. The posing guidance made everything effortless.”</p>
-<strong>— Client, San Francisco</strong>
+<p>“I’ve never done a shoot before but he made it super easy. The photos came out better than I imagined.”</p>
+<strong>— First-Time Client, San Francisco</strong>
 </div>
 
 <div class="testimonial">
-<p>“Felt like a luxury shoot. The results were incredible.”</p>
+<p>“The whole experience felt professional and relaxed. Definitely booking again.”</p>
 <strong>— Bay Area Client</strong>
 </div>
 
 <div class="testimonial">
-<p>“Professional, creative, and easy to work with.”</p>
+<p>“He guided me the whole time and made me feel confident in front of the camera.”</p>
 <strong>— Portrait Client</strong>
 </div>
 
 </div>
 </section>
 
+<!-- BOOKING -->
 <section id="booking" class="fade">
 <h2>Book Your Session</h2>
 <p>Select your date and secure your session.</p>
