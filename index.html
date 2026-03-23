@@ -4,246 +4,283 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Enhance Visual Studio</title>
+<!-- SEO -->
+<title>Enhance Visual Studio | Luxury Portrait Photographer San Francisco Bay Area</title>
+<meta name="description" content="Luxury portrait and lifestyle photographer in San Francisco and the Bay Area. High-end photography with guided posing and cinematic editing.">
+<meta name="keywords" content="San Francisco photographer, Bay Area portrait photographer, lifestyle photography, luxury portraits">
+<meta name="author" content="Enhance Visual Studio">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;color:#111;background:#fff;}
 
-html { scroll-behavior: smooth; }
+h1,h2,h3{font-family:'Playfair Display',serif;}
 
-body {
-  margin: 0;
-  background: #0a0a0a;
-  color: white;
-  font-family: 'Inter', sans-serif;
+/* HEADER */
+header{
+position:fixed;
+width:100%;
+top:0;
+background:white;
+display:flex;
+justify-content:space-between;
+padding:20px 60px;
+border-bottom:1px solid #eee;
+z-index:1000;
 }
 
-h1,h2,h3 { font-family: 'Playfair Display', serif; }
-
-section {
-  padding: 100px 20px;
-  max-width: 1100px;
-  margin: auto;
+nav a{
+margin-left:25px;
+text-decoration:none;
+color:#111;
+font-size:14px;
 }
 
 /* HERO */
-.hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:0 20px;
 }
 
-.hero h1 { font-size: 60px; }
-
-.hero p {
-  opacity: 0.7;
-  max-width: 600px;
-  margin: 10px auto;
+.hero h2{
+font-size:44px;
+max-width:800px;
 }
 
-/* BUTTONS */
-.btn {
-  padding: 14px 36px;
-  border-radius: 40px;
-  text-decoration: none;
-  margin: 10px;
-  display: inline-block;
-  transition: 0.3s;
+.hero p{
+margin-top:10px;
+color:#666;
 }
 
-.primary { background: white; color: black; }
-.outline { border: 1px solid white; color: white; }
+.btn{
+margin-top:25px;
+padding:12px 28px;
+border:1px solid #111;
+text-decoration:none;
+color:#111;
+transition:.3s;
+}
 
-.btn:hover { transform: translateY(-3px); }
+.btn:hover{
+background:#111;
+color:#fff;
+}
+
+/* SECTIONS */
+section{
+padding:120px 60px;
+max-width:1200px;
+margin:auto;
+}
+
+/* FADE ANIMATION */
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:1s ease;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
 
 /* PORTFOLIO */
-.portfolio-hero img {
-  width: 100%;
-  border-radius: 14px;
-  margin-bottom: 25px;
+.portfolio{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
 }
 
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+.portfolio-item{
+position:relative;
+overflow:hidden;
 }
 
-.portfolio-grid img {
-  width: 100%;
-  border-radius: 12px;
+.portfolio img{
+width:100%;
+height:420px;
+object-fit:cover;
+transition:.4s;
+}
+
+.portfolio-item:hover img{
+transform:scale(1.05);
+}
+
+/* HOVER TITLE */
+.overlay{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+padding:20px;
+background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+color:white;
+opacity:0;
+transition:.4s;
+}
+
+.portfolio-item:hover .overlay{
+opacity:1;
+}
+
+/* PRICING */
+.pricing{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+border:1px solid #eee;
+padding:30px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
 }
 
 /* BOOKING */
-.booking {
-  text-align: center;
+iframe{
+border:none;
+margin-top:20px;
 }
 
-.calendly-inline-widget {
-  min-width: 320px;
-  height: 720px;
-  margin-top: 30px;
+/* FOOTER */
+footer{
+text-align:center;
+padding:50px;
+color:#777;
 }
 
-/* PAYMENT BOX */
-.payment-box {
-  margin-top: 50px;
-  padding: 45px;
-  background: #111;
-  border-radius: 16px;
-}
-
-.payment-box p {
-  opacity: 0.7;
-}
-
-/* SERVICES */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 25px;
-}
-
-.card {
-  background: #111;
-  padding: 35px;
-  border-radius: 12px;
-}
-
-/* TESTIMONIALS */
-.testimonials {
-  text-align: center;
-  max-width: 700px;
-  margin: auto;
-}
-
-.testimonials p {
-  opacity: 0.7;
-  margin-bottom: 20px;
-}
-
-footer {
-  text-align: center;
-  padding: 60px;
-  opacity: 0.4;
-}
-
+/* MOBILE */
 @media(max-width:768px){
-  .portfolio-grid { grid-template-columns: 1fr; }
+header{padding:20px;}
+section{padding:80px 20px;}
+.hero h2{font-size:30px;}
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
+<header>
+<h1>Enhance Visual Studio</h1>
+<nav>
+<a href="#portfolio">Portfolio</a>
+<a href="#pricing">Pricing</a>
+<a href="#booking">Book</a>
+</nav>
+</header>
+
 <section class="hero">
-  <div>
-    <h1>Enhance Visual Studio</h1>
-
-    <p>
-      Elevated portraits designed to make you look powerful, confident, and unforgettable.
-    </p>
-
-    <p>San Francisco & Bay Area</p>
-
-    <a href="#booking" class="btn primary">Book Your Session</a>
-  </div>
+<h2>Luxury Portrait & Lifestyle Photography</h2>
+<p>San Francisco & Bay Area</p>
+<a href="#booking" class="btn">Book Your Session</a>
 </section>
 
-<!-- PORTFOLIO -->
-<section>
-  <h2 style="text-align:center;">Portfolio</h2>
+<section id="portfolio" class="fade">
+<h2>Portfolio</h2>
 
-  <p style="text-align:center; max-width:600px; margin:0 auto 40px; opacity:0.6;">
-    A curated collection of portrait and lifestyle work crafted with intention, lighting, and direction.
-  </p>
+<div class="portfolio">
 
-  <div class="portfolio-hero">
-    <img src="images/1.jpg">
-  </div>
+<div class="portfolio-item">
+<img src="images/portrait1.jpg">
+<div class="overlay">Portrait</div>
+</div>
 
-  <div class="portfolio-grid">
-    <img src="images/2.jpg">
-    <img src="images/3.jpg">
-    <img src="images/4.jpg">
-    <img src="images/5.jpg">
-    <img src="images/6.jpg">
-  </div>
+<div class="portfolio-item">
+<img src="images/portrait2.jpg">
+<div class="overlay">Studio</div>
+</div>
+
+<div class="portfolio-item">
+<img src="images/lifestyle1.jpg">
+<div class="overlay">Lifestyle</div>
+</div>
+
+<div class="portfolio-item">
+<img src="images/portrait3.jpg">
+<div class="overlay">Editorial</div>
+</div>
+
+<div class="portfolio-item">
+<img src="images/lifestyle2.jpg">
+<div class="overlay">Couples</div>
+</div>
+
+<div class="portfolio-item">
+<img src="images/portrait4.jpg">
+<div class="overlay">Luxury</div>
+</div>
+
+</div>
 </section>
 
-<!-- BOOKING -->
-<section id="booking" class="booking">
-  <h2>Book Your Session</h2>
+<section id="pricing" class="fade">
+<h2>Investment</h2>
 
-  <p>
-    Sessions are limited each week to ensure a high-end, personalized experience.
-  </p>
+<div class="pricing">
 
-  <p style="opacity:0.6;">
-    Select your date below, then secure your session with a deposit.
-  </p>
+<div class="card">
+<h3>Signature Portrait</h3>
+<p>$350</p>
+</div>
 
-  <!-- CALENDLY -->
-  <div class="calendly-inline-widget"
-    data-url="https://calendly.com/bookenhancevisualstudio/bookmysession">
-  </div>
+<div class="card">
+<h3>Premium Portrait</h3>
+<p>$500</p>
+</div>
 
-  <!-- PAYMENT -->
-  <div class="payment-box">
-    <h3>Secure Your Session</h3>
+<div class="card">
+<h3>Lifestyle Session</h3>
+<p>$450–$600</p>
+</div>
 
-    <p>
-      A $100 non-refundable deposit is required to confirm your booking.
-    </p>
-
-    <a href="https://paypal.me/EnhanceVisualStudio/100" class="btn primary">
-      Pay $100 Deposit
-    </a>
-  </div>
+</div>
 </section>
 
-<!-- SERVICES -->
-<section>
-  <h2 style="text-align:center;">Services</h2>
+<section id="booking" class="fade">
+<h2>Book Your Session</h2>
+<p>Select your date and secure your session.</p>
 
-  <div class="grid">
-    <div class="card">
-      <h3>Portrait Sessions</h3>
-      <p>Clean, directed, high-end portrait photography.</p>
-    </div>
-
-    <div class="card">
-      <h3>Lifestyle</h3>
-      <p>Natural storytelling with a polished, editorial feel.</p>
-    </div>
-
-    <div class="card">
-      <h3>Couples</h3>
-      <p>Authentic connection captured with intention.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <h2>Client Experience</h2>
-
-  <p>"Made me feel confident instantly — the whole shoot felt effortless."</p>
-  <p>"Felt like a magazine shoot, not just photos."</p>
-  <p>"Super professional and the results exceeded expectations."</p>
+<iframe src="https://calendly.com/YOUR-USERNAME" width="100%" height="700"></iframe>
 </section>
 
 <footer>
-  <p>© Enhance Visual Studio</p>
+© 2026 Enhance Visual Studio — San Francisco & Bay Area Photographer
 </footer>
 
-<!-- Calendly Script -->
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+const faders = document.querySelectorAll('.fade');
+
+const appearOptions = {
+threshold: 0.2
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, observer){
+entries.forEach(entry=>{
+if(!entry.isIntersecting){return;}
+entry.target.classList.add('show');
+observer.unobserve(entry.target);
+});
+}, appearOptions);
+
+faders.forEach(fader=>{
+appearOnScroll.observe(fader);
+});
+</script>
 
 </body>
 </html>
