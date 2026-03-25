@@ -10,8 +10,17 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Inter',sans-serif;color:#111;background:#fff;}
-h1,h2{font-family:'Playfair Display',serif;font-weight:500;}
+
+body{
+font-family:'Inter',sans-serif;
+color:#eee;
+background:#0a0a0a;
+}
+
+h1,h2{
+font-family:'Playfair Display',serif;
+font-weight:500;
+}
 
 /* HEADER */
 header{
@@ -21,15 +30,15 @@ width:100%;
 display:flex;
 justify-content:space-between;
 padding:20px 50px;
-background:rgba(255,255,255,0.9);
-backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(12px);
 z-index:1000;
 }
 
 nav a{
 margin-left:25px;
 text-decoration:none;
-color:#111;
+color:#eee;
 font-size:14px;
 }
 
@@ -50,8 +59,8 @@ position:absolute;
 width:100%;
 height:100%;
 object-fit:cover;
-object-position:center 35%; /* perfect for crouching pose */
-transform:scale(1.05); /* subtle luxury zoom */
+object-position:center 35%;
+transform:scale(1.05);
 z-index:0;
 }
 
@@ -60,7 +69,7 @@ content:"";
 position:absolute;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.45);
+background:rgba(0,0,0,0.55);
 z-index:1;
 }
 
@@ -71,7 +80,7 @@ animation:fadeUp 1.5s ease;
 }
 
 .hero h2{
-font-size:50px;
+font-size:48px;
 max-width:800px;
 }
 
@@ -80,7 +89,7 @@ max-width:800px;
 .hero-sub{
 margin-top:10px;
 font-size:14px;
-opacity:0.85;
+opacity:0.8;
 }
 
 .btn{
@@ -140,6 +149,20 @@ max-width:90%;
 max-height:90%;
 }
 
+/* LIGHT CONTRAST SECTION */
+.light-section{
+background:#f5f5f5;
+color:#111;
+padding:140px 40px;
+text-align:center;
+}
+
+.light-section p{
+color:#444;
+max-width:600px;
+margin:auto;
+}
+
 /* SECTIONS */
 .section{
 padding:160px 60px;
@@ -148,15 +171,9 @@ margin:auto;
 text-align:center;
 }
 
-.section h2{
-font-size:36px;
-margin-bottom:20px;
-}
-
 .section p{
-color:#555;
+color:#bbb;
 line-height:1.8;
-letter-spacing:0.3px;
 }
 
 /* PRICING */
@@ -168,13 +185,14 @@ margin-top:50px;
 }
 
 .card{
-border-top:1px solid #111;
+border-top:1px solid #444;
 padding:30px;
+background:#111;
 }
 
 .card p{
 margin-top:10px;
-color:#666;
+color:#aaa;
 }
 
 /* FOOTER */
@@ -184,6 +202,7 @@ padding:60px;
 color:#777;
 }
 
+/* ANIMATION */
 @keyframes fadeUp{
 from{opacity:0; transform:translateY(40px);}
 to{opacity:1; transform:translateY(0);}
@@ -191,7 +210,7 @@ to{opacity:1; transform:translateY(0);}
 
 @media(max-width:768px){
 .portfolio{grid-template-columns:1fr;}
-.hero h2{font-size:32px;}
+.hero h2{font-size:30px;}
 .section{padding:100px 20px;}
 }
 </style>
@@ -210,13 +229,13 @@ to{opacity:1; transform:translateY(0);}
 
 <!-- HERO -->
 <section class="hero">
-<img src="images/hero.jpg" class="hero-img"> <!-- YOUR NEW HERO IMAGE -->
+<img src="images/hero.jpg" class="hero-img">
 
 <div class="hero-content">
-
-<p>San Francisco & Bay Area </p>
-<p class="hero-sub">Portraits • Lifestyle • Couples • Brands • Events</p>
-
+<h2>You Don’t Need to Know How to Pose — I’ll Guide You</h2>
+<p>San Francisco & Bay Area</p>
+<p class="hero-sub">Portrait & Lifestyle • Guided Experience</p>
+<a href="#booking" class="btn">Book Session</a>
 </div>
 </section>
 
@@ -232,9 +251,17 @@ to{opacity:1; transform:translateY(0);}
 
 </section>
 
-<p style="text-align:center; margin-top:40px;">
-Ready to shoot? Book your session below.
+<p style="text-align:center; margin:60px 0; color:#aaa;">
+Ready to create something powerful? Book your session below.
 </p>
+
+<!-- LIGHT CONTRAST -->
+<section class="light-section">
+<h2 style="font-family:'Playfair Display',serif;">Luxury Portrait Experience</h2>
+<p>
+Guided posing, professional lighting, and a seamless experience designed to bring out your best.
+</p>
+</section>
 
 <!-- ABOUT -->
 <section id="about" class="section">
@@ -248,45 +275,85 @@ At Enhance Visual Studio, photography is built around a simple philosophy — <s
 Every session begins with intentional direction, helping you feel confident and comfortable in front of the camera. From there, each moment is captured using professional lighting and modern equipment, creating images that feel natural, timeless, and powerful.
 </p>
 
+</section>
+
+<!-- EXPERIENCE SECTION -->
+<section class="section">
+<h2>The Experience</h2>
+
+<p style="max-width:600px;margin:auto;">
+This isn’t just a photoshoot — it’s a guided experience designed to bring out your best.
+</p>
+
 <p style="margin-top:20px;">
-Specializing in portrait, studio, couples, and lifestyle photography, Enhance Visual Studio focuses on delivering high-quality images that highlight personality, connection, and unforgettable moments.
+No modeling experience needed. Every session includes step-by-step posing guidance, professional lighting, and a relaxed environment so you feel confident from start to finish.
 </p>
 
 </section>
 
 <!-- PRICING -->
 <section class="section">
-<h2>Investment</h2>
-<p style="color:#777;">All sessions include guided posing and direction</p>
+<h2>Experience</h2>
+
+<p style="color:#888;">A guided portrait experience designed to help you look and feel your best</p>
+
+<p style="color:#aaa; max-width:600px; margin:10px auto;">
+Each session includes a selection of professionally edited images, along with all usable JPEG captures from your session.
+</p>
 
 <div class="pricing">
 
 <div class="card">
-<h3>Signature</h3>
-<p>$200</p>
-<p>45 min session • 5 edited images • guided posing</p>
+<h3>Essential Experience</h3>
+<p>$300</p>
+<p>
+45 minute session<br>
+5 edited images<br>
+Guided posing<br>
+All JPEG images included
+</p>
 </div>
 
 <div class="card">
-<h3>Premium</h3>
-<p>$400</p>
-<p>1 hour session • 10 edited images • full direction • location guidance</p>
+<h3>Signature Experience</h3>
+<p>$500</p>
+<p>
+1 hour session<br>
+8 edited images<br>
+Full direction<br>
+Location guidance<br>
+All JPEG images included
+</p>
 </div>
 
 <div class="card">
-<h3>Elite</h3>
-<p>$600</p>
-<p>2 hour session • 15 edited images • storytelling • premium experience</p>
+<h3>Luxury Experience</h3>
+<p>$800</p>
+<p>
+2 hour session<br>
+15 edited images<br>
+Creative direction<br>
+Multiple looks<br>
+All JPEG images included
+</p>
 </div>
 
 </div>
+
+<p style="color:#777; margin-top:20px;">
+Additional images can be selected after your session.
+</p>
+
+<p style="color:#888; margin-top:20px;">
+Designed for people with no modeling experience — I guide you through everything.
+</p>
 
 </section>
 
 <!-- BOOKING -->
 <section id="booking" class="section">
 <h2>Book Your Session</h2>
-<p>Limited availability each month</p>
+<p style="color:#aaa;">Limited availability each month</p>
 <p style="color:#777;">Secure your session in seconds</p>
 
 <iframe src="https://calendly.com/bookenhancevisualstudio/bookmysession" width="100%" height="700"></iframe>
