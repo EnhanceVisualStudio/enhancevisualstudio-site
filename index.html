@@ -5,25 +5,263 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Enhance Visual Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+/* NAV */
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  z-index: 1000;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  font-family: 'Bebas Neue';
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+nav a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.6;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+              url('https://images.unsplash.com/photo-1492724441997-5dc865305da7');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-family: 'Bebas Neue';
+  font-size: 80px;
+  letter-spacing: 4px;
+}
+
+.hero p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #ccc;
+}
+
+/* SECTION SPACING */
+section {
+  padding: 120px 8%;
+}
+
+/* FILTER BUTTONS */
+.filters {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.filters button {
+  background: none;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filters button:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  opacity: 0.85;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+}
+
+.cta a {
+  border: 1px solid #fff;
+  padding: 15px 40px;
+  text-decoration: none;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.cta a:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* CONTACT */
+.contact {
+  text-align: center;
+}
+
+input, textarea {
+  width: 100%;
+  max-width: 500px;
+  margin: 10px auto;
+  display: block;
+  padding: 12px;
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+button.submit {
+  margin-top: 10px;
+  padding: 12px 30px;
+  background: #fff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+}
+
+/* ANIMATION */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:768px) {
+  .hero h1 {
+    font-size: 45px;
+  }
+
+  header {
+    padding: 20px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-<h2>Enhance Visual Studio</h2>
-<nav>
-<a href="index.html">Home</a>
-<a href="portfolio.html">Portfolio</a>
-<a href="booking.html">Book</a>
-<a href="contact.html">Contact</a>
-</nav>
+  <div class="logo">ENHANCE</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#book">Book</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
 <section class="hero">
-<h1>You Don’t Need Modeling Experience To Look Incredible</h1>
+  <div>
+    <h1>Enhance Visual Studio</h1>
+    <p>Elevated Visuals. Clean Aesthetic.</p>
+  </div>
 </section>
+
+<section id="portfolio" class="fade">
+  <div class="filters">
+    <button onclick="filter('all')">All</button>
+    <button onclick="filter('studio')">Studio</button>
+    <button onclick="filter('outdoor')">Outdoor</button>
+  </div>
+
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" class="studio">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" class="outdoor">
+    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" class="studio">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" class="outdoor">
+    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1" class="studio">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="outdoor">
+  </div>
+</section>
+
+<section id="book" class="cta fade">
+  <h2>Ready to Shoot?</h2>
+  <br>
+  <a href="#">Book a Session</a>
+</section>
+
+<section id="contact" class="contact fade">
+  <h2>Let’s Create Something</h2>
+  <input type="text" placeholder="Your Name">
+  <input type="email" placeholder="Your Email">
+  <textarea rows="5" placeholder="Your Message"></textarea>
+  <button class="submit">Send</button>
+</section>
+
+<script>
+function filter(category) {
+  let images = document.querySelectorAll('.gallery img');
+  images.forEach(img => {
+    if(category === 'all') {
+      img.style.display = 'block';
+    } else {
+      img.style.display = img.classList.contains(category) ? 'block' : 'none';
+    }
+  });
+}
+
+/* SCROLL ANIMATION */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
