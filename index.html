@@ -6,228 +6,24 @@
 <title>Enhance Visual Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter&display=swap" rel="stylesheet">
-
-<style>
-body{
-margin:0;
-font-family:Inter;
-background:#0a0a0a;
-color:#eee;
-}
-
-h1,h2{
-font-family:Playfair Display;
-font-weight:400;
-}
-
-/* HEADER /
-header{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-padding:20px 30px;
-background:#000;
-z-index:1000;
-}
-
-nav a{
-margin-left:20px;
-color:#eee;
-text-decoration:none;
-cursor:pointer;
-}
-
-/ PAGE /
-.page{
-display:none;
-padding:120px 30px;
-max-width:900px;
-margin:auto;
-}
-
-.active{display:block;}
-
-/ HERO /
-.hero{
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-background:url('images/hero.jpg') center/cover;
-}
-
-.hero h2{
-font-size:36px;
-max-width:600px;
-}
-
-/ PORTFOLIO /
-.categories{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-margin-top:30px;
-}
-
-.category{
-padding:40px;
-border:1px solid #333;
-cursor:pointer;
-text-align:center;
-transition:0.3s;
-}
-
-.category:hover{
-background:#111;
-}
-
-/ GALLERY /
-.gallery{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:20px;
-}
-
-.gallery img{
-width:100%;
-height:250px;
-object-fit:cover;
-}
-
-/ EVENTS /
-.event{
-border-bottom:1px solid #222;
-padding:20px 0;
-}
-
-button{
-margin-top:10px;
-padding:10px 20px;
-border:1px solid white;
-background:none;
-color:white;
-cursor:pointer;
-}
-
-/ FOOTER */
-footer{
-text-align:center;
-padding:40px;
-color:#777;
-}
-
-@media(max-width:768px){
-.categories{grid-template-columns:1fr;}
-.gallery{grid-template-columns:1fr;}
-.hero h2{font-size:26px;}
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-<h1>Enhance Visual Studio</h1>
+<h2>Enhance Visual Studio</h2>
 <nav>
-<a onclick="showPage('home')">Home</a>
-<a onclick="showPage('portfolio')">Portfolio</a>
-<a onclick="showPage('events')">Events</a>
-<a onclick="showPage('booking')">Book</a>
+<a href="index.html">Home</a>
+<a href="portfolio.html">Portfolio</a>
+<a href="booking.html">Book</a>
+<a href="contact.html">Contact</a>
 </nav>
 </header>
 
-<!-- HOME -->
-<div id="home" class="page active hero">
-<h2>Simple. Clean. Professional Photography.</h2>
-</div>
-
-<!-- PORTFOLIO -->
-<div id="portfolio" class="page">
-<h2>Portfolio</h2>
-
-<div class="categories">
-<div class="category" onclick="openCategory('portraits')">Portraits</div>
-<div class="category" onclick="openCategory('studio')">Studio</div>
-<div class="category" onclick="openCategory('lifestyle')">Lifestyle</div>
-<div class="category" onclick="openCategory('editorial')">Editorial</div>
-<div class="category" onclick="openCategory('maternity')">Maternity</div>
-<div class="category" onclick="openCategory('family')">Family</div>
-<div class="category" onclick="openCategory('kids')">Kids</div>
-<div class="category" onclick="openCategory('graduation')">Graduation</div>
-<div class="category" onclick="openCategory('branding')">Branding</div>
-<div class="category" onclick="openCategory('weddings')">Weddings</div>
-<div class="category" onclick="openCategory('events')">Events</div>
-<div class="category" onclick="openCategory('sports')">Sports</div>
-</div>
-
-</div>
-
-<!-- GALLERY -->
-<div id="gallery-page" class="page">
-<h2 id="gallery-title"></h2>
-
-<div class="gallery" id="gallery"></div>
-
-<button onclick="showPage('portfolio')">Back</button>
-</div>
-
-<!-- EVENTS -->
-<div id="events" class="page">
-<h2>Client Galleries</h2>
-
-<div class="event">
-<h3>Smith Wedding</h3>
-<button onclick="unlock('1234','https://yourgallerylink.com')">View Gallery</button>
-</div>
-
-<div class="event">
-<h3>Marcus Birthday</h3>
-<button onclick="unlock('5678','https://yourgallerylink.com')">View Gallery</button>
-</div>
-
-</div>
-
-<!-- BOOKING -->
-<div id="booking" class="page">
-<h2>Book Your Session</h2>
-<iframe src="https://calendly.com/bookenhancevisualstudio/bookmysession" width="100%" height="600"></iframe>
-</div>
-
-<footer>
-<p>© 2026 Enhance Visual Studio</p>
-</footer>
-
-<script>
-function showPage(id){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-window.scrollTo(0,0);
-}
-
-function openCategory(name){
-showPage('gallery-page');
-document.getElementById('gallery-title').innerText = name;
-
-let gallery = document.getElementById('gallery');
-gallery.innerHTML="";
-
-for(let i=1;i<=6;i++){
-let img=document.createElement("img");
-img.src="images/"+name+i+".jpg";
-gallery.appendChild(img);
-}
-}
-
-function unlock(pass,link){
-let input=prompt("Enter password:");
-if(input===pass){window.open(link);}
-else{alert("Wrong password");}
-}
-</script>
+<section class="hero">
+<h1>You Don’t Need Modeling Experience To Look Incredible</h1>
+</section>
 
 </body>
 </html>
