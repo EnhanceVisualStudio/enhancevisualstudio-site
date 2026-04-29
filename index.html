@@ -3,223 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enhance Visual Studio</title>
 
-<title>Enhance Visual Studio | San Francisco Portrait Photographer</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+body{margin:0;font-family:Inter;background:#0a0a0a;color:#eee;}
+h1,h2{font-family:Playfair Display;}
 
-body{
-font-family:'Inter',sans-serif;
-color:#eee;
-background:#0a0a0a;
-}
-
-h1,h2{
-font-family:'Playfair Display',serif;
-font-weight:500;
-}
-
-/* HEADER */
 header{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-padding:20px 50px;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(12px);
+position:fixed;width:100%;top:0;
+display:flex;justify-content:space-between;
+padding:20px 40px;background:#000;
 z-index:1000;
 }
 
 nav a{
-margin-left:25px;
-text-decoration:none;
-color:#eee;
-font-size:14px;
+margin-left:20px;color:white;text-decoration:none;cursor:pointer;
 }
 
-/* HERO */
+/* PAGES /
+.page{display:none;padding:120px 40px;max-width:1000px;margin:auto;}
+.active{display:block;}
+
+/ HERO /
 .hero{
-position:relative;
-height:100vh;
-overflow:hidden;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:white;
+height:100vh;display:flex;align-items:center;justify-content:center;
+text-align:center;background:url('images/hero.jpg') center/cover;
 }
 
-.hero-img{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-object-position:center 42%;
-transform:scale(1.03);
-z-index:0;
-}
+/ PORTFOLIO /
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.grid img{width:100%;height:300px;object-fit:cover;}
 
-.hero::before{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background:linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
-z-index:1;
-}
+/ EVENTS /
+.event{border:1px solid #333;padding:20px;margin-top:20px;}
+button{padding:10px 20px;background:none;color:white;border:1px solid white;cursor:pointer;}
 
-.hero-content{
-position:relative;
-z-index:2;
-animation:fadeUp 1.5s ease;
-}
+/ LOGIN /
+.login-box{max-width:400px;margin:auto;text-align:center;}
+input{width:100%;padding:10px;margin:10px 0;background:#111;border:1px solid #333;color:white;}
 
-.hero h2{
-font-size:48px;
-max-width:800px;
-}
-
-.hero p{margin-top:10px;}
-
-.hero-sub{
-margin-top:10px;
-font-size:14px;
-opacity:0.8;
-}
-
-.btn{
-margin-top:25px;
-display:inline-block;
-padding:14px 30px;
-border:1px solid white;
-color:white;
-text-decoration:none;
-transition:.3s;
-}
-
-.btn:hover{
-background:white;
-color:#111;
-}
-
-/* MOBILE HERO FIX */
-@media(max-width:768px){
-.hero-img{
-object-position:center 30%;
-transform:scale(1.08);
-}
-}
-
-/* PORTFOLIO */
-.portfolio{
-display:grid;
-grid-template-columns:1fr 1fr;
-}
-
-.portfolio-item{
-height:80vh;
-overflow:hidden;
-cursor:pointer;
-}
-
-.portfolio img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:1.2s ease;
-}
-
-.portfolio-item:hover img{
-transform:scale(1.12);
-}
-
-/* LIGHTBOX */
-#lightbox{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
-justify-content:center;
-align-items:center;
-z-index:2000;
-}
-
-#lightbox img{
-max-width:90%;
-max-height:90%;
-}
-
-/* LIGHT CONTRAST SECTION */
-.light-section{
-background:#f5f5f5;
-color:#111;
-padding:140px 40px;
-text-align:center;
-}
-
-.light-section p{
-color:#444;
-max-width:600px;
-margin:auto;
-}
-
-/* SECTIONS */
-.section{
-padding:160px 60px;
-max-width:1000px;
-margin:auto;
-text-align:center;
-}
-
-.section p{
-color:#bbb;
-line-height:1.8;
-}
-
-/* PRICING */
-.pricing{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:40px;
-margin-top:50px;
-}
-
-.card{
-border-top:1px solid #444;
-padding:30px;
-background:#111;
-}
-
-.card p{
-margin-top:10px;
-color:#aaa;
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:60px;
-color:#777;
-}
-
-/* ANIMATION */
-@keyframes fadeUp{
-from{opacity:0; transform:translateY(40px);}
-to{opacity:1; transform:translateY(0);}
-}
+footer{text-align:center;padding:40px;color:#777;}
 
 @media(max-width:768px){
-.portfolio{grid-template-columns:1fr;}
-.hero h2{font-size:30px;}
-.section{padding:100px 20px;}
+.grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -229,149 +57,103 @@ to{opacity:1; transform:translateY(0);}
 <header>
 <h1>Enhance Visual Studio</h1>
 <nav>
-<a href="#portfolio">Portfolio</a>
-<a href="#about">About</a>
-<a href="#booking">Book</a>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('portfolio')">Portfolio</a>
+<a onclick="showPage('events')">Events</a>
+<a onclick="showPage('login')">Client Login</a>
+<a onclick="showPage('booking')">Book</a>
 </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-<img src="images/hero.jpg" class="hero-img">
-
-<div class="hero-content">
-
-<p>San Francisco & Bay Area</p>
-<p class="hero-sub">Portrait & Lifestyle • Guided Experience</p>
-<a href="#booking" class="btn">Book Session</a>
+<!-- HOME -->
+<div id="home" class="page active hero">
+<div>
+<h2>You Don’t Need Modeling Experience To Look Incredible</h2>
+<button onclick="showPage('booking')">Book Now</button>
 </div>
-</section>
+</div>
 
 <!-- PORTFOLIO -->
-<section id="portfolio" class="portfolio">
-
-<div class="portfolio-item" onclick="openLightbox('images/portrait1.jpg')"><img src="images/portrait1.jpg"></div>
-<div class="portfolio-item" onclick="openLightbox('images/portrait2.jpg')"><img src="images/portrait2.jpg"></div>
-<div class="portfolio-item" onclick="openLightbox('images/portrait3.jpg')"><img src="images/portrait3.jpg"></div>
-<div class="portfolio-item" onclick="openLightbox('images/portrait4.jpg')"><img src="images/portrait4.jpg"></div>
-<div class="portfolio-item" onclick="openLightbox('images/portrait5.jpg')"><img src="images/portrait5.jpg"></div>
-<div class="portfolio-item" onclick="openLightbox('images/portrait6.jpg')"><img src="images/portrait6.jpg"></div>
-
-</section>
-
-<p style="text-align:center; margin:60px 0; color:#aaa;">
-Ready to create something powerful? Book your session below.
-</p>
-
-<p>
-Guided posing, professional lighting, and a seamless experience designed to bring out your best.
-</p>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="section">
-<h2>About</h2>
-
-<p style="max-width:700px;margin:auto;">
-At Enhance Visual Studio, photography is built around a simple philosophy — 
-<strong>Pose. Capture. Enhance.</strong>
-</p>
-
-<p style="margin-top:20px;">
-Every session begins with intentional direction, helping you feel confident and comfortable in front of the camera. From there, each moment is captured using professional lighting and modern equipment, creating images that feel natural, timeless, and powerful.
-</p>
-
-</section>
-
-
-
-<!-- PRICING -->
-<section class="section">
-<h2>Investment</h2>
-
-<p style="color:#888;">A guided portrait experience designed to help you look and feel your best</p>
-
-<p style="color:#aaa; max-width:600px; margin:10px auto;">
-Each session includes a selection of professionally edited images, along with all usable JPEG captures from your session.
-</p>
-
-<div class="pricing">
-
-<div class="card">
-<h3>Essential Experience</h3>
-<p>$150</p>
-<p>
-30 minute session<br>
-3 High resolution edited images<br>
-All JPEG images included
-</p>
+<div id="portfolio" class="page">
+<h2>Portfolio</h2>
+<div class="grid">
+<img src="images/portrait1.jpg">
+<img src="images/portrait2.jpg">
+<img src="images/portrait3.jpg">
+<img src="images/portrait4.jpg">
+</div>
 </div>
 
-<div class="card">
-<h3>Signature Experience</h3>
-<p>$250</p>
-<p>
-1 hour session<br>
-6 High resolution edited images<br>
-All JPEG images included
-</p>
+<!-- EVENTS -->
+<div id="events" class="page">
+<h2>Event Galleries</h2>
+
+<div class="event">
+<h3>Smith Wedding</h3>
+<p>Private gallery</p>
+<button onclick="unlock('smith','1234','https://yourgallerylink.com')">Enter</button>
 </div>
 
-<div class="card">
-<h3>Luxury Experience</h3>
-<p>$400</p>
-<p>
-2 hour session<br>
-12 high resolution edited images<br>
-All JPEG images included
-</p>
+<div class="event">
+<h3>Marcus Birthday</h3>
+<button onclick="unlock('marcus','5678','https://yourgallerylink.com')">Enter</button>
 </div>
 
 </div>
 
-<p style="color:#777; margin-top:20px;">
-Additional images can be selected after your session.
-</p>
+<!-- LOGIN -->
+<div id="login" class="page">
+<h2>Client Login</h2>
 
-<p style="color:#888; margin-top:20px;">
-Designed for people with no modeling experience — I guide you through everything.
-</p>
+<div class="login-box">
+<input type="text" id="clientName" placeholder="Event Name">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Access Gallery</button>
+</div>
 
-</section>
+</div>
 
 <!-- BOOKING -->
-<section id="booking" class="section">
+<div id="booking" class="page">
 <h2>Book Your Session</h2>
-<p style="color:#aaa;">Limited availability each month</p>
-<p style="color:#777;">Secure your session in seconds</p>
-
-<iframe src="https://calendly.com/bookenhancevisualstudio/bookmysession" width="100%" height="700"></iframe>
-
-<p style="color:#aaa; margin-top:20px;">
-Prefer email? Contact:
-<a href="mailto:hello@enhancevisualstudio.com" style="color:white; text-decoration:none;">
-hello@enhancevisualstudio.com
-</a>
-</p>
-
-</section>
+<iframe src="https://calendly.com/bookenhancevisualstudio/bookmysession" width="100%" height="600"></iframe>
+</div>
 
 <footer>
 <p>© 2026 Enhance Visual Studio</p>
 </footer>
 
-<div id="lightbox">
-<img id="lightbox-img">
-</div>
-
 <script>
-function openLightbox(src){
-document.getElementById('lightbox').style.display='flex';
-document.getElementById('lightbox-img').src=src;
+function showPage(page){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(page).classList.add('active');
+window.scrollTo(0,0);
 }
 
-document.getElementById('lightbox').onclick=function(){
-this.style.display='none';
+/ SIMPLE PASSWORD SYSTEM /
+function unlock(name,pass,link){
+let input = prompt("Enter password:");
+if(input === pass){
+window.open(link, "_blank");
+}else{
+alert("Wrong password");
+}
+}
+
+/ LOGIN PAGE SYSTEM */
+function login(){
+let name = document.getElementById('clientName').value.toLowerCase();
+let pass = document.getElementById('password').value;
+
+if(name === "smith" && pass === "1234"){
+window.open("https://yourgallerylink.com");
+}
+else if(name === "marcus" && pass === "5678"){
+window.open("https://yourgallerylink.com");
+}
+else{
+alert("Invalid login");
+}
 }
 </script>
 
