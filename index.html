@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Enhance Visual Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -14,40 +15,63 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #0d0d0d;
-    color: #ffffff;
-    line-height: 1.6;
+html {
+    scroll-behavior: smooth;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    overflow-x: hidden;
 }
 
 /* NAV */
 nav {
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 30px 60px;
-    position: fixed;
-    width: 100%;
-    background: rgba(13,13,13,0.8);
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+nav.scrolled {
+    background: rgba(10,10,10,0.85);
     backdrop-filter: blur(10px);
 }
 
 nav h1 {
-    font-size: 14px;
-    letter-spacing: 2px;
+    font-size: 12px;
+    letter-spacing: 3px;
 }
 
 nav ul {
     display: flex;
     gap: 40px;
     list-style: none;
-    font-size: 13px;
-    letter-spacing: 1px;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+nav a {
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -4px;
+    left: 0;
+    background: #fff;
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
 }
 
 /* HERO */
@@ -56,27 +80,33 @@ nav ul {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.hero-inner {
     text-align: center;
-    padding: 20px;
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1.2s ease forwards;
 }
 
 .hero h2 {
-    font-size: 42px;
+    font-size: 48px;
     font-weight: 300;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
 }
 
 .hero p {
     margin-top: 15px;
-    font-size: 14px;
     color: #aaa;
+    font-size: 14px;
 }
 
 .hero a {
     display: inline-block;
-    margin-top: 30px;
+    margin-top: 40px;
+    padding: 12px 34px;
     border: 1px solid #fff;
-    padding: 12px 30px;
     font-size: 12px;
     letter-spacing: 2px;
     transition: 0.3s;
@@ -89,60 +119,70 @@ nav ul {
 
 /* SECTION */
 .section {
-    padding: 120px 60px;
+    padding: 140px 60px;
     max-width: 1200px;
     margin: auto;
 }
 
 /* STATEMENT */
 .statement {
-    font-size: 26px;
+    font-size: 30px;
     font-weight: 300;
-    max-width: 600px;
+    max-width: 650px;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(40px);
 }
 
 /* GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 60px;
+    gap: 25px;
+    margin-top: 80px;
 }
 
 .grid img {
     width: 100%;
-    height: 400px;
+    height: 420px;
     object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.grid div {
+    overflow: hidden;
+}
+
+.grid div:hover img {
+    transform: scale(1.08);
 }
 
 /* CAPABILITIES */
 .capabilities {
     display: flex;
-    justify-content: space-between;
-    gap: 40px;
-}
-
-.capabilities div {
-    flex: 1;
+    gap: 60px;
 }
 
 .capabilities h3 {
-    font-size: 18px;
-    margin-bottom: 15px;
+    font-weight: 400;
+    margin-bottom: 20px;
 }
 
 .capabilities p {
     color: #aaa;
+    line-height: 1.8;
 }
 
 /* CTA */
 .cta {
     text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
 }
 
 .cta h2 {
     font-weight: 300;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .cta a {
@@ -154,24 +194,45 @@ nav ul {
 /* FOOTER */
 footer {
     text-align: center;
-    padding: 40px;
+    padding: 60px;
+    color: #666;
     font-size: 12px;
-    color: #777;
 }
 
-/* RESPONSIVE */
-@media(max-width: 900px){
-    .grid {
-        grid-template-columns: 1fr;
+/* ANIMATION */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
+
+.reveal.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: 1s ease;
+}
+
+/* MOBILE */
+@media(max-width: 900px){
     nav {
         padding: 20px;
     }
+
     .section {
-        padding: 80px 20px;
+        padding: 100px 20px;
     }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
     .capabilities {
         flex-direction: column;
+    }
+
+    .hero h2 {
+        font-size: 32px;
     }
 }
 </style>
@@ -179,7 +240,7 @@ footer {
 
 <body>
 
-<nav>
+<nav id="nav">
     <h1>ENHANCE VISUAL STUDIO</h1>
     <ul>
         <li><a href="#">Home</a></li>
@@ -190,7 +251,7 @@ footer {
 </nav>
 
 <section class="hero">
-    <div>
+    <div class="hero-inner">
         <h2>Visual Direction & Portrait Photography</h2>
         <p>Clean. Controlled. Intentional.</p>
         <a href="work.html">VIEW WORK</a>
@@ -198,21 +259,21 @@ footer {
 </section>
 
 <section class="section">
-    <div class="statement">
+    <div class="statement reveal">
         A studio focused on creating modern portrait and editorial imagery through light, composition, and direction.
     </div>
 
-    <div class="grid">
-        <img src="https://via.placeholder.com/600x800">
-        <img src="https://via.placeholder.com/600x800">
-        <img src="https://via.placeholder.com/600x800">
-        <img src="https://via.placeholder.com/600x800">
-        <img src="https://via.placeholder.com/600x800">
-        <img src="https://via.placeholder.com/600x800">
+    <div class="grid reveal">
+        <div><img src="https://via.placeholder.com/600x800"></div>
+        <div><img src="https://via.placeholder.com/600x800"></div>
+        <div><img src="https://via.placeholder.com/600x800"></div>
+        <div><img src="https://via.placeholder.com/600x800"></div>
+        <div><img src="https://via.placeholder.com/600x800"></div>
+        <div><img src="https://via.placeholder.com/600x800"></div>
     </div>
 </section>
 
-<section class="section capabilities">
+<section class="section capabilities reveal">
     <div>
         <h3>Capabilities</h3>
         <p>
@@ -230,7 +291,7 @@ footer {
     </div>
 </section>
 
-<section class="section cta">
+<section class="section cta reveal">
     <h2>Available for bookings and creative collaborations.</h2>
     <a href="contact.html">START A PROJECT</a>
 </section>
@@ -238,6 +299,30 @@ footer {
 <footer>
     © Enhance Visual Studio
 </footer>
+
+<script>
+/* NAV SCROLL */
+window.addEventListener("scroll", function(){
+    let nav = document.getElementById("nav");
+    nav.classList.toggle("scrolled", window.scrollY > 50);
+});
+
+/* REVEAL ANIMATION */
+function reveal() {
+    let reveals = document.querySelectorAll(".reveal");
+    for (let i = 0; i < reveals.length; i++) {
+        let windowHeight = window.innerHeight;
+        let elementTop = reveals[i].getBoundingClientRect().top;
+        let elementVisible = 100;
+
+        if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("active");
+        }
+    }
+}
+
+window.addEventListener("scroll", reveal);
+</script>
 
 </body>
 </html>
