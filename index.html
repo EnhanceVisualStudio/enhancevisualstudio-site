@@ -1,267 +1,778 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Enhance Visual Studio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enhance Visual Studio | Bay Area Photographer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    :root {
+      --black: #050505;
+      --soft-black: #0d0d0d;
+      --white: #f7f2ea;
+      --muted: #b9b1a7;
+      --gold: #c6a15b;
+      --line: rgba(255,255,255,0.12);
+    }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: #0a0a0a;
-  color: #fff;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* NAV */
-header {
-  position: fixed;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 50px;
-  z-index: 1000;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px);
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.logo {
-  font-family: 'Bebas Neue';
-  font-size: 24px;
-  letter-spacing: 2px;
-}
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
 
-nav a {
-  margin-left: 25px;
-  text-decoration: none;
-  color: #fff;
-  font-size: 14px;
-  letter-spacing: 1px;
-  transition: 0.3s;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-nav a:hover {
-  opacity: 0.6;
-}
+    img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
 
-/* HERO */
-.hero {
-  height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
-              url('https://images.unsplash.com/photo-1492724441997-5dc865305da7');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 24px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(5,5,5,0.55);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
 
-.hero h1 {
-  font-family: 'Bebas Neue';
-  font-size: 80px;
-  letter-spacing: 4px;
-}
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
 
-.hero p {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #ccc;
-}
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
 
-/* SECTION SPACING */
-section {
-  padding: 120px 8%;
-}
+    .nav-links a {
+      color: var(--muted);
+      transition: 0.3s;
+    }
 
-/* FILTER BUTTONS */
-.filters {
-  text-align: center;
-  margin-bottom: 40px;
-}
+    .nav-links a:hover {
+      color: var(--white);
+    }
 
-.filters button {
-  background: none;
-  border: 1px solid #444;
-  color: #fff;
-  padding: 10px 20px;
-  margin: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+    .hero {
+      min-height: 100vh;
+      padding: 160px 7% 80px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+      background:
+        linear-gradient(to right, rgba(5,5,5,0.9), rgba(5,5,5,0.45)),
+        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+    }
 
-.filters button:hover {
-  background: #fff;
-  color: #000;
-}
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 12px;
+      margin-bottom: 22px;
+    }
 
-/* GALLERY */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-}
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(56px, 8vw, 118px);
+      line-height: 0.92;
+      max-width: 900px;
+      margin-bottom: 28px;
+    }
 
-.gallery img {
-  width: 100%;
-  height: 350px;
-  object-fit: cover;
-  transition: 0.4s;
-}
+    .hero p {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+      margin-bottom: 38px;
+    }
 
-.gallery img:hover {
-  transform: scale(1.05);
-  opacity: 0.85;
-}
+    .buttons {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-/* CTA */
-.cta {
-  text-align: center;
-}
+    .btn {
+      padding: 15px 26px;
+      border: 1px solid var(--white);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      transition: 0.35s;
+    }
 
-.cta a {
-  border: 1px solid #fff;
-  padding: 15px 40px;
-  text-decoration: none;
-  color: #fff;
-  transition: 0.3s;
-}
+    .btn.primary {
+      background: var(--white);
+      color: var(--black);
+    }
 
-.cta a:hover {
-  background: #fff;
-  color: #000;
-}
+    .btn:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--black);
+    }
 
-/* CONTACT */
-.contact {
-  text-align: center;
-}
+    .hero-card {
+      border: 1px solid var(--line);
+      padding: 26px;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(10px);
+    }
 
-input, textarea {
-  width: 100%;
-  max-width: 500px;
-  margin: 10px auto;
-  display: block;
-  padding: 12px;
-  background: #111;
-  border: 1px solid #333;
-  color: #fff;
-}
+    .hero-card img {
+      height: 520px;
+      object-fit: cover;
+      filter: contrast(1.08);
+    }
 
-button.submit {
-  margin-top: 10px;
-  padding: 12px 30px;
-  background: #fff;
-  color: #000;
-  border: none;
-  cursor: pointer;
-}
+    section {
+      padding: 110px 7%;
+    }
 
-/* ANIMATION */
-.fade {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 1s;
-}
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 54px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 26px;
+    }
 
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 6vw, 82px);
+      line-height: 1;
+    }
 
-/* MOBILE */
-@media(max-width:768px) {
-  .hero h1 {
-    font-size: 45px;
-  }
+    .section-header p {
+      max-width: 430px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
 
-  header {
-    padding: 20px;
-  }
-}
-</style>
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-img {
+      height: 620px;
+    }
+
+    .about-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      margin-bottom: 24px;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      margin-top: 34px;
+      padding-top: 28px;
+      gap: 20px;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      color: var(--gold);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .portfolio-item {
+      position: relative;
+      height: 430px;
+      overflow: hidden;
+      background: var(--soft-black);
+      cursor: pointer;
+    }
+
+    .portfolio-item:nth-child(2),
+    .portfolio-item:nth-child(5),
+    .portfolio-item:nth-child(8) {
+      height: 540px;
+    }
+
+    .portfolio-item img {
+      height: 100%;
+      transition: 0.6s ease;
+      filter: grayscale(10%) contrast(1.05);
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.08);
+      opacity: 0.75;
+    }
+
+    .portfolio-label {
+      position: absolute;
+      bottom: 22px;
+      left: 22px;
+      right: 22px;
+      z-index: 2;
+    }
+
+    .portfolio-label h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .portfolio-label span {
+      color: var(--gold);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .services {
+      background: var(--soft-black);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      border: 1px solid var(--line);
+      padding: 34px;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: 0.35s;
+    }
+
+    .service-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-8px);
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin-bottom: 18px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .price {
+      margin-top: 30px;
+      color: var(--gold);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .booking {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .booking h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(46px, 6vw, 82px);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .booking p {
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 460px;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--line);
+      padding: 17px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    select option {
+      background: #111;
+      color: white;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #766f67;
+    }
+
+    button {
+      background: var(--white);
+      color: var(--black);
+      border: none;
+      padding: 17px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.35s;
+    }
+
+    button:hover {
+      background: var(--gold);
+    }
+
+    .contact {
+      background:
+        linear-gradient(rgba(5,5,5,0.85), rgba(5,5,5,0.92)),
+        url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(46px, 7vw, 94px);
+      margin-bottom: 24px;
+    }
+
+    .contact p {
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 34px;
+      line-height: 1.8;
+    }
+
+    .footer {
+      padding: 34px 7%;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .mobile-menu {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1000px) {
+      .hero,
+      .about-grid,
+      .booking {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card img {
+        height: 420px;
+      }
+
+      .portfolio-grid,
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .navbar {
+        padding: 20px 6%;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: #070707;
+        display: none;
+        flex-direction: column;
+        padding: 28px 7%;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .hero {
+        padding: 130px 7% 70px;
+      }
+
+      .hero h1 {
+        font-size: 56px;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .portfolio-grid,
+      .service-grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-item,
+      .portfolio-item:nth-child(2),
+      .portfolio-item:nth-child(5),
+      .portfolio-item:nth-child(8) {
+        height: 420px;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">ENHANCE</div>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#book">Book</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+  <header class="navbar">
+    <a href="#home" class="logo">Enhance Visual Studio</a>
 
-<section class="hero">
-  <div>
-    <h1>Enhance Visual Studio</h1>
-    <p>Elevated Visuals. Clean Aesthetic.</p>
-  </div>
-</section>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#booking">Book a Session</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-<section id="portfolio" class="fade">
-  <div class="filters">
-    <button onclick="filter('all')">All</button>
-    <button onclick="filter('studio')">Studio</button>
-    <button onclick="filter('outdoor')">Outdoor</button>
-  </div>
+    <div class="mobile-menu" onclick="toggleMenu()">☰</div>
+  </header>
 
-  <div class="gallery">
-    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" class="studio">
-    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" class="outdoor">
-    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" class="studio">
-    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" class="outdoor">
-    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1" class="studio">
-    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="outdoor">
-  </div>
-</section>
+  <section class="hero" id="home">
+    <div>
+      <div class="eyebrow">Bay Area Portrait & Editorial Photography</div>
+      <h1>Luxury visuals for people who want to be seen.</h1>
+      <p>
+        Enhance Visual Studio creates clean, bold, editorial-style photography for portraits,
+        studio sessions, branding, lifestyle, events, and moments worth remembering.
+      </p>
 
-<section id="book" class="cta fade">
-  <h2>Ready to Shoot?</h2>
-  <br>
-  <a href="#">Book a Session</a>
-</section>
+      <div class="buttons">
+        <a href="#portfolio" class="btn primary">View Portfolio</a>
+        <a href="#booking" class="btn">Book a Session</a>
+      </div>
+    </div>
 
-<section id="contact" class="contact fade">
-  <h2>Let’s Create Something</h2>
-  <input type="text" placeholder="Your Name">
-  <input type="email" placeholder="Your Email">
-  <textarea rows="5" placeholder="Your Message"></textarea>
-  <button class="submit">Send</button>
-</section>
+    <div class="hero-card">
+      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Editorial portrait">
+    </div>
+  </section>
 
-<script>
-function filter(category) {
-  let images = document.querySelectorAll('.gallery img');
-  images.forEach(img => {
-    if(category === 'all') {
-      img.style.display = 'block';
-    } else {
-      img.style.display = img.classList.contains(category) ? 'block' : 'none';
+  <section id="about">
+    <div class="about-grid">
+      <img class="about-img" src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80" alt="Studio portrait">
+
+      <div class="about-text">
+        <div class="eyebrow">The Experience</div>
+        <h3>Premium photography with a clean, confident, editorial finish.</h3>
+
+        <p>
+          This is not just about taking pictures. It is about creating images that feel intentional,
+          polished, and elevated. Every session is directed with detail, mood, light, and confidence.
+        </p>
+
+        <p>
+          Whether you are booking portraits, branding, maternity, graduation, family, sports,
+          events, or editorial work, the goal is simple: create visuals that look high-end and feel personal.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>01</strong>
+            <span>Guided Posing</span>
+          </div>
+          <div class="stat">
+            <strong>02</strong>
+            <span>Clean Editing</span>
+          </div>
+          <div class="stat">
+            <strong>03</strong>
+            <span>Luxury Delivery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="section-header">
+      <h2>Portfolio</h2>
+      <p>
+        A curated look at portraits, studio work, lifestyle, branding, family, events, sports,
+        and editorial-style sessions.
+      </p>
+    </div>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=900&q=80" alt="">
+        <div class="portfolio-label">
+          <h3>Portraits</h3>
+          <span>Personal / Clean / Bold</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?auto=format&fit=crop&w=900&q=80" alt="">
+        <div class="portfolio-label">
+          <h3>Studio</h3>
+          <span>Controlled Light</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=80" alt="">
+        <div class="portfolio-label">
+          <h3>Editorial</h3>
+          <span>Fashion Inspired</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80" alt="">
+        <div class="portfolio-label">
+          <h3>Lifestyle</h3>
+          <span>Natural Energy</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1529634597503-139d3726fed5?auto=format&fit=crop&w=900&q=80" alt="">
+        <div class="portfolio-label">
+          <h3>Branding</h3>
+          <span>Business / Content</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="">
+        <div class="portfolio-label">
+          <h3>Weddings</h3>
+          <span>Elegant Moments</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=900&q=80" alt="">
+        <div class="portfolio-label">
+          <h3>Events</h3>
+          <span>Atmosphere / Story</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80" alt="">
+        <div class="portfolio-label">
+          <h3>Sports</h3>
+          <span>Action / Energy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="section-header">
+      <h2>Sessions</h2>
+      <p>
+        Designed for clients who want a smooth experience, professional direction,
+        and images that feel elevated from start to finish.
+      </p>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <div>
+          <h3>Portrait Session</h3>
+          <p>Perfect for personal portraits, birthdays, graduation, creative looks, and profile imagery.</p>
+        </div>
+        <div class="price">Starting at $250</div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <h3>Studio Session</h3>
+          <p>Clean lighting, seamless backdrops, styled direction, and premium retouching options.</p>
+        </div>
+        <div class="price">Starting at $350</div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <h3>Branding Session</h3>
+          <p>For entrepreneurs, creatives, models, artists, and businesses needing polished content.</p>
+        </div>
+        <div class="price">Starting at $400</div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <h3>Event Coverage</h3>
+          <p>Professional coverage for private events, celebrations, launches, weddings, and gatherings.</p>
+        </div>
+        <div class="price">Custom Quote</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <div class="booking">
+      <div>
+        <div class="eyebrow">Book Now</div>
+        <h2>Start your session request.</h2>
+        <p>
+          Tell me what type of session you are looking for, your date, your budget,
+          and the overall vision. I’ll follow up with availability and next steps.
+        </p>
+      </div>
+
+      <form action="mailto:enhancevisualstudio@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="Name" placeholder="Full Name" required>
+        <input type="email" name="Email" placeholder="Email Address" required>
+        <input type="tel" name="Phone" placeholder="Phone Number">
+
+        <select name="Session Type" required>
+          <option value="">Select Session Type</option>
+          <option>Portraits</option>
+          <option>Studio</option>
+          <option>Lifestyle</option>
+          <option>Editorial</option>
+          <option>Maternity</option>
+          <option>Family</option>
+          <option>Kids</option>
+          <option>Graduation</option>
+          <option>Branding</option>
+          <option>Weddings</option>
+          <option>Events</option>
+          <option>Sports</option>
+        </select>
+
+        <input type="text" name="Preferred Date" placeholder="Preferred Date">
+        <input type="text" name="Budget" placeholder="Estimated Budget">
+        <textarea name="Vision" placeholder="Tell me about your vision, location, outfit ideas, number of people, and anything important."></textarea>
+
+        <button type="submit">Send Booking Request</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="eyebrow">Enhance Visual Studio</div>
+    <h2>Let’s create something premium.</h2>
+    <p>
+      Based in the Bay Area. Available for studio, outdoor, branding, portrait,
+      event, family, maternity, sports, and editorial-style photography.
+    </p>
+
+    <div class="buttons" style="justify-content:center;">
+      <a href="mailto:enhancevisualstudio@gmail.com" class="btn primary">Email Me</a>
+      <a href="https://instagram.com/" class="btn">Instagram</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>© 2026 Enhance Visual Studio</div>
+    <div>Bay Area Photographer</div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
     }
-  });
-}
 
-/* SCROLL ANIMATION */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
-  });
-});
-
-document.querySelectorAll('.fade').forEach(el => observer.observe(el));
-</script>
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("active");
+      });
+    });
+  </script>
 
 </body>
 </html>
