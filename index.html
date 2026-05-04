@@ -3,350 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enhance Visual Studio</title>
-
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      background:#050505;
-      color:#f5f0e8;
-      font-family: Arial, sans-serif;
-      overflow-x:hidden;
-    }
-    a { color:inherit; text-decoration:none; }
-    header {
-      position:fixed;
-      top:0;
-      width:100%;
-      z-index:100;
-      padding:24px 7%;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      background:rgba(5,5,5,.72);
-      backdrop-filter:blur(16px);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .logo {
-      font-size:20px;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      font-weight:bold;
-    }
-    nav a {
-      margin-left:28px;
-      font-size:13px;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      opacity:.8;
-    }
-    nav a:hover { opacity:1; color:#c7a66b; }
-
-    section { padding:110px 7%; min-height:100vh; }
-
-    .hero {
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      background:
-        linear-gradient(to right, rgba(0,0,0,.9), rgba(0,0,0,.35)),
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80");
-      background-size:cover;
-      background-position:center;
-    }
-    .hero-content { max-width:760px; }
-    .eyebrow {
-      color:#c7a66b;
-      text-transform:uppercase;
-      letter-spacing:4px;
-      font-size:13px;
-      margin-bottom:18px;
-    }
-    h1 {
-      font-size:clamp(48px, 8vw, 110px);
-      line-height:.9;
-      text-transform:uppercase;
-      letter-spacing:-3px;
-      margin-bottom:26px;
-    }
-    .hero p {
-      font-size:20px;
-      line-height:1.6;
-      color:#d8d0c6;
-      max-width:620px;
-      margin-bottom:36px;
-    }
-    .btn {
-      display:inline-block;
-      padding:15px 28px;
-      border:1px solid #c7a66b;
-      color:#f5f0e8;
-      text-transform:uppercase;
-      letter-spacing:2px;
-      font-size:12px;
-      margin-right:14px;
-      transition:.3s;
-    }
-    .btn:hover {
-      background:#c7a66b;
-      color:#050505;
-    }
-    .btn.solid {
-      background:#c7a66b;
-      color:#050505;
-    }
-
-    .section-title {
-      font-size:clamp(36px, 6vw, 78px);
-      text-transform:uppercase;
-      margin-bottom:18px;
-    }
-    .section-sub {
-      color:#b8b0a6;
-      max-width:620px;
-      font-size:18px;
-      line-height:1.7;
-      margin-bottom:50px;
-    }
-
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:18px;
-    }
-    .card {
-      min-height:360px;
-      background:#111;
-      border:1px solid rgba(255,255,255,.08);
-      padding:28px;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-      position:relative;
-      overflow:hidden;
-    }
-    .card::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top, rgba(0,0,0,.85), transparent);
-      z-index:1;
-    }
-    .card h3, .card p { position:relative; z-index:2; }
-    .card h3 {
-      font-size:26px;
-      text-transform:uppercase;
-      margin-bottom:8px;
-    }
-    .card p { color:#c7c0b6; }
-
-    .portrait { background:url("https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80") center/cover; }
-    .studio { background:url("https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=80") center/cover; }
-    .editorial { background:url("https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80") center/cover; }
-    .branding { background:url("https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=900&q=80") center/cover; }
-    .events { background:url("https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=900&q=80") center/cover; }
-    .weddings { background:url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80") center/cover; }
-
-    .packages {
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:22px;
-    }
-    .package {
-      border:1px solid rgba(255,255,255,.12);
-      padding:34px;
-      background:#0b0b0b;
-    }
-    .package h3 {
-      font-size:26px;
-      text-transform:uppercase;
-      margin-bottom:12px;
-    }
-    .price {
-      color:#c7a66b;
-      font-size:34px;
-      margin-bottom:22px;
-    }
-    .package li {
-      list-style:none;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      padding:12px 0;
-      color:#d4cec5;
-    }
-
-    .contact-box {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:40px;
-      align-items:start;
-    }
-    form input, form textarea, form select {
-      width:100%;
-      background:#0b0b0b;
-      border:1px solid rgba(255,255,255,.15);
-      color:#fff;
-      padding:16px;
-      margin-bottom:14px;
-      font-size:15px;
-    }
-    textarea { height:150px; resize:none; }
-
-    footer {
-      padding:36px 7%;
-      border-top:1px solid rgba(255,255,255,.08);
-      color:#999;
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:20px;
-    }
-
-    @media(max-width:900px) {
-      nav { display:none; }
-      .grid, .packages, .contact-box {
-        grid-template-columns:1fr;
-      }
-      section { padding:95px 6%; }
-    }
-  </style>
+  <title>Enhance Visual Studio | Bay Area Photographer</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<header>
-  <div class="logo">Enhance Visual Studio</div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#book">Book a Session</a>
-    <a href="#contact">Contact</a>
+<header class="site-header">
+  <a href="index.html" class="logo">Enhance Visual Studio</a>
+  <button class="menu-btn">Menu</button>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="book.html">Book a Session</a>
+    <a href="contact.html">Contact</a>
   </nav>
 </header>
 
-<section class="hero" id="home">
-  <div class="hero-content">
-    <div class="eyebrow">Pose. Capture. Enhance.</div>
-    <h1>Luxury Portraits With Cinematic Direction.</h1>
-    <p>
-      Enhance Visual Studio creates bold, polished, confidence-driven portraits for models,
-      creatives, families, brands, and people ready to be seen at their highest level.
-    </p>
-    <a href="#book" class="btn solid">Book a Session</a>
-    <a href="#portfolio" class="btn">View Portfolio</a>
-  </div>
-</section>
-
-<section id="portfolio">
-  <div class="eyebrow">Selected Work</div>
-  <h2 class="section-title">Portfolio</h2>
-  <p class="section-sub">
-    Clean studio work, editorial portraits, lifestyle visuals, branding sessions,
-    and event coverage designed to feel premium, intentional, and unforgettable.
-  </p>
-
-  <div class="grid">
-    <div class="card portrait"><h3>Portraits</h3><p>Confident, guided, personal.</p></div>
-    <div class="card studio"><h3>Studio</h3><p>Clean lighting. Premium detail.</p></div>
-    <div class="card editorial"><h3>Editorial</h3><p>Fashion-inspired storytelling.</p></div>
-    <div class="card branding"><h3>Branding</h3><p>Content for your image and business.</p></div>
-    <div class="card events"><h3>Events</h3><p>Moments captured with energy.</p></div>
-    <div class="card weddings"><h3>Weddings</h3><p>Timeless, emotional, cinematic.</p></div>
-  </div>
-</section>
-
-<section id="book">
-  <div class="eyebrow">Client Packages</div>
-  <h2 class="section-title">Book a Session</h2>
-  <p class="section-sub">
-    Every session is directed with posing, lighting, and detail-focused retouching
-    so you never feel lost in front of the camera.
-  </p>
-
-  <div class="packages">
-    <div class="package">
-      <h3>Essential</h3>
-      <div class="price">$250+</div>
-      <ul>
-        <li>45-minute session</li>
-        <li>1 outfit</li>
-        <li>Studio or outdoor</li>
-        <li>5 retouched images</li>
-        <li>Online proof gallery</li>
-      </ul>
-      <br>
-      <a href="#contact" class="btn">Request Booking</a>
-    </div>
-
-    <div class="package">
-      <h3>Signature</h3>
-      <div class="price">$450+</div>
-      <ul>
-        <li>90-minute session</li>
-        <li>2 outfits</li>
-        <li>Full posing direction</li>
-        <li>10 retouched images</li>
-        <li>Priority editing</li>
-      </ul>
-      <br>
-      <a href="#contact" class="btn solid">Most Popular</a>
-    </div>
-
-    <div class="package">
-      <h3>Creative Campaign</h3>
-      <div class="price">$750+</div>
-      <ul>
-        <li>Brand, model, or editorial shoot</li>
-        <li>Creative direction</li>
-        <li>Multiple looks</li>
-        <li>20 retouched images</li>
-        <li>Social content add-ons</li>
-      </ul>
-      <br>
-      <a href="#contact" class="btn">Start Project</a>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="eyebrow">Let’s Create</div>
-  <h2 class="section-title">Contact</h2>
-
-  <div class="contact-box">
-    <div>
-      <p class="section-sub">
-        Tell me what you’re creating, the vibe you want, and when you want to shoot.
-        I’ll help guide the concept, posing, and final look.
+<main>
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="eyebrow">Pose. Capture. Enhance.</p>
+      <h1>Luxury Portraits With Cinematic Direction.</h1>
+      <p>
+        Premium studio, lifestyle, editorial, branding, wedding, and event photography
+        for people who want to look confident, polished, and unforgettable.
       </p>
-      <p><strong>Email:</strong> enhancevisualstudio@gmail.com</p>
-      <p><strong>Instagram:</strong> @enhancevisualstudio</p>
-      <p><strong>Location:</strong> Bay Area, California</p>
+      <div class="hero-buttons">
+        <a href="book.html" class="btn gold">Book a Session</a>
+        <a href="portfolio.html" class="btn outline">View Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section intro">
+    <p class="eyebrow">Bay Area Photography Studio</p>
+    <h2>Designed for people who want more than regular pictures.</h2>
+    <p>
+      Enhance Visual Studio blends clean lighting, posing direction, editorial styling,
+      and polished retouching to create images that feel elevated and intentional.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">Featured Work</p>
+      <h2>Portfolio Categories</h2>
     </div>
 
-    <form>
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="text" placeholder="Instagram Handle">
-      <select>
-        <option>Session Type</option>
-        <option>Portraits</option>
-        <option>Studio</option>
-        <option>Branding</option>
-        <option>Editorial</option>
-        <option>Family</option>
-        <option>Maternity</option>
-        <option>Wedding</option>
-        <option>Event</option>
-      </select>
-      <textarea placeholder="Tell me about your shoot idea"></textarea>
-      <button class="btn solid" type="submit">Submit Inquiry</button>
-    </form>
-  </div>
-</section>
+    <div class="category-grid">
+      <a href="portfolio.html" class="category-card"><span>Portraits</span></a>
+      <a href="portfolio.html" class="category-card"><span>Studio</span></a>
+      <a href="portfolio.html" class="category-card"><span>Editorial</span></a>
+      <a href="portfolio.html" class="category-card"><span>Branding</span></a>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div>
+      <p class="eyebrow">The Experience</p>
+      <h2>You don’t need to know how to pose. I’ll guide you.</h2>
+    </div>
+    <div>
+      <p>
+        Every session includes direction, confidence coaching, lighting setup, and a smooth
+        creative flow from start to finish. Whether it’s your first shoot or your next campaign,
+        the goal is to make you look your best without feeling awkward.
+      </p>
+      <a href="book.html" class="text-link">See Packages →</a>
+    </div>
+  </section>
+
+  <section class="cta">
+    <p class="eyebrow">Ready to Create?</p>
+    <h2>Book your next session with Enhance Visual Studio.</h2>
+    <a href="contact.html" class="btn gold">Start Inquiry</a>
+  </section>
+</main>
 
 <footer>
-  <div>© 2026 Enhance Visual Studio. All Rights Reserved.</div>
-  <div>Pose. Capture. Enhance.</div>
+  <p>© 2026 Enhance Visual Studio</p>
+  <p>Pose. Capture. Enhance.</p>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
