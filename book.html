@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book | Enhance Visual Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050505;color:white;font-family:Inter,sans-serif}
+a{text-decoration:none;color:white}
+nav{padding:24px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.1)}
+.logo{font-family:"Playfair Display",serif;letter-spacing:2px}
+.links a{margin-left:28px;font-size:.78rem;letter-spacing:2px;opacity:.7}
+.wrap{min-height:85vh;display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:90px 7%;align-items:center}
+h1{font-family:"Playfair Display",serif;font-size:clamp(3rem,7vw,6rem);font-weight:500}
+p{opacity:.7;line-height:1.7;margin-top:15px}
+form{background:#0d0d0d;border:1px solid rgba(255,255,255,.12);padding:35px}
+input,select,textarea{
+width:100%;background:#050505;border:1px solid rgba(255,255,255,.18);
+color:white;padding:15px;margin-bottom:14px;font-family:Inter
+}
+textarea{min-height:140px}
+button{
+width:100%;padding:15px;background:white;color:black;border:0;
+letter-spacing:2px;text-transform:uppercase;cursor:pointer
+}
+@media(max-width:900px){nav{display:block;text-align:center}.links{margin-top:14px}.links a{margin:0 8px}.wrap{grid-template-columns:1fr;padding-top:60px}}
+</style>
+</head>
+<body>
+
+<nav>
+<a class="logo" href="index.html">ENHANCE VISUAL STUDIO</a>
+<div class="links">
+<a href="index.html">HOME</a><a href="portfolio.html">PORTFOLIO</a><a href="book.html">BOOK</a><a href="contact.html">CONTACT</a>
+</div>
+</nav>
+
+<section class="wrap">
+<div>
+<h1>Book a Session</h1>
+<p>Ready to create something elevated? Send your session details and we’ll build a visual experience around your style, concept, and story.</p>
+<p><strong>Pose. Capture. Enhance.</strong></p>
+</div>
+
+<form>
+<input type="text" placeholder="Full Name">
+<input type="email" placeholder="Email Address">
+<select>
+<option>Session Type</option>
+<option>Portraits</option>
+<option>Studio</option>
+<option>Lifestyle</option>
+<option>Editorial</option>
+<option>Maternity</option>
+<option>Branding</option>
+<option>Wedding / Event</option>
+</select>
+<input type="text" placeholder="Preferred Date">
+<textarea placeholder="Tell me your vision..."></textarea>
+<button type="submit">Submit Inquiry</button>
+</form>
+</section>
+
+</body>
+</html>
