@@ -1,242 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Enhance Visual Studio | Bay Area Photographer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enhance Visual Studio</title>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;700&display=swap');
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap');
 
-    :root {
-      --black:#050505;
-      --soft:#0d0d0d;
-      --white:#f5f2ec;
-      --muted:#aaa39a;
-      --gold:#c6a15b;
-      --line:rgba(255,255,255,0.1);
-    }
+body {
+  margin:0;
+  background:#050505;
+  color:#f7f2ea;
+  font-family:Inter, sans-serif;
+}
 
-    * {margin:0;padding:0;box-sizing:border-box;}
-    body {font-family:Inter,sans-serif;background:var(--black);color:var(--white);}
+a { text-decoration:none; color:inherit; }
 
-    a {text-decoration:none;color:inherit;}
+.nav {
+  position:fixed;
+  width:100%;
+  padding:25px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+}
 
-    .nav {
-      position:fixed;
-      top:0;
-      width:100%;
-      padding:22px 7%;
-      display:flex;
-      justify-content:space-between;
-      background:rgba(0,0,0,0.6);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--line);
-      z-index:999;
-    }
+.logo {
+  display:flex;
+  flex-direction:column;
+  font-family:'Playfair Display', serif;
+}
 
-    .logo {
-      font-family:'Playfair Display',serif;
-      font-size:20px;
-    }
+.logo h1 {
+  font-size:20px;
+  margin:0;
+}
 
-    .nav-links {
-      display:flex;
-      gap:30px;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:2px;
-      color:var(--muted);
-    }
+.logo span {
+  font-size:11px;
+  letter-spacing:2px;
+  color:#c6a15b;
+  margin-top:4px;
+}
 
-    .nav-links a:hover {color:var(--white);}
+.links {
+  display:flex;
+  gap:30px;
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
 
-    .hero {
-      height:100vh;
-      display:flex;
-      align-items:center;
-      padding:0 7%;
-      background:
-        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.6)),
-        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80');
-      background-size:cover;
-      background-position:center;
-    }
+.links a { color:#aaa; }
+.links a:hover { color:white; }
 
-    .hero-content {
-      max-width:700px;
-    }
+.hero {
+  height:100vh;
+  display:flex;
+  align-items:center;
+  padding:0 7%;
+  background:
+  linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.4)),
+  url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80');
+  background-size:cover;
+}
 
-    .slogan {
-      color:var(--gold);
-      text-transform:uppercase;
-      letter-spacing:4px;
-      font-size:12px;
-      margin-bottom:20px;
-    }
+.hero h2 {
+  font-family:'Playfair Display', serif;
+  font-size:80px;
+  max-width:700px;
+  line-height:0.95;
+}
 
-    h1 {
-      font-family:'Playfair Display',serif;
-      font-size:clamp(50px,8vw,110px);
-      line-height:0.95;
-      margin-bottom:20px;
-    }
+.hero p {
+  max-width:500px;
+  color:#aaa;
+  margin:20px 0 30px;
+  line-height:1.7;
+}
 
-    .subtext {
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.8;
-      margin-bottom:30px;
-    }
+.btn {
+  padding:14px 24px;
+  border:1px solid white;
+  font-size:12px;
+  letter-spacing:2px;
+  margin-right:10px;
+}
 
-    .btns {
-      display:flex;
-      gap:15px;
-    }
+.btn.primary {
+  background:white;
+  color:black;
+}
 
-    .btn {
-      padding:14px 24px;
-      border:1px solid white;
-      font-size:12px;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      transition:0.3s;
-    }
+.section {
+  padding:120px 7%;
+}
 
-    .btn.primary {
-      background:white;
-      color:black;
-    }
+.section h3 {
+  font-family:'Playfair Display', serif;
+  font-size:50px;
+  margin-bottom:20px;
+}
 
-    .btn:hover {
-      background:var(--gold);
-      border-color:var(--gold);
-      color:black;
-    }
+.section p {
+  max-width:500px;
+  color:#aaa;
+}
 
-    section {
-      padding:100px 7%;
-    }
+.quick-links {
+  margin-top:40px;
+  display:flex;
+  gap:20px;
+}
 
-    .section-title {
-      font-family:'Playfair Display',serif;
-      font-size:clamp(40px,6vw,80px);
-      margin-bottom:20px;
-    }
+.footer {
+  padding:40px 7%;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
 
-    .about p {
-      max-width:600px;
-      color:var(--muted);
-      line-height:1.8;
-    }
+.socials {
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
 
-    .cta {
-      text-align:center;
-      background:var(--soft);
-    }
+.socials a { color:#aaa; }
+.socials a:hover { color:white; }
 
-    .cta p {
-      color:var(--muted);
-      margin-bottom:25px;
-    }
-
-    footer {
-      padding:40px 7%;
-      border-top:1px solid var(--line);
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:20px;
-    }
-
-    .socials {
-      display:flex;
-      gap:15px;
-      flex-wrap:wrap;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:2px;
-      color:var(--muted);
-    }
-
-    .socials a:hover {color:var(--white);}
-
-    @media(max-width:700px){
-      .nav-links {display:none;}
-      h1 {font-size:52px;}
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <div class="nav">
-    <div class="logo">Enhance Visual Studio</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="book-session.html">Book</a>
-      <a href="contact.html">Contact</a>
-    </div>
+<!-- NAV -->
+<div class="nav">
+  <div class="logo">
+    <h1>Enhance Visual Studio</h1>
+    <span>Pose. Capture. Enhance</span>
   </div>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-content">
-      <div class="slogan">Pose. Capture. Enhance.</div>
-
-      <h1>Luxury visuals for people who want to be seen.</h1>
-
-      <div class="subtext">
-        Portrait, studio, branding, lifestyle, and event photography designed
-        with a clean, bold, editorial finish.
-      </div>
-
-      <div class="btns">
-        <a href="portfolio.html" class="btn primary">View Portfolio</a>
-        <a href="book-session.html" class="btn">Book a Session</a>
-      </div>
-    </div>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="book-session.html">Book</a>
+    <a href="contact.html">Contact</a>
   </div>
+</div>
 
-  <!-- ABOUT -->
-  <section class="about">
-    <h2 class="section-title">Premium photography. Elevated presence.</h2>
-
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h2>Luxury visuals that speak before you do.</h2>
     <p>
-      Enhance Visual Studio creates images that feel intentional, polished,
-      and high-end. Every session is guided with direction, lighting, and
-      attention to detail so you walk away with visuals that stand out.
+      Portrait, editorial, branding, and lifestyle photography designed to feel clean, bold, and elevated.
     </p>
-  </section>
 
-  <!-- CTA -->
-  <section class="cta">
-    <h2 class="section-title">Ready to create something premium?</h2>
-    <p>Let’s bring your vision to life.</p>
+    <a href="portfolio.html" class="btn primary">View Portfolio</a>
+    <a href="book-session.html" class="btn">Book a Session</a>
+  </div>
+</div>
 
-    <div class="btns" style="justify-content:center;">
-      <a href="book-session.html" class="btn primary">Start Booking</a>
-      <a href="contact.html" class="btn">Contact</a>
-    </div>
-  </section>
+<!-- ABOUT -->
+<div class="section">
+  <h3>Not just photos. A full visual experience.</h3>
+  <p>
+    Every session is directed with precision, lighting, and intention.
+    From studio shoots to outdoor lifestyle sessions, the goal is always the same —
+    create images that feel premium and timeless.
+  </p>
 
-  <!-- FOOTER -->
-  <footer>
-    <div>© 2026 Enhance Visual Studio</div>
+  <div class="quick-links">
+    <a href="portfolio.html" class="btn">Explore Work</a>
+    <a href="contact.html" class="btn">Contact</a>
+  </div>
+</div>
 
-    <div class="socials">
-      <a href="mailto:hello@enhancevisualstudio.com">Email</a>
-      <a href="#">Instagram</a>
-      <a href="#">TikTok</a>
-      <a href="#">YouTube</a>
-      <a href="#">Facebook</a>
-      <a href="#">Pinterest</a>
-      <a href="#">Threads</a>
-      <a href="#">LinkedIn</a>
-    </div>
-  </footer>
+<!-- CTA -->
+<div class="section">
+  <h3>Ready to create something premium?</h3>
+  <p>
+    Based in the Bay Area. Available for portraits, branding, events, and editorial sessions.
+  </p>
+
+  <div class="quick-links">
+    <a href="book-session.html" class="btn primary">Start Booking</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="socials">
+    <a href="https://instagram.com/enhancevisualstudio">Instagram</a>
+    <a href="https://tiktok.com/@enhancevisualstudio">TikTok</a>
+    <a href="https://facebook.com/enhancevisualstudio">Facebook</a>
+    <a href="https://youtube.com/@enhancevisualstudio">YouTube</a>
+    <a href="https://pinterest.com/YOURUSERNAME">Pinterest</a>
+    <a href="https://threads.net/@YOURUSERNAME">Threads</a>
+    <a href="https://linkedin.com/in/YOURUSERNAME">LinkedIn</a>
+    <a href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com</a>
+  </div>
+
+  <div style="font-size:12px; color:#666;">
+    © 2026 Enhance Visual Studio — Bay Area Photographer
+  </div>
+</div>
 
 </body>
 </html>
