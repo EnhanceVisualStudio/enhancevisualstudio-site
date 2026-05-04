@@ -1,190 +1,40 @@
-<!-- contact.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Enhance Visual Studio</title>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
-
-    :root {
-      --black:#050505;
-      --soft:#0d0d0d;
-      --white:#f7f2ea;
-      --muted:#b9b1a7;
-      --gold:#c6a15b;
-      --line:rgba(255,255,255,.13);
-    }
-
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{background:var(--black);color:var(--white);font-family:Inter,sans-serif}
-    a{text-decoration:none;color:inherit}
-
-    .nav{
-      position:fixed;top:0;width:100%;z-index:1000;
-      padding:24px 7%;display:flex;justify-content:space-between;align-items:center;
-      background:rgba(5,5,5,.65);backdrop-filter:blur(18px);
-      border-bottom:1px solid var(--line);
-    }
-
-    .logo{font-family:'Playfair Display',serif;font-size:22px}
-    .links{display:flex;gap:32px;font-size:12px;text-transform:uppercase;letter-spacing:2px}
-    .links a{color:var(--muted)}
-    .links a:hover,.links .active{color:var(--white)}
-
-    .hero{
-      padding:160px 7% 80px;
-      text-align:center;
-    }
-
-    .eyebrow{
-      color:var(--gold);
-      text-transform:uppercase;
-      letter-spacing:4px;
-      font-size:12px;
-      margin-bottom:20px;
-    }
-
-    h1{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(50px,7vw,100px);
-      margin-bottom:20px;
-    }
-
-    p{
-      color:var(--muted);
-      max-width:600px;
-      margin:0 auto;
-      line-height:1.8;
-    }
-
-    .contact-grid{
-      padding:60px 7% 110px;
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:20px;
-    }
-
-    .card{
-      border:1px solid var(--line);
-      padding:40px;
-      background:var(--soft);
-      text-align:center;
-      transition:.3s;
-    }
-
-    .card:hover{
-      border-color:var(--gold);
-      transform:translateY(-6px);
-    }
-
-    .card h3{
-      font-family:'Playfair Display',serif;
-      font-size:26px;
-      margin-bottom:10px;
-    }
-
-    .card a{
-      color:var(--gold);
-      font-size:14px;
-      letter-spacing:1px;
-    }
-
-    .socials{
-      text-align:center;
-      padding-bottom:80px;
-    }
-
-    .socials a{
-      display:inline-block;
-      margin:10px 15px;
-      border:1px solid var(--line);
-      padding:12px 18px;
-      text-transform:uppercase;
-      font-size:11px;
-      letter-spacing:2px;
-      transition:.3s;
-    }
-
-    .socials a:hover{
-      border-color:var(--gold);
-      background:var(--gold);
-      color:var(--black);
-    }
-
-    footer{
-      padding:34px 7%;
-      border-top:1px solid var(--line);
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      color:var(--muted);
-      font-size:12px;
-      text-transform:uppercase;
-    }
-
-    @media(max-width:900px){
-      .contact-grid{grid-template-columns:1fr}
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+<header class="nav">
+  <a class="logo" href="index.html">Enhance Visual Studio</a>
+  <nav class="links">
+    <a href="index.html">Home</a><a href="portfolio.html">Portfolio</a><a href="book.html">Book</a><a class="active" href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  <header class="nav">
-    <a class="logo" href="index.html">Enhance Visual Studio</a>
-    <nav class="links">
-      <a href="index.html">Home</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="book.html">Book a Session</a>
-      <a class="active" href="contact.html">Contact</a>
-    </nav>
-  </header>
+<section class="hero reveal" style="text-align:center;">
+  <div class="eyebrow">Contact</div>
+  <h1>Let’s Work Together</h1>
+  <p style="margin:auto;">Serving San Francisco & the Bay Area. Available for portraits, studio, branding, events, and editorial photography.</p>
+</section>
 
-  <section class="hero">
-    <div class="eyebrow">Contact</div>
-    <h1>Let’s Work Together</h1>
-    <p>
-      Serving San Francisco & the Bay Area. Available for portraits, studio,
-      branding, events, and editorial photography.
-    </p>
-  </section>
+<section class="cards reveal" style="grid-template-columns:repeat(3,1fr);">
+  <div class="card"><h3>Email</h3><p><a href="mailto:enhancevisualstudio@gmail.com">enhancevisualstudio@gmail.com</a></p></div>
+  <div class="card"><h3>Service Area</h3><p>San Francisco & Bay Area</p></div>
+  <div class="card"><h3>Booking</h3><p><a href="book.html">Start a Session Request</a></p></div>
+</section>
 
-  <section class="contact-grid">
+<section class="socials reveal" style="text-align:center;">
+  <div class="eyebrow">Connect</div>
+  <a href="https://instagram.com/YOURUSERNAME">Instagram</a>
+  <a href="https://tiktok.com/@YOURUSERNAME">TikTok</a>
+  <a href="https://facebook.com/YOURUSERNAME">Facebook</a>
+  <a href="https://youtube.com/@YOURUSERNAME">YouTube</a>
+  <a href="mailto:enhancevisualstudio@gmail.com">Email</a>
+</section>
 
-    <div class="card">
-      <h3>Email</h3>
-      <a href="mailto:enhancevisualstudio@gmail.com">enhancevisualstudio@gmail.com</a>
-    </div>
-
-    <div class="card">
-      <h3>Service Area</h3>
-      <p>San Francisco & Bay Area</p>
-    </div>
-
-    <div class="card">
-      <h3>Booking</h3>
-      <a href="book.html">Start a Session Request</a>
-    </div>
-
-  </section>
-
-  <section class="socials">
-    <div class="eyebrow">Connect</div>
-
-    <!-- REPLACE THESE LINKS -->
-    <a href="https://instagram.com/YOURUSERNAME">Instagram</a>
-    <a href="https://tiktok.com/@YOURUSERNAME">TikTok</a>
-    <a href="https://facebook.com/YOURUSERNAME">Facebook</a>
-    <a href="mailto:enhancevisualstudio@gmail.com">Email</a>
-  </section>
-
-  <footer>
-    <div>© 2026 Enhance Visual Studio</div>
-    <div>San Francisco & Bay Area</div>
-  </footer>
-
+<footer><div>© 2026 Enhance Visual Studio</div><div>San Francisco & Bay Area</div></footer>
+<script src="script.js"></script>
 </body>
 </html>
