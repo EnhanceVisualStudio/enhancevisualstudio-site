@@ -13,7 +13,7 @@
 
 body{
   background:#050505;
-  color:#fff;
+  color:white;
   font-family:Inter,sans-serif;
   opacity:0;
   animation:fadeIn .8s ease forwards;
@@ -31,6 +31,28 @@ body.fade-out{
 
 a{text-decoration:none;color:white}
 
+/* LOADER */
+.loader{
+  position:fixed;
+  inset:0;
+  background:#050505;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.loader span{
+  font-family:"Playfair Display",serif;
+  letter-spacing:4px;
+  animation:pulse 1.2s infinite alternate;
+}
+
+@keyframes pulse{
+  from{opacity:.4}
+  to{opacity:1}
+}
+
 /* NAV */
 nav{
   position:fixed;
@@ -39,7 +61,7 @@ nav{
   display:flex;
   justify-content:space-between;
   padding:25px 7%;
-  z-index:10;
+  z-index:100;
 }
 
 .logo{
@@ -55,6 +77,35 @@ nav{
 }
 
 .links a:hover{opacity:1}
+
+.menu-btn{
+  display:none;
+}
+
+/* FULL MENU */
+.full-menu{
+  position:fixed;
+  inset:0;
+  background:#050505;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
+}
+
+.full-menu.active{
+  opacity:1;
+  pointer-events:all;
+}
+
+.full-menu a{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(3rem,7vw,7rem);
+  margin:10px 0;
+}
 
 /* HERO */
 .hero{
@@ -105,9 +156,7 @@ h1{
   font-size:.9rem;
 }
 
-.btns{
-  margin-top:35px;
-}
+.btns{margin-top:35px}
 
 .btn{
   border:1px solid white;
@@ -115,7 +164,23 @@ h1{
   margin:8px;
   font-size:.75rem;
   letter-spacing:2px;
-  transition:.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.btn::before{
+  content:"";
+  position:absolute;
+  left:-100%;
+  top:0;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
+  transition:.5s;
+}
+
+.btn:hover::before{
+  left:100%;
 }
 
 .btn:hover{
@@ -135,19 +200,13 @@ footer{
   align-items:center;
 }
 
-.footer-left{
-  font-family:"Playfair Display",serif;
-}
-
 .footer-right a{
   margin-left:18px;
   font-size:1.2rem;
   opacity:.7;
 }
 
-.footer-right a:hover{
-  opacity:1;
-}
+.footer-right a:hover{opacity:1}
 
 .footer-bottom{
   margin-top:25px;
@@ -157,18 +216,12 @@ footer{
 
 /* MOBILE */
 @media(max-width:800px){
+  .links{display:none}
+  .menu-btn{display:block}
+
   .grid{
     grid-template-columns:repeat(2,1fr);
     grid-template-rows:repeat(3,1fr);
-  }
-
-  nav{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .links{
-    margin-top:10px;
   }
 }
 </style>
@@ -176,15 +229,27 @@ footer{
 
 <body>
 
+<div class="loader"><span>ENHANCE VISUAL STUDIO</span></div>
+
 <nav>
   <div class="logo">ENHANCE VISUAL STUDIO</div>
+
   <div class="links">
     <a href="index.html">HOME</a>
     <a href="portfolio.html">PORTFOLIO</a>
     <a href="book.html">BOOK</a>
     <a href="contact.html">CONTACT</a>
   </div>
+
+  <div class="menu-btn" onclick="toggleMenu()">MENU</div>
 </nav>
+
+<div class="full-menu" id="menu">
+  <a href="index.html">Home</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="book.html">Book</a>
+  <a href="contact.html">Contact</a>
+</div>
 
 <section class="hero">
   <div class="grid">
@@ -211,20 +276,12 @@ footer{
 
 <footer>
   <div class="footer-wrap">
-    <div class="footer-left">
-      ENHANCE VISUAL STUDIO
-    </div>
+    <div>ENHANCE VISUAL STUDIO</div>
 
     <div class="footer-right">
-      <a href="https://instagram.com/enhancevisualstudio" target="_blank">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://tiktok.com/@enhancevisualstudio" target="_blank">
-        <i class="fab fa-tiktok"></i>
-      </a>
-      <a href="mailto:hello@enhancevisualstudio.com">
-        <i class="fas fa-envelope"></i>
-      </a>
+      <a href="https://instagram.com/enhancevisualstudio"><i class="fab fa-instagram"></i></a>
+      <a href="https://tiktok.com/@enhancevisualstudio"><i class="fab fa-tiktok"></i></a>
+      <a href="mailto:hello@enhancevisualstudio.com"><i class="fas fa-envelope"></i></a>
     </div>
   </div>
 
@@ -234,12 +291,18 @@ footer{
 </footer>
 
 <script>
+window.onload=()=>document.querySelector(".loader").style.display="none";
+
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
+
 document.querySelectorAll("a").forEach(link=>{
   link.addEventListener("click",e=>{
-    if(link.hostname === window.location.hostname){
+    if(link.hostname===window.location.hostname){
       e.preventDefault();
       document.body.classList.add("fade-out");
-      setTimeout(()=>{window.location.href = link.href},400);
+      setTimeout(()=>window.location=link.href,400);
     }
   });
 });
