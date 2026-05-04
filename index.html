@@ -1,425 +1,165 @@
-<!-- index.html -->
+<!-- index.html (Bradley Banner style) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Enhance Visual Studio | San Francisco & Bay Area Photographer</title>
-  <meta name="description" content="Enhance Visual Studio offers premium portrait, studio, lifestyle, branding, and editorial photography in San Francisco and the Bay Area. Pose. Capture. Enhance.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enhance Visual Studio</title>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap');
 
     :root {
       --black:#050505;
-      --soft:#0d0d0d;
       --white:#f7f2ea;
-      --muted:#b9b1a7;
+      --muted:#9f978e;
+      --line:rgba(255,255,255,.12);
       --gold:#c6a15b;
-      --line:rgba(255,255,255,.13);
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
-
-    html{scroll-behavior:smooth}
 
     body{
       background:var(--black);
       color:var(--white);
       font-family:Inter,sans-serif;
-      overflow-x:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      text-align:center;
     }
 
-    a{text-decoration:none;color:inherit}
-    img{width:100%;display:block;object-fit:cover}
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
 
-    .nav{
-      position:fixed;
-      top:0;
-      width:100%;
-      z-index:1000;
-      padding:22px 7%;
+    header{
+      padding:30px 6%;
+      border-bottom:1px solid var(--line);
       display:flex;
       justify-content:space-between;
       align-items:center;
-      background:rgba(5,5,5,.65);
-      backdrop-filter:blur(18px);
-      border-bottom:1px solid var(--line);
-      animation:dropIn .8s ease forwards;
-    }
-
-    .brand{
-      line-height:1.1;
     }
 
     .logo{
       font-family:'Playfair Display',serif;
-      font-size:22px;
+      font-size:20px;
       letter-spacing:.5px;
     }
 
-    .slogan-small{
-      margin-top:5px;
-      color:var(--muted);
-      font-size:10px;
-      letter-spacing:2px;
-      text-transform:uppercase;
-    }
-
-    .links{
+    nav{
       display:flex;
-      gap:32px;
+      gap:26px;
       font-size:12px;
-      text-transform:uppercase;
       letter-spacing:2px;
+      text-transform:uppercase;
     }
 
-    .links a{
+    nav a{
       color:var(--muted);
-      position:relative;
       transition:.3s;
     }
 
-    .links a::after{
-      content:"";
-      position:absolute;
-      width:0;
-      height:1px;
-      left:0;
-      bottom:-6px;
-      background:var(--gold);
-      transition:.3s;
-    }
-
-    .links a:hover,
-    .links .active{
+    nav a:hover{
       color:var(--white);
     }
 
-    .links a:hover::after,
-    .links .active::after{
-      width:100%;
-    }
-
-    .hero{
-      min-height:100vh;
-      padding:160px 7% 80px;
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:60px;
+    main{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
       align-items:center;
-      background:
-      linear-gradient(to right,rgba(5,5,5,.94),rgba(5,5,5,.45)),
-      url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80');
-      background-size:cover;
-      background-position:center;
-    }
-
-    .fade-up{
-      opacity:0;
-      transform:translateY(30px);
-      animation:fadeUp .9s ease forwards;
-    }
-
-    .delay-1{animation-delay:.15s}
-    .delay-2{animation-delay:.3s}
-    .delay-3{animation-delay:.45s}
-    .delay-4{animation-delay:.6s}
-
-    .eyebrow{
-      color:var(--gold);
-      text-transform:uppercase;
-      letter-spacing:4px;
-      font-size:12px;
-      margin-bottom:22px;
+      padding:60px 20px;
     }
 
     h1{
       font-family:'Playfair Display',serif;
-      font-size:clamp(58px,8vw,118px);
-      line-height:.9;
-      margin-bottom:28px;
-      max-width:900px;
+      font-size:clamp(60px,8vw,110px);
+      margin-bottom:20px;
     }
 
-    h2{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(44px,6vw,82px);
-      line-height:1;
-      margin-bottom:24px;
-    }
-
-    h3{
-      font-family:'Playfair Display',serif;
-    }
-
-    p{
+    .subtext{
+      max-width:600px;
       color:var(--muted);
-      line-height:1.8;
-      font-size:16px;
+      line-height:1.7;
+      margin-bottom:50px;
+      font-size:15px;
     }
 
-    .hero p{
-      max-width:580px;
-      margin-bottom:38px;
-    }
-
-    .btns{
+    .actions{
       display:flex;
-      gap:16px;
       flex-wrap:wrap;
+      gap:14px;
+      justify-content:center;
     }
 
     .btn{
-      padding:15px 26px;
-      border:1px solid var(--white);
-      text-transform:uppercase;
-      letter-spacing:2px;
+      border:1px solid var(--line);
+      padding:14px 22px;
       font-size:12px;
-      transition:.35s;
-    }
-
-    .btn.primary{
-      background:var(--white);
-      color:var(--black);
-    }
-
-    .btn:hover{
-      background:var(--gold);
-      border-color:var(--gold);
-      color:var(--black);
-      transform:translateY(-3px);
-    }
-
-    .hero-card{
-      border:1px solid var(--line);
-      padding:24px;
-      background:rgba(0,0,0,.45);
-      backdrop-filter:blur(12px);
-      animation:floatImage 5s ease-in-out infinite;
-    }
-
-    .hero-card img{
-      height:520px;
-      filter:contrast(1.08);
-    }
-
-    section{
-      padding:110px 7%;
-    }
-
-    .split{
-      display:grid;
-      grid-template-columns:.9fr 1.1fr;
-      gap:55px;
-      align-items:center;
-    }
-
-    .split img{
-      height:620px;
-      filter:contrast(1.05);
-    }
-
-    .feature-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-      margin-top:42px;
-    }
-
-    .feature{
-      border:1px solid var(--line);
-      padding:30px;
-      background:var(--soft);
-      transition:.35s;
-    }
-
-    .feature:hover{
-      border-color:var(--gold);
-      transform:translateY(-8px);
-    }
-
-    .feature h3{
-      font-size:30px;
-      margin:12px 0 14px;
-    }
-
-    .feature span{
-      color:var(--gold);
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:2px;
-    }
-
-    .gallery-preview{
-      background:var(--soft);
-    }
-
-    .gallery-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-      margin-top:44px;
-    }
-
-    .gallery-card{
-      border:1px solid var(--line);
-      overflow:hidden;
-      background:#070707;
-      transition:.35s;
-    }
-
-    .gallery-card:hover{
-      transform:translateY(-8px);
-      border-color:var(--gold);
-    }
-
-    .gallery-card img{
-      height:360px;
-      transition:.6s;
-    }
-
-    .gallery-card:hover img{
-      transform:scale(1.06);
-      opacity:.82;
-    }
-
-    .gallery-info{
-      padding:26px;
-    }
-
-    .gallery-info h3{
-      font-size:28px;
-      margin-bottom:10px;
-    }
-
-    .gallery-info span{
-      color:var(--gold);
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:2px;
-    }
-
-    .cta{
-      text-align:center;
-      background:
-      linear-gradient(rgba(5,5,5,.86),rgba(5,5,5,.92)),
-      url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80');
-      background-size:cover;
-      background-position:center;
-    }
-
-    .cta p{
-      max-width:650px;
-      margin:0 auto 32px;
-    }
-
-    .social-row{
-      margin-top:34px;
-      display:flex;
-      gap:14px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-
-    .social-row a{
-      border:1px solid var(--line);
-      padding:12px 18px;
-      font-size:11px;
       letter-spacing:2px;
       text-transform:uppercase;
-      color:var(--muted);
       transition:.3s;
     }
 
-    .social-row a:hover{
-      background:var(--gold);
-      color:var(--black);
+    .btn:hover{
       border-color:var(--gold);
+      color:var(--gold);
+    }
+
+    .section{
+      padding:70px 20px;
+      border-top:1px solid var(--line);
+    }
+
+    .section h2{
+      font-family:'Playfair Display',serif;
+      font-size:32px;
+      margin-bottom:20px;
+    }
+
+    .section p{
+      color:var(--muted);
+      max-width:600px;
+      margin:0 auto 25px;
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    .gallery-links{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:14px;
     }
 
     footer{
-      padding:34px 7%;
+      padding:25px 6%;
       border-top:1px solid var(--line);
       display:flex;
       justify-content:space-between;
-      gap:20px;
       flex-wrap:wrap;
-      color:var(--muted);
-      font-size:12px;
-      text-transform:uppercase;
+      font-size:11px;
       letter-spacing:1.5px;
+      color:var(--muted);
+      text-transform:uppercase;
     }
 
-    @keyframes fadeUp{
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
-    @keyframes dropIn{
-      from{
-        opacity:0;
-        transform:translateY(-20px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
-    @keyframes floatImage{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-12px)}
-    }
-
-    @media(max-width:900px){
-      .hero,
-      .split{
-        grid-template-columns:1fr;
-      }
-
-      .feature-grid,
-      .gallery-grid{
-        grid-template-columns:1fr;
-      }
-
-      .links{
-        gap:14px;
-        font-size:10px;
-      }
-
-      .hero-card img,
-      .split img,
-      .gallery-card img{
-        height:420px;
-      }
-
-      .nav{
-        align-items:flex-start;
-        gap:20px;
-      }
-    }
-
-    @media(max-width:600px){
-      .nav{
-        position:absolute;
+    @media(max-width:700px){
+      header{
         flex-direction:column;
+        gap:10px;
       }
 
-      .links{
+      nav{
         flex-wrap:wrap;
-        line-height:2;
-      }
-
-      .hero{
-        padding-top:190px;
+        justify-content:center;
       }
 
       h1{
-        font-size:54px;
+        font-size:52px;
       }
     }
   </style>
@@ -427,137 +167,43 @@
 
 <body>
 
-  <header class="nav">
-    <a class="brand" href="index.html">
-      <div class="logo">Enhance Visual Studio</div>
-      <div class="slogan-small">Pose. Capture. Enhance.</div>
-    </a>
+  <header>
+    <div class="logo">Enhance Visual Studio</div>
 
-    <nav class="links">
-      <a class="active" href="index.html">Home</a>
+    <nav>
       <a href="portfolio.html">Portfolio</a>
-      <a href="book.html">Book a Session</a>
+      <a href="book.html">Book</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <main class="hero">
-    <div>
-      <div class="eyebrow fade-up">San Francisco & Bay Area Photographer</div>
+  <main>
+    <h1>Pose. Capture. Enhance.</h1>
 
-      <h1 class="fade-up delay-1">Pose. Capture. Enhance.</h1>
+    <p class="subtext">
+      San Francisco & Bay Area photographer specializing in portraits,
+      studio, lifestyle, branding, events, and editorial imagery.
+    </p>
 
-      <p class="fade-up delay-2">
-        Premium portrait, studio, lifestyle, branding, and editorial photography
-        designed to look clean, confident, and unforgettable.
-      </p>
-
-      <div class="btns fade-up delay-3">
-        <a class="btn primary" href="portfolio.html">View Portfolio</a>
-        <a class="btn" href="book.html">Book a Session</a>
-      </div>
-    </div>
-
-    <div class="hero-card fade-up delay-4">
-      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Editorial portrait">
+    <div class="actions">
+      <a class="btn" href="portfolio.html">Portfolio</a>
+      <a class="btn" href="book.html">Book a Session</a>
+      <a class="btn" href="#galleries">Client Galleries</a>
     </div>
   </main>
 
-  <section>
-    <div class="split">
-      <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80" alt="Studio portrait">
-
-      <div>
-        <div class="eyebrow">The Experience</div>
-        <h2>Clean. Confident. Editorial.</h2>
-
-        <p>
-          Enhance Visual Studio is built for clients who want more than basic pictures.
-          Every session is directed with intention, styling awareness, strong composition,
-          and a luxury finish that feels modern and elevated.
-        </p>
-
-        <div class="feature-grid">
-          <div class="feature">
-            <span>01</span>
-            <h3>Pose</h3>
-            <p>Guided posing and creative direction so you feel confident from start to finish.</p>
-          </div>
-
-          <div class="feature">
-            <span>02</span>
-            <h3>Capture</h3>
-            <p>Clean lighting, strong composition, and intentional moments that tell the story.</p>
-          </div>
-
-          <div class="feature">
-            <span>03</span>
-            <h3>Enhance</h3>
-            <p>Polished editing and professional delivery for images that feel premium.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="gallery-preview">
-    <div class="eyebrow">Client Galleries</div>
-    <h2>Private galleries, clean delivery.</h2>
+  <section class="section" id="galleries">
+    <h2>Client Galleries</h2>
 
     <p>
-      Client galleries can be delivered through private online gallery links, password-protected pages,
-      or free cloud gallery options. Replace these preview cards later with your real client galleries.
+      Private galleries are delivered through secure links or gallery platforms.
+      You can access your session or event images below.
     </p>
 
-    <div class="gallery-grid">
-      <div class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=900&q=80" alt="Portrait gallery preview">
-        <div class="gallery-info">
-          <span>Private Gallery</span>
-          <h3>Portrait Sessions</h3>
-          <p>Link this card to a private gallery page, Pixieset gallery, Google Drive folder, or Dropbox folder.</p>
-        </div>
-      </div>
-
-      <div class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?auto=format&fit=crop&w=900&q=80" alt="Studio gallery preview">
-        <div class="gallery-info">
-          <span>Password Option</span>
-          <h3>Studio Sessions</h3>
-          <p>You can create separate hidden pages like client-ariadne.html and only share the direct link.</p>
-        </div>
-      </div>
-
-      <div class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Event gallery preview">
-        <div class="gallery-info">
-          <span>Event Delivery</span>
-          <h3>Events & Weddings</h3>
-          <p>Use this area later as a client login or gallery access preview section.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta">
-    <div class="eyebrow">Ready When You Are</div>
-    <h2>Book your next visual experience.</h2>
-
-    <p>
-      Serving San Francisco and the Bay Area for portraits, branding, studio work,
-      family sessions, maternity, events, weddings, sports, and editorial concepts.
-    </p>
-
-    <div class="btns" style="justify-content:center;">
-      <a class="btn primary" href="book.html">Start Booking</a>
-      <a class="btn" href="mailto:hello@enhancevisualstudio.com">Email Me</a>
-    </div>
-
-    <div class="social-row">
-      <a href="https://instagram.com/enhancevisualstudio">Instagram</a>
-      <a href="https://tiktok.com/@enhancevisualstudio">TikTok</a>
-      <a href="https://facebook.com/enhancevisualstudio">Facebook</a>
-      <a href="mailto:hello@enhancevisualstudio.com">Email</a>
+    <div class="gallery-links">
+      <a class="btn" href="#">Portrait Galleries</a>
+      <a class="btn" href="#">Event Galleries</a>
+      <a class="btn" href="#">Wedding Galleries</a>
     </div>
   </section>
 
