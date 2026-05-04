@@ -1,376 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enhance Visual Studio | Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enhance Visual Studio</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/6b8b1b6c5f.js" crossorigin="anonymous"></script>
 
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
 
-    :root{
-      --bg:#050505;
-      --soft:#0d0d0d;
-      --line:rgba(255,255,255,.14);
-      --text:#fff;
-      --muted:rgba(255,255,255,.68);
-      --gold:#d8c7a3;
-    }
+body{
+  background:#050505;
+  color:#fff;
+  font-family:Inter,sans-serif;
+  opacity:0;
+  animation:fadeIn .8s ease forwards;
+}
 
-    body{
-      background:var(--bg);
-      color:var(--text);
-      font-family:Inter,sans-serif;
-      overflow-x:hidden;
-      opacity:0;
-      animation:pageIn .8s ease forwards;
-    }
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
 
-    body.fade-out{
-      opacity:0;
-      transition:opacity .45s ease;
-    }
+body.fade-out{
+  opacity:0;
+  transition:.4s;
+}
 
-    @keyframes pageIn{
-      from{opacity:0;transform:translateY(12px)}
-      to{opacity:1;transform:translateY(0)}
-    }
+a{text-decoration:none;color:white}
 
-    a{text-decoration:none;color:inherit}
+/* NAV */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:25px 7%;
+  z-index:10;
+}
 
-    nav{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      z-index:50;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:26px 7%;
-      background:linear-gradient(to bottom,rgba(0,0,0,.9),rgba(0,0,0,0));
-    }
+.logo{
+  font-family:"Playfair Display",serif;
+  letter-spacing:2px;
+}
 
-    .logo{
-      font-family:"Playfair Display",serif;
-      letter-spacing:2.5px;
-      font-size:1.1rem;
-      font-weight:600;
-    }
+.links a{
+  margin-left:25px;
+  font-size:.75rem;
+  letter-spacing:2px;
+  opacity:.7;
+}
 
-    .links a{
-      margin-left:30px;
-      font-size:.72rem;
-      letter-spacing:2.5px;
-      text-transform:uppercase;
-      color:var(--muted);
-      transition:.35s ease;
-    }
+.links a:hover{opacity:1}
 
-    .links a:hover{color:white}
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+}
 
-    .hero{
-      min-height:100vh;
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      overflow:hidden;
-    }
+.grid{
+  position:absolute;
+  inset:0;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:repeat(2,1fr);
+  gap:6px;
+}
 
-    .grid{
-      position:absolute;
-      inset:0;
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      grid-template-rows:repeat(2,1fr);
-      gap:7px;
-      opacity:.82;
-    }
+.grid img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.7);
+}
 
-    .grid img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      filter:brightness(.68) saturate(.9);
-      transition:1s ease;
-    }
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.35);
+}
 
-    .grid img:hover{
-      filter:brightness(.9) saturate(1);
-      transform:scale(1.04);
-    }
+.content{
+  position:relative;
+  z-index:2;
+}
 
-    .overlay{
-      position:absolute;
-      inset:0;
-      background:
-      radial-gradient(circle at center,rgba(0,0,0,.18),rgba(0,0,0,.82)),
-      linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.78));
-    }
+h1{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(3rem,7vw,7rem);
+  letter-spacing:4px;
+}
 
-    .hero-content{
-      position:relative;
-      z-index:3;
-      width:min(1100px,90%);
-      padding-top:40px;
-    }
+.tagline{
+  margin-top:15px;
+  letter-spacing:4px;
+  font-size:.9rem;
+}
 
-    .eyebrow{
-      color:var(--gold);
-      letter-spacing:5px;
-      text-transform:uppercase;
-      font-size:.72rem;
-      margin-bottom:18px;
-    }
+.btns{
+  margin-top:35px;
+}
 
-    h1{
-      font-family:"Playfair Display",serif;
-      font-size:clamp(3rem,8vw,7.8rem);
-      font-weight:500;
-      line-height:.95;
-      letter-spacing:4px;
-    }
+.btn{
+  border:1px solid white;
+  padding:14px 28px;
+  margin:8px;
+  font-size:.75rem;
+  letter-spacing:2px;
+  transition:.3s;
+}
 
-    .tagline{
-      margin-top:22px;
-      text-transform:uppercase;
-      letter-spacing:5px;
-      color:rgba(255,255,255,.86);
-      font-size:.85rem;
-    }
+.btn:hover{
+  background:white;
+  color:black;
+}
 
-    .hero-text{
-      margin:28px auto 0;
-      max-width:630px;
-      color:var(--muted);
-      line-height:1.8;
-      font-size:.98rem;
-    }
+/* FOOTER */
+footer{
+  padding:60px 7%;
+  border-top:1px solid rgba(255,255,255,.1);
+}
 
-    .btns{margin-top:42px}
+.footer-wrap{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    .btn{
-      display:inline-block;
-      padding:15px 32px;
-      margin:8px;
-      border:1px solid rgba(255,255,255,.85);
-      text-transform:uppercase;
-      letter-spacing:2.5px;
-      font-size:.72rem;
-      transition:.35s ease;
-    }
+.footer-left{
+  font-family:"Playfair Display",serif;
+}
 
-    .btn.primary{
-      background:white;
-      color:black;
-    }
+.footer-right a{
+  margin-left:18px;
+  font-size:1.2rem;
+  opacity:.7;
+}
 
-    .btn:hover{
-      transform:translateY(-4px);
-      background:white;
-      color:black;
-    }
+.footer-right a:hover{
+  opacity:1;
+}
 
-    .bottom-note{
-      position:absolute;
-      z-index:3;
-      bottom:30px;
-      left:7%;
-      right:7%;
-      display:flex;
-      justify-content:space-between;
-      color:rgba(255,255,255,.55);
-      font-size:.72rem;
-      letter-spacing:2px;
-      text-transform:uppercase;
-    }
+.footer-bottom{
+  margin-top:25px;
+  font-size:.7rem;
+  opacity:.5;
+}
 
-    @media(max-width:850px){
-      nav{
-        display:block;
-        text-align:center;
-        padding:22px 5%;
-      }
+/* MOBILE */
+@media(max-width:800px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+    grid-template-rows:repeat(3,1fr);
+  }
 
-      .links{
-        margin-top:16px;
-      }
+  nav{
+    flex-direction:column;
+    text-align:center;
+  }
 
-      .links a{
-        margin:0 9px;
-        font-size:.65rem;
-      }
-
-      .grid{
-        grid-template-columns:repeat(2,1fr);
-        grid-template-rows:repeat(3,1fr);
-      }
-
-      h1{
-        letter-spacing:2px;
-      }
-
-      .bottom-note{
-        display:none;
-      }
-    }
-  </style>
+  .links{
+    margin-top:10px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <nav>
-  <a class="logo" href="index.html">ENHANCE VISUAL STUDIO</a>
-  <div class="links">
-    <a href="index.html">Home</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="book.html">Book</a>
-    <a href="contact.html">Contact</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="grid">
-    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e">
-    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c">
-    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
-    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1">
-    <img src="https://images.unsplash.com/photo-1487412912498-0447578fcca8">
-    <img src="https://images.unsplash.com/photo-1495121605193-b116b5b09a4b">
-  </div>
-
-  <div class="overlay"></div>
-
-  <div class="hero-content">
-    <p class="eyebrow">Luxury Portraiture & Visual Direction</p>
-    <h1>ENHANCE<br>VISUAL STUDIO</h1>
-    <p class="tagline">Pose. Capture. Enhance.</p>
-    <p class="hero-text">
-      Editorial-style photography for portraits, brands, lifestyle, studio campaigns, events, and elevated visual storytelling.
-    </p>
-
-    <div class="btns">
-      <a class="btn primary" href="portfolio.html">Enter Portfolio</a>
-      <a class="btn" href="book.html">Book Now</a>
-    </div>
-  </div>
-
-  <div class="bottom-note">
-    <span>Bay Area Based</span>
-    <span>Editorial • Studio • Lifestyle</span>
-  </div>
-</section>
-
-<script>
-  document.querySelectorAll("a").forEach(link=>{
-    link.addEventListener("click",e=>{
-      if(link.hostname === window.location.hostname){
-        e.preventDefault();
-        document.body.classList.add("fade-out");
-        setTimeout(()=>{window.location.href = link.href},450);
-      }
-    });
-  });
-</script>
-
-</body>
-</html>    .grid img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      filter:brightness(.72);
-    }
-
-    .overlay{
-      position:absolute;
-      inset:0;
-      background:rgba(0,0,0,.35);
-    }
-
-    .content{
-      position:relative;
-      z-index:2;
-      padding:20px;
-      animation:heroRise 1s ease forwards;
-    }
-
-    @keyframes heroRise{
-      from{opacity:0;transform:translateY(18px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-
-    h1{
-      font-family:"Playfair Display",serif;
-      font-size:clamp(2.6rem,7vw,6.5rem);
-      letter-spacing:4px;
-      font-weight:500;
-    }
-
-    .tagline{
-      margin-top:14px;
-      font-size:1rem;
-      letter-spacing:4px;
-      text-transform:uppercase;
-      opacity:.9;
-    }
-
-    .btns{margin-top:36px}
-
-    .btn{
-      display:inline-block;
-      border:1px solid white;
-      padding:14px 30px;
-      margin:8px;
-      font-size:.78rem;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      transition:.3s;
-    }
-
-    .btn:hover{
-      background:white;
-      color:black;
-      transform:translateY(-3px);
-    }
-
-    @media(max-width:800px){
-      nav{
-        padding:20px 6%;
-        display:block;
-        text-align:center;
-      }
-
-      .links{margin-top:14px}
-
-      .links a{
-        margin:0 8px;
-        font-size:.68rem;
-      }
-
-      .grid{
-        grid-template-columns:repeat(2,1fr);
-        grid-template-rows:repeat(3,1fr);
-      }
-
-      h1{letter-spacing:2px}
-
-      .tagline{
-        font-size:.75rem;
-        letter-spacing:3px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<nav>
-  <a class="logo" href="index.html">ENHANCE VISUAL STUDIO</a>
-
+  <div class="logo">ENHANCE VISUAL STUDIO</div>
   <div class="links">
     <a href="index.html">HOME</a>
     <a href="portfolio.html">PORTFOLIO</a>
@@ -396,11 +203,47 @@
     <p class="tagline">Pose. Capture. Enhance.</p>
 
     <div class="btns">
-      <a class="btn" href="portfolio.html">Enter Portfolio</a>
-      <a class="btn" href="book.html">Book Now</a>
+      <a class="btn" href="portfolio.html">ENTER</a>
+      <a class="btn" href="book.html">BOOK NOW</a>
     </div>
   </div>
 </section>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-left">
+      ENHANCE VISUAL STUDIO
+    </div>
+
+    <div class="footer-right">
+      <a href="https://instagram.com/enhancevisualstudio" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://tiktok.com/@enhancevisualstudio" target="_blank">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a href="mailto:hello@enhancevisualstudio.com">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Enhance Visual Studio — Pose. Capture. Enhance.
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click",e=>{
+    if(link.hostname === window.location.hostname){
+      e.preventDefault();
+      document.body.classList.add("fade-out");
+      setTimeout(()=>{window.location.href = link.href},400);
+    }
+  });
+});
+</script>
 
 </body>
 </html>
