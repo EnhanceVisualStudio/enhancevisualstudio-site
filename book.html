@@ -1,66 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book | Enhance Visual Studio</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#050505;color:white;font-family:Inter,sans-serif}
-a{text-decoration:none;color:white}
-nav{padding:24px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.1)}
-.logo{font-family:"Playfair Display",serif;letter-spacing:2px}
-.links a{margin-left:28px;font-size:.78rem;letter-spacing:2px;opacity:.7}
-.wrap{min-height:85vh;display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:90px 7%;align-items:center}
-h1{font-family:"Playfair Display",serif;font-size:clamp(3rem,7vw,6rem);font-weight:500}
-p{opacity:.7;line-height:1.7;margin-top:15px}
-form{background:#0d0d0d;border:1px solid rgba(255,255,255,.12);padding:35px}
-input,select,textarea{
-width:100%;background:#050505;border:1px solid rgba(255,255,255,.18);
-color:white;padding:15px;margin-bottom:14px;font-family:Inter
-}
-textarea{min-height:140px}
-button{
-width:100%;padding:15px;background:white;color:black;border:0;
-letter-spacing:2px;text-transform:uppercase;cursor:pointer
-}
-@media(max-width:900px){nav{display:block;text-align:center}.links{margin-top:14px}.links a{margin:0 8px}.wrap{grid-template-columns:1fr;padding-top:60px}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enhance Visual Studio | Book</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    :root{
+      --bg:#050505;
+      --soft:#0d0d0d;
+      --line:rgba(255,255,255,.14);
+      --text:#fff;
+      --muted:rgba(255,255,255,.68);
+      --gold:#d8c7a3;
+    }
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter,sans-serif;
+      opacity:0;
+      animation:pageIn .8s ease forwards;
+    }
+
+    body.fade-out{opacity:0;transition:opacity .45s ease}
+
+    @keyframes pageIn{
+      from{opacity:0;transform:translateY(12px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:30;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:26px 7%;
+      background:rgba(5,5,5,.88);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .logo{
+      font-family:"Playfair Display",serif;
+      letter-spacing:2.5px;
+      font-size:1.1rem;
+      font-weight:600;
+    }
+
+    .links a{
+      margin-left:30px;
+      font-size:.72rem;
+      letter-spacing:2.5px;
+      text-transform:uppercase;
+      color:var(--muted);
+      transition:.35s ease;
+    }
+
+    .links a:hover{color:white}
+
+    .wrap{
+      min-height:calc(100vh - 78px);
+      padding:85px 7%;
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:55px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      color:var(--gold);
+      letter-spacing:5px;
+      text-transform:uppercase;
+      font-size:.72rem;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(3.5rem,7vw,7rem);
+      font-weight:500;
+      line-height:.95;
+    }
+
+    .intro{
+      margin-top:25px;
+      color:var(--muted);
+      line-height:1.8;
+      max-width:580px;
+    }
+
+    .mini{
+      margin-top:35px;
+      display:grid;
+      gap:15px;
+    }
+
+    .mini div{
+      border-top:1px solid var(--line);
+      padding-top:15px;
+      color:rgba(255,255,255,.78);
+      font-size:.9rem;
+      letter-spacing:1px;
+    }
+
+    form{
+      background:linear-gradient(145deg,#0d0d0d,#070707);
+      border:1px solid var(--line);
+      padding:38px;
+      box-shadow:0 30px 90px rgba(0,0,0,.45);
+    }
+
+    label{
+      display:block;
+      margin-bottom:8px;
+      color:var(--gold);
+      font-size:.66rem;
+      letter-spacing:2.5px;
+      text-transform:uppercase;
+    }
+
+    input,select,textarea{
+      width:100%;
+      background:#050505;
+      border:1px solid rgba(255,255,255,.16);
+      color:white;
+      padding:15px;
+      margin-bottom:18px;
+      font-family:Inter,sans-serif;
+      outline:none;
+      transition:.3s ease;
+    }
+
+    input:focus,select:focus,textarea:focus{
+      border-color:var(--gold);
+    }
+
+    textarea{min-height:150px;resize:vertical}
+
+    button{
+      width:100%;
+      padding:16px;
+      background:white;
+      color:black;
+      border:0;
+      text-transform:uppercase;
+      letter-spacing:2.5px;
+      font-weight:600;
+      cursor:pointer;
+      transition:.35s ease;
+    }
+
+    button:hover{
+      transform:translateY(-3px);
+      background:var(--gold);
+    }
+
+    @media(max-width:950px){
+      nav{display:block;text-align:center}
+      .links{margin-top:16px}
+      .links a{margin:0 9px;font-size:.65rem}
+      .wrap{grid-template-columns:1fr;text-align:center;padding-top:65px}
+      .intro{margin-left:auto;margin-right:auto}
+      form{text-align:left}
+    }
+  </style>
 </head>
+
 <body>
 
 <nav>
-<a class="logo" href="index.html">ENHANCE VISUAL STUDIO</a>
-<div class="links">
-<a href="index.html">HOME</a><a href="portfolio.html">PORTFOLIO</a><a href="book.html">BOOK</a><a href="contact.html">CONTACT</a>
-</div>
+  <a class="logo" href="index.html">ENHANCE VISUAL STUDIO</a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="book.html">Book</a>
+    <a href="contact.html">Contact</a>
+  </div>
 </nav>
 
 <section class="wrap">
-<div>
-<h1>Book a Session</h1>
-<p>Ready to create something elevated? Send your session details and we’ll build a visual experience around your style, concept, and story.</p>
-<p><strong>Pose. Capture. Enhance.</strong></p>
-</div>
+  <div>
+    <p class="eyebrow">Start Your Session</p>
+    <h1>Book The Vision</h1>
+    <p class="intro">
+      Tell me what you’re creating. Whether it’s portraits, branding, studio work, maternity, lifestyle, events, or an editorial concept — this is where we shape the direction.
+    </p>
 
-<form>
-<input type="text" placeholder="Full Name">
-<input type="email" placeholder="Email Address">
-<select>
-<option>Session Type</option>
-<option>Portraits</option>
-<option>Studio</option>
-<option>Lifestyle</option>
-<option>Editorial</option>
-<option>Maternity</option>
-<option>Branding</option>
-<option>Wedding / Event</option>
-</select>
-<input type="text" placeholder="Preferred Date">
-<textarea placeholder="Tell me your vision..."></textarea>
-<button type="submit">Submit Inquiry</button>
-</form>
+    <div class="mini">
+      <div>Pose. Capture. Enhance.</div>
+      <div>Studio • Outdoor • Creative Direction</div>
+      <div>Bay Area Based</div>
+    </div>
+  </div>
+
+  <form>
+    <label>Full Name</label>
+    <input type="text" placeholder="Your name">
+
+    <label>Email</label>
+    <input type="email" placeholder="your@email.com">
+
+    <label>Session Type</label>
+    <select>
+      <option>Select a session</option>
+      <option>Portraits</option>
+      <option>Studio</option>
+      <option>Lifestyle</option>
+      <option>Editorial</option>
+      <option>Maternity</option>
+      <option>Family / Kids</option>
+      <option>Graduation</option>
+      <option>Branding</option>
+      <option>Wedding / Event</option>
+      <option>Sports</option>
+    </select>
+
+    <label>Preferred Date</label>
+    <input type="text" placeholder="Example: June 15">
+
+    <label>Your Vision</label>
+    <textarea placeholder="Tell me the vibe, location, outfit ideas, purpose, and anything important..."></textarea>
+
+    <button type="submit">Submit Inquiry</button>
+  </form>
 </section>
+
+<script>
+  document.querySelectorAll("a").forEach(link=>{
+    link.addEventListener("click",e=>{
+      if(link.hostname === window.location.hostname){
+        e.preventDefault();
+        document.body.classList.add("fade-out");
+        setTimeout(()=>{window.location.href = link.href},450);
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
