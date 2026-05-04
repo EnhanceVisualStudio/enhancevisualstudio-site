@@ -4,6 +4,211 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Enhance Visual Studio | Home</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      background:#050505;
+      color:white;
+      font-family:Inter,sans-serif;
+      overflow-x:hidden;
+      animation:pageFade .9s ease forwards;
+    }
+
+    @keyframes pageFade{
+      from{opacity:0;transform:translateY(12px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    a{text-decoration:none;color:white}
+
+    nav{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:10;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:24px 7%;
+      background:linear-gradient(to bottom,rgba(0,0,0,.85),transparent);
+    }
+
+    .logo{
+      font-family:"Playfair Display",serif;
+      font-size:1.2rem;
+      letter-spacing:2px;
+    }
+
+    .links a{
+      margin-left:28px;
+      font-size:.78rem;
+      letter-spacing:2px;
+      opacity:.75;
+      transition:.3s;
+    }
+
+    .links a:hover{opacity:1}
+
+    .hero{
+      min-height:100vh;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      text-align:center;
+    }
+
+    .grid{
+      position:absolute;
+      inset:0;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      grid-template-rows:repeat(2,1fr);
+      gap:6px;
+      opacity:.75;
+      animation:slowZoom 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes slowZoom{
+      from{transform:scale(1)}
+      to{transform:scale(1.04)}
+    }
+
+    .grid img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:brightness(.65);
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle,rgba(0,0,0,.25),rgba(0,0,0,.8)),
+        rgba(0,0,0,.45);
+    }
+
+    .content{
+      position:relative;
+      z-index:2;
+      padding:20px;
+      animation:heroRise 1.2s ease forwards;
+    }
+
+    @keyframes heroRise{
+      from{opacity:0;transform:translateY(25px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    h1{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(2.6rem,7vw,6.5rem);
+      letter-spacing:4px;
+      font-weight:500;
+    }
+
+    .tagline{
+      margin-top:14px;
+      font-size:1rem;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      opacity:.85;
+    }
+
+    .btns{margin-top:36px}
+
+    .btn{
+      display:inline-block;
+      border:1px solid white;
+      padding:14px 30px;
+      margin:8px;
+      font-size:.78rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      transition:.3s;
+    }
+
+    .btn:hover{
+      background:white;
+      color:black;
+      transform:translateY(-3px);
+    }
+
+    @media(max-width:800px){
+      nav{
+        padding:20px 6%;
+        display:block;
+        text-align:center;
+      }
+
+      .links{margin-top:14px}
+
+      .links a{
+        margin:0 8px;
+        font-size:.68rem;
+      }
+
+      .grid{
+        grid-template-columns:repeat(2,1fr);
+        grid-template-rows:repeat(3,1fr);
+      }
+
+      h1{letter-spacing:2px}
+      .tagline{font-size:.75rem;letter-spacing:3px}
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a class="logo" href="index.html">ENHANCE VISUAL STUDIO</a>
+
+  <div class="links">
+    <a href="index.html">HOME</a>
+    <a href="portfolio.html">PORTFOLIO</a>
+    <a href="book.html">BOOK</a>
+    <a href="contact.html">CONTACT</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="grid">
+    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e">
+    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1">
+    <img src="https://images.unsplash.com/photo-1487412912498-0447578fcca8">
+    <img src="https://images.unsplash.com/photo-1495121605193-b116b5b09a4b">
+  </div>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>ENHANCE VISUAL STUDIO</h1>
+    <p class="tagline">Pose. Capture. Enhance.</p>
+
+    <div class="btns">
+      <a class="btn" href="portfolio.html">Enter Portfolio</a>
+      <a class="btn" href="book.html">Book Now</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enhance Visual Studio | Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
