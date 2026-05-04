@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Session | Enhance Visual Studio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap');
+
+body{margin:0;background:#050505;color:#f7f2ea;font-family:Inter,sans-serif;}
+a{text-decoration:none;color:inherit;}
+.nav{position:fixed;top:0;width:100%;z-index:10;padding:25px 7%;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.65);backdrop-filter:blur(12px);}
+.logo{font-family:'Playfair Display',serif;}
+.logo h1{font-size:20px;margin:0;}
+.logo span{font-size:11px;letter-spacing:2px;color:#c6a15b;}
+.links{display:flex;gap:30px;font-size:12px;letter-spacing:2px;text-transform:uppercase;}
+.links a{color:#aaa;}
+.links a:hover{color:white;}
+
+.hero{padding:180px 7% 70px;}
+.hero h2{font-family:'Playfair Display',serif;font-size:75px;line-height:.95;margin:0 0 20px;}
+.hero p{max-width:600px;color:#aaa;line-height:1.8;}
+
+.packages{padding:40px 7%;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.card{border:1px solid rgba(255,255,255,.12);padding:32px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;}
+.card h3{font-family:'Playfair Display',serif;font-size:31px;margin:0 0 15px;}
+.card p{color:#aaa;line-height:1.7;}
+.price{color:#c6a15b;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-top:25px;}
+
+.booking{padding:90px 7% 120px;display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;border-top:1px solid rgba(255,255,255,.1);}
+.booking h2{font-family:'Playfair Display',serif;font-size:55px;margin:0 0 20px;}
+.booking p{color:#aaa;line-height:1.8;}
+form{display:grid;gap:15px;}
+input,select,textarea{background:transparent;border:1px solid rgba(255,255,255,.15);padding:17px;color:#f7f2ea;font-family:Inter,sans-serif;}
+select option{background:#111;}
+textarea{min-height:150px;}
+button{padding:17px;border:none;background:#f7f2ea;color:#050505;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
+button:hover{background:#c6a15b;}
+
+.footer{padding:40px 7%;border-top:1px solid rgba(255,255,255,.1);color:#777;font-size:12px;}
+
+@media(max-width:900px){.packages,.booking{grid-template-columns:1fr 1fr}.hero h2{font-size:55px}}
+@media(max-width:650px){.links{display:none}.packages,.booking{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+  <a href="index.html" class="logo">
+    <h1>Enhance Visual Studio</h1>
+    <span>Pose. Capture. Enhance</span>
+  </a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="book-session.html">Book</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</div>
+
+<section class="hero">
+  <h2>Book a Session</h2>
+  <p>Start your booking request below. Every session is built around your vision, location, style, and the final look you want to create.</p>
+</section>
+
+<section class="packages">
+  <div class="card">
+    <div><h3>Portrait Session</h3><p>Perfect for birthdays, personal portraits, graduation, creative shoots, and profile images.</p></div>
+    <div class="price">Starting at $250</div>
+  </div>
+
+  <div class="card">
+    <div><h3>Studio Session</h3><p>Clean studio lighting, seamless backgrounds, guided posing, and polished final images.</p></div>
+    <div class="price">Starting at $350</div>
+  </div>
+
+  <div class="card">
+    <div><h3>Branding Session</h3><p>Premium content for entrepreneurs, creatives, models, artists, and business owners.</p></div>
+    <div class="price">Starting at $400</div>
+  </div>
+
+  <div class="card">
+    <div><h3>Event Coverage</h3><p>Professional coverage for events, weddings, launches, parties, and private gatherings.</p></div>
+    <div class="price">Custom Quote</div>
+  </div>
+</section>
+
+<section class="booking">
+  <div>
+    <h2>Start your request.</h2>
+    <p>
+      Fill this out with as much detail as possible. Include your date, budget, session type,
+      number of people, location, and overall vision.
+    </p>
+  </div>
+
+  <form action="mailto:hello@enhancevisualstudio.com" method="post" enctype="text/plain">
+    <input type="text" name="Name" placeholder="Full Name" required>
+    <input type="email" name="Email" placeholder="Email Address" required>
+    <input type="tel" name="Phone" placeholder="Phone Number">
+
+    <select name="Session Type" required>
+      <option value="">Select Session Type</option>
+      <option>Portraits</option>
+      <option>Studio</option>
+      <option>Lifestyle</option>
+      <option>Editorial</option>
+      <option>Maternity</option>
+      <option>Family</option>
+      <option>Kids</option>
+      <option>Graduation</option>
+      <option>Branding</option>
+      <option>Weddings</option>
+      <option>Events</option>
+      <option>Sports</option>
+    </select>
+
+    <input type="text" name="Preferred Date" placeholder="Preferred Date">
+    <input type="text" name="Budget" placeholder="Estimated Budget">
+    <textarea name="Vision" placeholder="Tell me your vision, location, outfit ideas, number of people, and anything important."></textarea>
+
+    <button type="submit">Send Booking Request</button>
+  </form>
+</section>
+
+<div class="footer">© 2026 Enhance Visual Studio — hello@enhancevisualstudio.com</div>
+
+</body>
+</html>
