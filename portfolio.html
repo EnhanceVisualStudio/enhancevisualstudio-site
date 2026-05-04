@@ -1,36 +1,220 @@
+<!-- portfolio.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio | Enhance Visual Studio</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+
+    :root {
+      --black:#050505;
+      --soft:#0d0d0d;
+      --white:#f7f2ea;
+      --muted:#b9b1a7;
+      --gold:#c6a15b;
+      --line:rgba(255,255,255,.13);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--black);color:var(--white);font-family:Inter,sans-serif}
+    a{text-decoration:none;color:inherit}
+    img{width:100%;display:block;object-fit:cover}
+
+    .nav{
+      position:fixed;top:0;width:100%;z-index:1000;
+      padding:24px 7%;display:flex;justify-content:space-between;align-items:center;
+      background:rgba(5,5,5,.65);backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .logo{font-family:'Playfair Display',serif;font-size:22px}
+    .links{display:flex;gap:32px;font-size:12px;text-transform:uppercase;letter-spacing:2px}
+    .links a{color:var(--muted)}
+    .links a:hover,.links .active{color:var(--white)}
+
+    header.hero{
+      padding:160px 7% 60px;
+    }
+
+    .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:4px;font-size:12px;margin-bottom:22px}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(52px,7vw,100px);line-height:.95;margin-bottom:20px}
+    p{color:var(--muted);max-width:600px;line-height:1.8}
+
+    .grid{
+      padding:60px 7% 110px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .item{
+      position:relative;
+      height:420px;
+      overflow:hidden;
+      background:var(--soft);
+      cursor:pointer;
+    }
+
+    .item:nth-child(2),
+    .item:nth-child(5),
+    .item:nth-child(8){
+      height:540px;
+    }
+
+    .item img{
+      height:100%;
+      transition:.6s ease;
+      filter:contrast(1.05);
+    }
+
+    .item:hover img{
+      transform:scale(1.08);
+      opacity:.75;
+    }
+
+    .label{
+      position:absolute;
+      bottom:20px;
+      left:20px;
+    }
+
+    .label h3{
+      font-family:'Playfair Display',serif;
+      font-size:26px;
+      margin-bottom:6px;
+    }
+
+    .label span{
+      color:var(--gold);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+    }
+
+    footer{
+      padding:34px 7%;
+      border-top:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+    }
+
+    @media(max-width:1000px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:600px){
+      .grid{grid-template-columns:1fr}
+      .item,
+      .item:nth-child(2),
+      .item:nth-child(5),
+      .item:nth-child(8){
+        height:420px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header class="nav">
-  <a class="logo" href="index.html">Enhance Visual Studio</a>
-  <nav class="links">
-    <a href="index.html">Home</a><a class="active" href="portfolio.html">Portfolio</a><a href="book.html">Book</a><a href="contact.html">Contact</a>
-  </nav>
-</header>
 
-<section class="hero reveal">
-  <div class="eyebrow">Portfolio</div>
-  <h1>Selected Work</h1>
-  <p>Campaign-style galleries for portraits, studio, lifestyle, editorial, branding, maternity, family, weddings, events, and sports.</p>
-</section>
+  <header class="nav">
+    <a class="logo" href="index.html">Enhance Visual Studio</a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a class="active" href="portfolio.html">Portfolio</a>
+      <a href="book.html">Book a Session</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-<section class="grid reveal">
-  <div class="item tall"><img src="images/portraits.jpg"><div class="label"><h3>Portraits</h3><span>Clean / Personal</span></div></div>
-  <div class="item"><img src="images/studio.jpg"><div class="label"><h3>Studio</h3><span>Controlled Light</span></div></div>
-  <div class="item tall"><img src="images/editorial.jpg"><div class="label"><h3>Editorial</h3><span>Fashion Inspired</span></div></div>
-  <div class="item"><img src="images/lifestyle.jpg"><div class="label"><h3>Lifestyle</h3><span>Natural Energy</span></div></div>
-  <div class="item"><img src="images/branding.jpg"><div class="label"><h3>Branding</h3><span>Business Content</span></div></div>
-  <div class="item tall"><img src="images/maternity.jpg"><div class="label"><h3>Maternity</h3><span>Elegant / Soft</span></div></div>
-  <div class="item"><img src="images/events.jpg"><div class="label"><h3>Events</h3><span>Storytelling</span></div></div>
-  <div class="item tall"><img src="images/sports.jpg"><div class="label"><h3>Sports</h3><span>Action / Energy</span></div></div>
-</section>
+  <header class="hero">
+    <div class="eyebrow">Portfolio</div>
+    <h1>Selected Work</h1>
+    <p>
+      A curated collection of portraits, studio sessions, branding,
+      lifestyle, maternity, family, events, and editorial photography.
+    </p>
+  </header>
 
-<footer><div>© 2026 Enhance Visual Studio</div><div>San Francisco & Bay Area</div></footer>
-<script src="script.js"></script>
+  <section class="grid">
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=900&q=80">
+      <div class="label">
+        <h3>Portraits</h3>
+        <span>Clean / Personal</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?auto=format&fit=crop&w=900&q=80">
+      <div class="label">
+        <h3>Studio</h3>
+        <span>Controlled Light</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=80">
+      <div class="label">
+        <h3>Editorial</h3>
+        <span>Fashion Inspired</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80">
+      <div class="label">
+        <h3>Lifestyle</h3>
+        <span>Natural Energy</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1529634597503-139d3726fed5?auto=format&fit=crop&w=900&q=80">
+      <div class="label">
+        <h3>Branding</h3>
+        <span>Business / Content</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80">
+      <div class="label">
+        <h3>Weddings</h3>
+        <span>Elegant Moments</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=900&q=80">
+      <div class="label">
+        <h3>Events</h3>
+        <span>Storytelling</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80">
+      <div class="label">
+        <h3>Sports</h3>
+        <span>Action / Energy</span>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <div>© 2026 Enhance Visual Studio</div>
+    <div>San Francisco & Bay Area</div>
+  </footer>
+
 </body>
 </html>
