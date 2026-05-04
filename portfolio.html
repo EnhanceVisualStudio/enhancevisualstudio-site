@@ -13,7 +13,7 @@
 
 body{
   background:#050505;
-  color:#fff;
+  color:white;
   font-family:Inter,sans-serif;
   opacity:0;
   animation:fadeIn .8s ease forwards;
@@ -27,21 +27,43 @@ body{
 body.fade-out{opacity:0;transition:.4s}
 a{text-decoration:none;color:white}
 
+/* LOADER */
+.loader{
+  position:fixed;
+  inset:0;
+  background:#050505;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.loader span{
+  font-family:"Playfair Display",serif;
+  letter-spacing:4px;
+  animation:pulse 1.2s infinite alternate;
+}
+
+@keyframes pulse{
+  from{opacity:.4}
+  to{opacity:1}
+}
+
+/* NAV */
 nav{
   position:sticky;
   top:0;
-  z-index:10;
+  width:100%;
   display:flex;
   justify-content:space-between;
   padding:25px 7%;
+  z-index:100;
   background:rgba(5,5,5,.9);
   backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .logo{
   font-family:"Playfair Display",serif;
-  letter-spacing:2px;
 }
 
 .links a{
@@ -53,6 +75,34 @@ nav{
 
 .links a:hover{opacity:1}
 
+.menu-btn{display:none}
+
+/* FULL MENU */
+.full-menu{
+  position:fixed;
+  inset:0;
+  background:#050505;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
+}
+
+.full-menu.active{
+  opacity:1;
+  pointer-events:all;
+}
+
+.full-menu a{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(3rem,7vw,7rem);
+  margin:10px 0;
+}
+
+/* HEADER */
 header{
   padding:90px 7% 40px;
 }
@@ -60,26 +110,25 @@ header{
 .eyebrow{
   color:#d8c7a3;
   letter-spacing:4px;
-  font-size:.72rem;
+  font-size:.7rem;
   text-transform:uppercase;
-  margin-bottom:15px;
 }
 
 h1{
   font-family:"Playfair Display",serif;
   font-size:clamp(3rem,7vw,7rem);
-  font-weight:500;
+  margin-top:10px;
 }
 
 header p{
-  max-width:700px;
   margin-top:20px;
+  max-width:700px;
   color:rgba(255,255,255,.65);
-  line-height:1.8;
 }
 
-.portfolio{
-  padding:30px 7% 90px;
+/* GRID */
+.grid{
+  padding:40px 7% 90px;
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:18px;
@@ -89,8 +138,7 @@ header p{
   position:relative;
   height:500px;
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.12);
-  background:#111;
+  border:1px solid rgba(255,255,255,.1);
 }
 
 .card.large{
@@ -101,13 +149,13 @@ header p{
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:brightness(.68);
-  transition:.8s ease;
+  filter:brightness(.7);
+  transition:.8s;
 }
 
 .card:hover img{
   transform:scale(1.07);
-  filter:brightness(.92);
+  filter:brightness(.9);
 }
 
 .card::after{
@@ -117,27 +165,24 @@ header p{
   background:linear-gradient(to top,rgba(0,0,0,.9),transparent 60%);
 }
 
-.card-text{
+.text{
   position:absolute;
   bottom:25px;
   left:25px;
-  z-index:2;
 }
 
-.card-text span{
+.text span{
   color:#d8c7a3;
   font-size:.65rem;
   letter-spacing:3px;
-  text-transform:uppercase;
 }
 
-.card-text h2{
+.text h2{
   font-family:"Playfair Display",serif;
   font-size:2rem;
-  margin-top:8px;
-  font-weight:500;
 }
 
+/* FOOTER */
 footer{
   padding:60px 7%;
   border-top:1px solid rgba(255,255,255,.1);
@@ -147,10 +192,6 @@ footer{
   display:flex;
   justify-content:space-between;
   align-items:center;
-}
-
-.footer-left{
-  font-family:"Playfair Display",serif;
 }
 
 .footer-right a{
@@ -167,32 +208,18 @@ footer{
   opacity:.5;
 }
 
+/* MOBILE */
 @media(max-width:900px){
-  nav{
-    flex-direction:column;
-    text-align:center;
-  }
+  .links{display:none}
+  .menu-btn{display:block}
 
-  .links{margin-top:10px}
-
-  .links a{
-    margin:0 8px;
-    font-size:.68rem;
-  }
-
-  .portfolio{
+  .grid{
     grid-template-columns:1fr;
   }
 
   .card,.card.large{
     grid-column:span 1;
-    height:430px;
-  }
-
-  .footer-wrap{
-    flex-direction:column;
-    gap:20px;
-    text-align:center;
+    height:400px;
   }
 }
 </style>
@@ -200,36 +227,47 @@ footer{
 
 <body>
 
+<div class="loader"><span>ENHANCE VISUAL STUDIO</span></div>
+
 <nav>
-  <a class="logo" href="index.html">ENHANCE VISUAL STUDIO</a>
+  <div class="logo">ENHANCE VISUAL STUDIO</div>
+
   <div class="links">
     <a href="index.html">HOME</a>
     <a href="portfolio.html">PORTFOLIO</a>
     <a href="book.html">BOOK</a>
     <a href="contact.html">CONTACT</a>
   </div>
+
+  <div class="menu-btn" onclick="toggleMenu()">MENU</div>
 </nav>
+
+<div class="full-menu" id="menu">
+  <a href="index.html">Home</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="book.html">Book</a>
+  <a href="contact.html">Contact</a>
+</div>
 
 <header>
   <p class="eyebrow">Selected Work</p>
   <h1>Portfolio</h1>
-  <p>
-    A curated collection of editorial portraits, studio work, lifestyle visuals, branding sessions, creative direction, events, and storytelling through imagery.
-  </p>
+  <p>A curated collection of portraits, studio, lifestyle, branding, and creative direction.</p>
 </header>
 
-<section class="portfolio">
+<section class="grid">
+
   <a class="card large" href="book.html">
     <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1">
-    <div class="card-text">
+    <div class="text">
       <span>Signature</span>
-      <h2>Editorial Portraits</h2>
+      <h2>Editorial</h2>
     </div>
   </a>
 
   <a class="card" href="book.html">
     <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c">
-    <div class="card-text">
+    <div class="text">
       <span>Indoor</span>
       <h2>Studio</h2>
     </div>
@@ -237,44 +275,21 @@ footer{
 
   <a class="card" href="book.html">
     <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
-    <div class="card-text">
-      <span>Natural</span>
+    <div class="text">
+      <span>Outdoor</span>
       <h2>Lifestyle</h2>
     </div>
   </a>
 
-  <a class="card large" href="book.html">
-    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e">
-    <div class="card-text">
-      <span>Business</span>
-      <h2>Branding</h2>
-    </div>
-  </a>
-
-  <a class="card" href="book.html">
-    <img src="https://images.unsplash.com/photo-1487412912498-0447578fcca8">
-    <div class="card-text">
-      <span>Moments</span>
-      <h2>Events</h2>
-    </div>
-  </a>
-
-  <a class="card" href="book.html">
-    <img src="https://images.unsplash.com/photo-1495121605193-b116b5b09a4b">
-    <div class="card-text">
-      <span>Conceptual</span>
-      <h2>Creative</h2>
-    </div>
-  </a>
 </section>
 
 <footer>
   <div class="footer-wrap">
-    <div class="footer-left">ENHANCE VISUAL STUDIO</div>
+    <div>ENHANCE VISUAL STUDIO</div>
 
     <div class="footer-right">
-      <a href="https://instagram.com/enhancevisualstudio" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://tiktok.com/@enhancevisualstudio" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://instagram.com/enhancevisualstudio"><i class="fab fa-instagram"></i></a>
+      <a href="https://tiktok.com/@enhancevisualstudio"><i class="fab fa-tiktok"></i></a>
       <a href="mailto:hello@enhancevisualstudio.com"><i class="fas fa-envelope"></i></a>
     </div>
   </div>
@@ -285,12 +300,18 @@ footer{
 </footer>
 
 <script>
+window.onload=()=>document.querySelector(".loader").style.display="none";
+
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
+
 document.querySelectorAll("a").forEach(link=>{
   link.addEventListener("click",e=>{
-    if(link.hostname === window.location.hostname){
+    if(link.hostname===window.location.hostname){
       e.preventDefault();
       document.body.classList.add("fade-out");
-      setTimeout(()=>{window.location.href = link.href},400);
+      setTimeout(()=>window.location=link.href,400);
     }
   });
 });
