@@ -7,33 +7,109 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
+body {
+  background:#050505;
+}
+
+.loader {
+  position:fixed;
+  inset:0;
+  background:#050505;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#c9a66b;
+  letter-spacing:5px;
+  font-size:12px;
+  text-transform:uppercase;
+  transition:opacity .8s ease, visibility .8s ease;
+}
+
+.loader.hidden {
+  opacity:0;
+  visibility:hidden;
+}
+
 .gallery {
-  column-count: 3;
-  column-gap: 10px;
-  padding: 100px 6% 60px;
+  column-count:3;
+  column-gap:12px;
+  padding:120px 6% 70px;
 }
 
 .gallery img {
-  width: 100%;
-  margin-bottom: 10px;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: .3s ease;
+  width:100%;
+  margin-bottom:12px;
+  display:block;
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(24px);
+  filter:brightness(.92) contrast(1.05);
+  transition:
+    opacity .9s ease,
+    transform .9s ease,
+    filter .4s ease;
+}
+
+.gallery img.visible {
+  opacity:1;
+  transform:translateY(0);
 }
 
 .gallery img:hover {
-  opacity: .9;
-  transform: scale(1.01);
+  filter:brightness(1.05) contrast(1.08);
+  transform:scale(1.012);
 }
 
-/* mobile */
+.lightbox {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.94);
+  z-index:9998;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+}
+
+.lightbox.active {
+  display:flex;
+}
+
+.lightbox img {
+  max-width:92vw;
+  max-height:90vh;
+  object-fit:contain;
+}
+
+.close-lightbox {
+  position:absolute;
+  top:26px;
+  right:32px;
+  color:#fff;
+  font-size:12px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  cursor:pointer;
+  opacity:.75;
+}
+
+.close-lightbox:hover {
+  opacity:1;
+}
+
 @media(max-width:900px){
-  .gallery { column-count: 1; }
+  .gallery {
+    column-count:1;
+    padding:100px 5% 50px;
+  }
 }
 </style>
 </head>
 
 <body>
+
+<div class="loader">Loading Portfolio</div>
 
 <header class="site-header">
   <a href="index.html" class="logo">Enhance Visual Studio</a>
@@ -47,17 +123,67 @@
 </header>
 
 <div class="gallery">
-  <img src="images/1.jpg">
-  <img src="images/2.jpg">
-  <img src="images/3.jpg">
-  <img src="images/4.jpg">
-  <img src="images/5.jpg">
-  <img src="images/6.jpg">
-  <img src="images/7.jpg">
-  <img src="images/8.jpg">
-  <img src="images/9.jpg">
+  <img src="images/1.jpg" alt="Enhance Visual Studio Portfolio Image">
+  <img src="images/2.jpg" alt="Enhance Visual Studio Portfolio Image">
+  <img src="images/3.jpg" alt="Enhance Visual Studio Portfolio Image">
+  <img src="images/4.jpg" alt="Enhance Visual Studio Portfolio Image">
+  <img src="images/5.jpg" alt="Enhance Visual Studio Portfolio Image">
+  <img src="images/6.jpg" alt="Enhance Visual Studio Portfolio Image">
+  <img src="images/7.jpg" alt="Enhance Visual Studio Portfolio Image">
+  <img src="images/8.jpg" alt="Enhance Visual Studio Portfolio Image">
+  <img src="images/9.jpg" alt="Enhance Visual Studio Portfolio Image">
+  <img src="images/10.jpg" alt="Enhance Visual Studio Portfolio Image">
+  <img src="images/11.jpg" alt="Enhance Visual Studio Portfolio Image">
+  <img src="images/12.jpg" alt="Enhance Visual Studio Portfolio Image">
+</div>
+
+<div class="lightbox">
+  <span class="close-lightbox">Close</span>
+  <img src="" alt="Expanded portfolio image">
 </div>
 
 <script src="script.js"></script>
+
+<script>
+window.addEventListener("load", () => {
+  document.querySelector(".loader").classList.add("hidden");
+
+  const images = document.querySelectorAll(".gallery img");
+
+  images.forEach((img, index) => {
+    setTimeout(() => {
+      img.classList.add("visible");
+    }, index * 120);
+  });
+});
+
+const lightbox = document.querySelector(".lightbox");
+const lightboxImg = document.querySelector(".lightbox img");
+const closeLightbox = document.querySelector(".close-lightbox");
+
+document.querySelectorAll(".gallery img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightboxImg.src = img.src;
+    lightbox.classList.add("active");
+  });
+});
+
+closeLightbox.addEventListener("click", () => {
+  lightbox.classList.remove("active");
+});
+
+lightbox.addEventListener("click", e => {
+  if (e.target === lightbox) {
+    lightbox.classList.remove("active");
+  }
+});
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    lightbox.classList.remove("active");
+  }
+});
+</script>
+
 </body>
 </html>
