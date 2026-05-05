@@ -196,49 +196,38 @@ footer {
 .socials {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  gap: 14px;
 }
 
 .socials a {
-  position: relative;
-  margin-left: 14px;
-  padding: 8px 12px;
-  border: 1px solid rgba(255,255,255,0.15);
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.14);
   transition: all 0.3s ease;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: socialFade 0.6s ease forwards;
-}
-
-.socials a:nth-child(1) { animation-delay: 0.2s; }
-.socials a:nth-child(2) { animation-delay: 0.3s; }
-.socials a:nth-child(3) { animation-delay: 0.4s; }
-.socials a:nth-child(4) { animation-delay: 0.5s; }
-.socials a:nth-child(5) { animation-delay: 0.6s; }
-
-.socials a::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, transparent, rgba(201,166,107,0.4), transparent);
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.socials a:hover::before {
-  opacity: 1;
+  background: rgba(255,255,255,0.02);
 }
 
 .socials a:hover {
-  color: #c9a66b;
-  border-color: #c9a66b;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  border-color: #c9a66b;
+  background: rgba(201,166,107,0.08);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+}
+
+.socials img {
+  width: 16px;
+  height: 16px;
+  filter: invert(1);
+  opacity: 0.75;
+  transition: 0.3s ease;
+}
+
+.socials a:hover img {
+  opacity: 1;
+  filter: invert(74%) sepia(21%) saturate(585%) hue-rotate(356deg) brightness(92%) contrast(87%);
 }
 
 @keyframes socialFade {
