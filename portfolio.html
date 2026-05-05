@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio | Enhance Visual Studio</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio | Enhance Visual Studio</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.gallery {
+  column-count: 3;
+  column-gap: 10px;
+  padding: 100px 6% 60px;
+}
+
+.gallery img {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.gallery img:hover {
+  opacity: .9;
+  transform: scale(1.01);
+}
+
+/* mobile */
+@media(max-width:900px){
+  .gallery { column-count: 1; }
+}
+</style>
 </head>
+
 <body>
 
 <header class="site-header">
@@ -14,46 +41,22 @@
   <nav class="nav">
     <a href="index.html">Home</a>
     <a href="portfolio.html">Portfolio</a>
-    <a href="book.html">Book a Session</a>
+    <a href="book.html">Book</a>
     <a href="contact.html">Contact</a>
   </nav>
 </header>
 
-<main class="page">
-  <section class="page-hero">
-    <p class="eyebrow">Selected Work</p>
-    <h1>Portfolio</h1>
-    <p>Explore the full range of photography services offered by Enhance Visual Studio.</p>
-  </section>
-
-  <section class="section">
-    <div class="portfolio-grid">
-      <div class="portfolio-card">Portraits</div>
-      <div class="portfolio-card">Studio</div>
-      <div class="portfolio-card">Lifestyle</div>
-      <div class="portfolio-card">Editorial</div>
-      <div class="portfolio-card">Maternity</div>
-      <div class="portfolio-card">Family</div>
-      <div class="portfolio-card">Kids</div>
-      <div class="portfolio-card">Graduation</div>
-      <div class="portfolio-card">Branding</div>
-      <div class="portfolio-card">Weddings</div>
-      <div class="portfolio-card">Events</div>
-      <div class="portfolio-card">Sports</div>
-    </div>
-  </section>
-
-  <section class="cta">
-    <p class="eyebrow">Like the Style?</p>
-    <h2>Let’s create your session next.</h2>
-    <a href="book.html" class="btn gold">Book Now</a>
-  </section>
-</main>
-
-<footer>
-  <p>© 2026 Enhance Visual Studio</p>
-  <p>Pose. Capture. Enhance.</p>
-</footer>
+<div class="gallery">
+  <img src="images/1.jpg">
+  <img src="images/2.jpg">
+  <img src="images/3.jpg">
+  <img src="images/4.jpg">
+  <img src="images/5.jpg">
+  <img src="images/6.jpg">
+  <img src="images/7.jpg">
+  <img src="images/8.jpg">
+  <img src="images/9.jpg">
+</div>
 
 <script src="script.js"></script>
 </body>
