@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enhance Visual Studio | Bay Area Photographer</title>
+  <title>Enhance Visual Studio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+<div class="loader">LOADING</div>
 
 <header class="site-header">
   <a href="index.html" class="logo">Enhance Visual Studio</a>
@@ -15,66 +17,42 @@
     <a href="index.html">Home</a>
     <a href="portfolio.html">Portfolio</a>
     <a href="book.html">Book a Session</a>
-    <a href="contact.html">Contact</a>
+    <a href="contact.html">Contacts</a>
   </nav>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="eyebrow">Pose. Capture. Enhance.</p>
-      <h1>Luxury Portraits With Cinematic Direction.</h1>
-      <p>
-        Premium studio, lifestyle, editorial, branding, wedding, and event photography
-        for people who want to look confident, polished, and unforgettable.
-      </p>
-      <div class="hero-buttons">
-        <a href="book.html" class="btn gold">Book a Session</a>
-        <a href="portfolio.html" class="btn outline">View Portfolio</a>
-      </div>
-    </div>
-  </section>
+<main class="slideshow-home">
+  <div class="slide active" style="background-image:url('images/1.jpg')"></div>
+  <div class="slide" style="background-image:url('images/2.jpg')"></div>
+  <div class="slide" style="background-image:url('images/3.jpg')"></div>
+  <div class="slide" style="background-image:url('images/4.jpg')"></div>
 
-  <section class="section intro">
-    <p class="eyebrow">Bay Area Photography Studio</p>
-    <h2>Designed for people who want more than regular pictures.</h2>
-    <p>
-      Enhance Visual Studio blends clean lighting, posing direction, editorial styling,
-      and polished retouching to create images that feel elevated and intentional.
-    </p>
-  </section>
+  <div class="home-overlay"></div>
 
-  <section class="section">
-    <div class="section-head">
-      <p class="eyebrow">Featured Work</p>
-      <h2>Portfolio Categories</h2>
-    </div>
-
-    <div class="category-grid">
-      <a href="portfolio.html" class="category-card"><span>Portraits</span></a>
-      <a href="portfolio.html" class="category-card"><span>Studio</span></a>
-      <a href="portfolio.html" class="category-card"><span>Editorial</span></a>
-      <a href="portfolio.html" class="category-card"><span>Branding</span></a>
-    </div>
-  </section>
-
-  <section class="section split">
+  <section class="home-content">
+    <p class="eyebrow">Pose. Capture. Enhance.</p>
+    <h1>Enhance Visual Studio</h1>
+    <p>Bay Area portrait, studio, lifestyle, branding, wedding, and event photography.</p>
     <div>
-      <p class="eyebrow">The Experience</p>
-      <h2>You don’t need to know how to pose. I’ll guide you.</h2>
-    </div>
-    <div>
-      <p>
-        Every session includes direction, confidence coaching, lighting setup, and a smooth
-        creative flow from start to finish. Whether it’s your first shoot or your next campaign,
-        the goal is to make you look your best without feeling awkward.
-      </p>
-      <a href="book.html" class="text-link">See Packages →</a>
+      <a href="portfolio.html" class="btn">View Portfolio</a>
+      <a href="book.html" class="btn gold">Book Now</a>
     </div>
   </section>
 
-  <section class="cta">
+  <div class="slide-count">
+    <span id="currentSlide">01</span>
+    <span>/</span>
+    <span>04</span>
+  </div>
+</main>
+
+<footer class="home-footer">
+  <p>© 2026 Enhance Visual Studio. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>  <section class="cta">
     <p class="eyebrow">Ready to Create?</p>
     <h2>Book your next session with Enhance Visual Studio.</h2>
     <a href="contact.html" class="btn gold">Start Inquiry</a>
