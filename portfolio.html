@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio | Enhance Visual Studio</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Enhance Visual Studio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-<div class="loader">LOADING</div>
 
 <header class="site-header">
   <a href="index.html" class="logo">Enhance Visual Studio</a>
@@ -18,144 +15,46 @@
     <a href="index.html">Home</a>
     <a href="portfolio.html">Portfolio</a>
     <a href="book.html">Book a Session</a>
-    <a href="contact.html">Contacts</a>
-  </nav>
-</header>
-
-<main class="portfolio-page">
-  <div class="gallery">
-    <img src="images/1.jpg" alt="">
-    <img src="images/2.jpg" alt="">
-    <img src="images/3.jpg" alt="">
-    <img src="images/4.jpg" alt="">
-    <img src="images/5.jpg" alt="">
-    <img src="images/6.jpg" alt="">
-    <img src="images/7.jpg" alt="">
-    <img src="images/8.jpg" alt="">
-    <img src="images/9.jpg" alt="">
-    <img src="images/10.jpg" alt="">
-    <img src="images/11.jpg" alt="">
-    <img src="images/12.jpg" alt="">
-  </div>
-</main>
-
-<div class="lightbox">
-  <span class="close-lightbox">Close</span>
-  <img src="" alt="">
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>}
-
-.lightbox img {
-  max-width:92vw;
-  max-height:90vh;
-  object-fit:contain;
-}
-
-.close-lightbox {
-  position:absolute;
-  top:26px;
-  right:32px;
-  color:#fff;
-  font-size:12px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  cursor:pointer;
-  opacity:.75;
-}
-
-.close-lightbox:hover {
-  opacity:1;
-}
-
-@media(max-width:900px){
-  .gallery {
-    column-count:1;
-    padding:100px 5% 50px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<div class="loader">Loading Portfolio</div>
-
-<header class="site-header">
-  <a href="index.html" class="logo">Enhance Visual Studio</a>
-  <button class="menu-btn">Menu</button>
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="book.html">Book</a>
     <a href="contact.html">Contact</a>
   </nav>
 </header>
 
-<div class="gallery">
-  <img src="images/1.jpg" alt="Enhance Visual Studio Portfolio Image">
-  <img src="images/2.jpg" alt="Enhance Visual Studio Portfolio Image">
-  <img src="images/3.jpg" alt="Enhance Visual Studio Portfolio Image">
-  <img src="images/4.jpg" alt="Enhance Visual Studio Portfolio Image">
-  <img src="images/5.jpg" alt="Enhance Visual Studio Portfolio Image">
-  <img src="images/6.jpg" alt="Enhance Visual Studio Portfolio Image">
-  <img src="images/7.jpg" alt="Enhance Visual Studio Portfolio Image">
-  <img src="images/8.jpg" alt="Enhance Visual Studio Portfolio Image">
-  <img src="images/9.jpg" alt="Enhance Visual Studio Portfolio Image">
-  <img src="images/10.jpg" alt="Enhance Visual Studio Portfolio Image">
-  <img src="images/11.jpg" alt="Enhance Visual Studio Portfolio Image">
-  <img src="images/12.jpg" alt="Enhance Visual Studio Portfolio Image">
-</div>
+<main class="page">
+  <section class="page-hero">
+    <p class="eyebrow">Selected Work</p>
+    <h1>Portfolio</h1>
+    <p>Explore the full range of photography services offered by Enhance Visual Studio.</p>
+  </section>
 
-<div class="lightbox">
-  <span class="close-lightbox">Close</span>
-  <img src="" alt="Expanded portfolio image">
-</div>
+  <section class="section">
+    <div class="portfolio-grid">
+      <div class="portfolio-card">Portraits</div>
+      <div class="portfolio-card">Studio</div>
+      <div class="portfolio-card">Lifestyle</div>
+      <div class="portfolio-card">Editorial</div>
+      <div class="portfolio-card">Maternity</div>
+      <div class="portfolio-card">Family</div>
+      <div class="portfolio-card">Kids</div>
+      <div class="portfolio-card">Graduation</div>
+      <div class="portfolio-card">Branding</div>
+      <div class="portfolio-card">Weddings</div>
+      <div class="portfolio-card">Events</div>
+      <div class="portfolio-card">Sports</div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <p class="eyebrow">Like the Style?</p>
+    <h2>Let’s create your session next.</h2>
+    <a href="book.html" class="btn gold">Book Now</a>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Enhance Visual Studio</p>
+  <p>Pose. Capture. Enhance.</p>
+</footer>
 
 <script src="script.js"></script>
-
-<script>
-window.addEventListener("load", () => {
-  document.querySelector(".loader").classList.add("hidden");
-
-  const images = document.querySelectorAll(".gallery img");
-
-  images.forEach((img, index) => {
-    setTimeout(() => {
-      img.classList.add("visible");
-    }, index * 120);
-  });
-});
-
-const lightbox = document.querySelector(".lightbox");
-const lightboxImg = document.querySelector(".lightbox img");
-const closeLightbox = document.querySelector(".close-lightbox");
-
-document.querySelectorAll(".gallery img").forEach(img => {
-  img.addEventListener("click", () => {
-    lightboxImg.src = img.src;
-    lightbox.classList.add("active");
-  });
-});
-
-closeLightbox.addEventListener("click", () => {
-  lightbox.classList.remove("active");
-});
-
-lightbox.addEventListener("click", e => {
-  if (e.target === lightbox) {
-    lightbox.classList.remove("active");
-  }
-});
-
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") {
-    lightbox.classList.remove("active");
-  }
-});
-</script>
-
 </body>
 </html>
