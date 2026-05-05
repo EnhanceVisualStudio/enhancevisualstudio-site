@@ -3,78 +3,92 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enhance Visual Studio</title>
+  <title>Enhance Visual Studio | Bay Area Photographer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      background:#050505;
-      color:#f5f0e8;
-      font-family: Arial, sans-serif;
-      overflow-x:hidden;
-    }
-    a { color:inherit; text-decoration:none; }
-    header {
-      position:fixed;
-      top:0;
-      width:100%;
-      z-index:100;
-      padding:24px 7%;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      background:rgba(5,5,5,.72);
-      backdrop-filter:blur(16px);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .logo {
-      font-size:20px;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      font-weight:bold;
-    }
-    nav a {
-      margin-left:28px;
-      font-size:13px;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      opacity:.8;
-    }
-    nav a:hover { opacity:1; color:#c7a66b; }
+<header class="site-header">
+  <a href="index.html" class="logo">Enhance Visual Studio</a>
+  <button class="menu-btn">Menu</button>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="book.html">Book a Session</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-    section { padding:110px 7%; min-height:100vh; }
+<main>
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="eyebrow">Pose. Capture. Enhance.</p>
+      <h1>Luxury Portraits With Cinematic Direction.</h1>
+      <p>
+        Premium studio, lifestyle, editorial, branding, wedding, and event photography
+        for people who want to look confident, polished, and unforgettable.
+      </p>
+      <div class="hero-buttons">
+        <a href="book.html" class="btn gold">Book a Session</a>
+        <a href="portfolio.html" class="btn outline">View Portfolio</a>
+      </div>
+    </div>
+  </section>
 
-    .hero {
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      background:
-        linear-gradient(to right, rgba(0,0,0,.9), rgba(0,0,0,.35)),
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80");
-      background-size:cover;
-      background-position:center;
-    }
-    .hero-content { max-width:760px; }
-    .eyebrow {
-      color:#c7a66b;
-      text-transform:uppercase;
-      letter-spacing:4px;
-      font-size:13px;
-      margin-bottom:18px;
-    }
-    h1 {
-      font-size:clamp(48px, 8vw, 110px);
-      line-height:.9;
-      text-transform:uppercase;
-      letter-spacing:-3px;
-      margin-bottom:26px;
-    }
-    .hero p {
-      font-size:20px;
-      line-height:1.6;
-      color:#d8d0c6;
-      max-width:620px;
-      margin-bottom:36px;
+  <section class="section intro">
+    <p class="eyebrow">Bay Area Photography Studio</p>
+    <h2>Designed for people who want more than regular pictures.</h2>
+    <p>
+      Enhance Visual Studio blends clean lighting, posing direction, editorial styling,
+      and polished retouching to create images that feel elevated and intentional.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">Featured Work</p>
+      <h2>Portfolio Categories</h2>
+    </div>
+
+    <div class="category-grid">
+      <a href="portfolio.html" class="category-card"><span>Portraits</span></a>
+      <a href="portfolio.html" class="category-card"><span>Studio</span></a>
+      <a href="portfolio.html" class="category-card"><span>Editorial</span></a>
+      <a href="portfolio.html" class="category-card"><span>Branding</span></a>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div>
+      <p class="eyebrow">The Experience</p>
+      <h2>You don’t need to know how to pose. I’ll guide you.</h2>
+    </div>
+    <div>
+      <p>
+        Every session includes direction, confidence coaching, lighting setup, and a smooth
+        creative flow from start to finish. Whether it’s your first shoot or your next campaign,
+        the goal is to make you look your best without feeling awkward.
+      </p>
+      <a href="book.html" class="text-link">See Packages →</a>
+    </div>
+  </section>
+
+  <section class="cta">
+    <p class="eyebrow">Ready to Create?</p>
+    <h2>Book your next session with Enhance Visual Studio.</h2>
+    <a href="contact.html" class="btn gold">Start Inquiry</a>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Enhance Visual Studio</p>
+  <p>Pose. Capture. Enhance.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>      margin-bottom:36px;
     }
     .btn {
       display:inline-block;
