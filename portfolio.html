@@ -5,76 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio | Enhance Visual Studio</title>
 <link rel="stylesheet" href="style.css">
+</head>
 
-<style>
-body {
-  background:#050505;
-}
+<body>
 
-.loader {
-  position:fixed;
-  inset:0;
-  background:#050505;
-  z-index:9999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#c9a66b;
-  letter-spacing:5px;
-  font-size:12px;
-  text-transform:uppercase;
-  transition:opacity .8s ease, visibility .8s ease;
-}
+<div class="loader">LOADING</div>
 
-.loader.hidden {
-  opacity:0;
-  visibility:hidden;
-}
+<header class="site-header">
+  <a href="index.html" class="logo">Enhance Visual Studio</a>
+  <button class="menu-btn">Menu</button>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="book.html">Book a Session</a>
+    <a href="contact.html">Contacts</a>
+  </nav>
+</header>
 
-.gallery {
-  column-count:3;
-  column-gap:12px;
-  padding:120px 6% 70px;
-}
+<main class="portfolio-page">
+  <div class="gallery">
+    <img src="images/1.jpg" alt="">
+    <img src="images/2.jpg" alt="">
+    <img src="images/3.jpg" alt="">
+    <img src="images/4.jpg" alt="">
+    <img src="images/5.jpg" alt="">
+    <img src="images/6.jpg" alt="">
+    <img src="images/7.jpg" alt="">
+    <img src="images/8.jpg" alt="">
+    <img src="images/9.jpg" alt="">
+    <img src="images/10.jpg" alt="">
+    <img src="images/11.jpg" alt="">
+    <img src="images/12.jpg" alt="">
+  </div>
+</main>
 
-.gallery img {
-  width:100%;
-  margin-bottom:12px;
-  display:block;
-  cursor:pointer;
-  opacity:0;
-  transform:translateY(24px);
-  filter:brightness(.92) contrast(1.05);
-  transition:
-    opacity .9s ease,
-    transform .9s ease,
-    filter .4s ease;
-}
+<div class="lightbox">
+  <span class="close-lightbox">Close</span>
+  <img src="" alt="">
+</div>
 
-.gallery img.visible {
-  opacity:1;
-  transform:translateY(0);
-}
-
-.gallery img:hover {
-  filter:brightness(1.05) contrast(1.08);
-  transform:scale(1.012);
-}
-
-.lightbox {
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.94);
-  z-index:9998;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:30px;
-}
-
-.lightbox.active {
-  display:flex;
-}
+<script src="script.js"></script>
+</body>
+</html>}
 
 .lightbox img {
   max-width:92vw;
