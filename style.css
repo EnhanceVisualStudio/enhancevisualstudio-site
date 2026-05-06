@@ -149,8 +149,8 @@ p {
   background:
     linear-gradient(to right, rgba(0,0,0,.92), rgba(0,0,0,.35)),
     url("images/1.jpg");
-  background-size: 108%;
-  background-position: center top;
+  background-size: cover;
+  background-position: center;
 }
 
 .hero-overlay {
