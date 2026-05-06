@@ -1,16 +1,3 @@
-const loader = document.querySelector(".loader");
-
-window.addEventListener("load", () => {
-  if (loader) loader.classList.add("hidden");
-
-  const galleryImages = document.querySelectorAll(".gallery img");
-  galleryImages.forEach((img, index) => {
-    setTimeout(() => {
-      img.classList.add("visible");
-    }, index * 100);
-  });
-});
-
 const menuBtn = document.querySelector(".menu-btn");
 const nav = document.querySelector(".nav");
 
@@ -20,27 +7,21 @@ if (menuBtn && nav) {
   });
 }
 
-const slides = document.querySelectorAll(".slide");
-const currentSlide = document.getElementById("currentSlide");
-let slideIndex = 0;
+const loader = document.querySelector(".loader");
 
-function showSlide() {
-  if (!slides.length) return;
-
-  slides.forEach(slide => slide.classList.remove("active"));
-  slides[slideIndex].classList.add("active");
-
-  if (currentSlide) {
-    currentSlide.textContent = String(slideIndex + 1).padStart(2, "0");
+window.addEventListener("load", () => {
+  if (loader) {
+    loader.classList.add("hidden");
   }
 
-  slideIndex = (slideIndex + 1) % slides.length;
-}
+  const galleryImages = document.querySelectorAll(".gallery img");
 
-if (slides.length) {
-  showSlide();
-  setInterval(showSlide, 4500);
-}
+  galleryImages.forEach((img, index) => {
+    setTimeout(() => {
+      img.classList.add("visible");
+    }, index * 100);
+  });
+});
 
 const lightbox = document.querySelector(".lightbox");
 const lightboxImg = document.querySelector(".lightbox img");
@@ -49,6 +30,7 @@ const closeLightbox = document.querySelector(".close-lightbox");
 document.querySelectorAll(".gallery img").forEach(img => {
   img.addEventListener("click", () => {
     if (!lightbox || !lightboxImg) return;
+
     lightboxImg.src = img.src;
     lightbox.classList.add("active");
   });
