@@ -18,17 +18,22 @@ const nextBtn = document.querySelector(".lightbox-next");
 let currentImage = 0;
 
 function openLightbox(index) {
+  if (!lightbox || !lightboxImg || !galleryImages.length) return;
+
   currentImage = index;
   lightboxImg.src = galleryImages[currentImage].src;
   lightbox.classList.add("active");
 }
 
 function closeBox() {
+  if (!lightbox) return;
   lightbox.classList.remove("active");
 }
 
 function showPrev() {
-  currentImage = currentImage - 1;
+  if (!lightboxImg || !galleryImages.length) return;
+
+  currentImage--;
 
   if (currentImage < 0) {
     currentImage = galleryImages.length - 1;
@@ -38,7 +43,9 @@ function showPrev() {
 }
 
 function showNext() {
-  currentImage = currentImage + 1;
+  if (!lightboxImg || !galleryImages.length) return;
+
+  currentImage++;
 
   if (currentImage >= galleryImages.length) {
     currentImage = 0;
