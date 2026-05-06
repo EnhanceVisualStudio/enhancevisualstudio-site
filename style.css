@@ -83,39 +83,33 @@ a {
   visibility: hidden;
 }
 
-/* HERO */
+/* HOMEPAGE HERO */
 .hero {
   position: relative;
   min-height: 100vh;
   padding: 0 7%;
   display: flex;
   align-items: center;
-  background:
-    linear-gradient(to right, rgba(0,0,0,.95), rgba(0,0,0,.35)),
-    url("images/1.jpg");
+  background-image: url("images/1.jpg");
   background-size: cover;
-  background-position: center;
-  animation: heroZoom 12s ease forwards;
-}
-
-@keyframes heroZoom {
-  from { background-size: 105%; }
-  to { background-size: 100%; }
+  background-position: center top;
+  background-repeat: no-repeat;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.75)),
-    linear-gradient(to right, rgba(0,0,0,.6), rgba(0,0,0,0));
+    linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.78)),
+    linear-gradient(to right, rgba(0,0,0,.72), rgba(0,0,0,.08));
   z-index: 1;
 }
 
 .hero-content {
-  max-width: 820px;
+  max-width: 860px;
   position: relative;
   z-index: 2;
+  padding-top: 70px;
 }
 
 .eyebrow {
@@ -127,11 +121,11 @@ a {
 }
 
 h1 {
-  font-size: clamp(48px, 8vw, 112px);
+  font-size: clamp(50px, 8vw, 112px);
   line-height: .9;
   letter-spacing: -4px;
   text-transform: uppercase;
-  margin-bottom: 26px;
+  margin-bottom: 18px;
 }
 
 h2 {
@@ -139,6 +133,14 @@ h2 {
   line-height: .95;
   letter-spacing: -2px;
   text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.hero-subtitle {
+  font-size: clamp(26px, 4vw, 54px);
+  line-height: 1;
+  letter-spacing: -1.5px;
+  max-width: 760px;
   margin-bottom: 22px;
 }
 
@@ -152,15 +154,19 @@ h2 {
 }
 
 .signature {
-  margin-top: 20px;
   color: #c9a66b !important;
   letter-spacing: 4px;
   text-transform: uppercase;
   font-size: 12px !important;
 }
 
+.under-logo {
+  margin-top: -6px;
+  margin-bottom: 28px;
+}
+
 .urgency {
-  margin-top: 10px;
+  margin-top: 14px;
   font-size: 13px !important;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -426,7 +432,11 @@ footer {
 
   .hero {
     background-size: cover;
-    animation: none;
+    background-position: center top;
+  }
+
+  .hero-content {
+    padding-top: 80px;
   }
 
   .gallery {
@@ -443,14 +453,4 @@ footer {
     align-items: flex-start;
     flex-direction: column;
   }
-.under-logo {
-  margin-top: -10px;
-  margin-bottom: 28px;
-}
-
-.hero-subtitle {
-  font-size: clamp(26px, 4vw, 54px);
-  line-height: 1;
-  letter-spacing: -1.5px;
-  max-width: 760px;
 }
