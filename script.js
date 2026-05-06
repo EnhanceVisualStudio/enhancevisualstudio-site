@@ -1,120 +1,92 @@
-document.addEventListener("DOMContentLoaded", () => {
-  /* MOBILE MENU */
-  const menuBtn = document.querySelector(".menu-btn");
-  const nav = document.querySelector(".nav");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Enhance Visual Studio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-  if (menuBtn && nav) {
-    menuBtn.addEventListener("click", () => {
-      nav.classList.toggle("active");
-    });
-  }
+<header class="site-header">
+  <a href="index.html" class="logo">Enhance Visual Studio</a>
+  <button class="menu-btn" type="button">Menu</button>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="book.html">Book a Session</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  /* LOADER */
-  const loader = document.querySelector(".loader");
+<main class="page">
+  <section class="page-hero">
+    <p class="eyebrow">Let’s Create</p>
+    <h1>Contact</h1>
+    <p>Tell me what you want to create and I’ll help guide the full session.</p>
+  </section>
 
-  window.addEventListener("load", () => {
-    if (loader) {
-      loader.classList.add("hidden");
-    }
-  });
+  <section class="contact-section">
+    <div>
+      <h2>Start Your Inquiry</h2>
+      <p>
+        Most clients have never been in front of a camera before. Every session includes
+        posing direction, lighting guidance, and a smooth creative process.
+      </p>
 
-  /* PORTFOLIO ONLY */
-  const galleryImages = document.querySelectorAll(".gallery img");
-  const lightbox = document.querySelector(".lightbox");
-  const lightboxImg = document.querySelector(".lightbox img");
-  const closeBtn = document.querySelector(".close-lightbox");
-  const nextBtn = document.querySelector(".next-image");
-  const prevBtn = document.querySelector(".prev-image");
-  const topBtn = document.querySelector(".return-top");
+      <div class="contact-info">
+        <p><strong>Email:</strong> hello@enhancevisualstudio.com</p>
+        <p><strong>Instagram:</strong> @enhancevisualstudio</p>
+        <p><strong>Location:</strong> Bay Area, California</p>
+      </div>
+    </div>
 
-  if (galleryImages.length > 0) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.15 });
+    <form action="mailto:hello@enhancevisualstudio.com" method="POST" enctype="text/plain">
+      <input type="text" name="Name" placeholder="Full Name" required>
+      <input type="email" name="Email" placeholder="Email Address" required>
+      <input type="text" name="Instagram" placeholder="Instagram Handle">
 
-    galleryImages.forEach(img => observer.observe(img));
-  }
+      <select name="Session Type">
+        <option>Session Type</option>
+        <option>Portraits</option>
+        <option>Studio</option>
+        <option>Lifestyle</option>
+        <option>Editorial</option>
+        <option>Maternity</option>
+        <option>Family</option>
+        <option>Kids</option>
+        <option>Graduation</option>
+        <option>Branding</option>
+        <option>Weddings</option>
+        <option>Events</option>
+        <option>Sports</option>
+      </select>
 
-  let currentIndex = 0;
+      <select name="Budget Range">
+        <option>Budget Range</option>
+        <option>$300–$500</option>
+        <option>$500–$800</option>
+        <option>$800+</option>
+      </select>
 
-  function openLightbox(index) {
-    if (!lightbox || !lightboxImg || galleryImages.length === 0) return;
+      <textarea name="Message" placeholder="Tell me about your shoot idea"></textarea>
+      <button class="btn gold" type="submit">Submit Inquiry</button>
+    </form>
+  </section>
+</main>
 
-    currentIndex = index;
-    lightboxImg.src = galleryImages[currentIndex].src;
-    lightbox.classList.add("active");
-    document.body.style.overflow = "hidden";
-  }
+<footer>
+  <div>© 2026 Enhance Visual Studio. All Rights Reserved.</div>
 
-  function closeLightbox() {
-    if (!lightbox) return;
+  <div class="socials">
+    <a href="https://instagram.com/enhancevisualstudio" target="_blank" aria-label="Instagram"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a>
+    <a href="https://tiktok.com/@enhancevisualstudio" target="_blank" aria-label="TikTok"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"></a>
+    <a href="https://youtube.com/@enhancevisualstudio" target="_blank" aria-label="YouTube"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube"></a>
+    <a href="https://facebook.com/enhancevisualstudio" target="_blank" aria-label="Facebook"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"></a>
+    <a href="mailto:hello@enhancevisualstudio.com" aria-label="Email"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Email"></a>
+  </div>
+</footer>
 
-    lightbox.classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
-
-  function showNext() {
-    if (!lightboxImg || galleryImages.length === 0) return;
-
-    currentIndex = (currentIndex + 1) % galleryImages.length;
-    lightboxImg.src = galleryImages[currentIndex].src;
-  }
-
-  function showPrev() {
-    if (!lightboxImg || galleryImages.length === 0) return;
-
-    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-    lightboxImg.src = galleryImages[currentIndex].src;
-  }
-
-  galleryImages.forEach((img, index) => {
-    img.addEventListener("click", () => openLightbox(index));
-  });
-
-  if (closeBtn) {
-    closeBtn.addEventListener("click", closeLightbox);
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      showNext();
-    });
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      showPrev();
-    });
-  }
-
-  if (lightbox) {
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
-    });
-  }
-
-  document.addEventListener("keydown", (e) => {
-    if (!lightbox || !lightbox.classList.contains("active")) return;
-
-    if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowRight") showNext();
-    if (e.key === "ArrowLeft") showPrev();
-  });
-
-  if (topBtn) {
-    topBtn.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    });
-  }
-});
+<script src="script.js"></script>
+</body>
+</html>
