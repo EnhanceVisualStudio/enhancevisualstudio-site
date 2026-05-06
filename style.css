@@ -562,3 +562,10 @@ footer {
   color: #c9a66b;
   transform: translateY(-2px);
 }
+.header-slogan {
+  margin-top: 5px;
+  color: #c9a66b;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 10px;
+}
