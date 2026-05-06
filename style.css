@@ -706,4 +706,47 @@ footer {
   .portfolio-hero {
     padding: 0 5% 50px;
   }
+}/* PORTFOLIO CONTROLS */
+.portfolio-controls {
+  padding: 0 7% 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.gallery-btn,
+.back-top {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.72);
+  padding: 14px 22px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.gallery-btn:hover,
+.back-top:hover {
+  border-color: #c9a66b;
+  color: #c9a66b;
+  transform: translateY(-2px);
+  background: rgba(201,166,107,0.05);
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .portfolio-controls {
+    flex-wrap: wrap;
+    padding: 0 5% 70px;
+  }
+
+  .gallery-btn,
+  .back-top {
+    width: 100%;
+  }
+
 }
