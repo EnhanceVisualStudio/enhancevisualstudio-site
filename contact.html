@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact | Enhance Visual Studio</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<div class="page-transition"></div>
-<div class="custom-cursor"></div>
+  <title>Contact | Enhance Visual Studio</title>
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
 
 <header class="site-header">
 
@@ -31,71 +31,145 @@
 </header>
 
 <main class="page">
-  <section class="page-hero reveal">
-    <p class="eyebrow">Let’s Create</p>
-    <h1>Contact</h1>
-    <p>Tell me what you want to create and I’ll help guide the full session.</p>
+
+  <section class="page-hero">
+    <p class="eyebrow">Get In Touch</p>
+    <h1>Let’s Create Something Powerful.</h1>
+
+    <p>
+      For portrait sessions, studio shoots, branding, events, weddings,
+      collaborations, or creative inquiries — fill out the form below and
+      Enhance Visual Studio will respond within 24–48 hours.
+    </p>
   </section>
 
-  <section class="contact-section reveal">
-    <div>
-      <h2>Start Your Inquiry</h2>
+  <section class="contact-section">
 
-      <p>
-        Most clients have never been in front of a camera before.
-        Every session includes posing direction, lighting guidance,
-        and a smooth creative process.
-      </p>
+    <div>
+
+      <p class="eyebrow">Contact</p>
 
       <div class="contact-info">
-        <p><strong>Email:</strong> hello@enhancevisualstudio.com</p>
-        <p><strong>Instagram:</strong> @enhancevisualstudio</p>
-        <p><strong>Location:</strong> Bay Area, California</p>
+
+        <p>
+          hello@enhancevisualstudio.com
+        </p>
+
+        <br>
+
+        <p>
+          Based in the Bay Area, California
+        </p>
+
+        <br>
+
+        <p>
+          Available for studio, outdoor, editorial, branding, maternity,
+          family, event, and wedding photography.
+        </p>
+
       </div>
+
     </div>
 
-    <form>
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="text" placeholder="Instagram Handle">
+    <!-- FORM -->
+    <form
+      action="https://formspree.io/f/mgodzpzl
+      method="POST"
+    >
 
-      <select>
-        <option>Session Type</option>
-        <option>Portraits</option>
+      <input
+        type="hidden"
+        name="_subject"
+        value="New Enhance Visual Studio Inquiry"
+      >
+
+      <input
+        type="text"
+        name="name"
+        placeholder="Full Name"
+        required
+      >
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email Address"
+        required
+      >
+
+      <input
+        type="text"
+        name="instagram"
+        placeholder="Instagram Handle (Optional)"
+      >
+
+      <select name="session_type" required>
+        <option value="">Select Session Type</option>
+
+        <option>Portrait</option>
         <option>Studio</option>
         <option>Lifestyle</option>
         <option>Editorial</option>
         <option>Branding</option>
-        <option>Weddings</option>
-        <option>Events</option>
+        <option>Maternity</option>
+        <option>Family</option>
+        <option>Graduation</option>
+        <option>Wedding</option>
+        <option>Event</option>
       </select>
 
-      <select>
-        <option>Budget Range</option>
-        <option>$300–$500</option>
-        <option>$500–$800</option>
-        <option>$800+</option>
-      </select>
+      <textarea
+        name="message"
+        placeholder="Tell me about your vision, ideas, preferred date, or anything important for your session."
+        required
+      ></textarea>
 
-      <textarea placeholder="Tell me about your shoot idea"></textarea>
+      <button type="submit" class="btn gold">
+        Send Inquiry
+      </button>
 
-      <button class="btn gold" type="submit">Submit Inquiry</button>
     </form>
+
   </section>
+
 </main>
 
 <footer>
-  <div>© 2026 Enhance Visual Studio. All Rights Reserved.</div>
+
+  <div>
+    © 2026 Enhance Visual Studio. All Rights Reserved.
+  </div>
 
   <div class="socials">
-    <a href="https://instagram.com/enhancevisualstudio" target="_blank" aria-label="Instagram"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a>
-    <a href="https://tiktok.com/@enhancevisualstudio" target="_blank" aria-label="TikTok"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"></a>
-    <a href="https://youtube.com/@enhancevisualstudio" target="_blank" aria-label="YouTube"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube"></a>
-    <a href="https://facebook.com/enhancevisualstudio" target="_blank" aria-label="Facebook"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"></a>
-    <a href="mailto:hello@enhancevisualstudio.com" aria-label="Email"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Email"></a>
+
+    <a href="https://instagram.com/enhancevisualstudio" target="_blank" aria-label="Instagram">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="">
+    </a>
+
+    <a href="https://tiktok.com/@enhancevisualstudio" target="_blank" aria-label="TikTok">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="">
+    </a>
+
+    <a href="https://youtube.com/@enhancevisualstudio" target="_blank" aria-label="YouTube">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="">
+    </a>
+
+    <a href="https://facebook.com/enhancevisualstudio" target="_blank" aria-label="Facebook">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="">
+    </a>
+
+    <a href="mailto:hello@enhancevisualstudio.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" class="social-icon">
+        <path d="M4 6h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2zm8 7 8-5H4l8 5zm0 2L4 10v6h16v-6l-8 5z"/>
+      </svg>
+    </a>
+
   </div>
+
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
