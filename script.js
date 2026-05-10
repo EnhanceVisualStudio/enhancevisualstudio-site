@@ -105,3 +105,31 @@ if (backTop) {
     });
   });
 }
+/* SWIPE LEFT / RIGHT IN LIGHTBOX */
+let touchStartX = 0;
+let touchEndX = 0;
+
+if (lightbox) {
+  lightbox.addEventListener("touchstart", e => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  lightbox.addEventListener("touchend", e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+}
+
+function handleSwipe() {
+  const swipeDistance = touchEndX - touchStartX;
+
+  if (Math.abs(swipeDistance) < 50) return;
+
+  if (swipeDistance < 0) {
+    showNext();
+  }
+
+  if (swipeDistance > 0) {
+    showPrev();
+  }
+}
