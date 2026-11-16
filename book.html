@@ -1,161 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book a Session | Enhance Visual Studio</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Book a Project | Enhance Visual Studio</title>
+  <meta name="description" content="Send a photography, videography or design booking request directly to Enhance Visual Studio.">
+  <link rel="canonical" href="https://www.enhancevisualstudio.com/book.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Enhance Visual Studio">
+  <meta property="og:title" content="Book a Project | Enhance Visual Studio">
+  <meta property="og:description" content="Send a photography, videography or design booking request directly to Enhance Visual Studio.">
+  <meta property="og:url" content="https://www.enhancevisualstudio.com/book.html">
+  <meta property="og:image" content="https://www.enhancevisualstudio.com/images/display/9-960.jpg">
+  <meta property="og:image:alt" content="Smiling woman in a red ruffled dress against a charcoal backdrop">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/evs-icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Enhance Visual Studio", "url": "https://www.enhancevisualstudio.com/", "email": "hello@enhancevisualstudio.com", "image": "https://www.enhancevisualstudio.com/images/display/9-960.jpg", "slogan": "Pose. Capture. Enhance.", "areaServed": {"@type": "Place", "name": "San Francisco Bay Area, California"}, "sameAs": ["https://instagram.com/enhancevisualstudio", "https://tiktok.com/@enhancevisualstudio", "https://youtube.com/@enhancevisualstudio", "https://facebook.com/enhancevisualstudio"]}</script>
+  <script type="module" src="script.js"></script>
 </head>
 <body>
-
-<div class="page-transition"></div>
-<div class="custom-cursor"></div>
-
-<header class="site-header">
-
-  <a href="index.html" class="logo-wrap">
-    <div class="logo">Enhance Visual Studio</div>
-    <div class="logo-slogan">Pose. Capture. Enhance.</div>
-  </a>
-
-  <button class="menu-btn">Menu</button>
-
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="book.html">Book a Session</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-</header>
-
-<main class="page">
-  <section class="page-hero reveal">
-    <p class="eyebrow">Client Packages</p>
-    <h1>Book a Session</h1>
-    <p>Simple premium photography packages built for confidence, direction, and polished results.</p>
-  </section>
-
-  <section class="packages reveal">
-    <div class="package">
-      <p class="tag">Portrait / Studio</p>
-      <h2>Essential</h2>
-      <h3>$200</h3>
-      <ul>
-        <li>45 Minutes</li>
-        <li>1 Person</li>
-        <li>1 Oufit, 1 Location</li>
-        <li>5 Professionally Retouched Images</li>
-        <li>Studio or On-Location</li>
-      <a href="contact.html" class="btn">Submit Request</a>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html" aria-label="Enhance Visual Studio home">
+        <span class="monogram" aria-hidden="true">EV</span>
+        <span class="wordmark">Enhance<span>Visual Studio</span></span>
+      </a>
+      <button class="menu-button" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Menu <span aria-hidden="true">☰</span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="about.html">About</a><a href="packages.html">Packages</a><a href="contact.html">Contact</a>
+        <a class="button button-small" href="book.html" aria-current="page">Book a project <span aria-hidden="true">↗</span></a>
+      </nav>
     </div>
+  </header>
+  <main id="main" tabindex="-1">
 
-    <div class="package popular">
-      <p class="tag">Most Popular</p>
-      <h2>Signature</h2>
-      <h3>$350</h3>
-      <ul>
-        <li>Up to 90 Minutes</li>
-        <li>1 Person</li>
-        <li>Up to 2 Outfits, 2 locations</li>
-        <li>12 Professionally Retouched Images</li>
-        <li>Studio or On-Location</li>
-      </ul>
-      <a href="contact.html" class="btn gold">Submit Request</a>
+    <section class="page-heading"><div class="wrap">
+      <p class="eyebrow">Project requests</p>
+      <h1>Book a project.</h1>
+      <p class="lede">Tell us what you’re planning and share your preferred dates. The studio will follow up about availability and next steps.</p>
+    </div></section>
+    <section class="section"><div class="wrap inquiry-grid">
+      <aside class="contact-card"><h2>Before you request</h2><p>Dates remain tentative until the studio confirms availability and receives the required retainer.</p>
+      <p><a class="text-link" href="policies.html">Booking policies <span aria-hidden="true">↗</span></a></p>
+      <p><a href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com</a></p></aside>
+      <div>
+    <form class="request-form" data-kind="booking" hidden>
+      <h2>Project details</h2>
+      <div class="form-grid">
+        <div><label for="name">Full name</label><input id="name" name="name" autocomplete="name" maxlength="120" required></div>
+        <div><label for="email">Email address</label><input type="email" id="email" name="email" autocomplete="email" maxlength="254" required></div>
+      </div>
+      <label for="service">Service</label>
+      <select name="service" id="service" required><option value="">Choose a service</option><optgroup label="Photography"><option value="portraits">Portraits</option><option value="studio">Studio Photography</option><option value="headshots">Professional Headshots</option><option value="branding">Personal Branding</option><option value="weddings">Weddings &amp; Engagements</option><option value="events">Events &amp; Celebrations</option><option value="family">Family &amp; Maternity</option><option value="graduation">Graduation Photography</option><option value="food">Food &amp; Restaurant Photography</option><option value="product">Product &amp; Commercial Photography</option><option value="real-estate">Real Estate &amp; Architectural Photography</option></optgroup><optgroup label="Videography"><option value="wedding-films">Wedding Films</option><option value="event-video">Event Videos</option><option value="promotional-video">Promotional Videos</option><option value="commercial-video">Commercial Productions</option><option value="social-video">Social Media Content</option><option value="brand-film">Brand Storytelling</option></optgroup><optgroup label="Graphic design"><option value="logo">Logo Design</option><option value="flyer">Flyer Design</option><option value="poster">Poster Design</option><option value="identity">Brand Identity</option><option value="promo-graphics">Promotional Graphics</option><option value="social-design">Social Media Creative Assets</option></optgroup></select>
+
+      <label for="package">Package or quote</label>
+      <select name="package" id="package" aria-describedby="package-note" required><option value="custom">Custom quote</option><option value="essential">Essential · $200</option><option value="signature">Signature · $350</option><option value="creative-campaign">Creative Campaign · $550</option></select>
+      <p class="field-note" id="package-note">Photography package availability depends on the service. <a href="packages.html">Compare packages</a>.</p>
+      <div class="form-grid">
+        <div><label for="preferredDate">Preferred date <small>(optional)</small></label><input type="date" id="preferredDate" name="preferredDate"></div>
+        <div><label for="alternateDate">Alternate date <small>(optional)</small></label><input type="date" id="alternateDate" name="alternateDate"></div>
+      </div>
+      <label for="location">Project location</label>
+      <input id="location" name="location" maxlength="200" placeholder="City, venue, remote, or to be determined" required>
+
+      <label for="message">Tell us about your project</label>
+      <textarea id="message" name="message" rows="5" minlength="10" maxlength="3000" required></textarea>
+      <div class="request-trap" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+      <button type="submit" class="button">Send booking request <span aria-hidden="true">↗</span></button>
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+    <noscript><p>To send a request with JavaScript disabled, email <a href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com</a>.</p></noscript></div>
+    </div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div><p class="footer-name">Enhance Visual Studio</p><p>Pose. Capture. Enhance.</p><p>San Francisco Bay Area, California</p></div>
+        <div><a href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com</a><div class="footer-links"><a href="https://instagram.com/enhancevisualstudio">Instagram</a><a href="https://tiktok.com/@enhancevisualstudio">TikTok</a><a href="https://youtube.com/@enhancevisualstudio">YouTube</a><a href="https://facebook.com/enhancevisualstudio">Facebook</a></div></div>
+        <div class="footer-links"><a href="book.html">Book a project</a><a href="policies.html">Booking policies</a></div>
+      </div>
+      <p class="copyright">© 2026 Enhance Visual Studio</p>
     </div>
-
-    <div class="package">
-      <p class="tag">Branding / Editorial</p>
-      <h2>Creative Campaign</h2>
-      <h3>$550</h3>
-      <ul>
-        <li>2–3 Hour Session</li>
-        <li>Up to 3 Persons</li>
-        <li>1-5 Outfit Changes, up to 3 locations</li>
-        <li>20 Professionally Retouched Images</li>
-        <li>Studio or On-Location</li>
-      </ul>
-      <a href="contact.html" class="btn">Submit Request</a>
-    </div>
-  </section>
-</main>
-
-
-<section class="policies">
-
-  <p class="eyebrow">Session Policies</p>
-
-  <div class="policy-grid">
-
-    <div class="policy-item">
-      <h3>Retainers</h3>
-      <p>
-        A non-refundable retainer is required to secure all bookings.
-      </p>
-    </div>
-    
-     <div class="policy-item">
-  <h3>Late Arrivals</h3>
-  <p>
-    Clients arriving more than 15 minutes late may receive a shortened session. Arrivals exceeding 30 minutes will be cancelled and your retainer will be forfeited.
-  </p>
-    </div>
-    
-     <div class="policy-item">
-      <h3>Rescheduling</h3>
-      <p>
-        Sessions may be rescheduled once with at least 48 hours notice. 
-      </p>
-    </div>
-    
-    <div class="policy-item">
-      <h3>Image Delivery</h3>
-      <p>
-        Final edited images are delivered through a private online gallery.
-      </p>
-    </div>
-    
-    <div class="policy-item">
-  <h3>Turnaround Time</h3>
-  <p>
-    Final edited galleries are typically delivered within 7–14 business days depending on session type. Express delivery options are also available for a fee. 
-  </p>
-    </div>
-
-    <div class="policy-item">
-      <h3>RAW Files</h3>
-      <p>
-        RAW/unedited files are not included or delivered.
-      </p>
-    </div>
-    
-    <div class="policy-item">
-  <h3>Creative Direction</h3>
-  <p>
-    Enhance Visual Studio maintains all ownership rights and creative discretion regarding posing,
-    editing style, lighting, and final image selection to preserve brand quality
-    and artistic consistency.
-    </p>
-  </div>
-
-
-
-</section>
-
-
-<footer>
-  <div>© 2026 Enhance Visual Studio. All Rights Reserved.</div>
-
-  <div class="socials">
-    <a href="https://instagram.com/enhancevisualstudio" target="_blank" aria-label="Instagram"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a>
-    <a href="https://tiktok.com/@enhancevisualstudio" target="_blank" aria-label="TikTok"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"></a>
-    <a href="https://youtube.com/@enhancevisualstudio" target="_blank" aria-label="YouTube"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube"></a>
-    <a href="https://facebook.com/enhancevisualstudio" target="_blank" aria-label="Facebook"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"></a>
-    <a href="mailto:hello@enhancevisualstudio.com" aria-label="Email"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Email"></a>
-  </div>
-</footer>
-
-<script src="script.js"></script>
+  </footer>
 </body>
 </html>

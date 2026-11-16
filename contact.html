@@ -1,182 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
   <title>Contact | Enhance Visual Studio</title>
-
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Contact Enhance Visual Studio for creative projects and general inquiries in the San Francisco Bay Area.">
+  <link rel="canonical" href="https://www.enhancevisualstudio.com/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Enhance Visual Studio">
+  <meta property="og:title" content="Contact | Enhance Visual Studio">
+  <meta property="og:description" content="Contact Enhance Visual Studio for creative projects and general inquiries in the San Francisco Bay Area.">
+  <meta property="og:url" content="https://www.enhancevisualstudio.com/contact.html">
+  <meta property="og:image" content="https://www.enhancevisualstudio.com/images/display/9-960.jpg">
+  <meta property="og:image:alt" content="Smiling woman in a red ruffled dress against a charcoal backdrop">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/evs-icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Enhance Visual Studio", "url": "https://www.enhancevisualstudio.com/", "email": "hello@enhancevisualstudio.com", "image": "https://www.enhancevisualstudio.com/images/display/9-960.jpg", "slogan": "Pose. Capture. Enhance.", "areaServed": {"@type": "Place", "name": "San Francisco Bay Area, California"}, "sameAs": ["https://instagram.com/enhancevisualstudio", "https://tiktok.com/@enhancevisualstudio", "https://youtube.com/@enhancevisualstudio", "https://facebook.com/enhancevisualstudio"]}</script>
+  <script type="module" src="script.js"></script>
 </head>
-
 <body>
-
-<header class="site-header">
-
-  <a href="index.html" class="logo-wrap">
-    <div class="logo">Enhance Visual Studio</div>
-    <div class="logo-slogan">Pose. Capture. Enhance.</div>
-  </a>
-
-  <button class="menu-btn">Menu</button>
-
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="book.html">Book a Session</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-</header>
-
-<main class="page">
-
-  <section class="page-hero">
-
-    <p class="eyebrow">Get In Touch</p>
-
-    <h1>Let’s Create Something Powerful.</h1>
-
-    <p>
-      For portrait sessions, studio shoots, branding, events, weddings,
-      collaborations, or creative inquiries — fill out the form below and
-      Enhance Visual Studio will respond within 24–48 hours.
-    </p>
-
-  </section>
-
-  <section class="contact-section">
-
-    <div>
-
-      <p class="eyebrow">Contact</p>
-
-      <div class="contact-info">
-
-        <p>
-          hello@enhancevisualstudio.com
-        </p>
-
-        <br>
-
-        <p>
-          Based in the Bay Area, California
-        </p>
-
-        <br>
-
-        <p>
-          Available for studio, outdoor, editorial, branding, maternity,
-          family, graduation, wedding, and event photography.
-        </p>
-
-      </div>
-
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html" aria-label="Enhance Visual Studio home">
+        <span class="monogram" aria-hidden="true">EV</span>
+        <span class="wordmark">Enhance<span>Visual Studio</span></span>
+      </a>
+      <button class="menu-button" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Menu <span aria-hidden="true">☰</span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="about.html">About</a><a href="packages.html">Packages</a><a href="contact.html" aria-current="page">Contact</a>
+        <a class="button button-small" href="book.html">Book a project <span aria-hidden="true">↗</span></a>
+      </nav>
     </div>
+  </header>
+  <main id="main" tabindex="-1">
 
-    <!-- FORM -->
-    <form
-      action="https://formspree.io/f/mgodzpzl"
-      method="POST"
-    >
+    <section class="page-heading"><div class="wrap">
+      <p class="eyebrow">Get in touch</p>
+      <h1>Contact the studio.</h1>
+      <p class="lede">Reach out about a project, collaboration or general question.</p>
+    </div></section>
+    <section class="section"><div class="wrap inquiry-grid">
+      <aside class="contact-card"><h2>Studio inquiries</h2>
+      <p>Based in the San Francisco Bay Area, California.</p>
+      <p><a class="text-link" href="book.html">Start a booking request <span aria-hidden="true">↗</span></a></p>
+      <p><a href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com</a></p></aside>
+      <div>
+    <form class="request-form" data-kind="contact" hidden>
+      <h2>Send an inquiry</h2>
+      <div class="form-grid">
+        <div><label for="name">Full name</label><input id="name" name="name" autocomplete="name" maxlength="120" required></div>
+        <div><label for="email">Email address</label><input type="email" id="email" name="email" autocomplete="email" maxlength="254" required></div>
+      </div>
+      <label for="service">Service</label>
+      <select name="service" id="service" ><option value="">General inquiry</option><optgroup label="Photography"><option value="portraits">Portraits</option><option value="studio">Studio Photography</option><option value="headshots">Professional Headshots</option><option value="branding">Personal Branding</option><option value="weddings">Weddings &amp; Engagements</option><option value="events">Events &amp; Celebrations</option><option value="family">Family &amp; Maternity</option><option value="graduation">Graduation Photography</option><option value="food">Food &amp; Restaurant Photography</option><option value="product">Product &amp; Commercial Photography</option><option value="real-estate">Real Estate &amp; Architectural Photography</option></optgroup><optgroup label="Videography"><option value="wedding-films">Wedding Films</option><option value="event-video">Event Videos</option><option value="promotional-video">Promotional Videos</option><option value="commercial-video">Commercial Productions</option><option value="social-video">Social Media Content</option><option value="brand-film">Brand Storytelling</option></optgroup><optgroup label="Graphic design"><option value="logo">Logo Design</option><option value="flyer">Flyer Design</option><option value="poster">Poster Design</option><option value="identity">Brand Identity</option><option value="promo-graphics">Promotional Graphics</option><option value="social-design">Social Media Creative Assets</option></optgroup></select>
 
-      <input
-        type="hidden"
-        name="_subject"
-        value="New Enhance Visual Studio Inquiry"
-      >
-
-      <input
-        type="text"
-        name="name"
-        placeholder="Full Name"
-        required
-      >
-
-      <input
-        type="email"
-        name="email"
-        placeholder="Email Address"
-        required
-      >
-
-      <input
-        type="text"
-        name="instagram"
-        placeholder="Instagram Handle (Optional)"
-      >
-
-      <select name="session_type" required>
-
-        <option value="">
-          Select Session Type
-        </option>
-
-        <option>Portrait</option>
-        <option>Studio</option>
-        <option>Lifestyle</option>
-        <option>Editorial</option>
-        <option>Branding</option>
-        <option>Maternity</option>
-        <option>Family</option>
-        <option>Graduation</option>
-        <option>Wedding</option>
-        <option>Event</option>
-
-      </select>
-
-      <textarea
-        name="message"
-        placeholder="Tell me about your vision, ideas, preferred date, or anything important for your session."
-        required
-      ></textarea>
-
-      <button type="submit" class="btn gold">
-        Send Inquiry
-      </button>
-
+      <label for="message">Your message</label>
+      <textarea id="message" name="message" rows="5" minlength="10" maxlength="3000" required></textarea>
+      <div class="request-trap" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+      <button type="submit" class="button">Send inquiry <span aria-hidden="true">↗</span></button>
+      <p class="form-status" role="status" aria-live="polite"></p>
     </form>
-
-  </section>
-
-</main>
-
-<footer>
-
-  <div>
-    © 2026 Enhance Visual Studio. All Rights Reserved.
-  </div>
-
-  <div class="socials">
-
-    <a href="https://instagram.com/enhancevisualstudio" target="_blank" aria-label="Instagram">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="">
-    </a>
-
-    <a href="https://tiktok.com/@enhancevisualstudio" target="_blank" aria-label="TikTok">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="">
-    </a>
-
-    <a href="https://youtube.com/@enhancevisualstudio" target="_blank" aria-label="YouTube">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="">
-    </a>
-
-    <a href="https://facebook.com/enhancevisualstudio" target="_blank" aria-label="Facebook">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="">
-    </a>
-
-    <a href="mailto:hello@enhancevisualstudio.com" aria-label="Email">
-      <svg viewBox="0 0 24 24" class="social-icon">
-        <path d="M4 6h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2zm8 7 8-5H4l8 5zm0 2L4 10v6h16v-6l-8 5z"/>
-      </svg>
-    </a>
-
-  </div>
-
-</footer>
-
-<script src="script.js"></script>
-
+    <noscript><p>To send a request with JavaScript disabled, email <a href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com</a>.</p></noscript></div>
+    </div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div><p class="footer-name">Enhance Visual Studio</p><p>Pose. Capture. Enhance.</p><p>San Francisco Bay Area, California</p></div>
+        <div><a href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com</a><div class="footer-links"><a href="https://instagram.com/enhancevisualstudio">Instagram</a><a href="https://tiktok.com/@enhancevisualstudio">TikTok</a><a href="https://youtube.com/@enhancevisualstudio">YouTube</a><a href="https://facebook.com/enhancevisualstudio">Facebook</a></div></div>
+        <div class="footer-links"><a href="book.html">Book a project</a><a href="policies.html">Booking policies</a></div>
+      </div>
+      <p class="copyright">© 2026 Enhance Visual Studio</p>
+    </div>
+  </footer>
 </body>
 </html>

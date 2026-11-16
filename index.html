@@ -1,74 +1,90 @@
-l<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enhance Visual Studio | Bay Area Photographer</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Bay Area Photography, Videography &amp; Graphic Design | Enhance Visual Studio</title>
+  <meta name="description" content="Enhance Visual Studio offers photography, videography and graphic design in the San Francisco Bay Area. Pose. Capture. Enhance.">
+  <link rel="canonical" href="https://www.enhancevisualstudio.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Enhance Visual Studio">
+  <meta property="og:title" content="Bay Area Photography, Videography &amp; Graphic Design | Enhance Visual Studio">
+  <meta property="og:description" content="Enhance Visual Studio offers photography, videography and graphic design in the San Francisco Bay Area. Pose. Capture. Enhance.">
+  <meta property="og:url" content="https://www.enhancevisualstudio.com/">
+  <meta property="og:image" content="https://www.enhancevisualstudio.com/images/display/9-960.jpg">
+  <meta property="og:image:alt" content="Smiling woman in a red ruffled dress against a charcoal backdrop">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/evs-icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Enhance Visual Studio", "url": "https://www.enhancevisualstudio.com/", "email": "hello@enhancevisualstudio.com", "image": "https://www.enhancevisualstudio.com/images/display/9-960.jpg", "slogan": "Pose. Capture. Enhance.", "areaServed": {"@type": "Place", "name": "San Francisco Bay Area, California"}, "sameAs": ["https://instagram.com/enhancevisualstudio", "https://tiktok.com/@enhancevisualstudio", "https://youtube.com/@enhancevisualstudio", "https://facebook.com/enhancevisualstudio"]}</script>
+  <script type="module" src="script.js"></script>
 </head>
 <body>
-
-<header class="site-header">
-
-  <a href="index.html" class="logo-wrap">
-    <div class="logo">Enhance Visual Studio</div>
-    <div class="logo-slogan">Pose. Capture. Enhance.</div>
-  </a>
-
-  <button class="menu-btn">Menu</button>
-
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="book.html">Book a Session</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-</header>
-
-<main>
-  <section class="hero">
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-      <p class="eyebrow">Bay Area Photographer</p>
-      <h1>Cinematic Portraits With Intentional Direction.</h1>
-
-
-
-      <div class="hero-buttons">
-        <a href="portfolio.html" class="btn gold">View Portfolio</a>
-        <a href="book.html" class="btn outline">Book a Session</a>
-      </div>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html" aria-label="Enhance Visual Studio home">
+        <span class="monogram" aria-hidden="true">EV</span>
+        <span class="wordmark">Enhance<span>Visual Studio</span></span>
+      </a>
+      <button class="menu-button" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Menu <span aria-hidden="true">☰</span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="about.html">About</a><a href="packages.html">Packages</a><a href="contact.html">Contact</a>
+        <a class="button button-small" href="book.html">Book a project <span aria-hidden="true">↗</span></a>
+      </nav>
     </div>
-  </section>
-</main>
+  </header>
+  <main id="main" tabindex="-1">
 
-<footer>
-  <div>© 2026 Enhance Visual Studio. All Rights Reserved.</div>
+    <section class="hero" aria-labelledby="home-title">
+      <div class="hero-media"><img src="images/display/9-480.jpg" srcset="images/display/9-480.jpg 480w, images/display/9-960.jpg 960w, images/display/9-1440.jpg 1440w, images/display/9-1920.jpg 1920w" sizes="(max-width: 700px) 100vw, 65vw" width="2732" height="4096" alt="Smiling woman in a red ruffled dress against a charcoal backdrop" loading="eager" decoding="async" fetchpriority="high"></div>
+      <div class="hero-shade"></div>
+      <div class="wrap hero-inner">
+        <p class="eyebrow"><span class="gold-rule"></span>San Francisco Bay Area</p>
+        <h1 id="home-title">Pose. Capture.<br><span>Enhance.</span></h1>
+        <p class="hero-description">Photography, videography and graphic design for the people, moments and brands worth remembering.</p>
+        <div class="actions">
+          <a class="button" href="portfolio.html">Explore the work <span aria-hidden="true">↗</span></a>
+          <a class="button button-ghost" href="book.html">Book a project</a>
+        </div>
+      </div>
+    </section>
+    <div class="discipline-rail"><div class="wrap disciplines"><a href="services.html#photography"><span><strong>Photography</strong><small>Portraits, people & places</small></span><span class="arrow" aria-hidden="true">↗</span></a><a href="services.html#videography"><span><strong>Videography</strong><small>Stories in motion</small></span><span class="arrow" aria-hidden="true">↗</span></a><a href="services.html#design"><span><strong>Graphic design</strong><small>Identity & campaigns</small></span><span class="arrow" aria-hidden="true">↗</span></a></div></div>
+    <section class="section work-section"><div class="wrap">
+      <div class="section-heading">
+        <div><p class="eyebrow">The portfolio</p><h2>Selected <em>photography.</em></h2></div>
+        <a class="text-link" href="portfolio.html">View full portfolio <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="work-grid">
+        <a class="work-tile" href="portfolio.html?category=studio"><img src="images/display/1-480.jpg" srcset="images/display/1-480.jpg 480w, images/display/1-960.jpg 960w" sizes="(max-width: 700px) 45vw, 28vw" width="1080" height="1364" alt="Studio portrait of a woman with silver hair in a black sequined gown" loading="lazy" decoding="async"><span>Studio Portraits <b aria-hidden="true">↗</b></span></a>
+        <a class="work-tile" href="portfolio.html?category=editorial"><img src="images/display/3-480.jpg" srcset="images/display/3-480.jpg 480w, images/display/3-960.jpg 960w" sizes="(max-width: 700px) 45vw, 28vw" width="1080" height="1920" alt="Close-up in white cat-eye sunglasses and a vivid pink jacket" loading="lazy" decoding="async"><span>Editorial <b aria-hidden="true">↗</b></span></a>
+        <a class="work-tile wide" href="portfolio.html?category=engagements"><img src="images/display/10-480.jpg" srcset="images/display/10-480.jpg 480w, images/display/10-960.jpg 960w, images/display/10-1440.jpg 1440w, images/display/10-1920.jpg 1920w" sizes="(max-width: 700px) 90vw, 45vw" width="1997" height="1123" alt="Couple posing beneath a white parasol at an outdoor celebration" loading="lazy" decoding="async"><span>Engagements <b aria-hidden="true">↗</b></span></a>
+      </div>
+    </div></section>
+    <section class="section studio-note"><div class="wrap studio-grid">
+      <div><p class="eyebrow">About the studio</p><h2>Creative direction.<br><em>Personal focus.</em></h2></div>
+      <div><p>Enhance Visual Studio brings photography, film and design together. Whether you’re planning a portrait session, documenting a celebration or shaping a brand, the work starts with where the images will live and what you want them to say.</p>
+      <a class="text-link" href="about.html">Meet the studio <span aria-hidden="true">↗</span></a></div>
+    </div></section>
 
-  <div class="socials">
-    <a href="https://instagram.com/enhancevisualstudio" target="_blank" aria-label="Instagram">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="">
-    </a>
-    <a href="https://tiktok.com/@enhancevisualstudio" target="_blank" aria-label="TikTok">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="">
-    </a>
-    <a href="https://youtube.com/@enhancevisualstudio" target="_blank" aria-label="YouTube">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="">
-    </a>
-    <a href="https://facebook.com/enhancevisualstudio" target="_blank" aria-label="Facebook">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="">
-    </a>
-    <a href="mailto:hello@enhancevisualstudio.com" aria-label="Email">
-      <svg viewBox="0 0 24 24" class="social-icon">
-        <path d="M4 6h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2zm8 7 8-5H4l8 5zm0 2L4 10v6h16v-6l-8 5z"/>
-      </svg>
-    </a>
-  </div>
-</footer>
-
-<script src="script.js"></script>
+    <section class="section"><div class="wrap cta-panel">
+      <div><h2>What are you creating?</h2><p>Tell us what you have in mind and when you’d like to get started.</p></div>
+      <a class="button" href="book.html">Book a project <span aria-hidden="true">↗</span></a>
+    </div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div><p class="footer-name">Enhance Visual Studio</p><p>Pose. Capture. Enhance.</p><p>San Francisco Bay Area, California</p></div>
+        <div><a href="mailto:hello@enhancevisualstudio.com">hello@enhancevisualstudio.com</a><div class="footer-links"><a href="https://instagram.com/enhancevisualstudio">Instagram</a><a href="https://tiktok.com/@enhancevisualstudio">TikTok</a><a href="https://youtube.com/@enhancevisualstudio">YouTube</a><a href="https://facebook.com/enhancevisualstudio">Facebook</a></div></div>
+        <div class="footer-links"><a href="book.html">Book a project</a><a href="policies.html">Booking policies</a></div>
+      </div>
+      <p class="copyright">© 2026 Enhance Visual Studio</p>
+    </div>
+  </footer>
 </body>
 </html>
