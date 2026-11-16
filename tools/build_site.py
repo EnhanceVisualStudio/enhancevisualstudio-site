@@ -237,7 +237,7 @@ def home():
       <div class="hero-shade"></div>
       <div class="wrap hero-inner">
         <p class="eyebrow"><span class="gold-rule"></span>San Francisco Bay Area</p>
-        <h1 id="home-title">Pose. Capture.<br><span>Enhance.</span></h1>
+        <h1 id="home-title">Pose. Capture. <span>Enhance.</span></h1>
         <p class="hero-description">Photography, videography and graphic design for the people, moments and brands worth remembering.</p>
         <div class="actions">
           <a class="button" href="portfolio.html">Explore the work <span aria-hidden="true">↗</span></a>

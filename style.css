@@ -147,7 +147,10 @@
       linear-gradient(0deg, #0a0a0af0, transparent 32%);
   }
   .hero-inner { padding-block: 4rem; }
-  .hero h1 { font-size: clamp(4.5rem, 10.6vw, 10rem); line-height: .79; letter-spacing: -.012em; }
+  .hero h1 {
+    font-size: clamp(1.65rem, 4.6vw, 3.5rem); line-height: 1.04;
+    letter-spacing: .01em; white-space: nowrap; text-wrap: nowrap;
+  }
   .hero h1 span { color: var(--gold); color: transparent; background: var(--gold-fill); background-clip: text; }
   .hero-description { color: #e5dfd4; max-width: 28rem; font-size: clamp(.95rem, 1.65vw, 1.17rem); margin-top: 1.65rem; }
   .hero .actions { margin-top: 1.8rem; }
@@ -276,7 +279,7 @@
     .hero-media img { object-position: center 21%; }
     .hero-shade { background: linear-gradient(0deg, #0b0a0a 2%, #0b0a0adf 24%, #100b0c38 69%), linear-gradient(90deg, #0f0c0c60, transparent); }
     .hero-inner { padding-block: 2.5rem 2.2rem; }
-    .hero h1 { font-size: clamp(3.8rem, 12.5vw, 6.5rem); }
+    .hero h1 { font-size: clamp(1.25rem, calc(4.6vw + .5rem), 2rem); }
     .hero .actions { margin-top: 1.25rem; }
     .hero-description { margin-top: 1.2rem; }
     .disciplines a { padding-inline: .55rem; }
