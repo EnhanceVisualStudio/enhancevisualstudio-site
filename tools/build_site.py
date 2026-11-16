@@ -8,6 +8,7 @@ SITE = "https://www.enhancevisualstudio.com"
 EMAIL = "hello@enhancevisualstudio.com"
 PHONE = "+13233271806"
 PHONE_DISPLAY = "(323) 327-1806"
+SLOGAN = "Capture. Create. Enhance."
 SOCIALS = [
     ("Instagram", "https://instagram.com/enhancevisualstudio"),
     ("TikTok", "https://tiktok.com/@enhancevisualstudio"),
@@ -129,9 +130,10 @@ def page(path, title, description, content):
         "name": "Enhance Visual Studio",
         "url": SITE + "/",
         "email": EMAIL,
+        "logo": SITE + "/assets/enhance-visual-studio-logo.webp",
         "telephone": PHONE,
         "image": SITE + "/images/display/9-960.jpg",
-        "slogan": "Pose. Capture. Enhance.",
+        "slogan": SLOGAN,
         "areaServed": {"@type": "Place", "name": "San Francisco Bay Area, California"},
         "sameAs": [url for _, url in SOCIALS],
     })
@@ -166,8 +168,7 @@ def page(path, title, description, content):
   <header class="site-header">
     <div class="wrap header-row">
       <a class="brand" href="index.html" aria-label="Enhance Visual Studio home">
-        <span class="monogram" aria-hidden="true">EV</span>
-        <span class="wordmark">Enhance<span>Visual Studio</span></span>
+        <img src="assets/enhance-visual-studio-logo.webp" width="560" height="215" alt="">
       </a>
       <button class="menu-button" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Menu <span aria-hidden="true">☰</span></button>
       <nav class="site-nav" id="site-nav" aria-label="Primary">
@@ -182,7 +183,7 @@ def page(path, title, description, content):
   <footer class="site-footer">
     <div class="wrap">
       <div class="footer-grid">
-        <div><p class="footer-name">Enhance Visual Studio</p><p>Pose. Capture. Enhance.</p><p>San Francisco Bay Area, California</p></div>
+        <div><p class="footer-name">Enhance Visual Studio</p><p>{SLOGAN}</p><p>San Francisco Bay Area, California</p></div>
         <div>
           <a href="mailto:{EMAIL}">{EMAIL}</a>
           <div><a href="tel:{PHONE}">{PHONE_DISPLAY}</a></div>
@@ -226,6 +227,7 @@ def cta(title, copy, url="book.html", label="Book a project"):
 
 
 def home():
+    white_text, gold_text = SLOGAN.rsplit(" ", 1)
     disciplines = "".join(
         f'<a href="services.html#{key}"><span><strong>{name}</strong><small>{subtitle}</small></span>'
         '<span class="arrow" aria-hidden="true">↗</span></a>'
@@ -237,7 +239,7 @@ def home():
       <div class="hero-shade"></div>
       <div class="wrap hero-inner">
         <p class="eyebrow"><span class="gold-rule"></span>San Francisco Bay Area</p>
-        <h1 id="home-title">Pose. Capture. <span>Enhance.</span></h1>
+        <h1 id="home-title">{white_text} <span>{gold_text}</span></h1>
         <p class="hero-description">Photography, videography and graphic design for the people, moments and brands worth remembering.</p>
         <div class="actions">
           <a class="button" href="portfolio.html">Explore the work <span aria-hidden="true">↗</span></a>
@@ -415,7 +417,7 @@ def inquiry(booking):
 
 def build():
     page("index.html", "Bay Area Photography, Videography & Graphic Design",
-         "Enhance Visual Studio offers photography, videography and graphic design in the San Francisco Bay Area. Pose. Capture. Enhance.", home())
+         f"Enhance Visual Studio offers photography, videography and graphic design in the San Francisco Bay Area. {SLOGAN}", home())
     page("services.html", "Creative Services", "Explore studio photography, videography and graphic design services from Enhance Visual Studio.", services())
     page("portfolio.html", "Photography Portfolio", "Browse studio portraits, editorial photography and engagement imagery by Enhance Visual Studio.", portfolio())
     page("videography.html", "Videography Showcase", "Explore wedding films, event videos, promotions and brand storytelling services.", showcase(
@@ -425,7 +427,7 @@ def build():
         "Graphic design", "Visual identity", "Creative design portfolio.", "Explore graphic design for identities, campaigns and social channels.",
         "There are no design projects published here yet. Contact the studio to discuss the visual direction for your project."))
     page("about.html", "About the Studio", "Meet Enhance Visual Studio, a Bay Area photography, videography and graphic design studio.",
-         intro("Pose. Capture. Enhance.", "About the studio.", "A Bay Area studio for photography, videography and graphic design.") + f'''
+         intro(SLOGAN, "About the studio.", "A Bay Area studio for photography, videography and graphic design.") + f'''
          <section class="section"><div class="wrap about-grid">
            <div>{photo(2, "(max-width: 760px) 100vw, 44vw")}</div>
            <div><h2>From idea to image.</h2><p>The studio works across portraits, celebrations, commercial imagery and visual identity. We begin with a conversation about the people, purpose and setting, then shape the direction around what the work needs to do.</p>

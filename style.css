@@ -83,17 +83,11 @@
     backdrop-filter: blur(16px);
   }
   .header-row { display: flex; align-items: center; justify-content: space-between; min-height: 4.75rem; gap: 1.2rem; }
-  .brand { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; flex-shrink: 0; }
-  .monogram {
-    display: grid; place-items: center; width: 2.65rem; height: 2.65rem;
-    border: 1px solid #8a713c; color: var(--gold-light);
-    font: 700 italic 1.45rem/1 var(--heading);
+  .brand { display: inline-flex; align-items: center; flex-shrink: 0; }
+  .brand img {
+    width: clamp(9.75rem, 19vw, 12.25rem); height: auto;
+    mix-blend-mode: screen;
   }
-  .wordmark {
-    display: grid; color: var(--white); font: 700 1.5rem/.88 var(--heading);
-    text-transform: uppercase; letter-spacing: .07em;
-  }
-  .wordmark span { color: var(--gold); font: 800 .54rem/1 var(--body); letter-spacing: .25em; margin-top: .35rem; }
   .site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(.9rem, 2.2vw, 2.3rem); }
   .site-nav > a:not(.button) { text-decoration: none; color: var(--muted); font-size: .82rem; font-weight: 800; }
   .site-nav > a:not(.button):is(:hover, [aria-current]) { color: var(--gold-light); }
