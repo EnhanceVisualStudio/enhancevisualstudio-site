@@ -6,6 +6,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://www.enhancevisualstudio.com"
 EMAIL = "hello@enhancevisualstudio.com"
+PHONE = "+13233271806"
+PHONE_DISPLAY = "(323) 327-1806"
 SOCIALS = [
     ("Instagram", "https://instagram.com/enhancevisualstudio"),
     ("TikTok", "https://tiktok.com/@enhancevisualstudio"),
@@ -122,10 +124,12 @@ def page(path, title, description, content):
     socials = "".join(f'<a href="{url}">{name}</a>' for name, url in SOCIALS)
     schema = json.dumps({
         "@context": "https://schema.org",
-        "@type": "ProfessionalService",
+        "@type": "Organization",
+        "@id": SITE + "/#studio",
         "name": "Enhance Visual Studio",
         "url": SITE + "/",
         "email": EMAIL,
+        "telephone": PHONE,
         "image": SITE + "/images/display/9-960.jpg",
         "slogan": "Pose. Capture. Enhance.",
         "areaServed": {"@type": "Place", "name": "San Francisco Bay Area, California"},
@@ -157,6 +161,7 @@ def page(path, title, description, content):
   <script type="module" src="script.js"></script>
 </head>
 <body>
+  <div class="site-scroll">
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap header-row">
@@ -178,12 +183,25 @@ def page(path, title, description, content):
     <div class="wrap">
       <div class="footer-grid">
         <div><p class="footer-name">Enhance Visual Studio</p><p>Pose. Capture. Enhance.</p><p>San Francisco Bay Area, California</p></div>
-        <div><a href="mailto:{EMAIL}">{EMAIL}</a><div class="footer-links">{socials}</div></div>
+        <div>
+          <a href="mailto:{EMAIL}">{EMAIL}</a>
+          <div><a href="tel:{PHONE}">{PHONE_DISPLAY}</a></div>
+          <div class="footer-links">{socials}</div>
+        </div>
         <div class="footer-links"><a href="book.html">Book a project</a><a href="policies.html">Booking policies</a></div>
       </div>
       <p class="copyright">© 2026 Enhance Visual Studio</p>
     </div>
   </footer>
+  </div>
+  <div class="call-dock">
+    <a class="floating-call" href="tel:{PHONE}" aria-label="Call now: Enhance Visual Studio at {PHONE_DISPLAY}">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2c1.1.4 2.3.6 3.6.6a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.3.2 2.5.6 3.6a1 1 0 0 1-.2 1z"/>
+      </svg>
+      <span>Call Now</span>
+    </a>
+  </div>
 </body>
 </html>
 '''
