@@ -16,40 +16,32 @@ SOCIALS = [
     ("Facebook", "https://facebook.com/enhancevisualstudio"),
 ]
 SERVICES = {
-    "Photography": [
-        ("portraits", "Portraits", "Individual portraits with guided posing, considered lighting and room for your personality."),
-        ("studio", "Studio Photography", "Controlled lighting and backdrops for clean or expressive studio imagery."),
-        ("headshots", "Professional Headshots", "Approachable, polished images for profiles, teams and professional use."),
-        ("branding", "Personal Branding", "A coordinated set of portraits and lifestyle images for your website, launches and social channels."),
-        ("weddings", "Weddings & Engagements", "Portraits and candid photography shaped around the people and moments that matter to you."),
-        ("events", "Events & Celebrations", "Coverage of the setting, guests and key moments of your celebration."),
-        ("family", "Family & Maternity", "Guided portraits with space for the spontaneous moments in between."),
-        ("graduation", "Graduation Photography", "A portrait session to mark your graduation, with room for campus locations and regalia."),
-        ("food", "Food & Restaurant Photography", "Menu, ingredient and dining-room imagery that reflects the character of your restaurant."),
-        ("product", "Product & Commercial Photography", "Product details, styled scenes and campaign-ready photography shaped around your brief."),
-        ("real-estate", "Real Estate & Architectural Photography", "Interior, exterior and detail photographs that communicate how a space looks and feels."),
+    "Portraits & studio": [
+        ("portraits", "Portrait Photography", "Individual portraits with guided posing and lighting that suits the mood."),
+        ("studio", "Studio Photography", "A studio session with backdrops and lighting tailored to the look you want."),
+        ("maternity", "Maternity Photography", "Studio or outdoor portraits to mark this chapter of your family’s story."),
+        ("family", "Family & Children", "Relaxed group portraits and candid moments, with space for kids to be themselves."),
+        ("graduation", "Graduation Photography", "Celebrate your milestone with cap-and-gown portraits and a location that means something to you."),
+        ("editorial", "Beauty & Editorial Photography", "Portraits built around styling, expressive poses, and considered light."),
+        ("couples", "Couples Photography", "Guided portraits for two, from an easy outdoor session to a studio setting."),
     ],
-    "Videography": [
-        ("wedding-films", "Wedding Films", "A film built around the people, atmosphere and meaningful moments of your day."),
-        ("event-video", "Event Videos", "Event coverage and edited highlights for sharing after the day."),
-        ("promotional-video", "Promotional Videos", "A focused film for an offer, launch or upcoming event."),
-        ("commercial-video", "Commercial Productions", "Video production shaped around the brief, audience and deliverables of your campaign."),
-        ("social-video", "Social Media Content", "Short-form footage and edits framed for the channels where you plan to publish."),
-        ("brand-film", "Brand Storytelling", "A film that brings your people, process and purpose into view."),
+    "Weddings & celebrations": [
+        ("birthdays", "Birthday Photography", "Birthday portraits or candid coverage of the people and details that make the day yours."),
+        ("weddings", "Weddings & Engagements", "Guided portraits and candid coverage of your engagement or wedding day."),
+        ("events", "Event Photography", "Coverage of the setting, guests, and key moments of your event."),
     ],
-    "Graphic design": [
-        ("logo", "Logo Design", "A visual mark developed around your name, audience and intended uses."),
-        ("flyer", "Flyer Design", "A clear, visually cohesive layout for an event, promotion or announcement."),
-        ("poster", "Poster Design", "A display-led composition that makes the message legible at a glance."),
-        ("identity", "Brand Identity", "A coordinated visual system for how your business appears across touchpoints."),
-        ("promo-graphics", "Promotional Graphics", "Campaign artwork shaped around your message and publishing formats."),
-        ("social-design", "Social Media Creative Assets", "Graphics and templates sized for social channels and consistent with your brand."),
+    "Business & commercial": [
+        ("headshots", "Professional Headshots", "Polished, approachable portraits for professional profiles, teams, and websites."),
+        ("branding", "Personal Branding Photography", "A coordinated set of portraits and lifestyle images for your business and campaigns."),
+        ("food", "Food & Restaurant Photography", "Photographs of dishes, ingredients, and spaces for menus and restaurant marketing."),
+        ("real-estate", "Real Estate & Interior Photography", "Interior, exterior, and detail photographs that show how a property looks and feels."),
+        ("product", "Commercial & Product Photography", "Product details and styled scenes for websites, catalogs, and campaigns."),
     ],
 }
-GROUPS = {
-    "Photography": ("photography", "Portraits, people & places"),
-    "Videography": ("videography", "Stories in motion"),
-    "Graphic design": ("design", "Identity & campaigns"),
+SERVICE_ANCHORS = {
+    "Portraits & studio": "portraits",
+    "Weddings & celebrations": "celebrations",
+    "Business & commercial": "commercial",
 }
 PACKAGES = {
     "essential": ("Essential", 200, "Portrait / Studio", [
@@ -70,6 +62,7 @@ PACKAGE_SERVICES = {
     "studio": ["essential", "signature", "creative-campaign"],
     "headshots": ["essential", "signature"],
     "branding": ["creative-campaign"],
+    "editorial": ["creative-campaign"],
 }
 POLICIES = [
     ("Retainers", "A non-refundable retainer is required to secure all bookings."),
@@ -94,8 +87,8 @@ PHOTOS = {
     10: (1997, 1123, "Couple posing beneath a white parasol at an outdoor celebration", "Engagements"),
 }
 NAV = [
-    ("services.html", "Services"), ("portfolio.html", "Portfolio"), ("about.html", "About"),
-    ("packages.html", "Packages"), ("contact.html", "Contact"),
+    ("index.html", "Home"), ("portfolio.html", "Portfolio"), ("packages.html", "Packages"),
+    ("about.html", "About"), ("contact.html", "Contact"),
 ]
 
 
@@ -115,7 +108,7 @@ def photo(number, sizes, *, eager=False, high=False):
 
 
 def page(path, title, description, content):
-    canonical = f"{SITE}/{'' if path == 'index.html' else path}"
+    canonical = SITE + ("/" if path == "index.html" else "/" + Path(path).stem)
     current = ' aria-current="page"'
     links = "".join(
         f'<a href="{url}"{current if path == url else ""}>{label}</a>'
@@ -134,6 +127,7 @@ def page(path, title, description, content):
         "telephone": PHONE,
         "image": SITE + "/images/display/9-960.jpg",
         "slogan": SLOGAN,
+        "description": "Bay Area photography studio for portraits, celebrations, and commercial work.",
         "areaServed": {"@type": "Place", "name": "San Francisco Bay Area, California"},
         "sameAs": [url for _, url in SOCIALS],
     })
@@ -173,7 +167,7 @@ def page(path, title, description, content):
       <button class="menu-button" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Menu <span aria-hidden="true">☰</span></button>
       <nav class="site-nav" id="site-nav" aria-label="Primary">
         {links}
-        <a class="button button-small" href="book.html"{booking_current}>Book a project <span aria-hidden="true">↗</span></a>
+        <a class="button button-small" href="book.html"{booking_current}>Book a session <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
@@ -189,7 +183,7 @@ def page(path, title, description, content):
           <div><a href="tel:{PHONE}">{PHONE_DISPLAY}</a></div>
           <div class="footer-links">{socials}</div>
         </div>
-        <div class="footer-links"><a href="book.html">Book a project</a><a href="policies.html">Booking policies</a></div>
+        <div class="footer-links"><a href="book.html">Book a session</a><a href="policies.html">Booking policies</a></div>
       </div>
       <p class="copyright">© 2026 Enhance Visual Studio</p>
     </div>
@@ -209,16 +203,17 @@ def page(path, title, description, content):
     (ROOT / path).write_text("\n".join(line.rstrip() for line in document.splitlines()) + "\n", encoding="utf-8")
 
 
-def intro(label, title, description):
+def intro(label, title, description, *, compact=False):
+    modifier = " page-heading-compact" if compact else ""
     return f'''
-    <section class="page-heading"><div class="wrap">
+    <section class="page-heading{modifier}"><div class="wrap">
       <p class="eyebrow">{label}</p>
       <h1>{title}</h1>
       <p class="lede">{description}</p>
     </div></section>'''
 
 
-def cta(title, copy, url="book.html", label="Book a project"):
+def cta(title, copy, url="book.html", label="Book a session"):
     return f'''
     <section class="section"><div class="wrap cta-panel">
       <div><h2>{title}</h2><p>{copy}</p></div>
@@ -228,11 +223,6 @@ def cta(title, copy, url="book.html", label="Book a project"):
 
 def home():
     white_text, gold_text = SLOGAN.rsplit(" ", 1)
-    disciplines = "".join(
-        f'<a href="services.html#{key}"><span><strong>{name}</strong><small>{subtitle}</small></span>'
-        '<span class="arrow" aria-hidden="true">↗</span></a>'
-        for name, (key, subtitle) in GROUPS.items()
-    )
     return f'''
     <section class="hero" aria-labelledby="home-title">
       <div class="hero-media">{photo(9, '(max-width: 700px) 100vw, 65vw', eager=True, high=True)}</div>
@@ -240,17 +230,16 @@ def home():
       <div class="wrap hero-inner">
         <p class="eyebrow"><span class="gold-rule"></span>San Francisco Bay Area</p>
         <h1 id="home-title">{white_text} <span>{gold_text}</span></h1>
-        <p class="hero-description">Photography, videography and graphic design for the people, moments and brands worth remembering.</p>
+        <p class="hero-description">Portraits, celebrations, and commercial photography.</p>
         <div class="actions">
-          <a class="button" href="portfolio.html">Explore the work <span aria-hidden="true">↗</span></a>
-          <a class="button button-ghost" href="book.html">Book a project</a>
+          <a class="button" href="book.html">Book a session <span aria-hidden="true">↗</span></a>
+          <a class="button button-ghost" href="portfolio.html">View portfolio</a>
         </div>
       </div>
     </section>
-    <div class="discipline-rail"><div class="wrap disciplines">{disciplines}</div></div>
     <section class="section work-section"><div class="wrap">
       <div class="section-heading">
-        <div><p class="eyebrow">The portfolio</p><h2>Selected <em>photography.</em></h2></div>
+        <div><h2>Selected <em>photography.</em></h2></div>
         <a class="text-link" href="portfolio.html">View full portfolio <span aria-hidden="true">↗</span></a>
       </div>
       <div class="work-grid">
@@ -259,38 +248,38 @@ def home():
         <a class="work-tile wide" href="portfolio.html?category=engagements">{photo(10, '(max-width: 700px) 90vw, 45vw')}<span>Engagements <b aria-hidden="true">↗</b></span></a>
       </div>
     </div></section>
-    <section class="section studio-note"><div class="wrap studio-grid">
-      <div><p class="eyebrow">About the studio</p><h2>Creative direction.<br><em>Personal focus.</em></h2></div>
-      <div><p>Enhance Visual Studio brings photography, film and design together. Whether you’re planning a portrait session, documenting a celebration or shaping a brand, the work starts with where the images will live and what you want them to say.</p>
-      <a class="text-link" href="about.html">Meet the studio <span aria-hidden="true">↗</span></a></div>
-    </div></section>
-    {cta('What are you creating?', 'Tell us what you have in mind and when you’d like to get started.')}'''
+    <section class="section session-section"><div class="wrap cta-panel">
+      <div><h2>Find your session.</h2><p>Compare portrait packages or explore photography for an event, business, or special occasion.</p></div>
+      <div class="actions">
+        <a class="button" href="packages.html">View packages <span aria-hidden="true">↗</span></a>
+        <a class="button button-ghost" href="services.html">Photography services</a>
+      </div>
+    </div></section>'''
 
 
 def services():
-    group_links = "".join(f'<a href="#{GROUPS[name][0]}">{name}</a>' for name in SERVICES)
+    group_links = "".join(
+        f'<a href="#{SERVICE_ANCHORS[name]}">{escape(name)}</a>' for name in SERVICES
+    )
     sections = []
-    destination = {
-        "photography": ("portfolio.html", "Explore photography"),
-        "videography": ("videography.html", "Visit the film showcase"),
-        "design": ("design.html", "Visit the design portfolio"),
-    }
     for name, entries in SERVICES.items():
-        key, tag = GROUPS[name]
-        url, label = destination[key]
-        cards = "".join(
-            f'''<article class="service-card"><h3>{escape(service)}</h3><p>{escape(copy)}</p>
-              <a class="text-link" href="book.html?service={slug}">Request {escape(service.lower())} <span aria-hidden="true">↗</span></a></article>'''
-            for slug, service, copy in entries
-        )
-        sections.append(f'''
-        <section class="section catalog-group" id="{key}"><div class="wrap">
-          <div class="section-heading"><div><p class="eyebrow">{escape(tag)}</p><h2>{name}</h2></div>
-          <a class="text-link" href="{url}">{label} <span aria-hidden="true">↗</span></a></div>
-          <div class="card-grid">{cards}</div>
-        </div></section>''')
-    return (intro("What we do", "Studio services.", "Guided sessions, moving images and original design for personal and commercial projects.")
-            + f'<nav class="wrap filter-bar" aria-label="Service categories">{group_links}</nav>'
+        cards = []
+        for slug, service, copy in entries:
+            fixed_price = slug in PACKAGE_SERVICES
+            query = "" if fixed_price else "&amp;package=custom"
+            label = "Book a session" if fixed_price else "Request a Custom Quote"
+            cards.append(f"""
+            <article class="service-card">
+              <h3>{escape(service)}</h3><p>{escape(copy)}</p>
+              <a class="text-link" href="book.html?service={slug}{query}">{label} <span aria-hidden="true">↗</span></a>
+            </article>""")
+        sections.append(f"""
+        <section class="section catalog-group" id="{SERVICE_ANCHORS[name]}"><div class="wrap">
+          <div class="section-heading"><h2>{escape(name)}</h2></div>
+          <div class="card-grid">{"".join(cards)}</div>
+        </div></section>""")
+    return (intro("San Francisco Bay Area", "Photography services.", "Choose a session or request a quote for specialty coverage.")
+            + f'<nav class="wrap filter-bar" id="photography" aria-label="Photography categories">{group_links}</nav>'
             + "".join(sections))
 
 
@@ -330,39 +319,33 @@ def portfolio():
     {cta("Plan your own session.", "Explore photography packages or tell us about a custom project.", "packages.html", "View packages")}'''
 
 
-def showcase(group, label, headline, description, empty_copy):
-    key = GROUPS[group][0]
-    listing = "".join(
-        f'<li><a href="book.html?service={slug}">{escape(name)} <span aria-hidden="true">↗</span></a></li>'
-        for slug, name, _ in SERVICES[group]
-    )
-    return intro(label, headline, description) + f'''
-    <section class="section"><div class="wrap feature-grid">
-      <div class="empty-showcase"><h2>Portfolio availability</h2><p>{empty_copy}</p><a class="text-link" href="contact.html">Contact the studio <span aria-hidden="true">↗</span></a></div>
-      <div><h2>Explore by project</h2><ul class="link-list">{listing}</ul><a class="text-link" href="services.html#{key}">See service details <span aria-hidden="true">↗</span></a></div>
-    </div></section>'''
-
-
 def packages():
     cards = []
+    package_images = {"essential": 1, "signature": 7, "creative-campaign": 3}
     for slug, (name, price, label, inclusions) in PACKAGES.items():
         items = "".join(f"<li>{escape(item)}</li>" for item in inclusions)
         featured = ' class="package featured"' if slug == "signature" else ' class="package"'
         cards.append(f'''
         <article{featured}>
+          <div class="package-photo">{photo(package_images[slug], "(max-width: 560px) 90vw, (max-width: 900px) 45vw, 30vw")}</div>
+          <div class="package-body">
           <p class="eyebrow">{label}</p><h2>{name}</h2><p class="price">${price}</p><ul>{items}</ul>
           <a class="button{" button-ghost" if slug != "signature" else ""}" href="book.html?package={slug}">Request {name} <span aria-hidden="true">↗</span></a>
+          </div>
         </article>''')
-    return intro("Photography pricing", "Packages.", "Compare session time, locations and retouched images to find the right fit.") + f'''
-    <section class="section"><div class="wrap card-grid">{"".join(cards)}</div></section>
-    <div class="wrap"><a class="text-link" href="policies.html">Read the booking policies <span aria-hidden="true">↗</span></a></div>
-    {cta("Have a different brief?", "Request custom pricing for other photography, videography and design projects.", "book.html?package=custom", "Request a quote")}'''
+    return intro("Photography pricing", "Packages.", "Compare session time, locations and retouched images to find the right fit.", compact=True) + f'''
+    <section class="section package-section"><div class="wrap card-grid">{"".join(cards)}</div></section>
+    <div class="wrap package-links">
+      <a class="text-link" href="policies.html">Booking policies <span aria-hidden="true">↗</span></a>
+      <a class="text-link" href="services.html">All photography services <span aria-hidden="true">↗</span></a>
+    </div>
+    {cta("Specialty photography.", "Request a tailored quote for events, weddings, commercial photography, and other specialty sessions.", "book.html?package=custom", "Request a Custom Quote")}'''
 
 
 def request_form(booking):
     kind = "booking" if booking else "contact"
     options = "".join(
-        f'<optgroup label="{group}">' + "".join(
+        f'<optgroup label="{escape(group, quote=True)}">' + "".join(
             f'<option value="{slug}">{escape(name)}</option>' for slug, name, _ in entries
         ) + "</optgroup>"
         for group, entries in SERVICES.items()
@@ -378,7 +361,7 @@ def request_form(booking):
         <div><label for="alternateDate">Alternate date <small>(optional)</small></label><input type="date" id="alternateDate" name="alternateDate"></div>
       </div>
       <label for="location">Project location</label>
-      <input id="location" name="location" maxlength="200" placeholder="City, venue, remote, or to be determined" required>
+      <input id="location" name="location" maxlength="200" placeholder="City, venue, or to be determined" required>
 ''' if booking else ""
     return f'''
     <form class="request-form" data-kind="{kind}" hidden>
@@ -400,9 +383,9 @@ def request_form(booking):
 
 
 def inquiry(booking):
-    title = "Book a project." if booking else "Contact the studio."
-    description = ("Tell us what you’re planning and share your preferred dates. The studio will follow up about availability and next steps."
-                   if booking else "Reach out about a project, collaboration or general question.")
+    title = "Book a session." if booking else "Contact the studio."
+    description = ("Choose a photography service, share your preferred dates, and ask about availability."
+                   if booking else "Ask about photography sessions, coverage, or availability.")
     extra = f'''<p>Dates remain tentative until the studio confirms availability and receives the required retainer.</p>
       <p><a class="text-link" href="policies.html">Booking policies <span aria-hidden="true">↗</span></a></p>''' if booking else '''
       <p>Based in the San Francisco Bay Area, California.</p>
@@ -410,33 +393,29 @@ def inquiry(booking):
     return intro("Project requests" if booking else "Get in touch", title, description) + f'''
     <section class="section"><div class="wrap inquiry-grid">
       <aside class="contact-card"><h2>{"Before you request" if booking else "Studio inquiries"}</h2>{extra}
+      <p>{"If online submission is unavailable, email us your session type, dates, and location." if booking else "If online submission is unavailable, you can email the studio directly."}</p>
+      <p><a class="text-link" href="mailto:{EMAIL}">{"Email a booking request" if booking else "Email the studio"}</a></p>
       <p><a href="mailto:{EMAIL}">{EMAIL}</a></p></aside>
       <div>{request_form(booking)}</div>
     </div></section>'''
 
 
 def build():
-    page("index.html", "Bay Area Photography, Videography & Graphic Design",
-         f"Enhance Visual Studio offers photography, videography and graphic design in the San Francisco Bay Area. {SLOGAN}", home())
-    page("services.html", "Creative Services", "Explore studio photography, videography and graphic design services from Enhance Visual Studio.", services())
+    page("index.html", "Bay Area Photography Studio",
+         f"Bay Area portraits, studio sessions, weddings, events, headshots, and commercial photography by Enhance Visual Studio. {SLOGAN}", home())
+    page("services.html", "Photography Services", "Explore Bay Area portrait, wedding, event, headshot, branding, and commercial photography.", services())
     page("portfolio.html", "Photography Portfolio", "Browse studio portraits, editorial photography and engagement imagery by Enhance Visual Studio.", portfolio())
-    page("videography.html", "Videography Showcase", "Explore wedding films, event videos, promotions and brand storytelling services.", showcase(
-        "Videography", "Film & motion", "Videography showcase.", "Explore film services for weddings, events and brands.",
-        "There are no films published here yet. Contact the studio to ask about examples relevant to your project."))
-    page("design.html", "Creative Design Portfolio", "Explore logo, brand identity, poster, flyer and social media design services.", showcase(
-        "Graphic design", "Visual identity", "Creative design portfolio.", "Explore graphic design for identities, campaigns and social channels.",
-        "There are no design projects published here yet. Contact the studio to discuss the visual direction for your project."))
-    page("about.html", "About the Studio", "Meet Enhance Visual Studio, a Bay Area photography, videography and graphic design studio.",
-         intro(SLOGAN, "About the studio.", "A Bay Area studio for photography, videography and graphic design.") + f'''
+    page("about.html", "About the Studio", "Meet Enhance Visual Studio, a Bay Area photography studio for portraits, celebrations, and commercial work.",
+         intro(SLOGAN, "About the studio.", "Enhance Visual Studio is based in the San Francisco Bay Area.") + f'''
          <section class="section"><div class="wrap about-grid">
            <div>{photo(2, "(max-width: 760px) 100vw, 44vw")}</div>
-           <div><h2>From idea to image.</h2><p>The studio works across portraits, celebrations, commercial imagery and visual identity. We begin with a conversation about the people, purpose and setting, then shape the direction around what the work needs to do.</p>
-           <p>For photography, that can mean guidance on posing, lighting and the location. For film and design, it starts with the story, the audience and where the finished work will appear.</p>
-           <a class="text-link" href="services.html">Explore studio services <span aria-hidden="true">↗</span></a></div>
-         </div></section>{cta("Let’s talk about your project.", "Share your idea and tell us what you need.")}''')
+           <div><h2>Photography with direction.</h2><p>We photograph portraits, milestones, and commercial work in the studio and on location. Sessions start with a conversation about the people, the setting, and how you’ll use your images.</p>
+           <p>We guide posing and lighting and leave room for the candid moments that make a session yours.</p>
+           <a class="text-link" href="services.html">Explore photography services <span aria-hidden="true">↗</span></a></div>
+         </div></section>{cta("Plan a photography session.", "Tell us what you’d like photographed.")}''')
     page("packages.html", "Photography Packages & Pricing", "Compare Essential, Signature and Creative Campaign photography packages from Enhance Visual Studio.", packages())
-    page("book.html", "Book a Project", "Send a photography, videography or design booking request directly to Enhance Visual Studio.", inquiry(True))
-    page("contact.html", "Contact", "Contact Enhance Visual Studio for creative projects and general inquiries in the San Francisco Bay Area.", inquiry(False))
+    page("book.html", "Book a Photography Session", "Request a Bay Area photography session or a custom quote from Enhance Visual Studio.", inquiry(True))
+    page("contact.html", "Contact", "Contact Enhance Visual Studio for photography and session inquiries in the San Francisco Bay Area.", inquiry(False))
     policy_cards = "".join(f'<article class="service-card"><h2>{name}</h2><p>{copy}</p></article>' for name, copy in POLICIES)
     page("policies.html", "Booking Policies", "Read Enhance Visual Studio’s photography booking and delivery policies.",
          intro("Photography sessions", "Booking policies.", "Review retainers, scheduling, delivery and creative direction before reserving your session.") +
@@ -452,11 +431,11 @@ def build():
         "// Generated by tools/build_site.py.\nexport const catalog = " + json.dumps(catalog, indent=2, ensure_ascii=False) + ";\n",
         encoding="utf-8",
     )
-    urls = ["", "services.html", "portfolio.html", "videography.html", "design.html", "about.html",
+    urls = ["", "services.html", "portfolio.html", "about.html",
             "packages.html", "book.html", "contact.html", "policies.html"]
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        + "".join(f"  <url><loc>{SITE}/{url}</loc></url>\n" for url in urls)
+        + "".join(f"  <url><loc>{SITE}/{Path(url).stem}</loc></url>\n" for url in urls)
         + "</urlset>\n", encoding="utf-8"
     )
 

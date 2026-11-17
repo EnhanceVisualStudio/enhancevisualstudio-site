@@ -61,6 +61,12 @@ if (filterBar) {
   });
 
   if (typeof lightbox.showModal === "function") {
+    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+    photo.addEventListener("load", () => {
+      if (lightbox.open && !reduceMotion.matches) {
+        photo.animate([{ opacity: 0.55 }, { opacity: 1 }], { duration: 220, easing: "ease-out" });
+      }
+    });
     gallery.addEventListener("click", (event) => {
       const link = event.target.closest(".gallery-image");
       if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
