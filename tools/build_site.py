@@ -284,10 +284,17 @@ def services():
 
 
 def portfolio():
-    categories = ["Studio", "Portraits", "Editorial", "Engagements"]
+    labels = {
+        "Portraits": "Portraits",
+        "Studio": "Studio Photography",
+        "Engagements": "Weddings & Engagements",
+        "Editorial": "Fashion & Editorial",
+    }
+    available = {tag for photo_data in PHOTOS.values() for tag in photo_data[3:]}
+    categories = ["All", *(name for name in labels if name in available)]
     filters = "".join(
-        f'<button type="button" data-filter="{name.lower()}" aria-pressed="{str(name == "All").lower()}">{name}</button>'
-        for name in ["All", *categories]
+        f'<button type="button" data-filter="{name.lower()}" aria-pressed="{str(name == "All").lower()}">{escape(labels.get(name, name))}</button>'
+        for name in categories
     )
     figures = []
     for number in [9, 3, 1, 10, 7, 4, 8, 2, 6, 5]:
@@ -297,12 +304,12 @@ def portfolio():
         figures.append(f'''
         <figure data-categories="{tag_keys}">
           <a class="gallery-image" href="images/{number}.jpg">{img}</a>
-          <figcaption>{" / ".join(tags)}</figcaption>
+          <figcaption>{escape(" / ".join(labels.get(tag, tag) for tag in tags))}</figcaption>
         </figure>''')
     return intro("Selected work", "Photography portfolio.", "Studio, portrait, editorial and engagement photography by Enhance Visual Studio.") + f'''
     <section class="wrap" aria-label="Photographs">
-      <div class="filter-bar" id="gallery-filters" aria-label="Filter photographs" hidden>{filters}</div>
-      <p id="gallery-count" class="sr-only" role="status"></p>
+      <div class="filter-bar" id="gallery-filters" role="group" aria-label="Filter photographs" hidden>{filters}</div>
+      <p id="gallery-count" class="gallery-count" role="status" hidden></p>
       <div class="gallery" id="gallery">{"".join(figures)}</div>
     </section>
     <dialog class="lightbox" aria-label="Full-size photograph">

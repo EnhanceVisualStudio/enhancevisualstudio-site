@@ -202,6 +202,7 @@
   .package li + li { margin-top: .4rem; }
   .contact-card p { margin-top: .9rem; }
 
+  .gallery-count { padding-bottom: 1rem; color: var(--muted); font-size: .82rem; }
   .gallery { columns: 3; column-gap: 1rem; }
   .gallery figure { break-inside: avoid; margin-bottom: 1rem; background: var(--panel); border: 1px solid var(--line); }
   .gallery-image { display: block; overflow: hidden; }
@@ -219,7 +220,8 @@
   .lightbox-tools, .lightbox-controls { display: flex; justify-content: space-between; align-items: center; gap: .75rem; }
   .lightbox-controls { justify-content: center; }
   .lightbox button { border: 1px solid var(--line); color: var(--white); background: var(--panel); padding: .45rem .9rem; min-width: 2.75rem; min-height: 2.75rem; }
-  .lightbox button:hover { border-color: var(--gold); }
+  .lightbox button:disabled { opacity: .4; cursor: default; }
+  .lightbox button:not(:disabled):hover { border-color: var(--gold); }
 
   .inquiry-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
   .contact-card a { overflow-wrap: anywhere; }

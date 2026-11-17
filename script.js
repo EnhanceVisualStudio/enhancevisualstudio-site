@@ -41,6 +41,9 @@ if (filterBar) {
       figure.hidden = category !== "all" && !figure.dataset.categories.split(" ").includes(category);
     });
     visible = figures.filter((figure) => !figure.hidden).map((figure) => figure.querySelector("a"));
+    for (const control of lightbox.querySelectorAll("[data-advance]")) {
+      control.disabled = visible.length < 2;
+    }
     counter.textContent = visible.length === 1 ? "1 photograph" : visible.length + " photographs";
   }
 
@@ -53,6 +56,7 @@ if (filterBar) {
   }
 
   filterBar.hidden = false;
+  counter.hidden = false;
   const requested = params.get("category");
   filter(filters.some((button) => button.dataset.filter === requested) ? requested : "all");
   filterBar.addEventListener("click", (event) => {
