@@ -85,6 +85,10 @@ PHOTOS = {
     8: (8145, 5433, "Reclining studio portrait in a black leopard-print outfit and platform heels", "Editorial"),
     9: (2732, 4096, "Smiling woman in a red ruffled dress against a charcoal backdrop", "Studio", "Portraits"),
     10: (1997, 1123, "Couple posing beneath a white parasol at an outdoor celebration", "Engagements"),
+    11: (1365, 2048, "Couple holding hands beneath a canopy at their outdoor engagement picnic", "Engagements"),
+    12: (2048, 1365, "Engaged couple posing with guests on the lawn at their celebration", "Engagements"),
+    13: (1365, 2048, "The engaged couple posing with a guest beneath garden trees", "Engagements"),
+    14: (2048, 1365, "Guests gathered around a low picnic table at an outdoor engagement celebration", "Engagements"),
 }
 NAV = [
     ("index.html", "Home"), ("portfolio.html", "Portfolio"), ("packages.html", "Packages"),
@@ -245,7 +249,7 @@ def home():
       <div class="work-grid">
         <a class="work-tile" href="portfolio.html?category=studio">{photo(1, '(max-width: 700px) 45vw, 28vw')}<span>Studio Portraits <b aria-hidden="true">↗</b></span></a>
         <a class="work-tile" href="portfolio.html?category=editorial">{photo(3, '(max-width: 700px) 45vw, 28vw')}<span>Editorial <b aria-hidden="true">↗</b></span></a>
-        <a class="work-tile wide" href="portfolio.html?category=engagements">{photo(10, '(max-width: 700px) 90vw, 45vw')}<span>Engagements <b aria-hidden="true">↗</b></span></a>
+        <a class="work-tile wide" href="portfolio.html?category=engagements">{photo(14, '(max-width: 700px) 90vw, 45vw')}<span>Engagements <b aria-hidden="true">↗</b></span></a>
       </div>
     </div></section>
     <section class="section session-section"><div class="wrap cta-panel">
@@ -297,7 +301,7 @@ def portfolio():
         for name in categories
     )
     figures = []
-    for number in [9, 3, 1, 10, 7, 4, 8, 2, 6, 5]:
+    for number in [9, 3, 1, 10, 11, 7, 14, 4, 8, 12, 2, 6, 13, 5]:
         tags = PHOTOS[number][3:]
         tag_keys = " ".join(tag.lower() for tag in tags)
         img = photo(number, "(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw", eager=number in [9, 3, 1])
