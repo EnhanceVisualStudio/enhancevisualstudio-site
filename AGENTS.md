@@ -10,3 +10,5 @@
 
 - Gallery publishing and client delivery use the EVS SmugMug account, with Luna branding. Use native galleries, folders, privacy, downloads, search, and Lightroom publishing. Do not build a custom Studio Manager or add gallery databases, storage services, or authentication backends.
 - The planned gallery host is gallery.enhancevisualstudio.com. Keep public links gated until the destination works for signed-out visitors over HTTPS. Keep subscription purchases, sales pricing, DNS changes, and production releases subject to the user's explicit authorization. Booking infrastructure remains independent.
+
+- The finalized text slogan is exactly "Pose. Click. Enhance" with no final period. Use it across website copy, metadata, marketing, and SmugMug customization. Preserve the supplied logo artwork and the black, gold, and metallic silver identity.

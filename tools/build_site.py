@@ -8,7 +8,7 @@ SITE = "https://www.enhancevisualstudio.com"
 EMAIL = "hello@enhancevisualstudio.com"
 PHONE = "+13233271806"
 PHONE_DISPLAY = "(323) 327-1806"
-SLOGAN = "Capture. Create. Enhance."
+SLOGAN = "Pose. Click. Enhance"
 # Enable only after signed-out HTTPS checks of the homepage, browse, and search.
 GALLERY_URL = None
 SOCIALS = [
@@ -211,9 +211,10 @@ def page(path, title, description, content):
 
 def intro(label, title, description, *, compact=False):
     modifier = " page-heading-compact" if compact else ""
+    label_class = "eyebrow slogan" if label == SLOGAN else "eyebrow"
     return f'''
     <section class="page-heading{modifier}"><div class="wrap">
-      <p class="eyebrow">{label}</p>
+      <p class="{label_class}">{label}</p>
       <h1>{title}</h1>
       <p class="lede">{description}</p>
     </div></section>'''

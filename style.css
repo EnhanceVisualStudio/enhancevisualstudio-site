@@ -60,6 +60,7 @@
     color: var(--gold); font-size: .7rem; font-weight: 800; letter-spacing: .19em;
     text-transform: uppercase; line-height: 1.5; margin-bottom: .85rem;
   }
+  .slogan { text-transform: none; letter-spacing: normal; }
   .gold-rule { display: inline-block; height: 1px; width: 2.25rem; background: var(--gold); }
   .lede { color: var(--muted); font-size: clamp(1rem, 2vw, 1.25rem); max-width: 44rem; }
   .actions { display: flex; flex-wrap: wrap; gap: .8rem; }
@@ -145,7 +146,7 @@
   .hero-inner { padding-block: 4rem; }
   .hero h1 {
     font-size: clamp(1.65rem, 4.6vw, 3.5rem); line-height: 1.04;
-    letter-spacing: .01em; white-space: nowrap; text-wrap: nowrap;
+    letter-spacing: .01em; white-space: nowrap; text-wrap: nowrap; text-transform: none;
   }
   .hero h1 span { color: var(--gold); color: transparent; background: var(--gold-fill); background-clip: text; }
   .hero-description { color: #e5dfd4; max-width: 28rem; font-size: clamp(.95rem, 1.65vw, 1.17rem); margin-top: 1.65rem; }
