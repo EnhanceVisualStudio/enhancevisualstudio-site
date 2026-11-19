@@ -1,18 +1,55 @@
 # EVS SmugMug setup
 
-This is a ready-to-apply customization pack for the existing Luna trial.
+This pack is the recoverable source for the native EVS Luna trial customization.
 The finalized text slogan is exactly **Pose. Click. Enhance**. The supplied gold
 camera and metallic silver logo uses that slogan too. Its artwork is retained
 as provided, with its original colors and proportions.
 The public account currently displays “Private site” with HTTP 404.
-The user confirmed a trial. Subscription eligibility, settings, real gallery
-contents, upload behavior and client privacy still require owner-side checks.
+The user confirmed a trial. Native owner-side checks verified uploads, the
+shared header and footer, mobile collapse, gallery viewing and saved protection
+settings. Public sharing and signed-out client-privacy checks remain blocked by
+the trial; no subscription or DNS change was made.
 
 The main website update is on codex/evs-redesign. Main and the booking system
 remain independent. Native SmugMug handles gallery uploads, folders, privacy,
 search, full-screen viewing, sharing, downloads and any later approved sales.
 
-## Apply the branding in your signed-in Safari window
+## Native setup published on November 19, 2026
+
+- Existing theme: Enhance Visual Studio - Gold. Primary #000000, text #f7f4ed,
+  accent #e0bb69; Barlow Condensed headings and Manrope body.
+- Entire Site: one original official logo above the centered native Menu, compact
+  pure-black header, seven staging links and Collapse for Mobile enabled. The
+  original logo uses a sharp 600px native rendition, displayed at 168–196px by CSS.
+- Homepage, All Folders and All Galleries inherit that header and shared footer.
+- Footer copyright: ©2026 Enhance Visual Studio - All Rights Reserved.
+  The theme appends this centered row after the native platform/legal links.
+  The HTML copyright is a fallback and is hidden while the native footer exists.
+- Organizer: Public Events / 2026; Portfolio; Unlisted Client Delivery.
+  Client Delivery has web and SmugMug search disabled. Existing Unlisted brand
+  assets, watermark assets and the original empty default gallery are retained.
+- Portfolio contains 14 unique photographs already approved on the main site:
+  Portraits & Studio (5), Fashion & Editorial (4), Weddings & Engagements (5).
+  No event dates, client assignments or new photography were invented.
+- Featured photography uses the native Portfolio folder dynamically. Latest
+  events uses Public Events / 2026, newest first. Search is gallery-first and
+  restricted to Public Events. Event archives lists its native year folders.
+  The existing gold Book a Photographer button links to the staging booking page.
+- Three native presets saved: EVS Public Event, EVS Private Client, EVS Portfolio.
+  See gallery-presets.md for actual protections and the per-gallery Access step.
+- Owner preview verified the native lightbox, image proportions and navigation.
+  Trial sharing explicitly remains owner-only. Owner purchase/download controls
+  can still appear even when Visitor Shopping Cart and downloads are disabled;
+  saved gallery settings are the authoritative configuration.
+
+The design was published through SmugMug’s native confirmation after owner-side
+verification. Publication does not remove the trial’s private-site restriction.
+The main production branch and domain remain untouched.
+
+The following instructions reproduce or adjust the saved customization. Do not
+upload another logo or add duplicate shared blocks.
+
+## Branding in the authorized signed-in Chrome session
 
 1. Open My Site → Customize Design. Select Entire Site. Keep the chosen Luna
    design and its native gallery/lightbox controls. If the homepage has an
@@ -24,7 +61,8 @@ search, full-screen viewing, sharing, downloads and any later approved sales.
    sans heading font and a plain sans body font. Set body to 16px or larger.
    In Advanced CSS, paste theme.css.
 3. In Entire Site header, set the native Logo block to evs-logo.png, linked to
-   the main website. Display at about 196px wide, retaining its proportions.
+   the main website. Set Resize Width to 600px for a sharp rendition; theme.css
+   displays it compactly at 168–196px, retaining its original proportions.
    Add a native Menu block with the seven entries below and Collapse for Mobile.
    The native Menu is preferred for its supported mobile behavior.
    navigation.html is an optional HTML block replacement if you prefer wrapping
@@ -52,8 +90,12 @@ build_smugmug_customization() in tools/build_site.py and regenerate the snippets
 | Contact | https://codex-evs-redesign.enhancevisualstudio-site.pages.dev/contact |
 | Book a Session | https://codex-evs-redesign.enhancevisualstudio-site.pages.dev/book |
 
-Choose a horizontal header layout with logo left and menu right where Luna
-allows it. Use native Entire Site Layout width and pinning options. Keep the
+Use a compact Entire Site header with the centered official Logo block above
+the centered native Menu block. Retain the logo artwork and its aspect ratio;
+remove block padding instead of adding spacers. The header background is pure
+black (#000), with white navigation and subtle gold hover accents. Keep native
+Collapse for Mobile enabled. Check Homepage, All Folders and All Galleries for
+header overrides, using the shared header rather than duplicated blocks. Keep the
 SmugMug mini footer and its required privacy/report/login links.
 
 ## Native event homepage
@@ -67,7 +109,7 @@ until it contains published public material.
 | Introduction | HTML using home-intro.html | Official slogan, minimal text |
 | Gallery search | Discovery → Search Box | Gallery results first; source Public Events folder; “Search event galleries” |
 | Latest events | Galleries → Folder → Public Events / current year | Date added, descending; landscape collage or grid; visible titles |
-| Featured albums | Galleries → Galleries I Choose | 3–6 selected existing public galleries, curated order |
+| Featured photography | Galleries → Folder → Portfolio | Dynamic source; three genuine photography galleries; landscape collage; visible titles |
 | Event archives | Folders, Galleries & Pages → Public Events folder | Year folder covers, names, newest year first |
 | Book a Photographer | Native Button | Preview /book?service=events&package=custom |
 
@@ -84,8 +126,9 @@ Create this Organizer structure using native folders:
 - Portfolio / photography categories
 - Client Delivery / unlisted client galleries
 
-Select the existing public albums directly in Featured albums, so photographs
-need no duplicate upload. Publish new events under the current year.
+The configured Featured photography block lists the Portfolio folder without
+duplicate uploads or manual album lists. Additional curated event features may
+use Galleries I Choose later. Publish new events under the current year.
 Create each year's folder once, then let the native folder block list the
 years. Set a representative photograph as each event and year-folder cover.
 The date timeline (/date) groups photographs by capture date. Year/event

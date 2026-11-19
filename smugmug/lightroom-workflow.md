@@ -31,7 +31,10 @@ Lightroom and SmugMug. It requires no Codex, GitHub, or Cloudflare deployment.
    Wait until the upload completes.
 4. In SmugMug, confirm the cover and gallery settings and test the link as a
    signed-out visitor. On an active plan, the public event gallery should appear
-   in native recent-gallery and year-folder blocks automatically.
+   in the Latest events block when uploaded to its configured current-year
+   folder. The year archive lists native folders. A manually curated Featured
+   albums block requires selecting the gallery once; it does not update itself.
+   At each new year, create its folder and update the Latest events source.
 5. Share its SmugMug link. After the future custom domain is configured and HTTPS
    is verified, use its gallery.enhancevisualstudio.com equivalent.
 

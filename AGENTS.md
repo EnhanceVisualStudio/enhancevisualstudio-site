@@ -12,3 +12,5 @@
 - The planned gallery host is gallery.enhancevisualstudio.com. Keep public links gated until the destination works for signed-out visitors over HTTPS. Keep subscription purchases, sales pricing, DNS changes, and production releases subject to the user's explicit authorization. Booking infrastructure remains independent.
 
 - The finalized text slogan is exactly "Pose. Click. Enhance" with no final period. Use it across website copy, metadata, marketing, and SmugMug customization. Preserve the supplied logo artwork and the black, gold, and metallic silver identity.
+
+- Use one compact shared header with the official logo centered above centered navigation, a pure black background, white links and gold accents. Preserve native mobile collapse and the original logo artwork. Use the exact centered bottom copyright: "©2026 Enhance Visual Studio - All Rights Reserved." Retain SmugMug platform and legal links.

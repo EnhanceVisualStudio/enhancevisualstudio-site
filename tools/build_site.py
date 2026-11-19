@@ -9,6 +9,7 @@ EMAIL = "hello@enhancevisualstudio.com"
 PHONE = "+13233271806"
 PHONE_DISPLAY = "(323) 327-1806"
 SLOGAN = "Pose. Click. Enhance"
+COPYRIGHT = "©2026 Enhance Visual Studio - All Rights Reserved."
 # Enable only after signed-out HTTPS checks of the homepage, browse, and search.
 GALLERY_URL = None
 SOCIALS = [
@@ -191,8 +192,8 @@ def page(path, title, description, content):
         </div>
         <div class="footer-links"><a href="events.html">Event galleries</a><a href="book.html">Book a session</a><a href="policies.html">Booking policies</a></div>
       </div>
-      <p class="copyright">© 2026 Enhance Visual Studio</p>
     </div>
+    <p class="copyright">{COPYRIGHT}</p>
   </footer>
   </div>
   <div class="call-dock">
@@ -475,6 +476,7 @@ def build_smugmug_customization():
   <div><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="tel:{PHONE}" aria-label="Call Enhance Visual Studio at {PHONE_DISPLAY}">{PHONE_DISPLAY}</a></div>
   <nav aria-label="Social media">{"".join(f'<a href="{url}">{name}</a>' for name, url in SOCIALS)}</nav>
   <p><a href="{preview}/">Main website</a> · <a href="{preview}/book">Book a Photographer</a> · <a href="{preview}/policies">Booking policies</a></p>
+  <p class="evs-copyright">{COPYRIGHT}</p>
 </footer>\n"""
     intro = f"""<section class="evs-gallery-intro">
   <p class="evs-eyebrow">Enhance Visual Studio · Bay Area photography</p>

@@ -24,7 +24,7 @@
     background: var(--ink); color: var(--white); font: 500 1rem/1.65 var(--body);
   }
   /* Keep the call link in its own row so it cannot cover page controls. */
-  .site-scroll { overflow: auto; scroll-behavior: smooth; scroll-padding-block: 6rem 1rem; }
+  .site-scroll { overflow: auto; scroll-behavior: smooth; scroll-padding-block: 10rem 1rem; }
   body:has(dialog[open]) .site-scroll { overflow: hidden; }
   h1, h2, h3, p, figure { margin: 0; }
   h1, h2, h3 { font-family: var(--heading); font-weight: 700; line-height: .95; text-wrap: balance; }
@@ -82,18 +82,17 @@
 @layer components {
   .site-header {
     position: sticky; top: 0; z-index: 5;
-    background: rgb(10 10 10 / .94); border-bottom: 1px solid #372e20;
-    backdrop-filter: blur(16px);
+    background: #000; border-bottom: 1px solid #372e20;
   }
-  .header-row { display: flex; align-items: center; justify-content: space-between; min-height: 4.75rem; gap: 1.2rem; }
-  .brand { display: inline-flex; align-items: center; flex-shrink: 0; }
+  .header-row { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .25rem; padding-block: .4rem .5rem; }
+  .brand { display: inline-flex; align-items: center; flex-shrink: 0; line-height: 0; }
   .brand img {
-    width: clamp(9.75rem, 19vw, 12.25rem); height: auto;
+    width: clamp(10.5rem, 17vw, 12.25rem); height: auto; margin-block: -.6rem;
     mix-blend-mode: screen;
   }
-  .site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(.65rem, 1.5vw, 1.6rem); }
-  .site-nav > a:not(.button) { text-decoration: none; color: var(--muted); font-size: .82rem; font-weight: 800; }
-  .site-nav > a:not(.button):is(:hover, [aria-current]) { color: var(--gold-light); }
+  .site-nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(.65rem, 1.5vw, 1.6rem); }
+  .site-nav > a:not(.button) { text-decoration: none; color: var(--white); font-size: .82rem; font-weight: 800; transition: color .2s, text-shadow .2s; }
+  .site-nav > a:not(.button):is(:hover, [aria-current]) { color: var(--gold-light); text-shadow: 0 0 12px #e0bb6922; }
   .menu-button { display: none; }
   .button {
     min-height: 3.3rem; display: inline-flex; align-items: center; justify-content: center; gap: .9rem;
@@ -258,22 +257,22 @@
   .form-status:not(:empty) { margin-top: .9rem; color: var(--gold-light); }
   .form-status[data-state="error"] { color: #ffb7ad; }
 
-  .site-footer { border-top: 1px solid var(--line); padding-block: 2.8rem 1rem; background: #10100f; color: var(--muted); font-size: .85rem; }
+  .site-footer { border-top: 1px solid var(--line); padding-block: 2.8rem 0; background: #10100f; color: var(--muted); font-size: .85rem; }
   .footer-grid { display: grid; grid-template-columns: 1.2fr 1.2fr 1fr; gap: 1rem; }
   .footer-name { font: 700 2rem/1 var(--heading); color: var(--white); text-transform: uppercase; margin-bottom: .35rem; }
   .footer-links { display: flex; flex-wrap: wrap; align-content: start; gap: .55rem 1rem; }
   .footer-grid a { text-decoration: none; }
   .footer-grid a:hover { color: var(--gold-light); }
   .footer-grid > div:nth-child(2) .footer-links { margin-top: .55rem; }
-  .copyright { margin-top: 2rem; padding-top: .9rem; border-top: 1px solid var(--line); font-size: .72rem; }
+  .copyright { box-sizing: border-box; width: 100%; margin: 32px 0 0; padding: 20px 16px; border-top: 1px solid #34312a; color: #bab5aa; font: 400 14px/1.6 Manrope, Arial, sans-serif; text-align: center; }
 }
 
 @layer responsive {
   @media (max-width: 1080px) {
-    .header-row { flex-wrap: wrap; min-height: 4.2rem; row-gap: .5rem; padding-block: .6rem; }
+    .header-row { gap: .2rem; padding-block: .35rem .45rem; }
     .site-nav { width: 100%; gap: .65rem 1.25rem; padding-bottom: .4rem; }
     .header-row:has(.menu-button:not([hidden])) .menu-button {
-      display: block; padding: .55rem .75rem; background: var(--panel); color: var(--white);
+      display: block; min-height: 44px; padding: .55rem .75rem; background: #000; color: var(--white);
       border: 1px solid var(--line); font-size: .8rem; font-weight: 800;
     }
     .menu-button span { color: var(--gold); margin-left: .25rem; }

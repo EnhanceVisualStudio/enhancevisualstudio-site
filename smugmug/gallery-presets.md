@@ -1,20 +1,20 @@
 # EVS native gallery presets
 
-These are proposed values to save in SmugMug. They have not been applied to the
-private account. Use Gallery → Settings, then Save as Preset. Manage presets in
-Site Settings → Site → Gallery Presets. Inspect the selected preset each time.
+The three named presets below were saved and verified in the EVS account on
+November 19, 2026. Use Gallery → Settings → Gallery Preset to apply one, or
+manage presets in Site Settings → Site → Gallery Presets. Inspect settings
+each time. Access modes, passwords and invitations must be set individually.
 
 | Native setting | EVS Public Event | EVS Private Client | EVS Portfolio |
 | --- | --- | --- | --- |
 | Visibility | Public | Unlisted | Public |
-| Access | Anyone | People with Password | Anyone |
+| Access, set per gallery | Anyone | People with Password or native invitations | Anyone |
 | Location | Public Events / year | Client Delivery, also Unlisted | Portfolio / category |
-| Gallery appearance | Collage Landscape or grid | SmugMug gallery or grid | Collage Portrait or grid |
+| Gallery appearance | Collage Landscape | SmugMug | Collage Portrait |
 | Maximum display size | X4Large, 2048px | X3Large, 1600px, for proofs | X4Large, 2048px |
-| Native watermark | Official EVS logo | Official EVS logo for proofs | Official EVS logo |
+| Native watermark | EVS Proof | EVS Proof | EVS Proof |
 | Allow Downloads | Off initially | Off for proofs | Off |
 | Sharing options | On | Off | On |
-| External embedding | Off initially | Off | Off initially |
 | Search-engine visibility | Inherit public site setting | Exclude wherever available | Inherit public site setting |
 | Visitor Shopping Cart | Off | Off | Off |
 | Comments | Off initially | Off initially | Off initially |
@@ -24,8 +24,10 @@ must exclude Unlisted clients. Verify this in a signed-out browser, including an
 manually selected featured blocks. Use native invitation-based access instead
 of a password if appropriate and supported by the selected plan.
 
-**Set passwords per client gallery.** SmugMug presets omit viewing passwords,
-invited people, download passwords, title, description, URL, and cover photo.
+**Set Access and passwords per client gallery.** SmugMug presets omit all Access
+settings, including the access mode, viewing passwords and invited people. They
+also omit guest uploading, download passwords, title, description, metadata,
+URL, cover photo and smart rules.
 A saved client preset alone does not create a password requirement. Apply the
 preset, set the actual access/password or invitations, and test the link before
 delivery. Private (Only Me) is for owner-only work and cannot deliver a client
@@ -34,10 +36,13 @@ the direct gallery link.
 
 ## Watermark and delivery
 
-Upload evs-logo.png into the native Watermarks tool and inspect opacity,
-placement, and minimum display size against both portrait and landscape images.
-Apply a watermark through gallery settings, not Lightroom, to retain clean
-originals. Keep maximum display below Original for public/proof images.
+The native **EVS Proof** watermark is the text “Enhance Visual Studio”, 28px,
+bottom-right, with 55% fade, applied to Large and larger display sizes. The
+official supplied logo remains unchanged in the header. This text watermark
+avoids placing its opaque black image background over photographs. Inspect
+proof placement on portrait and landscape photographs. Apply native watermarks
+through gallery settings, not Lightroom, to retain clean originals. Keep
+maximum display below Original for public/proof images.
 
 For approved client delivery, change the individual gallery's Allow Downloads
 to On and choose Original download size, with a separate download password if

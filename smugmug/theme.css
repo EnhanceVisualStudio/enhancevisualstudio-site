@@ -5,12 +5,34 @@
   color: #f7f4ed;
   font-family: Manrope, Arial, sans-serif;
 }
+.sm-user-ui .sm-page-layout-region-header {
+  background: #000 !important;
+  padding-block: .4rem .5rem;
+  border-bottom: 1px solid #372e20;
+}
+.sm-user-ui .sm-page-layout-region-header .sm-page-layout-row,
+.sm-user-ui .sm-page-layout-region-header .sm-page-layout-column,
+.sm-user-ui .sm-page-layout-region-header .sm-page-widget-content {
+  padding-block: 0 !important;
+  margin-block: 0 !important;
+}
 .sm-user-ui .sm-page-widget-logo img {
+  width: clamp(10.5rem, 17vw, 12.25rem) !important;
   max-width: 196px;
-  height: auto;
+  height: auto !important;
+  aspect-ratio: 1672 / 941;
+  margin-block: -.6rem;
   mix-blend-mode: screen;
 }
-.sm-user-ui .sm-page-widget-logo { background: #0a0a0a; }
+.sm-user-ui .sm-page-widget-logo { background: #000; text-align: center; }
+.sm-user-ui .sm-page-widget-logo-container { padding: 0; line-height: 0; text-align: center; }
+.sm-user-ui .sm-page-widget-nav { text-align: center; }
+.sm-user-ui .sm-page-widget-nav .horizontal { text-align: center; }
+.sm-user-ui .sm-page-widget-nav .sm-page-widget-nav-toplink > a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: .35rem .65rem;
+}
+.sm-user-ui .sm-page-widget-nav a { transition: color .2s, text-shadow .2s; }
+.sm-user-ui .sm-page-widget-nav a:hover { text-shadow: 0 0 12px #e0bb6922; }
 .evs-gallery-nav,
 .evs-gallery-intro,
 .evs-gallery-footer {
@@ -20,12 +42,12 @@
 }
 .evs-gallery-nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: .75rem 1.4rem;
-  padding: 1rem;
-  background: #0a0a0a;
+  padding: .4rem 1rem .5rem;
+  background: #000;
   border-bottom: 1px solid #34312a;
 }
 .evs-gallery-nav a {
@@ -105,3 +127,45 @@
 }
 /* Keep native gallery, lightbox, search, share, and download controls intact.
    Set their colors in the native theme. Avoid broad image effects or filters. */
+
+/* Native Luna surfaces override the theme defaults without affecting photos. */
+.sm-user-ui { background-color: #0a0a0a !important; color: #f7f4ed !important; }
+.sm-user-ui .sm-page-layout-region:not(.sm-page-layout-region-header):not(.sm-page-layout-region-top) { background-color: transparent !important; }
+.sm-user-ui .sm-page-widget-text,
+.sm-user-ui .sm-page-widget-title { color: #f7f4ed !important; }
+.sm-user-ui .sm-button-skin-accent {
+  background: #e0bb69 !important; border-color: #d8b263 !important; color: #171003 !important;
+}
+.sm-user-ui .sm-page-widget-nav a { color: #f7f4ed !important; }
+.sm-user-ui .sm-page-widget-nav a:hover { color: #e0bb69 !important; }
+
+/* A single copyright row follows all native platform and legal links. */
+.sm-user-ui .evs-gallery-footer .evs-copyright,
+body.sm-page .sm-page-powered-by::after {
+  box-sizing: border-box;
+  display: block;
+  clear: both;
+  width: 100%;
+  margin: 32px 0 0;
+  padding: 20px 16px;
+  border-top: 1px solid #34312a;
+  color: #bab5aa;
+  font: 400 14px/1.6 Manrope, Arial, sans-serif;
+  text-align: center;
+}
+body.sm-page .sm-page-powered-by {
+  box-sizing: border-box;
+  clear: both;
+  display: block;
+  float: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #10100f;
+  color: #bab5aa;
+  text-align: center;
+}
+body.sm-page .sm-page-powered-by::after {
+  content: "©2026 Enhance Visual Studio - All Rights Reserved.";
+}
+body.sm-page:has(.sm-page-powered-by) .evs-gallery-footer .evs-copyright { display: none; }
