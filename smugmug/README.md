@@ -1,8 +1,9 @@
 # EVS SmugMug setup
 
 This is a ready-to-apply customization pack for the existing Luna trial.
-The finalized text slogan is exactly **Pose. Click. Enhance**. The supplied logo
-artwork is retained as provided, including its embedded lettering.
+The finalized text slogan is exactly **Pose. Click. Enhance**. The supplied gold
+camera and metallic silver logo uses that slogan too. Its artwork is retained
+as provided, with its original colors and proportions.
 The public account currently displays “Private site” with HTTP 404.
 The user confirmed a trial. Subscription eligibility, settings, real gallery
 contents, upload behavior and client privacy still require owner-side checks.
