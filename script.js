@@ -2,7 +2,7 @@ import { catalog } from "./assets/booking-catalog.mjs";
 
 const menu = document.querySelector(".menu-button");
 const navigation = document.querySelector("#site-nav");
-const narrowScreen = matchMedia("(max-width: 900px)");
+const narrowScreen = matchMedia("(max-width: 1080px)");
 
 function setMenu(open) {
   navigation.hidden = narrowScreen.matches && !open;

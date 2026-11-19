@@ -90,7 +90,7 @@
     width: clamp(9.75rem, 19vw, 12.25rem); height: auto;
     mix-blend-mode: screen;
   }
-  .site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(.9rem, 2.2vw, 2.3rem); }
+  .site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(.65rem, 1.5vw, 1.6rem); }
   .site-nav > a:not(.button) { text-decoration: none; color: var(--muted); font-size: .82rem; font-weight: 800; }
   .site-nav > a:not(.button):is(:hover, [aria-current]) { color: var(--gold-light); }
   .menu-button { display: none; }
@@ -129,7 +129,7 @@
   }
   .text-link:hover { border-color: currentColor; }
   .text-link span { margin-left: .35rem; }
-  h2 em { color: var(--gold); font-style: normal; }
+  h1 em, h2 em { color: var(--gold); font-style: normal; }
 
   .hero {
     position: relative; isolation: isolate; display: grid; align-items: center;
@@ -163,6 +163,23 @@
   .work-tile span { position: absolute; z-index: 1; inset: auto 1rem 1rem; display: flex; justify-content: space-between; align-items: center; gap: .5rem; font: 700 1.65rem/1 var(--heading); text-transform: uppercase; }
   .work-tile b { color: var(--gold-light); font: 700 1rem var(--body); }
   .about-grid p { color: var(--muted); margin-bottom: 1rem; }
+  .event-split {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.5rem, 5vw, 4.5rem); align-items: center;
+  }
+  .event-split img { width: 100%; height: auto; }
+  .event-copy p:not(.eyebrow) { color: var(--muted); margin-top: 1rem; }
+  .event-copy .actions { margin-top: 1.5rem; align-items: center; }
+  .event-copy > .button { margin-top: 1.5rem; }
+  .event-intro h1 { font-size: clamp(3rem, 5.3vw, 5.5rem); }
+  .event-intro figcaption { margin-top: .5rem; font-size: .875rem; color: var(--muted); }
+  .event-contact a { overflow-wrap: anywhere; }
+  .event-feature { padding-top: 0; }
+  .portfolio-gateway {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+    gap: .5rem 1rem; padding-block: 1.25rem; border-bottom: 1px solid var(--line);
+  }
+  .portfolio-gateway p { color: var(--muted); }
   .about-grid h2 { margin-bottom: 1rem; }
   .about-grid img { width: 100%; max-height: 37rem; object-fit: contain; background: var(--panel); }
   .cta-panel {
@@ -251,7 +268,7 @@
 }
 
 @layer responsive {
-  @media (max-width: 900px) {
+  @media (max-width: 1080px) {
     .header-row { flex-wrap: wrap; min-height: 4.2rem; row-gap: .5rem; padding-block: .6rem; }
     .site-nav { width: 100%; gap: .65rem 1.25rem; padding-bottom: .4rem; }
     .header-row:has(.menu-button:not([hidden])) .menu-button {
@@ -259,8 +276,14 @@
       border: 1px solid var(--line); font-size: .8rem; font-weight: 800;
     }
     .menu-button span { color: var(--gold); margin-left: .25rem; }
+  }
+  @media (max-width: 900px) {
     .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .gallery { columns: 2; }
+  }
+  @media (max-width: 760px) {
+    .event-split { grid-template-columns: 1fr; }
+    .event-intro figure { grid-row: 1; }
   }
   @media (max-width: 700px) {
     .hero { align-items: end; min-height: max(34rem, 74svh); }

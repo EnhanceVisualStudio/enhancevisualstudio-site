@@ -9,6 +9,8 @@ EMAIL = "hello@enhancevisualstudio.com"
 PHONE = "+13233271806"
 PHONE_DISPLAY = "(323) 327-1806"
 SLOGAN = "Capture. Create. Enhance."
+# Enable only after signed-out HTTPS checks of the homepage, browse, and search.
+GALLERY_URL = None
 SOCIALS = [
     ("Instagram", "https://instagram.com/enhancevisualstudio"),
     ("TikTok", "https://tiktok.com/@enhancevisualstudio"),
@@ -91,7 +93,7 @@ PHOTOS = {
     14: (2048, 1365, "Guests gathered around a low picnic table at an outdoor engagement celebration", "Engagements"),
 }
 NAV = [
-    ("index.html", "Home"), ("portfolio.html", "Portfolio"), ("packages.html", "Packages"),
+    ("index.html", "Home"), ("events.html", "Events"), ("portfolio.html", "Portfolio"), ("packages.html", "Packages"),
     ("about.html", "About"), ("contact.html", "Contact"),
 ]
 
@@ -187,7 +189,7 @@ def page(path, title, description, content):
           <div><a href="tel:{PHONE}">{PHONE_DISPLAY}</a></div>
           <div class="footer-links">{socials}</div>
         </div>
-        <div class="footer-links"><a href="book.html">Book a session</a><a href="policies.html">Booking policies</a></div>
+        <div class="footer-links"><a href="events.html">Event galleries</a><a href="book.html">Book a session</a><a href="policies.html">Booking policies</a></div>
       </div>
       <p class="copyright">© 2026 Enhance Visual Studio</p>
     </div>
@@ -252,6 +254,18 @@ def home():
         <a class="work-tile wide" href="portfolio.html?category=engagements">{photo(14, '(max-width: 700px) 90vw, 45vw')}<span>Engagements <b aria-hidden="true">↗</b></span></a>
       </div>
     </div></section>
+    <section class="section event-feature"><div class="wrap event-split">
+      <div>{photo(14, "(max-width: 760px) 90vw, 48vw")}</div>
+      <div class="event-copy">
+        <p class="eyebrow">Events &amp; celebrations</p>
+        <h2>Find your <em>photographs.</em></h2>
+        <p>Looking for photographs from an event? Visit the event gallery page or ask the studio for your private gallery link.</p>
+        <div class="actions">
+          <a class="button" href="events.html">Event galleries</a>
+          <a class="text-link" href="book.html?service=events&amp;package=custom">Book a photographer</a>
+        </div>
+      </div>
+    </div></section>
     <section class="section session-section"><div class="wrap cta-panel">
       <div><h2>Find your session.</h2><p>Compare portrait packages or explore photography for an event, business, or special occasion.</p></div>
       <div class="actions">
@@ -259,6 +273,39 @@ def home():
         <a class="button button-ghost" href="services.html">Photography services</a>
       </div>
     </div></section>'''
+
+
+def events():
+    if GALLERY_URL:
+        if GALLERY_URL not in (
+            "https://enhancevisualstudio.smugmug.com",
+            "https://gallery.enhancevisualstudio.com",
+        ):
+            raise ValueError("Use a verified EVS gallery host without a trailing slash.")
+        gallery_actions = f"""
+          <p>Explore public event galleries, browse the archive, or search for your event.</p>
+          <div class="actions">
+            <a class="button" href="{GALLERY_URL}/">Latest galleries</a>
+            <a class="button button-ghost" href="{GALLERY_URL}/browse">Event archives</a>
+            <a class="text-link" href="{GALLERY_URL}/search">Search galleries</a>
+          </div>"""
+    else:
+        gallery_actions = f"""
+          <p>Event galleries are being prepared. For an existing album or a private client link, contact the studio.</p>
+          <a class="button" href="mailto:{EMAIL}?subject=Event%20gallery%20request">Request your gallery link</a>"""
+    return f"""
+    <section class="section"><div class="wrap event-split event-intro">
+      <div class="event-copy">
+        <p class="eyebrow">Event photography / Bay Area</p>
+        <h1>Your moments.<br><em>Your photographs.</em></h1>
+        {gallery_actions}
+        <p class="event-contact"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
+      </div>
+      <figure>{photo(10, "(max-width: 760px) 90vw, 48vw", eager=True, high=True)}
+        <figcaption>Engagement photography by Enhance Visual Studio</figcaption>
+      </figure>
+    </div></section>
+    {cta("Bring your next event into focus.", "Photography for celebrations, gatherings, and the moments in between.", "book.html?service=events&amp;package=custom", "Book a photographer")}"""
 
 
 def services():
@@ -312,6 +359,7 @@ def portfolio():
         </figure>''')
     return intro("Selected work", "Photography portfolio.", "Studio, portrait, editorial and engagement photography by Enhance Visual Studio.") + f'''
     <section class="wrap" aria-label="Photographs">
+      <div class="portfolio-gateway"><p>Looking for a complete event gallery?</p><a class="text-link" href="events.html">Find your event</a></div>
       <div class="filter-bar" id="gallery-filters" role="group" aria-label="Filter photographs" hidden>{filters}</div>
       <p id="gallery-count" class="gallery-count" role="status" hidden></p>
       <div class="gallery" id="gallery">{"".join(figures)}</div>
@@ -411,9 +459,36 @@ def inquiry(booking):
     </div></section>'''
 
 
+def build_smugmug_customization():
+    folder = ROOT / "smugmug"
+    folder.mkdir(exist_ok=True)
+    preview = "https://codex-evs-redesign.enhancevisualstudio-site.pages.dev"
+    nav = []
+    for url, label in NAV:
+        target = "/" if url == "events.html" else preview + ("/" if url == "index.html" else "/" + Path(url).stem)
+        nav.append(f'<a href="{target}">{label}</a>')
+    nav.append(f'<a class="evs-button" href="{preview}/book">Book a Session</a>')
+    navigation = '<nav class="evs-gallery-nav" aria-label="Primary">' + "".join(nav) + "</nav>\n"
+    footer = f"""<footer class="evs-gallery-footer">
+  <div><p class="evs-footer-name">Enhance Visual Studio</p><p>{SLOGAN}</p><p>San Francisco Bay Area, California</p></div>
+  <div><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="tel:{PHONE}" aria-label="Call Enhance Visual Studio at {PHONE_DISPLAY}">{PHONE_DISPLAY}</a></div>
+  <nav aria-label="Social media">{"".join(f'<a href="{url}">{name}</a>' for name, url in SOCIALS)}</nav>
+  <p><a href="{preview}/">Main website</a> · <a href="{preview}/book">Book a Photographer</a> · <a href="{preview}/policies">Booking policies</a></p>
+</footer>\n"""
+    intro = f"""<section class="evs-gallery-intro">
+  <p class="evs-eyebrow">Enhance Visual Studio · Bay Area photography</p>
+  <h1>Event <span>galleries.</span></h1>
+  <p>{SLOGAN}</p>
+</section>\n"""
+    for name, content in (("navigation.html", navigation), ("home-intro.html", intro), ("footer.html", footer)):
+        (folder / name).write_text(content, encoding="utf-8")
+
+
 def build():
+    build_smugmug_customization()
     page("index.html", "Bay Area Photography Studio",
          f"Bay Area portraits, studio sessions, weddings, events, headshots, and commercial photography by Enhance Visual Studio. {SLOGAN}", home())
+    page("events.html", "Event Photography & Galleries", "Find your Enhance Visual Studio event gallery or request a private photography gallery link.", events())
     page("services.html", "Photography Services", "Explore Bay Area portrait, wedding, event, headshot, branding, and commercial photography.", services())
     page("portfolio.html", "Photography Portfolio", "Browse studio portraits, editorial photography and engagement imagery by Enhance Visual Studio.", portfolio())
     page("about.html", "About the Studio", "Meet Enhance Visual Studio, a Bay Area photography studio for portraits, celebrations, and commercial work.",
@@ -442,7 +517,7 @@ def build():
         "// Generated by tools/build_site.py.\nexport const catalog = " + json.dumps(catalog, indent=2, ensure_ascii=False) + ";\n",
         encoding="utf-8",
     )
-    urls = ["", "services.html", "portfolio.html", "about.html",
+    urls = ["", "events.html", "services.html", "portfolio.html", "about.html",
             "packages.html", "book.html", "contact.html", "policies.html"]
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

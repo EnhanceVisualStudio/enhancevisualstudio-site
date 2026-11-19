@@ -1,0 +1,107 @@
+/* EVS theme CSS. Paste into the Entire Site theme's Advanced CSS.
+   Select fonts in the native theme picker. These fallbacks need no script. */
+.sm-user-ui {
+  background: #0a0a0a;
+  color: #f7f4ed;
+  font-family: Manrope, Arial, sans-serif;
+}
+.sm-user-ui .sm-page-widget-logo img {
+  max-width: 196px;
+  height: auto;
+  mix-blend-mode: screen;
+}
+.sm-user-ui .sm-page-widget-logo { background: #0a0a0a; }
+.evs-gallery-nav,
+.evs-gallery-intro,
+.evs-gallery-footer {
+  box-sizing: border-box;
+  color: #f7f4ed;
+  font-family: Manrope, Arial, sans-serif;
+}
+.evs-gallery-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .75rem 1.4rem;
+  padding: 1rem;
+  background: #0a0a0a;
+  border-bottom: 1px solid #34312a;
+}
+.evs-gallery-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #f7f4ed;
+  text-decoration: none;
+  font-size: .875rem;
+  font-weight: 700;
+}
+.evs-gallery-nav a:hover,
+.evs-gallery-footer a:hover { color: #f8dc9b; }
+.evs-gallery-nav .evs-button,
+.evs-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: .65rem 1.1rem;
+  border: 1px solid #d8b263;
+  background: linear-gradient(115deg, #f4d790, #dbb559 62%, #c39a49);
+  color: #171003;
+  font-size: .875rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.evs-gallery-nav .evs-button:hover,
+.evs-button:hover { color: #171003; box-shadow: 0 4px 20px #d6ac3c33; }
+.evs-gallery-nav a:focus-visible,
+.evs-gallery-footer a:focus-visible,
+.evs-button:focus-visible { outline: 2px solid #f8dc9b; outline-offset: 4px; }
+.evs-gallery-intro {
+  padding: clamp(2rem, 5vw, 4.5rem) 1rem;
+  background: #0a0a0a;
+  text-align: center;
+}
+.evs-eyebrow {
+  color: #e0bb69;
+  font-size: .875rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.evs-gallery-intro h1,
+.evs-section-title,
+.evs-footer-name {
+  font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+.evs-gallery-intro h1 {
+  margin: .6rem 0 1rem;
+  font-size: clamp(3rem, 7vw, 6rem);
+}
+.evs-gallery-intro h1 span { color: #e0bb69; }
+.evs-gallery-intro p:not(.evs-eyebrow) { font-size: 1rem; color: #bab5aa; }
+.evs-section-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: #f7f4ed;
+}
+.evs-gallery-footer {
+  padding: 2.5rem max(1rem, env(safe-area-inset-right, 0px))
+    max(2rem, env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-left, 0px));
+  background: #10100f;
+  border-top: 1px solid #34312a;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.evs-gallery-footer p { margin: .4rem 0; }
+.evs-gallery-footer > div + div { margin-top: 1rem; }
+.evs-footer-name { color: #f7f4ed; font-size: 2rem; }
+.evs-gallery-footer a { color: #e0bb69; overflow-wrap: anywhere; text-underline-offset: .2em; }
+.evs-gallery-footer nav { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; margin-block: 1rem; }
+@media (max-width: 700px) {
+  .evs-gallery-nav { justify-content: center; gap: .35rem 1rem; }
+  .evs-gallery-nav .evs-button { flex-basis: 100%; }
+}
+/* Keep native gallery, lightbox, search, share, and download controls intact.
+   Set their colors in the native theme. Avoid broad image effects or filters. */

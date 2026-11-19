@@ -73,3 +73,13 @@ deployment. No other Cloudflare project, Worker or brand is part of the release.
 - [Pages service bindings](https://developers.cloudflare.com/pages/functions/bindings/#service-bindings)
 - [Email binding and verified destinations](https://developers.cloudflare.com/email-service/configuration/send-bindings/)
 - [Worker rate limiting](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/)
+
+## SmugMug galleries
+
+The gallery platform is the EVS SmugMug Luna site. Setup, the native block
+layout, privacy presets, and Lightroom Classic workflow are in
+[smugmug/README.md](smugmug/README.md). The customization files contain a staged
+menu that points back to the redesign preview until the main site is released.
+The main Events page keeps GALLERY_URL unset while the SmugMug trial is private.
+Regenerating tools/build_site.py also updates the shared SmugMug snippets.
+The native gallery service is independent of the existing booking integration.

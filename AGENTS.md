@@ -7,3 +7,6 @@
 - Maintain black backgrounds, metallic gold accents, premium typography, cinematic imagery, and elegant layouts.
 - Deploy only to `enhancevisualstudio.com` and its own Cloudflare resources. Do not change shared account-level settings, DNS, or another brand's infrastructure.
 - Before any deployment, verify the active Git repository, current branch, deployment target, and environment variables. Stop if any project identity or target is ambiguous.
+
+- Gallery publishing and client delivery use the EVS SmugMug account, with Luna branding. Use native galleries, folders, privacy, downloads, search, and Lightroom publishing. Do not build a custom Studio Manager or add gallery databases, storage services, or authentication backends.
+- The planned gallery host is gallery.enhancevisualstudio.com. Keep public links gated until the destination works for signed-out visitors over HTTPS. Keep subscription purchases, sales pricing, DNS changes, and production releases subject to the user's explicit authorization. Booking infrastructure remains independent.
