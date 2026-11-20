@@ -18,7 +18,9 @@ from Pictures/Enhance Visual Studio/Publishing Check and published successfully
 to Client Delivery / EVS Publishing Check. That test gallery is Private (Only Me),
 with search and downloads off, X3 display size and the EVS Proof watermark.
 It is a labeled verification gallery, not a client delivery or public event.
-The original fourteen portfolio uploads remain in their existing galleries.
+An in-place republish also completed successfully. The same gallery retained
+three photographs and the same native image identities; no duplicate gallery
+was created. The original fourteen portfolio uploads remain in their existing galleries.
 Do not duplicate these galleries when synchronizing the publishing service.
 
 The trial permits owner-side publishing tests. Public sharing, signed-out

@@ -49,6 +49,7 @@ the pending checks below.
   and Email Routing Addresses Edit permissions in the authorized EVS account.
   It is stored outside the repository with mode 0600 and expires on
   November 26, 2026. Renew or replace it through the owner's account when needed.
+  Its expiry affects administration, not the running Worker or notification binding.
   Keep token values, verification links and private configuration out of commits.
 - Production Pages settings and the production branch retain their existing
   configuration.
@@ -60,29 +61,39 @@ Manage BOOKING_FROM through the Worker secret interface. Preview service-binding
 changes require a new Pages preview deployment. Push the reviewed redesign
 commit only to codex/evs-redesign and verify that commit under Pages Deployments.
 
-### Preview acceptance checks still pending
+### Verified preview — November 19, 2026
 
-1. Verify the latest reviewed commit at the branch alias. GET /api/inquiry must
-   return JSON, status 405 and Allow: POST.
-2. Submit one controlled booking request and one contact inquiry from the alias.
-   Confirm that each reports success and arrives at the verified studio inbox,
-   with the correct service, package, preferred dates, location and Reply-To.
-   A successful website receipt means Cloudflare accepted the notification.
-3. Check invalid email, unknown service, invalid package/service combinations,
-   invalid dates and the honeypot. Confirm useful errors and no accepted request.
-   Verify foreign-origin rejection and rate-limit handling in the preview.
-4. Confirm a failed or timed-out submission preserves entered details, restores
-   the submit button and shows the studio email fallback. Use the local mock
-   tests for delivery failures. Check that API responses contain JSON and
-   Cache-Control: no-store.
-5. Verify a deep missing page returns the branded 404 with working root links.
-   Check static security headers, Pages preview noindex headers, navigation and
-   gallery viewing on mobile and desktop.
+Runtime changes at e755c28 passed the following checks on the branch alias:
 
-Record the actual results before treating live delivery as verified. Customers
-receive an on-site submission receipt; dates remain subject to studio approval
-and the existing retainer policy. This flow sends the studio notification and
-does not send an automatic customer email.
+- Nine pages and the branded deep-path 404 passed 40 responsive checks at
+  320, 390, 768 and 1440 px. Gallery filters, keyboard lightbox navigation,
+  all 15 photography services, approved package choices, mobile menus,
+  centered branding/copyright and the floating call link work.
+- GET /api/inquiry returns JSON 405 with Allow: POST. Valid booking/contact
+  forms return JSON 200 only after the email service accepts the notification.
+  Both notifications were received in the actual studio mailbox. Recipient,
+  Reply-To, EVS-domain signing and TLS were verified in Gmail.
+- Gmail initially classified contact tests as Spam. A studio-mailbox filter
+  now matches only the configured EVS sender, hello@enhancevisualstudio.com,
+  and the subject phrase "New Enhance Visual Studio", with Never send it to
+  Spam as its only incoming action. The final contact test reached Inbox.
+  The filter does not archive, forward, delete or auto-reply to messages.
+- Foreign origin, incorrect content type, oversized body, invalid email,
+  unknown service, incompatible package, invalid date, honeypot and malformed
+  JSON were rejected. The live rate limiter returned 429 and Retry-After: 60.
+  Its six-per-minute threshold is approximate per Cloudflare location, so a
+  brief burst can exceed six while counters synchronize.
+- Local suites passed 54 Worker/adapter checks and 12 mocked form cases.
+  Delivery errors/timeouts retain entered details, restore the submit button
+  and show the studio email fallback, without automatic retries.
+- API responses use Cache-Control: no-store. Preview static pages have noindex
+  and the configured security headers. Deep missing URLs return a styled 404
+  with working root-relative links. No inaccessible gallery links are exposed.
+
+A website success means Cloudflare accepted the studio notification. Dates
+remain subject to studio approval and the existing retainer policy. This flow
+sends no automatic customer email and does not reserve a date. Check Inbox and
+Spam during routine operation; mailbox classification remains provider-controlled.
 
 ## Production readiness and release approval
 

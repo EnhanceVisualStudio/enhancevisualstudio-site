@@ -46,6 +46,17 @@ The design was published through SmugMug’s native confirmation after owner-sid
 verification. Publication does not remove the trial’s private-site restriction.
 The main production branch and domain remain untouched.
 
+The official Lightroom plug-in is installed and authorized. A three-photo batch
+and an in-place republish passed in the owner-only Client Delivery / EVS
+Publishing Check gallery. Native image identities remained unchanged. See
+lightroom-workflow.md for saved export and privacy settings.
+
+A local restoration backup is saved outside the web root at
+~/Documents/Enhance Visual Studio Backups/2026-11-19-free-hybrid-setup/.
+It contains the code pack, original branding, fourteen approved photographs,
+native settings manifest, official plug-in archive, Git checkpoint and checksums.
+Credentials, cookies and Lightroom catalogs are excluded.
+
 The following instructions reproduce or adjust the saved customization. Do not
 upload another logo or add duplicate shared blocks.
 
