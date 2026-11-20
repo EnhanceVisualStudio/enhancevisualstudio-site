@@ -94,9 +94,11 @@ remain subject to studio approval and the existing retainer policy. This flow
 sends no automatic customer email and does not reserve a date. Check Inbox and
 Spam during routine operation; mailbox classification remains provider-controlled.
 
-## Production release — approved November 19, 2026
+## Production release — launched November 19, 2026
 
-The owner explicitly approved the production launch. The production target is
+The owner explicitly approved the completed production launch. Live verification
+is recorded in [the release report](docs/production-launch-2026-11-19.md).
+The production target is
 https://www.enhancevisualstudio.com, with enhancevisualstudio.com retained as an
 existing domain. GitHub main is the automatic Pages production branch.
 

@@ -91,6 +91,11 @@ The supplied HTML now defaults to https://www.enhancevisualstudio.com.
 Generate it with `python3 -B tools/build_site.py`. A deliberate preview-only
 pack may use `--smugmug-site-origin https://codex-evs-redesign.enhancevisualstudio-site.pages.dev`.
 The generator accepts only these EVS origins.
+The existing native logo, Menu, footer and homepage booking CTA were updated
+to these production destinations and saved in the existing Luna trial design.
+Homepage, the 2026 folder and a private gallery were checked afterward; one
+shared logo/menu and native legal footer remain. Signed-out access still
+returns the private-trial 404. No public activation or DNS change occurred.
 
 Apply the footer to its existing shared block and update the existing native
 Menu, logo target and homepage booking button to the main production domain.
