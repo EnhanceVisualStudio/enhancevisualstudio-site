@@ -154,6 +154,8 @@ if (form) {
     submit.disabled = true;
     delete status.dataset.state;
     status.textContent = "Sending your request…";
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20000);
 
     try {
       const response = await fetch("/api/inquiry", {
@@ -161,6 +163,7 @@ if (form) {
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify(data),
         credentials: "omit",
+        signal: controller.signal,
       });
       const result = await response.json();
       if (!response.ok || result.ok !== true || typeof result.message !== "string") {
@@ -171,8 +174,11 @@ if (form) {
       status.textContent = result.message;
     } catch (error) {
       status.dataset.state = "error";
-      status.textContent = error.name === "SyntaxError" || error instanceof TypeError ? fallback : error.message;
+      status.textContent = error.name === "AbortError"
+        ? "Delivery could not be confirmed in time. Your request may still have arrived. Please email hello@enhancevisualstudio.com before sending it again."
+        : error.name === "SyntaxError" || error instanceof TypeError ? fallback : error.message;
     } finally {
+      clearTimeout(timeout);
       submit.disabled = false;
     }
   });

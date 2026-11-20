@@ -75,10 +75,20 @@ upload another logo or add duplicate shared blocks.
 
 ### Staging navigation
 
-The supplied HTML links to the verified redesign preview while the main domain
-still serves the original site. After the main website release, change the
-preview origin to https://www.enhancevisualstudio.com in
-build_smugmug_customization() in tools/build_site.py and regenerate the snippets.
+The supplied HTML links to the redesign preview while the main domain serves
+the existing site. Generate preview snippets with the default
+`python3 -B tools/build_site.py` command. After a separately approved main website
+release, generate production links with
+`python3 -B tools/build_site.py --smugmug-site-origin https://www.enhancevisualstudio.com`.
+The generator accepts only the EVS preview and production origins. Apply the
+updated footer to its existing shared native block and update the native Menu
+destinations using the same generated navigation links. Keep Events linked to
+the SmugMug homepage. These source commands generate files for review.
+
+Booking readiness and its free verified-destination notification setup are
+tracked in [the main website README](../README.md). Public gallery access
+remains gated by the private trial and the signed-out HTTPS/privacy checks.
+The main site can use its Events email fallback independently.
 
 | Label | Destination during staging |
 | --- | --- |

@@ -3,6 +3,39 @@ import { catalog } from "../assets/booking-catalog.mjs";
 const INBOX = "hello@enhancevisualstudio.com";
 const MAX_BYTES = 16 * 1024;
 
+const EMAIL_ERROR_CODES = new Set([
+  "E_VALIDATION_ERROR",
+  "E_FIELD_MISSING",
+  "E_TOO_MANY_RECIPIENTS",
+  "E_TOO_MANY_ATTACHMENTS",
+  "E_SENDER_NOT_VERIFIED",
+  "E_SENDER_DOMAIN_NOT_AVAILABLE",
+  "E_SENDER_DOMAIN_NOT_CONFIGURED",
+  "E_EMAIL_SENDING_NOT_READY",
+  "E_RECIPIENT_NOT_ALLOWED",
+  "E_RECIPIENT_PLAN_RESTRICTED",
+  "E_RECIPIENT_SUPPRESSED",
+  "E_ACCOUNT_SUSPENDED",
+  "E_CONTENT_TOO_LARGE",
+  "E_DELIVERY_FAILED",
+  "E_RATE_LIMIT_EXCEEDED",
+  "E_DAILY_LIMIT_EXCEEDED",
+  "E_INTERNAL_SERVER_ERROR",
+  "E_HEADER_NOT_ALLOWED",
+  "E_HEADER_USE_API_FIELD",
+  "E_HEADER_VALUE_INVALID",
+  "E_HEADER_VALUE_TOO_LONG",
+  "E_HEADER_NAME_INVALID",
+  "E_HEADERS_TOO_LARGE",
+  "E_HEADERS_TOO_MANY"
+]);
+
+function logFailure(phase, error) {
+  const receivedCode = error?.code;
+  const code = EMAIL_ERROR_CODES.has(receivedCode) ? receivedCode : "UNEXPECTED";
+  console.error(JSON.stringify({ event: "evs_inquiry_failure", phase, code }));
+}
+
 function reply(status, payload, extra = {}) {
   return Response.json(payload, {
     status,
@@ -116,13 +149,15 @@ export default {
     const ip = request.headers.get("CF-Connecting-IP");
     if (!ip || !env.BOOKING_FROM || typeof env.EMAIL?.send !== "function" ||
         typeof env.INQUIRY_LIMITER?.limit !== "function") {
+      logFailure("worker_configuration");
       return failure(503, unavailable);
     }
 
     try {
       const { success } = await env.INQUIRY_LIMITER.limit({ key: ip });
       if (!success) return failure(429, "Too many requests. Please wait a minute and try again.", { "Retry-After": "60" });
-    } catch {
+    } catch (error) {
+      logFailure("rate_limiter", error);
       return failure(503, unavailable);
     }
 
@@ -159,8 +194,12 @@ export default {
         subject,
         text: lines.join("\n"),
       });
-      if (!receipt?.messageId) return failure(502, "Delivery could not be confirmed. Please email " + INBOX + ".");
-    } catch {
+      if (!receipt?.messageId) {
+        logFailure("email_receipt");
+        return failure(502, "Delivery could not be confirmed. Please email " + INBOX + ".");
+      }
+    } catch (error) {
+      logFailure("email_send", error);
       return failure(502, "Delivery could not be confirmed. Please email " + INBOX + ".");
     }
 

@@ -4,6 +4,27 @@ The daily workflow is photograph → edit in Lightroom Classic → publish to a
 SmugMug gallery → share the branded link. Routine gallery publishing happens in
 Lightroom and SmugMug. It requires no Codex, GitHub, or Cloudflare deployment.
 
+## Verified free-trial setup — November 19, 2026
+
+The official SmugMug plug-in 3.5.19.1 is installed and enabled in Lightroom
+Classic 16.0.1. Its existing publishing service is authorized as Enhance Visual
+Studio. The saved settings use JPEG quality 90, sRGB, full dimensions, no file
+size cap, no video files, and removal of person and location information.
+Lightroom does not burn in a watermark; the native SmugMug preset applies EVS
+Proof to display copies.
+
+A three-photo batch from the existing website library was imported using Add
+from Pictures/Enhance Visual Studio/Publishing Check and published successfully
+to Client Delivery / EVS Publishing Check. That test gallery is Private (Only Me),
+with search and downloads off, X3 display size and the EVS Proof watermark.
+It is a labeled verification gallery, not a client delivery or public event.
+The original fourteen portfolio uploads remain in their existing galleries.
+Do not duplicate these galleries when synchronizing the publishing service.
+
+The trial permits owner-side publishing tests. Public sharing, signed-out
+client access and download testing remain deferred until an eligible active
+plan. Subscription purchase and gallery DNS activation remain postponed.
+
 ## One-time setup in Lightroom Classic
 
 1. Download the latest official [SmugMug Lightroom plugin](https://www.smugmug.com/software-updates/lightroom-plugin/latest).

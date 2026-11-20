@@ -10,8 +10,9 @@ export async function onRequest({ request, env }) {
 
   try {
     if (env.INQUIRY_WORKER) return await env.INQUIRY_WORKER.fetch(request);
+    console.error(JSON.stringify({ event: "evs_inquiry_failure", phase: "pages_service_binding_missing" }));
   } catch {
-    // A binding failure must never report a successful submission.
+    console.error(JSON.stringify({ event: "evs_inquiry_failure", phase: "pages_service_binding" }));
   }
 
   return Response.json({

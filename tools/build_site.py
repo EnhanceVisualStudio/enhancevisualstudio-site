@@ -1,10 +1,12 @@
 """Generate the static pages and browser/Worker booking catalog from shared content."""
+import argparse
 import json
 from html import escape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://www.enhancevisualstudio.com"
+PREVIEW_ORIGIN = "https://codex-evs-redesign.enhancevisualstudio-site.pages.dev"
 EMAIL = "hello@enhancevisualstudio.com"
 PHONE = "+13233271806"
 PHONE_DISPLAY = "(323) 327-1806"
@@ -114,11 +116,13 @@ def photo(number, sizes, *, eager=False, high=False):
     )
 
 
-def page(path, title, description, content):
+def page(path, title, description, content, *, noindex=False):
+    link_prefix = "/" if path == "404.html" else ""
+    robots = '\n  <meta name="robots" content="noindex, follow">' if noindex else ""
     canonical = SITE + ("/" if path == "index.html" else "/" + Path(path).stem)
     current = ' aria-current="page"'
     links = "".join(
-        f'<a href="{url}"{current if path == url else ""}>{label}</a>'
+        f'<a href="{link_prefix}{url}"{current if path == url else ""}>{label}</a>'
         for url, label in NAV
     )
     booking_current = ' aria-current="page"' if path == "book.html" else ""
@@ -145,7 +149,7 @@ def page(path, title, description, content):
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0a0a0a">
   <title>{escape(title)} | Enhance Visual Studio</title>
-  <meta name="description" content="{escape(description, quote=True)}">
+  <meta name="description" content="{escape(description, quote=True)}">{robots}
   <link rel="canonical" href="{canonical}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Enhance Visual Studio">
@@ -155,26 +159,26 @@ def page(path, title, description, content):
   <meta property="og:image" content="{SITE}/images/display/9-960.jpg">
   <meta property="og:image:alt" content="{escape(PHOTOS[9][2], quote=True)}">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="assets/evs-icon.png" type="image/png">
+  <link rel="icon" href="{link_prefix}assets/evs-icon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="{link_prefix}style.css">
   <script type="application/ld+json">{schema}</script>
-  <script type="module" src="script.js"></script>
+  <script type="module" src="{link_prefix}script.js"></script>
 </head>
 <body>
   <div class="site-scroll">
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap header-row">
-      <a class="brand" href="index.html" aria-label="Enhance Visual Studio home">
-        <img src="assets/enhance-visual-studio-logo.webp" width="560" height="315" alt="">
+      <a class="brand" href="{link_prefix}index.html" aria-label="Enhance Visual Studio home">
+        <img src="{link_prefix}assets/enhance-visual-studio-logo.webp" width="560" height="315" alt="">
       </a>
       <button class="menu-button" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Menu <span aria-hidden="true">☰</span></button>
       <nav class="site-nav" id="site-nav" aria-label="Primary">
         {links}
-        <a class="button button-small" href="book.html"{booking_current}>Book a session <span aria-hidden="true">↗</span></a>
+        <a class="button button-small" href="{link_prefix}book.html"{booking_current}>Book a session <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
@@ -190,7 +194,7 @@ def page(path, title, description, content):
           <div><a href="tel:{PHONE}">{PHONE_DISPLAY}</a></div>
           <div class="footer-links">{socials}</div>
         </div>
-        <div class="footer-links"><a href="events.html">Event galleries</a><a href="book.html">Book a session</a><a href="policies.html">Booking policies</a></div>
+        <div class="footer-links"><a href="{link_prefix}events.html">Event galleries</a><a href="{link_prefix}book.html">Book a session</a><a href="{link_prefix}policies.html">Booking policies</a></div>
       </div>
     </div>
     <p class="copyright">{COPYRIGHT}</p>
@@ -461,21 +465,22 @@ def inquiry(booking):
     </div></section>'''
 
 
-def build_smugmug_customization():
+def build_smugmug_customization(site_origin=PREVIEW_ORIGIN):
+    if site_origin not in (PREVIEW_ORIGIN, SITE):
+        raise ValueError("Use the EVS preview or production origin for SmugMug links.")
     folder = ROOT / "smugmug"
     folder.mkdir(exist_ok=True)
-    preview = "https://codex-evs-redesign.enhancevisualstudio-site.pages.dev"
     nav = []
     for url, label in NAV:
-        target = "/" if url == "events.html" else preview + ("/" if url == "index.html" else "/" + Path(url).stem)
+        target = "/" if url == "events.html" else site_origin + ("/" if url == "index.html" else "/" + Path(url).stem)
         nav.append(f'<a href="{target}">{label}</a>')
-    nav.append(f'<a class="evs-button" href="{preview}/book">Book a Session</a>')
+    nav.append(f'<a class="evs-button" href="{site_origin}/book">Book a Session</a>')
     navigation = '<nav class="evs-gallery-nav" aria-label="Primary">' + "".join(nav) + "</nav>\n"
     footer = f"""<footer class="evs-gallery-footer">
   <div><p class="evs-footer-name">Enhance Visual Studio</p><p>{SLOGAN}</p><p>San Francisco Bay Area, California</p></div>
   <div><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="tel:{PHONE}" aria-label="Call Enhance Visual Studio at {PHONE_DISPLAY}">{PHONE_DISPLAY}</a></div>
   <nav aria-label="Social media">{"".join(f'<a href="{url}">{name}</a>' for name, url in SOCIALS)}</nav>
-  <p><a href="{preview}/">Main website</a> · <a href="{preview}/book">Book a Photographer</a> · <a href="{preview}/policies">Booking policies</a></p>
+  <p><a href="{site_origin}/">Main website</a> · <a href="{site_origin}/book">Book a Photographer</a> · <a href="{site_origin}/policies">Booking policies</a></p>
   <p class="evs-copyright">{COPYRIGHT}</p>
 </footer>\n"""
     intro = f"""<section class="evs-gallery-intro">
@@ -487,8 +492,12 @@ def build_smugmug_customization():
         (folder / name).write_text(content, encoding="utf-8")
 
 
-def build():
-    build_smugmug_customization()
+def build(smugmug_site_origin=PREVIEW_ORIGIN):
+    build_smugmug_customization(smugmug_site_origin)
+    page("404.html", "Page Not Found", "Find your way back to Enhance Visual Studio photography.",
+         intro("404", "Page not found.", "The page you’re looking for is unavailable. Explore our photography or contact the studio.") +
+         cta("Find your next session.", "Browse our work or tell us what you’d like photographed.", "/index.html", "Return home"),
+         noindex=True)
     page("index.html", "Bay Area Photography Studio",
          f"Bay Area portraits, studio sessions, weddings, events, headshots, and commercial photography by Enhance Visual Studio. {SLOGAN}", home())
     page("events.html", "Event Photography & Galleries", "Find your Enhance Visual Studio event gallery or request a private photography gallery link.", events())
@@ -530,4 +539,12 @@ def build():
 
 
 if __name__ == "__main__":
-    build()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--smugmug-site-origin",
+        choices=(PREVIEW_ORIGIN, SITE),
+        default=PREVIEW_ORIGIN,
+        help="Main website origin used in SmugMug snippets. Defaults to the redesign preview.",
+    )
+    args = parser.parse_args()
+    build(smugmug_site_origin=args.smugmug_site_origin)
