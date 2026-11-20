@@ -465,7 +465,7 @@ def inquiry(booking):
     </div></section>'''
 
 
-def build_smugmug_customization(site_origin=PREVIEW_ORIGIN):
+def build_smugmug_customization(site_origin=SITE):
     if site_origin not in (PREVIEW_ORIGIN, SITE):
         raise ValueError("Use the EVS preview or production origin for SmugMug links.")
     folder = ROOT / "smugmug"
@@ -492,7 +492,7 @@ def build_smugmug_customization(site_origin=PREVIEW_ORIGIN):
         (folder / name).write_text(content, encoding="utf-8")
 
 
-def build(smugmug_site_origin=PREVIEW_ORIGIN):
+def build(smugmug_site_origin=SITE):
     build_smugmug_customization(smugmug_site_origin)
     page("404.html", "Page Not Found", "Find your way back to Enhance Visual Studio photography.",
          intro("404", "Page not found.", "The page you’re looking for is unavailable. Explore our photography or contact the studio.") +
@@ -543,8 +543,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--smugmug-site-origin",
         choices=(PREVIEW_ORIGIN, SITE),
-        default=PREVIEW_ORIGIN,
-        help="Main website origin used in SmugMug snippets. Defaults to the redesign preview.",
+        default=SITE,
+        help="Main website origin used in SmugMug snippets. Defaults to the production website.",
     )
     args = parser.parse_args()
     build(smugmug_site_origin=args.smugmug_site_origin)

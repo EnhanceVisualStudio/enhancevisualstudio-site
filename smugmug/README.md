@@ -19,7 +19,7 @@ search, full-screen viewing, sharing, downloads and any later approved sales.
 - Existing theme: Enhance Visual Studio - Gold. Primary #000000, text #f7f4ed,
   accent #e0bb69; Barlow Condensed headings and Manrope body.
 - Entire Site: one original official logo above the centered native Menu, compact
-  pure-black header, seven staging links and Collapse for Mobile enabled. The
+  pure-black header, seven main-site links and Collapse for Mobile enabled. The
   original logo uses a sharp 600px native rendition, displayed at 168–196px by CSS.
 - Homepage, All Folders and All Galleries inherit that header and shared footer.
 - Footer copyright: ©2026 Enhance Visual Studio - All Rights Reserved.
@@ -34,7 +34,7 @@ search, full-screen viewing, sharing, downloads and any later approved sales.
 - Featured photography uses the native Portfolio folder dynamically. Latest
   events uses Public Events / 2026, newest first. Search is gallery-first and
   restricted to Public Events. Event archives lists its native year folders.
-  The existing gold Book a Photographer button links to the staging booking page.
+  The existing gold Book a Photographer button links to the main-site booking page.
 - Three native presets saved: EVS Public Event, EVS Private Client, EVS Portfolio.
   See gallery-presets.md for actual protections and the per-gallery Access step.
 - Owner preview verified the native lightbox, image proportions and navigation.
@@ -44,7 +44,7 @@ search, full-screen viewing, sharing, downloads and any later approved sales.
 
 The design was published through SmugMug’s native confirmation after owner-side
 verification. Publication does not remove the trial’s private-site restriction.
-The main production branch and domain remain untouched.
+The main-site production release is managed independently; the trial remains private.
 
 The official Lightroom plug-in is installed and authorized. A three-photo batch
 and an in-place republish passed in the owner-only Client Delivery / EVS
@@ -84,32 +84,32 @@ upload another logo or add duplicate shared blocks.
 5. Use Save It For Later until you have checked the native blocks and privacy.
    Existing uploads need no GitHub deployment.
 
-### Staging navigation
+### Main-site navigation
 
-The supplied HTML links to the redesign preview while the main domain serves
-the existing site. Generate preview snippets with the default
-`python3 -B tools/build_site.py` command. After a separately approved main website
-release, generate production links with
-`python3 -B tools/build_site.py --smugmug-site-origin https://www.enhancevisualstudio.com`.
-The generator accepts only the EVS preview and production origins. Apply the
-updated footer to its existing shared native block and update the native Menu
-destinations using the same generated navigation links. Keep Events linked to
-the SmugMug homepage. These source commands generate files for review.
+The owner approved the main website production launch on November 19, 2026.
+The supplied HTML now defaults to https://www.enhancevisualstudio.com.
+Generate it with `python3 -B tools/build_site.py`. A deliberate preview-only
+pack may use `--smugmug-site-origin https://codex-evs-redesign.enhancevisualstudio-site.pages.dev`.
+The generator accepts only these EVS origins.
 
-Booking readiness and its free verified-destination notification setup are
-tracked in [the main website README](../README.md). Public gallery access
-remains gated by the private trial and the signed-out HTTPS/privacy checks.
-The main site can use its Events email fallback independently.
+Apply the footer to its existing shared block and update the existing native
+Menu, logo target and homepage booking button to the main production domain.
+Keep Events linked to the native SmugMug homepage. These navigation changes
+must not enable public trial access or activate the future custom subdomain.
 
-| Label | Destination during staging |
+| Label | Destination |
 | --- | --- |
-| Home | https://codex-evs-redesign.enhancevisualstudio-site.pages.dev/ |
-| Events | SmugMug Homepage, selected using the native page picker |
-| Portfolio | https://codex-evs-redesign.enhancevisualstudio-site.pages.dev/portfolio |
-| Packages | https://codex-evs-redesign.enhancevisualstudio-site.pages.dev/packages |
-| About | https://codex-evs-redesign.enhancevisualstudio-site.pages.dev/about |
-| Contact | https://codex-evs-redesign.enhancevisualstudio-site.pages.dev/contact |
-| Book a Session | https://codex-evs-redesign.enhancevisualstudio-site.pages.dev/book |
+| Home | https://www.enhancevisualstudio.com/ |
+| Events | Native SmugMug Homepage |
+| Portfolio | https://www.enhancevisualstudio.com/portfolio |
+| Packages | https://www.enhancevisualstudio.com/packages |
+| About | https://www.enhancevisualstudio.com/about |
+| Contact | https://www.enhancevisualstudio.com/contact |
+| Book a Session | https://www.enhancevisualstudio.com/book |
+
+Booking verification is recorded in the main README. Public gallery access
+remains gated by the private trial and signed-out HTTPS/privacy checks. The
+main site uses its Events email fallback independently.
 
 Use a compact Entire Site header with the centered official Logo block above
 the centered native Menu block. Retain the logo artwork and its aspect ratio;
@@ -132,7 +132,7 @@ until it contains published public material.
 | Latest events | Galleries → Folder → Public Events / current year | Date added, descending; landscape collage or grid; visible titles |
 | Featured photography | Galleries → Folder → Portfolio | Dynamic source; three genuine photography galleries; landscape collage; visible titles |
 | Event archives | Folders, Galleries & Pages → Public Events folder | Year folder covers, names, newest year first |
-| Book a Photographer | Native Button | Preview /book?service=events&package=custom |
+| Book a Photographer | Native Button | Main-site /book?service=events&package=custom |
 
 New galleries added to the current-year source appear without code changes.
 Once each year, select the new year folder in that native block. Native Recent

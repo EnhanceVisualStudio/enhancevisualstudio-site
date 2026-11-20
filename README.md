@@ -35,8 +35,8 @@ notification to hello@enhancevisualstudio.com. This setup stays within the
 free plan and the existing DNS configuration. [Verified-destination pricing](https://developers.cloudflare.com/email-service/platform/pricing/)
 [Fixed-recipient bindings](https://developers.cloudflare.com/email-service/configuration/send-bindings/)
 
-The following configuration is in place. End-to-end receipt remains subject to
-the pending checks below.
+The following preview configuration is in place. End-to-end receipt passed the
+checks recorded below.
 
 - Private Worker enhance-visual-studio-inquiries-preview is deployed with its
   preview rate-limit binding and exact preview origin allowlist.
@@ -51,8 +51,7 @@ the pending checks below.
   November 26, 2026. Renew or replace it through the owner's account when needed.
   Its expiry affects administration, not the running Worker or notification binding.
   Keep token values, verification links and private configuration out of commits.
-- Production Pages settings and the production branch retain their existing
-  configuration.
+- Preview remains isolated from the production Worker and its rate-limit namespace.
 
 When updating the preview Worker, verify the EVS account, the preview Worker
 name and its preview bindings before using
@@ -95,24 +94,41 @@ remain subject to studio approval and the existing retainer policy. This flow
 sends no automatic customer email and does not reserve a date. Check Inbox and
 Spam during routine operation; mailbox classification remains provider-controlled.
 
-## Production readiness and release approval
+## Production release — approved November 19, 2026
 
-The main website can be released independently with the Events email fallback
-while GALLERY_URL remains unset. Review the release commit and existing Pages
-production branch, repository, build root and output before requesting approval.
-The buildless output must include the generated HTML, 404.html, _headers,
-_routes.json and the project-root functions directory.
+The owner explicitly approved the production launch. The production target is
+https://www.enhancevisualstudio.com, with enhancevisualstudio.com retained as an
+existing domain. GitHub main is the automatic Pages production branch.
 
-During a separately approved release, configure the EVS production Worker with
-the production origins, rate limiter, verified fixed studio destination and
-sender secret. Configure its Pages Production INQUIRY_WORKER service binding
-separately from Preview, then verify controlled booking/contact inbox delivery.
-Keep this deployment on the free verified-destination path.
+The production booking Worker is enhance-visual-studio-inquiries, configured by
+the default section of worker/wrangler.toml. Its exact origin allowlist contains
+only the www and apex EVS HTTPS origins. It has its own rate-limit namespace,
+the verified fixed studio email destination and BOOKING_FROM secret. The Pages
+Production INQUIRY_WORKER binding targets that Worker. Preview keeps its
+separate Worker, origin allowlist and namespace.
 
-Approval to merge into main is required because that merge triggers production
-deployment. Verify enhancevisualstudio.com and the EVS project before release.
-Gallery public access, subscription purchases and gallery DNS changes require
-their own authorization and readiness checks.
+Before each release, verify the repository, branch, release commit, account,
+Worker target and environment without printing secrets. Deploy the production
+Worker with `npx wrangler deploy --config worker/wrangler.toml --env ""` and
+manage BOOKING_FROM through the secure secret interface. Merge the reviewed
+release into main to trigger the buildless Pages deployment. Verify the actual
+production deployment commit and controlled inbox delivery after deployment.
+The output must include the generated HTML, 404.html, _headers, _routes.json
+and the project-root functions directory.
+
+The prelaunch production checkpoint is d12d0571431389b8851abc7db84249f6ee759392,
+Cloudflare deployment 391cf752-af34-44b2-93ea-a9a81c1cfd20. A verified source
+bundle, local Git tag, homepage snapshot and rollback metadata are saved outside
+the web root in ~/Documents/Enhance Visual Studio Backups/2026-11-19-production-launch/.
+If a critical production check fails, restore that successful deployment first,
+then resolve the issue. Restore Pages production bindings separately when needed;
+keep preview intact and preserve the private Workers. Never apply a whole old
+project snapshot over unrelated current settings.
+
+The main website launches independently with GALLERY_URL unset and the Events
+email fallback. SmugMug remains an owner-only trial. Purchases, public gallery
+activation and custom gallery DNS remain deferred; no new paid service or DNS
+change is required for this release.
 
 - [Pages branch controls](https://developers.cloudflare.com/pages/configuration/branch-build-controls/)
 - [Pages service bindings](https://developers.cloudflare.com/pages/functions/bindings/#service-bindings)
@@ -122,13 +138,13 @@ their own authorization and readiness checks.
 
 The gallery platform is the EVS SmugMug Luna site. Setup, the native block
 layout, privacy presets, and Lightroom Classic workflow are in
-[smugmug/README.md](smugmug/README.md). The customization files contain a staged
-menu that points back to the redesign preview until the main site is released.
+[smugmug/README.md](smugmug/README.md). The customization files default to the production main-site origin. The
+SmugMug trial remains private.
 The main Events page keeps GALLERY_URL unset while the SmugMug trial is private.
 Regenerating tools/build_site.py also updates the shared SmugMug snippets.
-Their default main-site origin stays on the redesign preview. After an
-approved main-site release, generate production links with
-`python3 -B tools/build_site.py --smugmug-site-origin https://www.enhancevisualstudio.com`.
+Generate production links with the default `python3 -B tools/build_site.py`.
+For a deliberate preview-only pack, use
+`python3 -B tools/build_site.py --smugmug-site-origin https://codex-evs-redesign.enhancevisualstudio-site.pages.dev`.
 Apply the generated footer and update native SmugMug menu destinations there;
 generating these files alone updates the repository artifacts.
 The native gallery service is independent of the existing booking integration.
